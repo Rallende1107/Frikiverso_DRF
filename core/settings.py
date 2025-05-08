@@ -52,7 +52,7 @@ PROJECT_APPS = [
     'apps.users.apps.UsersConfig',
 ]
 EXTERNAL_APPS = [
-    # 'rest_framework',
+    'rest_framework',
     # 'channels',
     # 'django_celery_results',
     # 'import_export',

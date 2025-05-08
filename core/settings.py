@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-c5m9ocfmyaq@*4w$%0-g#u94#&7ii@c=y!2zg#(*+u8b#lrtxu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+RAILWAY = os.getenv('RAILWAY', 'False').lower() in ['true', '1', 'yes']
 
-ALLOWED_HOSTS = ['web-production-e829.up.railway.app','localhost']
+ALLOWED_HOSTS = ['web-production-e829.up.railway.app','localhost', '127.0.0.1']
 
 
 # Application definition
@@ -93,10 +94,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-if os.getenv('RAILWAY'):
+if RAILWAY:
+    print('Usando DB Prod')
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 else:
-    DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL_LOCAL'))}
+    print('Usando DB Local')
+    DATABASES = {'default': dj_database_url.config(default='postgres://postgres:postgres@localhost:5433/postgres')}
 
 
 

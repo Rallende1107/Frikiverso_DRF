@@ -23,7 +23,7 @@ class CommonLog(BaseLog):
         verbose_name_plural = _('Logs General')
         ordering = ['-timestamp']
         unique_together = (('level', 'process', 'timestamp',),)
-        db_table = 'Log_Common'
+        db_table = 'log_Common'
 
 ########################################################################################################    Modelo para Country
 class Country(models.Model):

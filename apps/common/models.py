@@ -549,7 +549,7 @@ class Website(models.Model):
     def save(self, *args, **kwargs):
         """Save method for Person."""
         # Obtener el objeto original si existe
-        old = Person.objects.filter(pk=self.pk).first() if self.pk else None
+        old = Website.objects.filter(pk=self.pk).first() if self.pk else None
         # Normalización de nombres
         if self.name:
             self.name = self.name.strip()

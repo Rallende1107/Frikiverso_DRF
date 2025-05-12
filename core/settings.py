@@ -56,7 +56,7 @@ EXTERNAL_APPS = [
     'rest_framework',
     # 'channels',
     # 'django_celery_results',
-    # 'import_export',
+    'import_export',
 ]
 
 INSTALLED_APPS = BASE_APPS + PROJECT_APPS + EXTERNAL_APPS
@@ -129,7 +129,13 @@ LANGUAGE_CODE = 'es'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
+LANGUAGES = [
+    ("en", "English"),
+    ("es", "Spanish"),
+    ]
+LOCALE_PATHS = [
+    BASE_DIR / "locale",  # Ruta donde se guardarán los archivos de traducción
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/

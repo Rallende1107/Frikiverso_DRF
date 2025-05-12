@@ -685,7 +685,6 @@ class ArtistImageExtra(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
-
     class Meta:
         """Meta definition for ArtistImageExtra."""
         verbose_name = _('Imagen Extra Artista')

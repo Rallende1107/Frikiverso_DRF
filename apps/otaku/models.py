@@ -10,7 +10,7 @@ from PIL import Image as PILImage
 # Imports locales del proyecto
 from apps.common.models import Language, ImageSize
 from apps.music.models import Artist
-from core.utils.utils import BaseMALFetchStatus, BaseLog, obtener_inicial, YearField
+from core.utils.utils import BaseLog, obtener_inicial, YearField
 from .utils.uploads import anime_image_path, anime_image_extra_path, manga_image_path, manga_image_extra_path, character_image_path, character_image_extra_path, otaku_person_image_path, otaku_person_image_extra_path
 
 # Create your models here.
@@ -33,8 +33,8 @@ class Role(models.Model):
     slug = models.SlugField(max_length=40, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     description = models.TextField(blank=True, verbose_name=_('Descripción'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    role_staff = models.BooleanField(default=False, verbose_name=_('Rol OtakuPersonal'))
-    role_chara = models.BooleanField(default=False, verbose_name=_('Rol OtakuPersonajes'))
+    role_staff = models.BooleanField(default=False, verbose_name=_('Rol Personal'))
+    role_chara = models.BooleanField(default=False, verbose_name=_('Rol Personaje'))
     role_manga = models.BooleanField(default=False, verbose_name=_('Rol Mangas'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
@@ -1456,8 +1456,8 @@ class Character(models.Model):
 
     class Meta:
         """Meta definition for Character."""
-        verbose_name = _('OtakuPersonaje')
-        verbose_name_plural = _('OtakuPersonajes')
+        verbose_name = _('Personaje')
+        verbose_name_plural = _('Personajes')
         ordering = ['-created_at', 'initial','full_name',]
         unique_together = (('mal_id', 'initial', 'full_name', 'url',),)
 
@@ -1540,8 +1540,8 @@ class CharacterNickname(models.Model):
 
     class Meta:
         """Meta definition for CharacterNickname."""
-        verbose_name = _('Apodo OtakuPersonaje')
-        verbose_name_plural = _('Apodos OtakuPersonajes')
+        verbose_name = _('Apodo Personaje')
+        verbose_name_plural = _('Apodos Personajes')
         ordering = ['initial','nickname',]
         unique_together = (('character', 'initial', 'nickname',),)
 
@@ -1591,8 +1591,8 @@ class OtakuPerson(models.Model):
 
     class Meta:
         """Meta definition for OtakuPerson."""
-        verbose_name = _('OtakuPersona')
-        verbose_name_plural = _('OtakuPersonas')
+        verbose_name = _(' Persona')
+        verbose_name_plural = _('Personas')
         ordering = ['-created_at', 'initial','full_name',]
         unique_together = (('mal_id', 'initial', 'full_name', 'url',),)
 
@@ -1717,25 +1717,20 @@ class AnimeSong(models.Model):
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='animes_as_songs', on_delete=models.CASCADE, verbose_name=_('Anime'))
     song_type = models.CharField(max_length=3, blank=False, null=False, choices=SONG_TYPE_CHOICES, verbose_name='Tipo de Canción')
     song_id = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('ID Canción'))
-    title = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name=_('Título'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
     artist = models.ManyToManyField(Artist, blank=True, limit_choices_to={'is_active': True}, related_name='songs_as_artists', verbose_name=_('Artista'))
-    title_kanji = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Kanji TEMP'))
-    title_eng = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Ingles TEMP'))
     slug = models.SlugField(max_length=20000, unique=False, null=True, blank=True, editable=False, verbose_name=_('Título Slug'))
-    # Datos TEMP
-    song_title = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name='Título de la Canción TEMP')
     # Datos CSL
-    cls_title = models.CharField(max_length=20000, unique=False, null=True, blank=False, verbose_name=_('Título'))
-    cls_song_title = models.CharField(max_length=20000, unique=False, null=True, blank=False, verbose_name='Título de la Canción')
-    cls_title_kanji = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Kanji'))
-    cls_title_eng = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Ingles'))
+    title = models.CharField(max_length=20000, unique=False, null=True, blank=False, verbose_name=_('Título'))
+    title_kanji = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Kanji'))
+    title_eng = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Ingles'))
+    # Datos
+    title_full = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name='Título de la Canción Completo')
     # Datos Base
     revisado = models.IntegerField(default=0, verbose_name='Revisado Temporal')
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-    # TODO: Define fields here
 
     class Meta:
         """Meta definition for AnimeSong."""
@@ -1790,8 +1785,8 @@ class AnimeCharacter(models.Model):
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='anime_characters', on_delete=models.CASCADE, verbose_name=_('Anime'))
     role = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_chara': True,}, related_name='characters_anime_roles', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
-    character_mal_id = models.IntegerField(null=True, verbose_name='Mal Id OtakuPersonaje')
-    anime_mal_id = models.IntegerField(null=True, verbose_name='Mal Id Anime')
+    character_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Personaje'))
+    anime_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Anime'))
     # Base Data
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
@@ -1799,8 +1794,8 @@ class AnimeCharacter(models.Model):
 
     class Meta:
         """Meta definition for AnimeCharacter."""
-        verbose_name = 'OtakuPersonaje Anime'
-        verbose_name_plural = 'OtakuPersonajes Animes'
+        verbose_name = _('Personaje Anime')
+        verbose_name_plural = _('Personajes Animes')
         ordering = ['character_mal_id','anime_mal_id',]
         unique_together = (('character_mal_id', 'anime_mal_id',),)
 
@@ -1815,18 +1810,17 @@ class MangaCharacter(models.Model):
     manga = models.ForeignKey(Manga, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='manga_characters', on_delete=models.CASCADE, verbose_name=_('Manga'))
     role = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_chara': True,}, related_name='characters_manga_roles', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
-    character_mal_id = models.IntegerField(null=True, verbose_name='Mal Id OtakuPersonaje')
-    manga_mal_id = models.IntegerField(null=True, verbose_name='Mal Id Anime')
+    character_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Personaje'))
+    manga_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Manga'))
     # Base Data
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
-
     class Meta:
         """Meta definition for MangaCharacter."""
-        verbose_name = 'OtakuPersonaje Manga'
-        verbose_name_plural = 'OtakuPersonajes Mangas'
+        verbose_name = _('Personaje Manga')
+        verbose_name_plural = _('Personajes Mangas')
         ordering = ['character_mal_id','manga_mal_id',]
         unique_together = (('character_mal_id', 'manga_mal_id',),)
 
@@ -1839,12 +1833,12 @@ class VoiceCharacter(models.Model):
     """Model definition for VoiceCharacter."""
     person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='person_voice_roles', on_delete=models.CASCADE, verbose_name=_('Persona'))
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='voice_characters', on_delete=models.CASCADE, verbose_name=_('Anime'))
-    character = models.ForeignKey(Character, blank=False, null=False, limit_choices_to={'is_active': True, 'role_chara': True,}, related_name='character_voice_roles', on_delete=models.CASCADE, verbose_name=_('Personaje'))
+    character = models.ForeignKey(Character, blank=False, null=False, limit_choices_to={'is_active': True,}, related_name='character_voice_roles', on_delete=models.CASCADE, verbose_name=_('Personaje'))
     language = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='languages_voice_roles', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     # mal ids
-    person_mal_id = models.IntegerField(null=True, verbose_name='Mal Id OtakuPersona')
-    anime_mal_id = models.IntegerField(null=True, verbose_name='Mal Id Anime')
-    character_mal_id = models.IntegerField(blank=True, null=True, verbose_name='MAL ID OtakuPersonaje')
+    person_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Persona'))
+    anime_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Anime'))
+    character_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Personaje'))
     # Base Data
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
@@ -1852,8 +1846,8 @@ class VoiceCharacter(models.Model):
 
     class Meta:
         """Meta definition for VoiceCharacter."""
-        verbose_name = 'Actor de Voz'
-        verbose_name_plural = 'Actores de Voz'
+        verbose_name = _('Actor de Voz')
+        verbose_name_plural = _('Actores de Voz')
         ordering = ['anime_mal_id', 'character_mal_id', 'person_mal_id',]
         unique_together = (('person_mal_id', 'character_mal_id', 'anime_mal_id',),)
 
@@ -1876,24 +1870,19 @@ class AnimeStaff(models.Model):
     """Model definition for AnimeStaff."""
     person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='anime_staff_positions', on_delete=models.CASCADE, verbose_name=_('Persona'))
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='staff_members', on_delete=models.CASCADE, verbose_name=_('Anime'))
-    character = models.ForeignKey(Character, blank=False, null=False, limit_choices_to={'is_active': True, 'role_chara': True,}, related_name='person_anime_role_chara', on_delete=models.CASCADE, verbose_name=_('Personaje'))
     position = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_staff': True,}, related_name='anime_person_role_staff', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
-    person_mal_id = models.IntegerField(null=True, verbose_name=_('Mal Id Persona'))
-    anime_mal_id = models.IntegerField(null=True, verbose_name=_('Mal Id Anime'))
-    character_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Personaje'))
+    person_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Persona'))
+    anime_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Anime'))
     # Base Data
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
-
-
-
     class Meta:
         """Meta definition for AnimeStaff."""
-        verbose_name = 'Staff de Anime'
-        verbose_name_plural = 'Staff de Animes'
+        verbose_name = _('Personal de Anime')
+        verbose_name_plural = _('Personal de Animes')
         ordering = ['anime_mal_id', 'position', 'person_mal_id',]
         unique_together = (('anime_mal_id', 'person_mal_id', 'position',),)
 
@@ -1918,7 +1907,7 @@ class AuthorManga(models.Model):
     manga = models.ForeignKey(Manga, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='authors', on_delete=models.CASCADE, verbose_name=_('Manga'))
     position = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_manga': True,}, related_name='manga_person_role_manga', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
-    person_mal_id = models.IntegerField(null=True, verbose_name=_('Mal Id Persona'))
+    person_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Persona'))
     manga_mal_id = models.IntegerField(blank=True, null=True, verbose_name=_('MAL ID Manga'))
     # Base Data
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
@@ -1948,26 +1937,32 @@ class AuthorManga(models.Model):
 
 ########################################################################################################    Modelo para MediaRelation
 class MediaRelation(models.Model):
-    """Model definition for MediaRelation."""
-    relation_type = models.ForeignKey(RelationType, on_delete=models.CASCADE)  # Tipo de relación
-    from_entry_mal_id = models.IntegerField()  # ID de MyAnimeList del medio desde el cual se establece la relación
-    from_entry_p_mal_id = models.CharField(max_length=20)  # ID de MyAnimeList del medio desde el cual se establece la relación
-    from_entry_type = models.CharField(max_length=50, choices=[('anime', 'Anime'), ('manga', 'Manga')])  # Tipo de entrada
-    to_entry_mal_id = models.IntegerField()  # ID de MyAnimeList del medio al que se relaciona
-    to_entry_type = models.CharField(max_length=50, choices=[('anime', 'Anime'), ('manga', 'Manga')])  # Tipo de entrada
-    to_entry_p_mal_id = models.CharField(max_length=20)  # ID de MyAnimeList del medio al que se relaciona
-    is_active = models.BooleanField(default=True, verbose_name='Activo')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Actualizado')
+    ENTRY_TYPE_CHOICES = [
+        ('anime', 'Anime'),
+        ('manga', 'Manga'),
+    ]
+
+    relation_type = models.ForeignKey(RelationType, on_delete=models.CASCADE, verbose_name=_('Tipo de relación'))
+    from_entry_mal_id = models.IntegerField(verbose_name=_('MAL ID Desde'))
+    from_entry_type = models.CharField(max_length=50, choices=ENTRY_TYPE_CHOICES, verbose_name=_('Tipo Desde'))
+    to_entry_mal_id = models.IntegerField(verbose_name=_('MAL ID Hacia'))
+    to_entry_type = models.CharField(max_length=50, choices=ENTRY_TYPE_CHOICES, verbose_name=_('Tipo Hacia'))
+    from_entry_mal_id_p = models.CharField(max_length=20, verbose_name='MAL ID prefijo Desde')
+    to_entry_mal_id_p = models.CharField(max_length=20, verbose_name='MAL ID prefijo Hacia')
+    # Base Data
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
 
     class Meta:
-        """Meta definition for MediaRelation."""
         verbose_name = 'Relación de Media'
         verbose_name_plural = 'Relaciones de Media'
+        ordering = ['-created_at']
+        unique_together = (('from_entry_mal_id', 'to_entry_mal_id', 'relation_type'),)
 
     def __str__(self):
-        """Unicode representation of MediaRelation."""
-        return f"{self.from_entry_mal_id} - {self.relation_type} -> {self.to_entry_mal_id}"
+        return f"[{self.get_from_entry_type_display()} #{self.from_entry_mal_id}] {self.relation_type} → [{self.get_to_entry_type_display()} #{self.to_entry_mal_id}]"
 
     # def save(self):
     #     """Save method for MediaRelation."""
@@ -2359,7 +2354,6 @@ class OtakuPersonImage(models.Model):
         ordering = ['person', 'size_image', 'name',]
         unique_together = (('person', 'size_image', 'name',),)
 
-
     def __str__(self):
         """Unicode representation of OtakuPersonImage."""
         return self.name if self.person else _('Imagen sin Persona')
@@ -2700,15 +2694,21 @@ class CharacterImageExtra(models.Model):
                 print(f"Error al abrir la imagen: {e}")
         return (0, 0)
 
-################################################################################################################################################################################################################
 ########################################################################################################    Modelo para MALAnime
-class FetchAnime(BaseMALFetchStatus):
+class DataAnime(models.Model):
     """Model definition for MALAnime."""
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALAnime."""
-        verbose_name = _('Estado de obtención de anime (MAL)')
-        verbose_name_plural = _('Estados de obtención de animes (MAL)')
+        verbose_name = _('Dato de anime (MAL)')
+        verbose_name_plural = _('Datos de animes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_anime'
@@ -2718,13 +2718,20 @@ class FetchAnime(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALAnimeCharacters
-class FetchAnimeCharacters(BaseMALFetchStatus):
+class DataAnimeCharacters(models.Model):
     """Model definition for MALAnimeCharacters."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALAnimeCharacters."""
-        verbose_name = _('Estado de obtención de personaje de anime (MAL)')
-        verbose_name_plural = _('Estados de obtención de personajes de anime (MAL)')
+        verbose_name = _('Dato de personaje de anime (MAL)')
+        verbose_name_plural = _('Datos de personajes de animes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_anime_characters'
@@ -2734,13 +2741,20 @@ class FetchAnimeCharacters(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALAnimePictures
-class FetchAnimePictures(BaseMALFetchStatus):
+class DataAnimePictures(models.Model):
     """Model definition for MALAnimePictures."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALAnimePictures."""
-        verbose_name = _('Estado de obtención de imagen de anime (MAL)')
-        verbose_name_plural = _('Estados de obtención de imágenes de anime (MAL)')
+        verbose_name = _('Dato de imagen de anime (MAL)')
+        verbose_name_plural = _('Datos de imágenes de animes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_anime_pictures'
@@ -2750,13 +2764,20 @@ class FetchAnimePictures(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALAnimeStaff
-class FetchAnimeStaff(BaseMALFetchStatus):
+class DataAnimeStaff(models.Model):
     """Model definition for MALAnimeStaff."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALAnimeStaff."""
-        verbose_name = _('Estado de obtención de staff de anime (MAL)')
-        verbose_name_plural = _('Estados de obtención de staffs de anime (MAL)')
+        verbose_name = _('Dato de personal de anime (MAL)')
+        verbose_name_plural = _('Datos de personal de animes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_anime_staff'
@@ -2766,13 +2787,20 @@ class FetchAnimeStaff(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALManga
-class FetchManga(BaseMALFetchStatus):
+class DataManga(models.Model):
     """Model definition for MALManga."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALManga."""
-        verbose_name = _('Estado de obtención de manga (MAL)')
-        verbose_name_plural = _('Estados de obtención de mangas (MAL)')
+        verbose_name = _('Dato de manga (MAL)')
+        verbose_name_plural = _('Datos de mangas (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_manga'
@@ -2782,13 +2810,20 @@ class FetchManga(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALMangaCharacters
-class FetchMangaCharacters(BaseMALFetchStatus):
+class DataMangaCharacters(models.Model):
     """Model definition for MALMangaCharacters."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALMangaCharacters."""
-        verbose_name = _('Estado de obtención de personaje de manga (MAL)')
-        verbose_name_plural = _('Estados de obtención de personajes de manga (MAL)')
+        verbose_name = _('Dato de personaje de manga (MAL)')
+        verbose_name_plural = _('Datos de personajes de mangas (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_manga_characters'
@@ -2798,13 +2833,20 @@ class FetchMangaCharacters(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALMangaPictures
-class FetchMangaPictures(BaseMALFetchStatus):
+class DataMangaPictures(models.Model):
     """Model definition for MALMangaPictures."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALMangaPictures."""
-        verbose_name = _('Estado de obtención de imagen de manga (MAL)')
-        verbose_name_plural = _('Estados de obtención de imágenes de manga (MAL)')
+        verbose_name = _('Dato de imagen de manga (MAL)')
+        verbose_name_plural = _('Datos de imágenes de mangas (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_manga_pictures'
@@ -2814,13 +2856,20 @@ class FetchMangaPictures(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALCharacter
-class FetchCharacter(BaseMALFetchStatus):
+class DataCharacter(models.Model):
     """Model definition for MALCharacter."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALCharacter."""
-        verbose_name = _('Estado de obtención de personaje (MAL)')
-        verbose_name_plural = _('Estados de obtención de personajes (MAL)')
+        verbose_name = _('Dato de personaje (MAL)')
+        verbose_name_plural = _('Datos de personajes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_character'
@@ -2830,13 +2879,20 @@ class FetchCharacter(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALCharacterPictures
-class FetchCharacterPictures(BaseMALFetchStatus):
+class DataCharacterPictures(models.Model):
     """Model definition for MALCharacterPictures."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALCharacterPictures."""
-        verbose_name = _('Estado de obtención de imagen de personaje (MAL)')
-        verbose_name_plural = _('Estados de obtención de imágenes de personajes (MAL)')
+        verbose_name = _('Dato de imagen de personaje (MAL)')
+        verbose_name_plural = _('Datos de imágenes de personajes (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_character_pictures'
@@ -2846,13 +2902,20 @@ class FetchCharacterPictures(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALOtakuPerson
-class FetchOtakuPerson(BaseMALFetchStatus):
+class DataOtakuPerson(models.Model):
     """Model definition for MALOtakuPerson."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALOtakuPerson."""
-        verbose_name = _('Estado de obtención de persona (MAL)')
-        verbose_name_plural = _('Estados de obtención de personas (MAL)')
+        verbose_name = _('Dato de persona (MAL)')
+        verbose_name_plural = _('Datos de personas (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_otaku_person'
@@ -2862,13 +2925,20 @@ class FetchOtakuPerson(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALOtakuPersonPictures
-class FetchOtakuPersonPictures(BaseMALFetchStatus):
+class DataOtakuPersonPictures(models.Model):
     """Model definition for MALOtakuPersonPictures."""
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALOtakuPersonPictures."""
-        verbose_name = _('Estado de obtención de imagen de persona (MAL)')
-        verbose_name_plural = _('Estados de obtención de imágenes de personas (MAL)')
+        verbose_name = _('Dato de imagen de persona (MAL)')
+        verbose_name_plural = _('Datos de imágenes de personas (MAL)')
         ordering = ['-created_at', 'mal_id',]
         unique_together = (('mal_id', 'url', 'status',),)
         db_table = 'fetch_otaku_person_pictures'
@@ -2878,15 +2948,18 @@ class FetchOtakuPersonPictures(BaseMALFetchStatus):
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALImageURL
-class FetchImageURL(BaseMALFetchStatus):
+class DataImageURL(models.Model):
     """Model definition for MALImageURL."""
-    mal_id = None
-    data = None
+    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
+    status = models.BooleanField(default=False, verbose_name=_('Estado'))
+    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for MALImageURL."""
-        verbose_name = _('Estado de obtención de imagen URL (MAL)')
-        verbose_name_plural = _('Estados de obtención de imágenes URL (MAL)')
+        verbose_name = _('Dato de imagen URL (MAL)')
+        verbose_name_plural = _('Datos de imágenes de URL (MAL)')
         ordering = ['-created_at', 'url',]
         unique_together = (('url', 'status',),)
         db_table = 'fetch_image_url'
@@ -2894,36 +2967,6 @@ class FetchImageURL(BaseMALFetchStatus):
     def __str__(self):
         """Unicode representation of MALImageURL."""
         return f"{self.url} - {self.status}"
-
-########################################################################################################    Modelo para Temp_AnimeSong
-class Temp_AnimeSong(models.Model):
-    """Model definition for AnimeSong."""
-    SONG_TYPE_CHOICES = [
-        ('OP', 'Opening'),
-        ('ED', 'Ending'),
-        ('IN', 'Insert Song'),
-    ]
-
-    anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='animes_as_temp_songs', on_delete=models.CASCADE, verbose_name=_('Anime'))
-    song_type = models.CharField(max_length=3, blank=False, null=False, choices=SONG_TYPE_CHOICES, verbose_name='Tipo de Canción')
-    song_id = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('ID Canción'))
-    title = models.CharField(max_length=500, unique=False, null=False, blank=False, verbose_name=_('Título'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    title_kanji = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Kanji TEMP'))
-    title_eng = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Título Ingles TEMP'))
-    # Datos Base
-    revisado = models.IntegerField(default=0, verbose_name='Revisado Temporal')
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for AnimeSong."""
-        verbose_name = _('Temp Canción Anime')
-        verbose_name_plural = _('Temp Canciones Anime')
-        ordering = ['anime', 'song_type', 'song_id', 'title',]
-        unique_together = (('anime', 'song_type', 'song_id', 'title',),)
-        db_table = 'temp_anime_song'
 
 ########################################################################################################    Modelo para Temp_OtakuPersons
 class Temp_OtakuPersons(models.Model):
@@ -2933,8 +2976,8 @@ class Temp_OtakuPersons(models.Model):
 
     class Meta:
         """Meta definition for TempOtakuPersons."""
-        verbose_name = 'OtakuPersona Temporal'
-        verbose_name_plural = 'OtakuPersonas Temporales'
+        verbose_name = _('Temp. Otaku Persona')
+        verbose_name_plural = _('Temp. Otaku Personas')
         unique_together = (('mal_id_person', 'lenguaje',),)
         db_table = 'temp_otaku_persons'
 
@@ -2945,6 +2988,6 @@ class Temp_Characters(models.Model):
 
     class Meta:
         """Meta definition for TempCharacters."""
-        verbose_name = 'OtakuPersonaje Temporal'
-        verbose_name_plural = 'OtakuPersonajes Temporales'
+        verbose_name = _('Temp. Personaje')
+        verbose_name_plural = _('Temp. Personajes')
         db_table = 'temp_characters'

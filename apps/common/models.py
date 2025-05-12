@@ -33,7 +33,7 @@ class Country(models.Model):
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
     initial_esp = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial Español'))
     slug = models.SlugField(max_length=60, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    code = models.CharField(max_length=4, unique=False, null=False, blank=True, editable=False, verbose_name=_('Código'))
+    code = models.CharField(max_length=4, unique=False, null=False, blank=True, verbose_name=_('Código'))
     numeric_code = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('Código Numerico'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
@@ -87,6 +87,7 @@ class Format(models.Model):
     for_document = models.BooleanField(default=False, verbose_name=_('Documentos'))
     for_other = models.BooleanField(default=False, verbose_name=_('Otros'))
     slug = models.CharField(max_length=20, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    description = models.TextField(blank=True, verbose_name=_('Descripción'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -125,6 +126,8 @@ class ImageSize(models.Model):
     name_esp = models.CharField(max_length=20, verbose_name=_('Nombre Español'))
     slug = models.CharField(max_length=20, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for ImageSize."""
@@ -284,24 +287,25 @@ class PersonImage(models.Model):
         return self.name if self.person else _('Imagen sin Persona')
 
     def save(self, *args, **kwargs):
-        """Save method for PersonImage.
-        Save method to handle name and slug from uploaded file."""
-        old = PersonImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
+        is_new = self._state.adding
+        super().save(*args, **kwargs)  # Guardar primero para que self.image.name sea definitivo
+
+        filename = os.path.basename(self.image.name) if self.image else None
+
+        # Actualizar name y slug si es necesario
+        updated_fields = []
+
+        if filename and (not self.name or self.name != filename):
+            self.name = filename
+            updated_fields.append('name')
+
+        if self.name and (not self.slug or slugify(self.name) != self.slug):
             self.slug = slugify(self.name) or str(uuid.uuid4())
-        super().save(*args, **kwargs)
+            updated_fields.append('slug')
+
+        # Guardar solo si se modificó algo
+        if updated_fields:
+            super().save(update_fields=updated_fields)
 
     def get_absolute_url(self):
         """Return absolute url for PersonImage."""
@@ -364,8 +368,8 @@ class PersonImageExtra(models.Model):
 
     class Meta:
         """Meta definition for PersonImageExtra."""
-        verbose_name = _('Imagen Extra Persona')
-        verbose_name_plural = _('Imágenes Extra Personas')
+        verbose_name = _('Imágen extra persona')
+        verbose_name_plural = _('Imágenes extras de personas')
         ordering = ['person', 'name',]
         unique_together = (('person', 'name',),)
 

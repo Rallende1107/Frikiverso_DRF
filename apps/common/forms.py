@@ -346,7 +346,7 @@ class ImageSizeForm(forms.ModelForm):
 class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
-        fields = ['name', 'acronym', 'name_esp', 'acronym_esp', 'is_active']
+        fields = ['name', 'acronym', 'name_esp', 'is_active']
 
     name = forms.CharField(
         required=True,
@@ -407,24 +407,7 @@ class LanguageForm(forms.ModelForm):
         }
     )
 
-    acronym_esp = forms.CharField(
-        required=False,
-        strip=True,
-        max_length=5,
-        label='Sigla Español',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': 'Sigla del Idioma en Español (opcional)',
-                'id': 'acronym_esp',
-                'type': 'text',
-                'autocomplete': 'off',
-            }
-        ),
-        error_messages={
-            'max_length': 'La Sigla en Español del Idioma excede lo permitido.',
-        }
-    )
+
 
     is_active = forms.BooleanField(
         required=False,
@@ -451,13 +434,12 @@ class LanguageForm(forms.ModelForm):
         name = cleaned_data.get('name')
         name_esp = cleaned_data.get('name_esp')
         acronym = cleaned_data.get('acronym')
-        acronym_esp = cleaned_data.get('acronym_esp')
 
         # Normaliza los nombres e iniciales eliminando espacios y convirtiendo a minúsculas
         normalized_name = ''.join(name.lower().split()) if name else ''
         normalized_name_esp = ''.join(name_esp.lower().split()) if name_esp else ''
         normalized_acronym = ''.join(acronym.lower().split()) if acronym else ''
-        normalized_acronym_esp = ''.join(acronym_esp.lower().split()) if acronym_esp else ''
+
 
         # Verifica si ya existe un idioma con el nombre, iniciales, o combinaciones similares
         existing_languages = Language.objects.exclude(pk=self.instance.pk)
@@ -465,7 +447,6 @@ class LanguageForm(forms.ModelForm):
             existing_normalized_name = ''.join(language.name.lower().split())
             existing_normalized_name_esp = ''.join(language.name_esp.lower().split())
             existing_normalized_acronym = ''.join(language.acronym.lower().split())
-            existing_normalized_acronym_esp = ''.join(language.acronym_esp.lower().split())
 
             if normalized_name == existing_normalized_name:
                 raise forms.ValidationError(f'El idioma "{name}" ya existe o es muy similar.')
@@ -476,8 +457,6 @@ class LanguageForm(forms.ModelForm):
             if normalized_acronym and normalized_acronym == existing_normalized_acronym:
                 raise forms.ValidationError(f'La sigla "{acronym}" ya existe o es muy similar.')
 
-            if normalized_acronym_esp and normalized_acronym_esp == existing_normalized_acronym_esp:
-                raise forms.ValidationError(f'La sigla en español "{acronym_esp}" ya existe o es muy similar.')
 
         return cleaned_data
 
@@ -862,7 +841,7 @@ class QualityForm(forms.ModelForm):
 class WebsiteForm(forms.ModelForm):
     class Meta:
         model = Website
-        fields = ['name', 'acronym', 'URL', 'is_active']
+        fields = ['name', 'acronym', 'url', 'is_active']
 
     name = forms.CharField(
         required=True,
@@ -906,7 +885,7 @@ class WebsiteForm(forms.ModelForm):
         }
     )
 
-    URL = forms.URLField(
+    url = forms.URLField(
         required=True,
         max_length=250,
         label='URL',

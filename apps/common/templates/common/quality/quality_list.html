@@ -10,9 +10,9 @@
 {% block dataTableBody %}
 {% for quality in qualitys %}
 <tr>
-    <td>{{ quality.id }}</td>
+    <td class="td-id">{{ quality.id }}</td>
     <td>{{ quality.name }}</td>
-    <td>{{ quality.is_active|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ quality.is_active|yesno:"Sí,No" }}</td>
     <td>
         <select onchange="handleAction(this, '{{ quality.id }}', '{{ quality.name }}', '{{ key_map }}')">
             <option value="">Acciones</option>

@@ -1,0 +1,13 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+<h1>{{ objeto.name }}</h1>
+<p>Nombre: {{ objeto.name }}</p>
+<p>acronym: {{ objeto.acronym }}</p>
+<p>URL: {{ objeto.URL }}</p>
+
+
+<p>Activo: {{ objeto.is_active|yesno:"Sí,No" }}</p>
+<p>Creado: {{ objeto.created_at }}</p>
+<p>Actualizado: {{ objeto.updated_at }}</p>
+{% endblock detail %}

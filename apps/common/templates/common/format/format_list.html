@@ -17,12 +17,12 @@
 <tr>
     <td class="td-id">{{ format.id }}</td>
     <td>{{ format.name }}</td>
-    <td>{{ format.for_video|yesno:"Sí,No" }}</td>
-    <td>{{ format.for_music|yesno:"Sí,No" }}</td>
-    <td>{{ format.for_image|yesno:"Sí,No" }}</td>
-    <td>{{ format.for_document|yesno:"Sí,No" }}</td>
-    <td>{{ format.for_other|yesno:"Sí,No" }}</td>
-    <td>{{ format.is_active|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.for_video|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.for_music|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.for_image|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.for_document|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.for_other|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ format.is_active|yesno:"Sí,No" }}</td>
     <td>
         <select onchange="handleAction(this, '{{ format.id }}', '{{ format.name }}', '{{ key_map }}')">
             <option value="">Acciones</option>

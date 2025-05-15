@@ -56,16 +56,10 @@ new DataTable("#example", {
     },
     columnDefs: [
         { target: 0, visible: true, searchable: false, responsivePriority: 99 }, // id
-        { target: 1, visible: true, searchable: true, responsivePriority: 0, }, // Usuario
-        { target: 2, visible: true, searchable: true, responsivePriority: 5, }, // Nombre Completo
-        { target: 3, visible: true, searchable: true, responsivePriority: 13, }, // Correo Electronico
-        { target: 4, visible: true, searchable: false, responsivePriority: 8, }, // Es Miembro
-        { target: 5, visible: true, searchable: false, responsivePriority: 7, }, // Activo
-        { target: 6, visible: true, searchable: false, responsivePriority: 9, }, // Super Usuario
-        { target: 7, visible: true, searchable: false, responsivePriority: 10, }, // Último Acceso
-        { target: 8, visible: true, searchable: false, responsivePriority: 11, }, // Fecha Registro
-        { target: 9, visible: true, searchable: false, responsivePriority: 12, }, // Fecha Nacimiento Edad
-        { target: 10, visible: true, searchable: false, responsivePriority: 0, }, // Acciones
+        { target: 1, visible: true, searchable: true, responsivePriority: 0, }, // nombre
+        { target: 2, visible: true, searchable: true, responsivePriority: 13, }, // nombre Esp
+        { target: 3, visible: true, searchable: false, responsivePriority: 7, }, // Activo
+        { target: 4, visible: true, searchable: false, responsivePriority: 0, }, // Acciones
 
     ],
 });

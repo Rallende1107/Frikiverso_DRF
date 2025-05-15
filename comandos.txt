@@ -1,0 +1,5 @@
+django-admin makemessages -l es
+django-admin makemessages -l en
+Editar .po
+
+django-admin compilemessages

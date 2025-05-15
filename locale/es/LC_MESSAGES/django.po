@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 11:34-0400\n"
+"POT-Creation-Date: 2025-05-15 18:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,878 +18,1224 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
 #: .\apps\common\api\views.py:31
 msgid "¡Idioma creado exitosamente!"
 msgstr ""
 
-#: .\apps\common\models.py:22
+#: .\apps\common\models.py:23
 msgid "Log General"
 msgstr ""
 
-#: .\apps\common\models.py:23
+#: .\apps\common\models.py:24
 msgid "Logs General"
 msgstr ""
 
-#: .\apps\common\models.py:31 .\apps\common\models.py:83
-#: .\apps\common\models.py:124 .\apps\common\models.py:159
-#: .\apps\common\models.py:269 .\apps\common\models.py:359
-#: .\apps\common\models.py:487 .\apps\common\models.py:525
-#: .\apps\movie\models.py:32 .\apps\movie\models.py:82
-#: .\apps\movie\models.py:130 .\apps\movie\models.py:185
-#: .\apps\movie\models.py:227 .\apps\movie\models.py:489
-#: .\apps\movie\models.py:578 .\apps\music\models.py:32
-#: .\apps\music\models.py:80 .\apps\music\models.py:128
-#: .\apps\music\models.py:172 .\apps\music\models.py:216
-#: .\apps\music\models.py:413 .\apps\music\models.py:502
-#: .\apps\music\models.py:593 .\apps\music\models.py:682
-#: .\apps\otaku\models.py:31 .\apps\otaku\models.py:129
-#: .\apps\otaku\models.py:181 .\apps\otaku\models.py:233
-#: .\apps\otaku\models.py:285 .\apps\otaku\models.py:336
-#: .\apps\otaku\models.py:386 .\apps\otaku\models.py:437
-#: .\apps\otaku\models.py:488 .\apps\otaku\models.py:536
-#: .\apps\otaku\models.py:585 .\apps\otaku\models.py:636
-#: .\apps\otaku\models.py:679 .\apps\otaku\models.py:722
-#: .\apps\otaku\models.py:765 .\apps\otaku\models.py:1990
-#: .\apps\otaku\models.py:2079 .\apps\otaku\models.py:2170
-#: .\apps\otaku\models.py:2259 .\apps\otaku\models.py:2349
-#: .\apps\otaku\models.py:2439 .\apps\otaku\models.py:2530
-#: .\apps\otaku\models.py:2619 .\apps\renpy\models.py:31
-#: .\apps\renpy\models.py:79 .\apps\renpy\models.py:123
-#: .\apps\renpy\models.py:170 .\apps\renpy\models.py:215
-#: .\apps\renpy\models.py:262 .\apps\renpy\models.py:309
-#: .\apps\renpy\models.py:355 .\apps\renpy\models.py:401
-#: .\apps\renpy\models.py:513 .\apps\renpy\models.py:602
-#: .\apps\renpy\models.py:690 .\apps\renpy\models.py:733
-#: .\apps\renpy\models.py:776 .\apps\renpy\models.py:822
-#: .\apps\renpy\models.py:911 .\apps\renpy\models.py:1002
-#: .\apps\renpy\models.py:1091 .\apps\renpy\models.py:1182
-#: .\apps\renpy\models.py:1271 .\apps\serie\models.py:33
-#: .\apps\serie\models.py:83 .\apps\serie\models.py:132
-#: .\apps\serie\models.py:186 .\apps\serie\models.py:232
-#: .\apps\serie\models.py:496 .\apps\serie\models.py:585
-msgid "Nombre"
-msgstr "Nombre"
-
-#: .\apps\common\models.py:32 .\apps\common\models.py:125
-#: .\apps\common\models.py:160 .\apps\movie\models.py:33
-#: .\apps\movie\models.py:83 .\apps\movie\models.py:131
-#: .\apps\movie\models.py:186 .\apps\music\models.py:33
-#: .\apps\music\models.py:81 .\apps\music\models.py:129
-#: .\apps\music\models.py:173 .\apps\otaku\models.py:32
-#: .\apps\otaku\models.py:130 .\apps\otaku\models.py:182
-#: .\apps\otaku\models.py:234 .\apps\otaku\models.py:286
-#: .\apps\otaku\models.py:337 .\apps\otaku\models.py:387
-#: .\apps\otaku\models.py:438 .\apps\otaku\models.py:489
-#: .\apps\otaku\models.py:537 .\apps\otaku\models.py:586
-#: .\apps\renpy\models.py:32 .\apps\renpy\models.py:124
-#: .\apps\renpy\models.py:171 .\apps\renpy\models.py:216
-#: .\apps\renpy\models.py:263 .\apps\serie\models.py:34
-#: .\apps\serie\models.py:84 .\apps\serie\models.py:133
-#: .\apps\serie\models.py:187
-msgid "Nombre Español"
-msgstr "Nombre Español"
-
-#: .\apps\common\models.py:33 .\apps\common\models.py:162
-#: .\apps\common\models.py:211 .\apps\common\models.py:448
-#: .\apps\common\models.py:528 .\apps\movie\models.py:34
-#: .\apps\movie\models.py:84 .\apps\movie\models.py:134
-#: .\apps\movie\models.py:229 .\apps\movie\models.py:286
-#: .\apps\movie\models.py:351 .\apps\movie\models.py:442
-#: .\apps\music\models.py:34 .\apps\music\models.py:82
-#: .\apps\music\models.py:218 .\apps\music\models.py:307
-#: .\apps\music\models.py:360 .\apps\otaku\models.py:35
-#: .\apps\otaku\models.py:131 .\apps\otaku\models.py:183
-#: .\apps\otaku\models.py:235 .\apps\otaku\models.py:287
-#: .\apps\otaku\models.py:388 .\apps\otaku\models.py:439
-#: .\apps\otaku\models.py:490 .\apps\otaku\models.py:538
-#: .\apps\otaku\models.py:587 .\apps\otaku\models.py:637
-#: .\apps\otaku\models.py:680 .\apps\otaku\models.py:723
-#: .\apps\otaku\models.py:766 .\apps\otaku\models.py:816
-#: .\apps\otaku\models.py:1111 .\apps\otaku\models.py:1351
-#: .\apps\otaku\models.py:1399 .\apps\otaku\models.py:1447
-#: .\apps\otaku\models.py:1535 .\apps\otaku\models.py:1578
-#: .\apps\otaku\models.py:1670 .\apps\otaku\models.py:1721
-#: .\apps\otaku\models.py:2911 .\apps\renpy\models.py:33
-#: .\apps\renpy\models.py:80 .\apps\renpy\models.py:125
-#: .\apps\renpy\models.py:172 .\apps\renpy\models.py:217
-#: .\apps\renpy\models.py:264 .\apps\renpy\models.py:310
-#: .\apps\renpy\models.py:356 .\apps\renpy\models.py:402
-#: .\apps\renpy\models.py:450 .\apps\renpy\models.py:692
-#: .\apps\renpy\models.py:735 .\apps\renpy\models.py:778
-#: .\apps\renpy\models.py:1362 .\apps\serie\models.py:35
-#: .\apps\serie\models.py:85 .\apps\serie\models.py:136
-#: .\apps\serie\models.py:234 .\apps\serie\models.py:292
-#: .\apps\serie\models.py:359 .\apps\serie\models.py:449
-msgid "Inicial"
-msgstr "Inicial"
-
-#: .\apps\common\models.py:34
-msgid "Inicial Español"
-msgstr "Inicial Español"
-
-#: .\apps\common\models.py:35 .\apps\common\models.py:89
+#: .\apps\common\models.py:32 .\apps\common\models.py:84
 #: .\apps\common\models.py:126 .\apps\common\models.py:163
-#: .\apps\common\models.py:215 .\apps\common\models.py:270
-#: .\apps\common\models.py:360 .\apps\common\models.py:489
-#: .\apps\common\models.py:529 .\apps\movie\models.py:35
-#: .\apps\movie\models.py:85 .\apps\movie\models.py:132
-#: .\apps\movie\models.py:187 .\apps\movie\models.py:228
-#: .\apps\movie\models.py:287 .\apps\movie\models.py:490
-#: .\apps\movie\models.py:579 .\apps\music\models.py:35
-#: .\apps\music\models.py:83 .\apps\music\models.py:130
-#: .\apps\music\models.py:174 .\apps\music\models.py:217
+#: .\apps\common\models.py:273 .\apps\common\models.py:365
+#: .\apps\common\models.py:493 .\apps\common\models.py:531
+#: .\apps\movie\models.py:33 .\apps\movie\models.py:83
+#: .\apps\movie\models.py:131 .\apps\movie\models.py:186
+#: .\apps\movie\models.py:228 .\apps\movie\models.py:490
+#: .\apps\movie\models.py:579 .\apps\music\models.py:33
+#: .\apps\music\models.py:81 .\apps\music\models.py:129
+#: .\apps\music\models.py:173 .\apps\music\models.py:217
 #: .\apps\music\models.py:414 .\apps\music\models.py:503
 #: .\apps\music\models.py:594 .\apps\music\models.py:683
-#: .\apps\otaku\models.py:33 .\apps\otaku\models.py:132
-#: .\apps\otaku\models.py:184 .\apps\otaku\models.py:236
-#: .\apps\otaku\models.py:288 .\apps\otaku\models.py:338
-#: .\apps\otaku\models.py:389 .\apps\otaku\models.py:440
-#: .\apps\otaku\models.py:491 .\apps\otaku\models.py:539
-#: .\apps\otaku\models.py:588 .\apps\otaku\models.py:638
-#: .\apps\otaku\models.py:681 .\apps\otaku\models.py:724
-#: .\apps\otaku\models.py:767 .\apps\otaku\models.py:1446
-#: .\apps\otaku\models.py:1577 .\apps\otaku\models.py:1991
-#: .\apps\otaku\models.py:2080 .\apps\otaku\models.py:2171
-#: .\apps\otaku\models.py:2260 .\apps\otaku\models.py:2350
-#: .\apps\otaku\models.py:2440 .\apps\otaku\models.py:2531
-#: .\apps\otaku\models.py:2620 .\apps\renpy\models.py:34
-#: .\apps\renpy\models.py:81 .\apps\renpy\models.py:126
-#: .\apps\renpy\models.py:173 .\apps\renpy\models.py:218
-#: .\apps\renpy\models.py:265 .\apps\renpy\models.py:311
-#: .\apps\renpy\models.py:357 .\apps\renpy\models.py:403
+#: .\apps\otaku\models.py:32 .\apps\otaku\models.py:130
+#: .\apps\otaku\models.py:182 .\apps\otaku\models.py:234
+#: .\apps\otaku\models.py:286 .\apps\otaku\models.py:337
+#: .\apps\otaku\models.py:387 .\apps\otaku\models.py:438
+#: .\apps\otaku\models.py:489 .\apps\otaku\models.py:537
+#: .\apps\otaku\models.py:586 .\apps\otaku\models.py:637
+#: .\apps\otaku\models.py:680 .\apps\otaku\models.py:723
+#: .\apps\otaku\models.py:766 .\apps\otaku\models.py:1986
+#: .\apps\otaku\models.py:2075 .\apps\otaku\models.py:2166
+#: .\apps\otaku\models.py:2255 .\apps\otaku\models.py:2345
+#: .\apps\otaku\models.py:2434 .\apps\otaku\models.py:2525
+#: .\apps\otaku\models.py:2614 .\apps\renpy\models.py:32
+#: .\apps\renpy\models.py:80 .\apps\renpy\models.py:124
+#: .\apps\renpy\models.py:171 .\apps\renpy\models.py:216
+#: .\apps\renpy\models.py:263 .\apps\renpy\models.py:310
+#: .\apps\renpy\models.py:356 .\apps\renpy\models.py:402
 #: .\apps\renpy\models.py:514 .\apps\renpy\models.py:603
 #: .\apps\renpy\models.py:691 .\apps\renpy\models.py:734
 #: .\apps\renpy\models.py:777 .\apps\renpy\models.py:823
 #: .\apps\renpy\models.py:912 .\apps\renpy\models.py:1003
 #: .\apps\renpy\models.py:1092 .\apps\renpy\models.py:1183
-#: .\apps\renpy\models.py:1272 .\apps\serie\models.py:36
-#: .\apps\serie\models.py:86 .\apps\serie\models.py:134
-#: .\apps\serie\models.py:188 .\apps\serie\models.py:233
-#: .\apps\serie\models.py:293 .\apps\serie\models.py:497
-#: .\apps\serie\models.py:586 .\apps\users\models.py:39
+#: .\apps\renpy\models.py:1272 .\apps\serie\models.py:34
+#: .\apps\serie\models.py:84 .\apps\serie\models.py:133
+#: .\apps\serie\models.py:187 .\apps\serie\models.py:233
+#: .\apps\serie\models.py:497 .\apps\serie\models.py:586
+msgid "Nombre"
+msgstr "Nombre"
+
+#: .\apps\common\models.py:33 .\apps\common\models.py:127
+#: .\apps\common\models.py:164 .\apps\movie\models.py:34
+#: .\apps\movie\models.py:84 .\apps\movie\models.py:132
+#: .\apps\movie\models.py:187 .\apps\music\models.py:34
+#: .\apps\music\models.py:82 .\apps\music\models.py:130
+#: .\apps\music\models.py:174 .\apps\otaku\models.py:33
+#: .\apps\otaku\models.py:131 .\apps\otaku\models.py:183
+#: .\apps\otaku\models.py:235 .\apps\otaku\models.py:287
+#: .\apps\otaku\models.py:338 .\apps\otaku\models.py:388
+#: .\apps\otaku\models.py:439 .\apps\otaku\models.py:490
+#: .\apps\otaku\models.py:538 .\apps\otaku\models.py:587
+#: .\apps\renpy\models.py:33 .\apps\renpy\models.py:125
+#: .\apps\renpy\models.py:172 .\apps\renpy\models.py:217
+#: .\apps\renpy\models.py:264 .\apps\serie\models.py:35
+#: .\apps\serie\models.py:85 .\apps\serie\models.py:134
+#: .\apps\serie\models.py:188
+msgid "Nombre Español"
+msgstr "Nombre Español"
+
+#: .\apps\common\models.py:34 .\apps\common\models.py:166
+#: .\apps\common\models.py:215 .\apps\common\models.py:454
+#: .\apps\common\models.py:534 .\apps\movie\models.py:35
+#: .\apps\movie\models.py:85 .\apps\movie\models.py:135
+#: .\apps\movie\models.py:230 .\apps\movie\models.py:287
+#: .\apps\movie\models.py:352 .\apps\movie\models.py:443
+#: .\apps\music\models.py:35 .\apps\music\models.py:83
+#: .\apps\music\models.py:219 .\apps\music\models.py:308
+#: .\apps\music\models.py:361 .\apps\otaku\models.py:36
+#: .\apps\otaku\models.py:132 .\apps\otaku\models.py:184
+#: .\apps\otaku\models.py:236 .\apps\otaku\models.py:288
+#: .\apps\otaku\models.py:389 .\apps\otaku\models.py:440
+#: .\apps\otaku\models.py:491 .\apps\otaku\models.py:539
+#: .\apps\otaku\models.py:588 .\apps\otaku\models.py:638
+#: .\apps\otaku\models.py:681 .\apps\otaku\models.py:724
+#: .\apps\otaku\models.py:767 .\apps\otaku\models.py:817
+#: .\apps\otaku\models.py:1112 .\apps\otaku\models.py:1352
+#: .\apps\otaku\models.py:1400 .\apps\otaku\models.py:1448
+#: .\apps\otaku\models.py:1536 .\apps\otaku\models.py:1579
+#: .\apps\otaku\models.py:1671 .\apps\otaku\models.py:1721
+#: .\apps\renpy\models.py:34 .\apps\renpy\models.py:81
+#: .\apps\renpy\models.py:126 .\apps\renpy\models.py:173
+#: .\apps\renpy\models.py:218 .\apps\renpy\models.py:265
+#: .\apps\renpy\models.py:311 .\apps\renpy\models.py:357
+#: .\apps\renpy\models.py:403 .\apps\renpy\models.py:451
+#: .\apps\renpy\models.py:693 .\apps\renpy\models.py:736
+#: .\apps\renpy\models.py:779 .\apps\renpy\models.py:1363
+#: .\apps\serie\models.py:36 .\apps\serie\models.py:86
+#: .\apps\serie\models.py:137 .\apps\serie\models.py:235
+#: .\apps\serie\models.py:293 .\apps\serie\models.py:360
+#: .\apps\serie\models.py:450
+msgid "Inicial"
+msgstr "Inicial"
+
+#: .\apps\common\models.py:35
+msgid "Inicial Español"
+msgstr "Inicial Español"
+
+#: .\apps\common\models.py:36 .\apps\common\models.py:90
+#: .\apps\common\models.py:128 .\apps\common\models.py:167
+#: .\apps\common\models.py:219 .\apps\common\models.py:274
+#: .\apps\common\models.py:366 .\apps\common\models.py:495
+#: .\apps\common\models.py:535 .\apps\movie\models.py:36
+#: .\apps\movie\models.py:86 .\apps\movie\models.py:133
+#: .\apps\movie\models.py:188 .\apps\movie\models.py:229
+#: .\apps\movie\models.py:288 .\apps\movie\models.py:491
+#: .\apps\movie\models.py:580 .\apps\music\models.py:36
+#: .\apps\music\models.py:84 .\apps\music\models.py:131
+#: .\apps\music\models.py:175 .\apps\music\models.py:218
+#: .\apps\music\models.py:415 .\apps\music\models.py:504
+#: .\apps\music\models.py:595 .\apps\music\models.py:684
+#: .\apps\otaku\models.py:34 .\apps\otaku\models.py:133
+#: .\apps\otaku\models.py:185 .\apps\otaku\models.py:237
+#: .\apps\otaku\models.py:289 .\apps\otaku\models.py:339
+#: .\apps\otaku\models.py:390 .\apps\otaku\models.py:441
+#: .\apps\otaku\models.py:492 .\apps\otaku\models.py:540
+#: .\apps\otaku\models.py:589 .\apps\otaku\models.py:639
+#: .\apps\otaku\models.py:682 .\apps\otaku\models.py:725
+#: .\apps\otaku\models.py:768 .\apps\otaku\models.py:1447
+#: .\apps\otaku\models.py:1578 .\apps\otaku\models.py:1987
+#: .\apps\otaku\models.py:2076 .\apps\otaku\models.py:2167
+#: .\apps\otaku\models.py:2256 .\apps\otaku\models.py:2346
+#: .\apps\otaku\models.py:2435 .\apps\otaku\models.py:2526
+#: .\apps\otaku\models.py:2615 .\apps\renpy\models.py:35
+#: .\apps\renpy\models.py:82 .\apps\renpy\models.py:127
+#: .\apps\renpy\models.py:174 .\apps\renpy\models.py:219
+#: .\apps\renpy\models.py:266 .\apps\renpy\models.py:312
+#: .\apps\renpy\models.py:358 .\apps\renpy\models.py:404
+#: .\apps\renpy\models.py:515 .\apps\renpy\models.py:604
+#: .\apps\renpy\models.py:692 .\apps\renpy\models.py:735
+#: .\apps\renpy\models.py:778 .\apps\renpy\models.py:824
+#: .\apps\renpy\models.py:913 .\apps\renpy\models.py:1004
+#: .\apps\renpy\models.py:1093 .\apps\renpy\models.py:1184
+#: .\apps\renpy\models.py:1273 .\apps\serie\models.py:37
+#: .\apps\serie\models.py:87 .\apps\serie\models.py:135
+#: .\apps\serie\models.py:189 .\apps\serie\models.py:234
+#: .\apps\serie\models.py:294 .\apps\serie\models.py:498
+#: .\apps\serie\models.py:587 .\apps\users\models.py:40
 msgid "Nombre Slug"
 msgstr "Nombre Slug"
 
-#: .\apps\common\models.py:36
+#: .\apps\common\models.py:37
 msgid "Código"
 msgstr "Código"
 
-#: .\apps\common\models.py:37
+#: .\apps\common\models.py:38
 msgid "Código Numerico"
 msgstr "Código Numerico"
 
-#: .\apps\common\models.py:38 .\apps\common\models.py:90
-#: .\apps\common\models.py:127 .\apps\common\models.py:164
-#: .\apps\common\models.py:216 .\apps\common\models.py:271
-#: .\apps\common\models.py:361 .\apps\common\models.py:450
-#: .\apps\common\models.py:490 .\apps\common\models.py:530
-#: .\apps\movie\models.py:38 .\apps\movie\models.py:87
-#: .\apps\movie\models.py:137 .\apps\movie\models.py:188
-#: .\apps\movie\models.py:232 .\apps\movie\models.py:288
-#: .\apps\movie\models.py:352 .\apps\movie\models.py:399
-#: .\apps\movie\models.py:443 .\apps\movie\models.py:491
-#: .\apps\movie\models.py:580 .\apps\music\models.py:37
-#: .\apps\music\models.py:84 .\apps\music\models.py:132
-#: .\apps\music\models.py:176 .\apps\music\models.py:224
-#: .\apps\music\models.py:276 .\apps\music\models.py:311
-#: .\apps\music\models.py:366 .\apps\music\models.py:415
-#: .\apps\music\models.py:504 .\apps\music\models.py:595
-#: .\apps\music\models.py:684 .\apps\otaku\models.py:39
-#: .\apps\otaku\models.py:87 .\apps\otaku\models.py:135
-#: .\apps\otaku\models.py:187 .\apps\otaku\models.py:239
-#: .\apps\otaku\models.py:290 .\apps\otaku\models.py:341
-#: .\apps\otaku\models.py:391 .\apps\otaku\models.py:442
-#: .\apps\otaku\models.py:493 .\apps\otaku\models.py:541
-#: .\apps\otaku\models.py:590 .\apps\otaku\models.py:639
-#: .\apps\otaku\models.py:682 .\apps\otaku\models.py:725
-#: .\apps\otaku\models.py:768 .\apps\otaku\models.py:837
-#: .\apps\otaku\models.py:1132 .\apps\otaku\models.py:1352
-#: .\apps\otaku\models.py:1400 .\apps\otaku\models.py:1453
-#: .\apps\otaku\models.py:1537 .\apps\otaku\models.py:1588
-#: .\apps\otaku\models.py:1672 .\apps\otaku\models.py:1735
-#: .\apps\otaku\models.py:1796 .\apps\otaku\models.py:1821
-#: .\apps\otaku\models.py:1849 .\apps\otaku\models.py:1886
-#: .\apps\otaku\models.py:1924 .\apps\otaku\models.py:1992
-#: .\apps\otaku\models.py:2081 .\apps\otaku\models.py:2172
-#: .\apps\otaku\models.py:2261 .\apps\otaku\models.py:2351
-#: .\apps\otaku\models.py:2441 .\apps\otaku\models.py:2532
-#: .\apps\otaku\models.py:2621 .\apps\otaku\models.py:2916
-#: .\apps\renpy\models.py:37 .\apps\renpy\models.py:83
-#: .\apps\renpy\models.py:128 .\apps\renpy\models.py:175
-#: .\apps\renpy\models.py:220 .\apps\renpy\models.py:267
-#: .\apps\renpy\models.py:312 .\apps\renpy\models.py:358
-#: .\apps\renpy\models.py:404 .\apps\renpy\models.py:469
-#: .\apps\renpy\models.py:515 .\apps\renpy\models.py:604
-#: .\apps\renpy\models.py:694 .\apps\renpy\models.py:737
-#: .\apps\renpy\models.py:780 .\apps\renpy\models.py:824
-#: .\apps\renpy\models.py:913 .\apps\renpy\models.py:1004
-#: .\apps\renpy\models.py:1093 .\apps\renpy\models.py:1184
-#: .\apps\renpy\models.py:1273 .\apps\renpy\models.py:1363
-#: .\apps\serie\models.py:39 .\apps\serie\models.py:88
-#: .\apps\serie\models.py:139 .\apps\serie\models.py:189
-#: .\apps\serie\models.py:237 .\apps\serie\models.py:294
-#: .\apps\serie\models.py:360 .\apps\serie\models.py:406
-#: .\apps\serie\models.py:450 .\apps\serie\models.py:498
-#: .\apps\serie\models.py:587
-msgid "Activo"
-msgstr ""
-
-#: .\apps\common\models.py:39 .\apps\common\models.py:91
-#: .\apps\common\models.py:165 .\apps\common\models.py:217
-#: .\apps\common\models.py:272 .\apps\common\models.py:362
-#: .\apps\common\models.py:451 .\apps\common\models.py:491
-#: .\apps\common\models.py:531 .\apps\movie\models.py:39
-#: .\apps\movie\models.py:88 .\apps\movie\models.py:138
-#: .\apps\movie\models.py:189 .\apps\movie\models.py:233
-#: .\apps\movie\models.py:289 .\apps\movie\models.py:353
-#: .\apps\movie\models.py:400 .\apps\movie\models.py:444
-#: .\apps\movie\models.py:492 .\apps\movie\models.py:581
-#: .\apps\music\models.py:38 .\apps\music\models.py:85
-#: .\apps\music\models.py:133 .\apps\music\models.py:177
-#: .\apps\music\models.py:225 .\apps\music\models.py:277
-#: .\apps\music\models.py:312 .\apps\music\models.py:367
-#: .\apps\music\models.py:416 .\apps\music\models.py:505
-#: .\apps\music\models.py:596 .\apps\music\models.py:685
-#: .\apps\otaku\models.py:40 .\apps\otaku\models.py:88
-#: .\apps\otaku\models.py:136 .\apps\otaku\models.py:188
-#: .\apps\otaku\models.py:240 .\apps\otaku\models.py:291
-#: .\apps\otaku\models.py:342 .\apps\otaku\models.py:392
-#: .\apps\otaku\models.py:443 .\apps\otaku\models.py:494
-#: .\apps\otaku\models.py:542 .\apps\otaku\models.py:591
-#: .\apps\otaku\models.py:640 .\apps\otaku\models.py:683
-#: .\apps\otaku\models.py:726 .\apps\otaku\models.py:769
-#: .\apps\otaku\models.py:838 .\apps\otaku\models.py:1133
-#: .\apps\otaku\models.py:1353 .\apps\otaku\models.py:1401
-#: .\apps\otaku\models.py:1454 .\apps\otaku\models.py:1538
-#: .\apps\otaku\models.py:1589 .\apps\otaku\models.py:1673
-#: .\apps\otaku\models.py:1736 .\apps\otaku\models.py:1797
-#: .\apps\otaku\models.py:1822 .\apps\otaku\models.py:1850
-#: .\apps\otaku\models.py:1887 .\apps\otaku\models.py:1925
-#: .\apps\otaku\models.py:1993 .\apps\otaku\models.py:2082
-#: .\apps\otaku\models.py:2173 .\apps\otaku\models.py:2262
-#: .\apps\otaku\models.py:2352 .\apps\otaku\models.py:2442
-#: .\apps\otaku\models.py:2533 .\apps\otaku\models.py:2622
-#: .\apps\otaku\models.py:2917 .\apps\renpy\models.py:38
-#: .\apps\renpy\models.py:84 .\apps\renpy\models.py:129
-#: .\apps\renpy\models.py:176 .\apps\renpy\models.py:221
-#: .\apps\renpy\models.py:268 .\apps\renpy\models.py:313
-#: .\apps\renpy\models.py:359 .\apps\renpy\models.py:405
-#: .\apps\renpy\models.py:470 .\apps\renpy\models.py:516
-#: .\apps\renpy\models.py:605 .\apps\renpy\models.py:695
-#: .\apps\renpy\models.py:738 .\apps\renpy\models.py:781
-#: .\apps\renpy\models.py:825 .\apps\renpy\models.py:914
-#: .\apps\renpy\models.py:1005 .\apps\renpy\models.py:1094
-#: .\apps\renpy\models.py:1185 .\apps\renpy\models.py:1274
-#: .\apps\renpy\models.py:1364 .\apps\renpy\models.py:1411
+#: .\apps\common\models.py:39 .\apps\common\models.py:92
+#: .\apps\common\models.py:129 .\apps\common\models.py:168
+#: .\apps\common\models.py:220 .\apps\common\models.py:275
+#: .\apps\common\models.py:367 .\apps\common\models.py:456
+#: .\apps\common\models.py:496 .\apps\common\models.py:536
+#: .\apps\movie\models.py:39 .\apps\movie\models.py:88
+#: .\apps\movie\models.py:138 .\apps\movie\models.py:189
+#: .\apps\movie\models.py:233 .\apps\movie\models.py:289
+#: .\apps\movie\models.py:353 .\apps\movie\models.py:400
+#: .\apps\movie\models.py:444 .\apps\movie\models.py:492
+#: .\apps\movie\models.py:581 .\apps\music\models.py:38
+#: .\apps\music\models.py:85 .\apps\music\models.py:133
+#: .\apps\music\models.py:177 .\apps\music\models.py:225
+#: .\apps\music\models.py:277 .\apps\music\models.py:312
+#: .\apps\music\models.py:367 .\apps\music\models.py:416
+#: .\apps\music\models.py:505 .\apps\music\models.py:596
+#: .\apps\music\models.py:685 .\apps\otaku\models.py:40
+#: .\apps\otaku\models.py:88 .\apps\otaku\models.py:136
+#: .\apps\otaku\models.py:188 .\apps\otaku\models.py:240
+#: .\apps\otaku\models.py:291 .\apps\otaku\models.py:342
+#: .\apps\otaku\models.py:392 .\apps\otaku\models.py:443
+#: .\apps\otaku\models.py:494 .\apps\otaku\models.py:542
+#: .\apps\otaku\models.py:591 .\apps\otaku\models.py:640
+#: .\apps\otaku\models.py:683 .\apps\otaku\models.py:726
+#: .\apps\otaku\models.py:769 .\apps\otaku\models.py:838
+#: .\apps\otaku\models.py:1133 .\apps\otaku\models.py:1353
+#: .\apps\otaku\models.py:1401 .\apps\otaku\models.py:1454
+#: .\apps\otaku\models.py:1538 .\apps\otaku\models.py:1589
+#: .\apps\otaku\models.py:1673 .\apps\otaku\models.py:1732
+#: .\apps\otaku\models.py:1792 .\apps\otaku\models.py:1817
+#: .\apps\otaku\models.py:1844 .\apps\otaku\models.py:1879
+#: .\apps\otaku\models.py:1914 .\apps\otaku\models.py:1954
+#: .\apps\otaku\models.py:1988 .\apps\otaku\models.py:2077
+#: .\apps\otaku\models.py:2168 .\apps\otaku\models.py:2257
+#: .\apps\otaku\models.py:2347 .\apps\otaku\models.py:2436
+#: .\apps\otaku\models.py:2527 .\apps\otaku\models.py:2616
+#: .\apps\renpy\models.py:38 .\apps\renpy\models.py:84
+#: .\apps\renpy\models.py:129 .\apps\renpy\models.py:176
+#: .\apps\renpy\models.py:221 .\apps\renpy\models.py:268
+#: .\apps\renpy\models.py:313 .\apps\renpy\models.py:359
+#: .\apps\renpy\models.py:405 .\apps\renpy\models.py:470
+#: .\apps\renpy\models.py:516 .\apps\renpy\models.py:605
+#: .\apps\renpy\models.py:695 .\apps\renpy\models.py:738
+#: .\apps\renpy\models.py:781 .\apps\renpy\models.py:825
+#: .\apps\renpy\models.py:914 .\apps\renpy\models.py:1005
+#: .\apps\renpy\models.py:1094 .\apps\renpy\models.py:1185
+#: .\apps\renpy\models.py:1274 .\apps\renpy\models.py:1364
 #: .\apps\serie\models.py:40 .\apps\serie\models.py:89
 #: .\apps\serie\models.py:140 .\apps\serie\models.py:190
 #: .\apps\serie\models.py:238 .\apps\serie\models.py:295
 #: .\apps\serie\models.py:361 .\apps\serie\models.py:407
 #: .\apps\serie\models.py:451 .\apps\serie\models.py:499
-#: .\apps\serie\models.py:588 .\core\utils\utils.py:60
-msgid "Creado"
+#: .\apps\serie\models.py:588
+msgid "Activo"
 msgstr ""
 
-#: .\apps\common\models.py:40 .\apps\common\models.py:92
-#: .\apps\common\models.py:166 .\apps\common\models.py:218
-#: .\apps\common\models.py:273 .\apps\common\models.py:363
-#: .\apps\common\models.py:452 .\apps\common\models.py:492
-#: .\apps\common\models.py:532 .\apps\movie\models.py:40
-#: .\apps\movie\models.py:89 .\apps\movie\models.py:139
-#: .\apps\movie\models.py:190 .\apps\movie\models.py:234
-#: .\apps\movie\models.py:290 .\apps\movie\models.py:354
-#: .\apps\movie\models.py:401 .\apps\movie\models.py:445
-#: .\apps\movie\models.py:493 .\apps\movie\models.py:582
-#: .\apps\music\models.py:39 .\apps\music\models.py:86
-#: .\apps\music\models.py:134 .\apps\music\models.py:178
-#: .\apps\music\models.py:226 .\apps\music\models.py:278
-#: .\apps\music\models.py:313 .\apps\music\models.py:368
-#: .\apps\music\models.py:417 .\apps\music\models.py:506
-#: .\apps\music\models.py:597 .\apps\music\models.py:686
-#: .\apps\otaku\models.py:41 .\apps\otaku\models.py:89
-#: .\apps\otaku\models.py:137 .\apps\otaku\models.py:189
-#: .\apps\otaku\models.py:241 .\apps\otaku\models.py:292
-#: .\apps\otaku\models.py:343 .\apps\otaku\models.py:393
-#: .\apps\otaku\models.py:444 .\apps\otaku\models.py:495
-#: .\apps\otaku\models.py:543 .\apps\otaku\models.py:592
-#: .\apps\otaku\models.py:641 .\apps\otaku\models.py:684
-#: .\apps\otaku\models.py:727 .\apps\otaku\models.py:770
-#: .\apps\otaku\models.py:839 .\apps\otaku\models.py:1134
-#: .\apps\otaku\models.py:1354 .\apps\otaku\models.py:1402
-#: .\apps\otaku\models.py:1455 .\apps\otaku\models.py:1539
-#: .\apps\otaku\models.py:1590 .\apps\otaku\models.py:1674
-#: .\apps\otaku\models.py:1737 .\apps\otaku\models.py:1798
-#: .\apps\otaku\models.py:1823 .\apps\otaku\models.py:1851
-#: .\apps\otaku\models.py:1888 .\apps\otaku\models.py:1926
-#: .\apps\otaku\models.py:1994 .\apps\otaku\models.py:2083
-#: .\apps\otaku\models.py:2174 .\apps\otaku\models.py:2263
-#: .\apps\otaku\models.py:2353 .\apps\otaku\models.py:2443
-#: .\apps\otaku\models.py:2534 .\apps\otaku\models.py:2623
-#: .\apps\otaku\models.py:2918 .\apps\renpy\models.py:39
-#: .\apps\renpy\models.py:85 .\apps\renpy\models.py:130
-#: .\apps\renpy\models.py:177 .\apps\renpy\models.py:222
-#: .\apps\renpy\models.py:269 .\apps\renpy\models.py:314
-#: .\apps\renpy\models.py:360 .\apps\renpy\models.py:406
-#: .\apps\renpy\models.py:471 .\apps\renpy\models.py:517
-#: .\apps\renpy\models.py:606 .\apps\renpy\models.py:696
-#: .\apps\renpy\models.py:739 .\apps\renpy\models.py:782
-#: .\apps\renpy\models.py:826 .\apps\renpy\models.py:915
-#: .\apps\renpy\models.py:1006 .\apps\renpy\models.py:1095
-#: .\apps\renpy\models.py:1186 .\apps\renpy\models.py:1275
-#: .\apps\renpy\models.py:1365 .\apps\renpy\models.py:1412
-#: .\apps\serie\models.py:41 .\apps\serie\models.py:90
-#: .\apps\serie\models.py:91 .\apps\serie\models.py:141
+#: .\apps\common\models.py:40 .\apps\common\models.py:93
+#: .\apps\common\models.py:130 .\apps\common\models.py:169
+#: .\apps\common\models.py:221 .\apps\common\models.py:276
+#: .\apps\common\models.py:368 .\apps\common\models.py:457
+#: .\apps\common\models.py:497 .\apps\common\models.py:537
+#: .\apps\movie\models.py:40 .\apps\movie\models.py:89
+#: .\apps\movie\models.py:139 .\apps\movie\models.py:190
+#: .\apps\movie\models.py:234 .\apps\movie\models.py:290
+#: .\apps\movie\models.py:354 .\apps\movie\models.py:401
+#: .\apps\movie\models.py:445 .\apps\movie\models.py:493
+#: .\apps\movie\models.py:582 .\apps\music\models.py:39
+#: .\apps\music\models.py:86 .\apps\music\models.py:134
+#: .\apps\music\models.py:178 .\apps\music\models.py:226
+#: .\apps\music\models.py:278 .\apps\music\models.py:313
+#: .\apps\music\models.py:368 .\apps\music\models.py:417
+#: .\apps\music\models.py:506 .\apps\music\models.py:597
+#: .\apps\music\models.py:686 .\apps\otaku\models.py:41
+#: .\apps\otaku\models.py:89 .\apps\otaku\models.py:137
+#: .\apps\otaku\models.py:189 .\apps\otaku\models.py:241
+#: .\apps\otaku\models.py:292 .\apps\otaku\models.py:343
+#: .\apps\otaku\models.py:393 .\apps\otaku\models.py:444
+#: .\apps\otaku\models.py:495 .\apps\otaku\models.py:543
+#: .\apps\otaku\models.py:592 .\apps\otaku\models.py:641
+#: .\apps\otaku\models.py:684 .\apps\otaku\models.py:727
+#: .\apps\otaku\models.py:770 .\apps\otaku\models.py:839
+#: .\apps\otaku\models.py:1134 .\apps\otaku\models.py:1354
+#: .\apps\otaku\models.py:1402 .\apps\otaku\models.py:1455
+#: .\apps\otaku\models.py:1539 .\apps\otaku\models.py:1590
+#: .\apps\otaku\models.py:1674 .\apps\otaku\models.py:1733
+#: .\apps\otaku\models.py:1793 .\apps\otaku\models.py:1818
+#: .\apps\otaku\models.py:1845 .\apps\otaku\models.py:1880
+#: .\apps\otaku\models.py:1915 .\apps\otaku\models.py:1955
+#: .\apps\otaku\models.py:1989 .\apps\otaku\models.py:2078
+#: .\apps\otaku\models.py:2169 .\apps\otaku\models.py:2258
+#: .\apps\otaku\models.py:2348 .\apps\otaku\models.py:2437
+#: .\apps\otaku\models.py:2528 .\apps\otaku\models.py:2617
+#: .\apps\otaku\models.py:2706 .\apps\otaku\models.py:2729
+#: .\apps\otaku\models.py:2752 .\apps\otaku\models.py:2775
+#: .\apps\otaku\models.py:2798 .\apps\otaku\models.py:2821
+#: .\apps\otaku\models.py:2844 .\apps\otaku\models.py:2867
+#: .\apps\otaku\models.py:2890 .\apps\otaku\models.py:2913
+#: .\apps\otaku\models.py:2936 .\apps\otaku\models.py:2957
+#: .\apps\renpy\models.py:39 .\apps\renpy\models.py:85
+#: .\apps\renpy\models.py:130 .\apps\renpy\models.py:177
+#: .\apps\renpy\models.py:222 .\apps\renpy\models.py:269
+#: .\apps\renpy\models.py:314 .\apps\renpy\models.py:360
+#: .\apps\renpy\models.py:406 .\apps\renpy\models.py:471
+#: .\apps\renpy\models.py:517 .\apps\renpy\models.py:606
+#: .\apps\renpy\models.py:696 .\apps\renpy\models.py:739
+#: .\apps\renpy\models.py:782 .\apps\renpy\models.py:826
+#: .\apps\renpy\models.py:915 .\apps\renpy\models.py:1006
+#: .\apps\renpy\models.py:1095 .\apps\renpy\models.py:1186
+#: .\apps\renpy\models.py:1275 .\apps\renpy\models.py:1365
+#: .\apps\renpy\models.py:1412 .\apps\serie\models.py:41
+#: .\apps\serie\models.py:90 .\apps\serie\models.py:141
 #: .\apps\serie\models.py:191 .\apps\serie\models.py:239
 #: .\apps\serie\models.py:296 .\apps\serie\models.py:362
 #: .\apps\serie\models.py:408 .\apps\serie\models.py:452
-#: .\apps\serie\models.py:500 .\apps\serie\models.py:589
-#: .\core\utils\utils.py:61
+#: .\apps\serie\models.py:500 .\apps\serie\models.py:589 .\core\models.py:42
+msgid "Creado"
+msgstr ""
+
+#: .\apps\common\models.py:41 .\apps\common\models.py:94
+#: .\apps\common\models.py:131 .\apps\common\models.py:170
+#: .\apps\common\models.py:222 .\apps\common\models.py:277
+#: .\apps\common\models.py:369 .\apps\common\models.py:458
+#: .\apps\common\models.py:498 .\apps\common\models.py:538
+#: .\apps\movie\models.py:41 .\apps\movie\models.py:90
+#: .\apps\movie\models.py:140 .\apps\movie\models.py:191
+#: .\apps\movie\models.py:235 .\apps\movie\models.py:291
+#: .\apps\movie\models.py:355 .\apps\movie\models.py:402
+#: .\apps\movie\models.py:446 .\apps\movie\models.py:494
+#: .\apps\movie\models.py:583 .\apps\music\models.py:40
+#: .\apps\music\models.py:87 .\apps\music\models.py:135
+#: .\apps\music\models.py:179 .\apps\music\models.py:227
+#: .\apps\music\models.py:279 .\apps\music\models.py:314
+#: .\apps\music\models.py:369 .\apps\music\models.py:418
+#: .\apps\music\models.py:507 .\apps\music\models.py:598
+#: .\apps\music\models.py:687 .\apps\otaku\models.py:42
+#: .\apps\otaku\models.py:90 .\apps\otaku\models.py:138
+#: .\apps\otaku\models.py:190 .\apps\otaku\models.py:242
+#: .\apps\otaku\models.py:293 .\apps\otaku\models.py:344
+#: .\apps\otaku\models.py:394 .\apps\otaku\models.py:445
+#: .\apps\otaku\models.py:496 .\apps\otaku\models.py:544
+#: .\apps\otaku\models.py:593 .\apps\otaku\models.py:642
+#: .\apps\otaku\models.py:685 .\apps\otaku\models.py:728
+#: .\apps\otaku\models.py:771 .\apps\otaku\models.py:840
+#: .\apps\otaku\models.py:1135 .\apps\otaku\models.py:1355
+#: .\apps\otaku\models.py:1403 .\apps\otaku\models.py:1456
+#: .\apps\otaku\models.py:1540 .\apps\otaku\models.py:1591
+#: .\apps\otaku\models.py:1675 .\apps\otaku\models.py:1734
+#: .\apps\otaku\models.py:1794 .\apps\otaku\models.py:1819
+#: .\apps\otaku\models.py:1846 .\apps\otaku\models.py:1881
+#: .\apps\otaku\models.py:1916 .\apps\otaku\models.py:1956
+#: .\apps\otaku\models.py:1990 .\apps\otaku\models.py:2079
+#: .\apps\otaku\models.py:2170 .\apps\otaku\models.py:2259
+#: .\apps\otaku\models.py:2349 .\apps\otaku\models.py:2438
+#: .\apps\otaku\models.py:2529 .\apps\otaku\models.py:2618
+#: .\apps\otaku\models.py:2707 .\apps\otaku\models.py:2730
+#: .\apps\otaku\models.py:2753 .\apps\otaku\models.py:2776
+#: .\apps\otaku\models.py:2799 .\apps\otaku\models.py:2822
+#: .\apps\otaku\models.py:2845 .\apps\otaku\models.py:2868
+#: .\apps\otaku\models.py:2891 .\apps\otaku\models.py:2914
+#: .\apps\otaku\models.py:2937 .\apps\otaku\models.py:2958
+#: .\apps\renpy\models.py:40 .\apps\renpy\models.py:86
+#: .\apps\renpy\models.py:131 .\apps\renpy\models.py:178
+#: .\apps\renpy\models.py:223 .\apps\renpy\models.py:270
+#: .\apps\renpy\models.py:315 .\apps\renpy\models.py:361
+#: .\apps\renpy\models.py:407 .\apps\renpy\models.py:472
+#: .\apps\renpy\models.py:518 .\apps\renpy\models.py:607
+#: .\apps\renpy\models.py:697 .\apps\renpy\models.py:740
+#: .\apps\renpy\models.py:783 .\apps\renpy\models.py:827
+#: .\apps\renpy\models.py:916 .\apps\renpy\models.py:1007
+#: .\apps\renpy\models.py:1096 .\apps\renpy\models.py:1187
+#: .\apps\renpy\models.py:1276 .\apps\renpy\models.py:1366
+#: .\apps\renpy\models.py:1413 .\apps\serie\models.py:42
+#: .\apps\serie\models.py:91 .\apps\serie\models.py:92
+#: .\apps\serie\models.py:142 .\apps\serie\models.py:192
+#: .\apps\serie\models.py:240 .\apps\serie\models.py:297
+#: .\apps\serie\models.py:363 .\apps\serie\models.py:409
+#: .\apps\serie\models.py:453 .\apps\serie\models.py:501
+#: .\apps\serie\models.py:590 .\core\models.py:43
 msgid "Actualizado"
 msgstr ""
 
-#: .\apps\common\models.py:44 .\apps\common\models.py:214
-#: .\apps\movie\models.py:230 .\apps\serie\models.py:235
+#: .\apps\common\models.py:45 .\apps\common\models.py:218
+#: .\apps\movie\models.py:231 .\apps\serie\models.py:236
 msgid "País"
 msgstr ""
 
-#: .\apps\common\models.py:45
+#: .\apps\common\models.py:46 .\apps\common\views.py:66
 msgid "Países"
 msgstr ""
 
-#: .\apps\common\models.py:84
+#: .\apps\common\models.py:85
 msgid "Videos"
 msgstr ""
 
-#: .\apps\common\models.py:85
+#: .\apps\common\models.py:86
 msgid "Música"
 msgstr ""
 
-#: .\apps\common\models.py:86
+#: .\apps\common\models.py:87
 msgid "Imágenes"
 msgstr ""
 
-#: .\apps\common\models.py:87
+#: .\apps\common\models.py:88
 msgid "Documentos"
 msgstr ""
 
-#: .\apps\common\models.py:88
+#: .\apps\common\models.py:89
 msgid "Otros"
 msgstr ""
 
-#: .\apps\common\models.py:96
-msgid "Formato"
-msgstr ""
-
-#: .\apps\common\models.py:97
-msgid "Formatos"
-msgstr ""
-
-#: .\apps\common\models.py:131
-msgid "Tamaño de Imagen"
-msgstr ""
-
-#: .\apps\common\models.py:132
-msgid "Tamaños de Imágenes"
-msgstr ""
-
-#: .\apps\common\models.py:161 .\apps\common\models.py:526
-#: .\apps\movie\models.py:184 .\apps\otaku\models.py:335
-#: .\apps\serie\models.py:185
-msgid "Acrónimo"
-msgstr ""
-
-#: .\apps\common\models.py:170 .\apps\otaku\models.py:1843
-#: .\apps\renpy\models.py:459
-msgid "Idioma"
-msgstr ""
-
-#: .\apps\common\models.py:171
-msgid "Idiomas"
-msgstr ""
-
-#: .\apps\common\models.py:210 .\apps\otaku\models.py:1443
-#: .\apps\otaku\models.py:1574
-msgid "Nombre Completo"
-msgstr ""
-
-#: .\apps\common\models.py:212 .\apps\music\models.py:219
-#: .\apps\otaku\models.py:1445 .\apps\otaku\models.py:1576
-msgid "Biografía"
-msgstr ""
-
-#: .\apps\common\models.py:213 .\apps\otaku\models.py:1579
-msgid "Fecha Nacimiento"
-msgstr ""
-
-#: .\apps\common\models.py:222 .\apps\common\models.py:265
-#: .\apps\common\models.py:357 .\apps\common\models.py:446
-#: .\apps\movie\models.py:397 .\apps\music\models.py:272
-#: .\apps\otaku\models.py:1668 .\apps\otaku\models.py:1840
-#: .\apps\otaku\models.py:1877 .\apps\otaku\models.py:1917
-#: .\apps\otaku\models.py:2345 .\apps\otaku\models.py:2437
-#: .\apps\serie\models.py:404
-msgid "Persona"
-msgstr ""
-
-#: .\apps\common\models.py:223
-msgid "Personas"
-msgstr ""
-
-#: .\apps\common\models.py:266 .\apps\movie\models.py:486
-#: .\apps\music\models.py:410 .\apps\music\models.py:590
-#: .\apps\otaku\models.py:1987 .\apps\otaku\models.py:2167
-#: .\apps\otaku\models.py:2346 .\apps\otaku\models.py:2527
-#: .\apps\renpy\models.py:510 .\apps\renpy\models.py:819
-#: .\apps\renpy\models.py:999 .\apps\renpy\models.py:1179
-#: .\apps\serie\models.py:494
-msgid "Tamaño"
-msgstr ""
-
-#: .\apps\common\models.py:267 .\apps\common\models.py:277
-#: .\apps\otaku\models.py:2357
-msgid "Imagen Persona"
-msgstr ""
-
-#: .\apps\common\models.py:268 .\apps\common\models.py:527
-#: .\apps\movie\models.py:488 .\apps\music\models.py:412
-#: .\apps\music\models.py:592 .\apps\otaku\models.py:1989
-#: .\apps\otaku\models.py:2169 .\apps\otaku\models.py:2348
-#: .\apps\otaku\models.py:2529 .\apps\renpy\models.py:512
-#: .\apps\renpy\models.py:693 .\apps\renpy\models.py:736
-#: .\apps\renpy\models.py:779 .\apps\renpy\models.py:821
-#: .\apps\renpy\models.py:1001 .\apps\renpy\models.py:1181
-#: .\apps\renpy\models.py:1406 .\apps\serie\models.py:495
-#: .\core\utils\utils.py:55
-msgid "URL"
-msgstr ""
-
-#: .\apps\common\models.py:278 .\apps\otaku\models.py:2358
-msgid "Imágenes Personas"
-msgstr ""
-
-#: .\apps\common\models.py:284 .\apps\common\models.py:374
-#: .\apps\otaku\models.py:2365 .\apps\otaku\models.py:2454
-msgid "Imagen sin Persona"
-msgstr ""
-
-#: .\apps\common\models.py:358 .\apps\common\models.py:367
-#: .\apps\otaku\models.py:2438 .\apps\otaku\models.py:2447
-msgid "Imagen Extra Persona"
-msgstr ""
-
-#: .\apps\common\models.py:368 .\apps\otaku\models.py:2448
-msgid "Imágenes Extra Personas"
-msgstr ""
-
-#: .\apps\common\models.py:447 .\apps\otaku\models.py:1534
-#: .\apps\otaku\models.py:1669
-msgid "Apodo"
-msgstr ""
-
-#: .\apps\common\models.py:449 .\apps\otaku\models.py:1536
-#: .\apps\otaku\models.py:1671
-msgid "Apodo Slug"
-msgstr ""
-
-#: .\apps\common\models.py:456 .\apps\otaku\models.py:1678
-msgid "Apodo Persona"
-msgstr ""
-
-#: .\apps\common\models.py:457 .\apps\otaku\models.py:1679
-msgid "Apodos Persona"
-msgstr ""
-
-#: .\apps\common\models.py:488 .\apps\movie\models.py:36
-#: .\apps\movie\models.py:86 .\apps\movie\models.py:133
-#: .\apps\music\models.py:36 .\apps\music\models.py:131
-#: .\apps\music\models.py:175 .\apps\otaku\models.py:34
-#: .\apps\otaku\models.py:133 .\apps\otaku\models.py:185
-#: .\apps\otaku\models.py:237 .\apps\otaku\models.py:289
-#: .\apps\otaku\models.py:340 .\apps\otaku\models.py:390
-#: .\apps\otaku\models.py:441 .\apps\otaku\models.py:492
-#: .\apps\otaku\models.py:540 .\apps\otaku\models.py:589
-#: .\apps\renpy\models.py:35 .\apps\renpy\models.py:82
-#: .\apps\renpy\models.py:127 .\apps\renpy\models.py:174
-#: .\apps\renpy\models.py:219 .\apps\renpy\models.py:266
-#: .\apps\serie\models.py:37 .\apps\serie\models.py:87
-#: .\apps\serie\models.py:135
+#: .\apps\common\models.py:91 .\apps\common\models.py:494
+#: .\apps\movie\models.py:37 .\apps\movie\models.py:87
+#: .\apps\movie\models.py:134 .\apps\music\models.py:37
+#: .\apps\music\models.py:132 .\apps\music\models.py:176
+#: .\apps\otaku\models.py:35 .\apps\otaku\models.py:134
+#: .\apps\otaku\models.py:186 .\apps\otaku\models.py:238
+#: .\apps\otaku\models.py:290 .\apps\otaku\models.py:341
+#: .\apps\otaku\models.py:391 .\apps\otaku\models.py:442
+#: .\apps\otaku\models.py:493 .\apps\otaku\models.py:541
+#: .\apps\otaku\models.py:590 .\apps\renpy\models.py:36
+#: .\apps\renpy\models.py:83 .\apps\renpy\models.py:128
+#: .\apps\renpy\models.py:175 .\apps\renpy\models.py:220
+#: .\apps\renpy\models.py:267 .\apps\serie\models.py:38
+#: .\apps\serie\models.py:88 .\apps\serie\models.py:136
 msgid "Descripción"
 msgstr ""
 
-#: .\apps\common\models.py:496
+#: .\apps\common\models.py:98
+msgid "Formato"
+msgstr ""
+
+#: .\apps\common\models.py:99 .\apps\common\views.py:76
+msgid "Formatos"
+msgstr ""
+
+#: .\apps\common\models.py:135
+msgid "Tamaño de Imagen"
+msgstr ""
+
+#: .\apps\common\models.py:136
+msgid "Tamaños de Imágenes"
+msgstr ""
+
+#: .\apps\common\models.py:165 .\apps\common\models.py:532
+#: .\apps\movie\models.py:185 .\apps\otaku\models.py:336
+#: .\apps\serie\models.py:186
+msgid "Acrónimo"
+msgstr ""
+
+#: .\apps\common\models.py:174 .\apps\otaku\models.py:1838
+#: .\apps\renpy\models.py:460
+msgid "Idioma"
+msgstr ""
+
+#: .\apps\common\models.py:175 .\apps\common\views.py:96
+msgid "Idiomas"
+msgstr ""
+
+#: .\apps\common\models.py:214 .\apps\otaku\models.py:1444
+#: .\apps\otaku\models.py:1575
+msgid "Nombre Completo"
+msgstr ""
+
+#: .\apps\common\models.py:216 .\apps\music\models.py:220
+#: .\apps\otaku\models.py:1446 .\apps\otaku\models.py:1577
+msgid "Biografía"
+msgstr ""
+
+#: .\apps\common\models.py:217 .\apps\otaku\models.py:1580
+msgid "Fecha Nacimiento"
+msgstr ""
+
+#: .\apps\common\models.py:226 .\apps\common\models.py:269
+#: .\apps\common\models.py:363 .\apps\common\models.py:452
+#: .\apps\movie\models.py:398 .\apps\music\models.py:273
+#: .\apps\otaku\models.py:1669 .\apps\otaku\models.py:1835
+#: .\apps\otaku\models.py:1872 .\apps\otaku\models.py:1907
+#: .\apps\otaku\models.py:2341 .\apps\otaku\models.py:2432
+#: .\apps\serie\models.py:405
+msgid "Persona"
+msgstr ""
+
+#: .\apps\common\models.py:227 .\apps\common\views.py:108
+#: .\apps\otaku\models.py:1596
+msgid "Personas"
+msgstr ""
+
+#: .\apps\common\models.py:270 .\apps\movie\models.py:487
+#: .\apps\music\models.py:411 .\apps\music\models.py:591
+#: .\apps\otaku\models.py:1983 .\apps\otaku\models.py:2163
+#: .\apps\otaku\models.py:2342 .\apps\otaku\models.py:2522
+#: .\apps\renpy\models.py:511 .\apps\renpy\models.py:820
+#: .\apps\renpy\models.py:1000 .\apps\renpy\models.py:1180
+#: .\apps\serie\models.py:495
+msgid "Tamaño"
+msgstr ""
+
+#: .\apps\common\models.py:271 .\apps\common\models.py:281
+#: .\apps\otaku\models.py:2353
+msgid "Imagen Persona"
+msgstr ""
+
+#: .\apps\common\models.py:272 .\apps\common\models.py:533
+#: .\apps\movie\models.py:489 .\apps\music\models.py:413
+#: .\apps\music\models.py:593 .\apps\otaku\models.py:1985
+#: .\apps\otaku\models.py:2165 .\apps\otaku\models.py:2344
+#: .\apps\otaku\models.py:2524 .\apps\otaku\models.py:2702
+#: .\apps\otaku\models.py:2724 .\apps\otaku\models.py:2747
+#: .\apps\otaku\models.py:2770 .\apps\otaku\models.py:2793
+#: .\apps\otaku\models.py:2816 .\apps\otaku\models.py:2839
+#: .\apps\otaku\models.py:2862 .\apps\otaku\models.py:2885
+#: .\apps\otaku\models.py:2908 .\apps\otaku\models.py:2931
+#: .\apps\otaku\models.py:2954 .\apps\renpy\admin.py:471
+#: .\apps\renpy\models.py:513 .\apps\renpy\models.py:694
+#: .\apps\renpy\models.py:737 .\apps\renpy\models.py:780
+#: .\apps\renpy\models.py:822 .\apps\renpy\models.py:1002
+#: .\apps\renpy\models.py:1182 .\apps\renpy\models.py:1407
+#: .\apps\serie\models.py:496 .\core\models.py:37
+msgid "URL"
+msgstr ""
+
+#: .\apps\common\models.py:282 .\apps\otaku\models.py:2354
+msgid "Imágenes Personas"
+msgstr ""
+
+#: .\apps\common\models.py:288 .\apps\common\models.py:380
+#: .\apps\otaku\models.py:2360 .\apps\otaku\models.py:2449
+msgid "Imagen sin Persona"
+msgstr ""
+
+#: .\apps\common\models.py:364 .\apps\otaku\models.py:2433
+#: .\apps\otaku\models.py:2442
+msgid "Imagen Extra Persona"
+msgstr ""
+
+#: .\apps\common\models.py:373
+msgid "Imagen extra persona"
+msgstr ""
+
+#: .\apps\common\models.py:374
+msgid "Imágenes extras de personas"
+msgstr ""
+
+#: .\apps\common\models.py:453 .\apps\otaku\models.py:1535
+#: .\apps\otaku\models.py:1670
+msgid "Apodo"
+msgstr ""
+
+#: .\apps\common\models.py:455 .\apps\otaku\models.py:1537
+#: .\apps\otaku\models.py:1672
+msgid "Apodo Slug"
+msgstr ""
+
+#: .\apps\common\models.py:462 .\apps\otaku\models.py:1679
+msgid "Apodo Persona"
+msgstr ""
+
+#: .\apps\common\models.py:463 .\apps\otaku\models.py:1680
+msgid "Apodos Persona"
+msgstr ""
+
+#: .\apps\common\models.py:502
 msgid "Calidad"
 msgstr ""
 
-#: .\apps\common\models.py:497
+#: .\apps\common\models.py:503 .\apps\common\views.py:140
 msgid "Calidades"
 msgstr ""
 
-#: .\apps\common\models.py:536
+#: .\apps\common\models.py:542
 msgid "Sitio Web"
 msgstr ""
 
-#: .\apps\common\models.py:537
+#: .\apps\common\models.py:543
 msgid "Sitios Webs"
 msgstr ""
 
-#: .\apps\movie\models.py:22
-msgid "Log Película"
+#: .\apps\common\views.py:28 .\core\utils\texts.py:32
+msgid "General"
+msgstr ""
+
+#: .\apps\common\views.py:36 .\core\utils\texts.py:35
+msgid "Administración de Usuarios"
+msgstr ""
+
+#: .\apps\common\views.py:38 .\apps\users\models.py:47 .\core\utils\texts.py:39
+msgid "Usuarios"
+msgstr ""
+
+#: .\apps\common\views.py:43
+msgid "Gestionar usuarios del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:47
+msgid "Crear usuario del equipo"
+msgstr ""
+
+#: .\apps\common\views.py:54
+msgid "Crear super usuario"
+msgstr ""
+
+#: .\apps\common\views.py:64
+msgid "Gestión General"
+msgstr ""
+
+#: .\apps\common\views.py:71
+msgid "Gestionar países del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:81
+msgid "Gestionar formatos del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:86
+msgid "Tamaños de imagen"
+msgstr ""
+
+#: .\apps\common\views.py:91
+msgid "Gestionar tamaños de imagen del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:101
+msgid "Gestionar Idiomas del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:106
+msgid "Gestión de Personas"
+msgstr ""
+
+#: .\apps\common\views.py:113
+msgid "Gestionar personas del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:118
+msgid "Imágenes de personas"
+msgstr ""
+
+#: .\apps\common\views.py:123
+msgid "Gestionar imágenes de personas."
+msgstr ""
+
+#: .\apps\common\views.py:128
+msgid "Imágenes extra de personas"
+msgstr ""
+
+#: .\apps\common\views.py:133
+msgid "Gestionar imágenes adicionales de personas."
+msgstr ""
+
+#: .\apps\common\views.py:138
+msgid "Configuración Adicional"
+msgstr ""
+
+#: .\apps\common\views.py:145
+msgid "Gestionar calidades del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:150
+msgid "Sitios web"
+msgstr ""
+
+#: .\apps\common\views.py:155
+msgid "Gestionar sitios web del sistema."
+msgstr ""
+
+#: .\apps\common\views.py:177
+msgid "Añadir País"
+msgstr ""
+
+#: .\apps\common\views.py:185
+#, python-format
+msgid "¡El país \"%(name)s\" fue creado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:207
+msgid "Editar País"
+msgstr ""
+
+#: .\apps\common\views.py:215
+#, python-format
+msgid "¡El país \"%(name)s\" fue editado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:236
+msgid "Lista de Países"
+msgstr ""
+
+#: .\apps\common\views.py:262 .\apps\common\views.py:385
+#: .\apps\common\views.py:508 .\apps\common\views.py:773
+#: .\apps\common\views.py:911 .\core\utils\texts.py:24
+#, fuzzy
+#| msgid "Inicial"
+msgid "Inicio"
+msgstr "Inicial"
+
+#: .\apps\common\views.py:268 .\apps\common\views.py:391
+#: .\apps\common\views.py:514 .\apps\common\views.py:779
+#: .\apps\common\views.py:917 .\core\utils\texts.py:23
+msgid "Añadir"
+msgstr ""
+
+#: .\apps\common\views.py:287
+msgid "El País que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views.py:313
+msgid "Añadir Formato"
+msgstr ""
+
+#: .\apps\common\views.py:321
+#, python-format
+msgid "¡El Formato \"%(name)s\" fue creado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:343
+msgid "Editar Formato"
+msgstr ""
+
+#: .\apps\common\views.py:351
+#, python-format
+msgid "¡El Formato \"%(name)s\" fue editado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:372
+msgid "Lista de Formatos"
+msgstr ""
+
+#: .\apps\common\views.py:410
+msgid "El formato que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views.py:436
+msgid "Añadir Tamaño de Imágenes"
+msgstr ""
+
+#: .\apps\common\views.py:444
+#, python-format
+msgid "¡El Tamaño de Imágen \"%(name)s\" fue creado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:466
+msgid "Editar Tamaño de Imágenes"
+msgstr ""
+
+#: .\apps\common\views.py:474
+#, python-format
+msgid "¡El Tamaño de Imágen \"%(name)s\" fue editado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:495
+msgid "Lista de Tamaños de Imágenes"
+msgstr ""
+
+#: .\apps\common\views.py:533
+msgid "El Tamaño de imagen que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views.py:559
+msgid "Añadir Idioma"
+msgstr ""
+
+#: .\apps\common\views.py:567
+#, python-format
+msgid "¡El idioma \"%(name)s\" fue creado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:589
+msgid "Editar Idioma"
+msgstr ""
+
+#: .\apps\common\views.py:597
+#, python-format
+msgid "¡El idioma \"%(name)s\" fue editado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:618
+msgid "Lista de Idiomas"
+msgstr ""
+
+#: .\apps\common\views.py:669
+msgid "El Idioma que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views.py:699
+msgid "Añadir Calidad"
+msgstr ""
+
+#: .\apps\common\views.py:707
+#, python-format
+msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:729
+msgid "Editar Calidad"
+msgstr ""
+
+#: .\apps\common\views.py:737
+#, python-format
+msgid "¡La Calidad \"%(name)s\" fue editada exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:758
+msgid "Lista de Calidades"
+msgstr ""
+
+#: .\apps\common\views.py:798
+msgid "La Calidad que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views.py:827
+msgid "Añadir Sitio Web"
+msgstr ""
+
+#: .\apps\common\views.py:835
+#, python-format
+msgid "El Sitio Web \"%(name)s\" fue creado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:857
+msgid "Editar Sitio Web"
+msgstr ""
+
+#: .\apps\common\views.py:865
+#, python-format
+msgid "¡El Sitio Web \"%(name)s\" fue editado exitosamente!"
+msgstr ""
+
+#: .\apps\common\views.py:886
+msgid "Lista de Sitios Web's"
+msgstr ""
+
+#: .\apps\common\views.py:936
+msgid "El Sitio Web que buscas no se encontró."
+msgstr ""
+
+#: .\apps\common\views_action.py:516
+#, python-format
+msgid "El %(modelo)s %(name)s ha sido activado."
+msgstr ""
+
+#: .\apps\common\views_action.py:521
+#, python-format
+msgid "El %(modelo)s %(name)s ha sido desactivado."
+msgstr ""
+
+#: .\apps\common\views_action.py:526
+#, python-format
+msgid "El %(modelo)s %(name)s es explícito."
+msgstr ""
+
+#: .\apps\common\views_action.py:531
+#, python-format
+msgid "El %(modelo)s %(name)s ya no es explícito."
+msgstr ""
+
+#: .\apps\common\views_action.py:536
+#, python-format
+msgid "El %(modelo)s %(name)s es miembro del equipo ahora."
+msgstr ""
+
+#: .\apps\common\views_action.py:541
+#, python-format
+msgid "El %(modelo)s %(name)s ya no es miembro del equipo."
+msgstr ""
+
+#: .\apps\common\views_action.py:547
+#, python-format
+msgid "El %(modelo)s %(name)s es superusuario ahora."
+msgstr ""
+
+#: .\apps\common\views_action.py:553
+#, python-format
+msgid "El %(modelo)s %(name)s ya no es superusuario."
+msgstr ""
+
+#: .\apps\common\views_action.py:559
+#, python-format
+msgid "La contraseña de %(modelo)s %(name)s ha sido reiniciada."
+msgstr ""
+
+#: .\apps\common\views_action.py:563
+#, python-format
+msgid "El %(modelo)s %(name)s ha sido eliminado."
+msgstr ""
+
+#: .\apps\common\views_action.py:566
+msgid "Acción no válida."
+msgstr ""
+
+#: .\apps\common\views_action.py:571
+#, python-format
+msgid "Modelo \"%(modelo)s\" no encontrado en el mapa."
+msgstr ""
+
+#: .\apps\common\views_action.py:575
+#, python-format
+msgid "%(modelo)s no encontrado."
 msgstr ""
 
 #: .\apps\movie\models.py:23
+msgid "Log Película"
+msgstr ""
+
+#: .\apps\movie\models.py:24
 msgid "Logs Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:31 .\apps\movie\models.py:81
-#: .\apps\music\models.py:31 .\apps\otaku\models.py:128
-#: .\apps\otaku\models.py:180 .\apps\otaku\models.py:232
-#: .\apps\otaku\models.py:284 .\apps\renpy\models.py:30
-#: .\apps\serie\models.py:32 .\apps\serie\models.py:82
+#: .\apps\movie\models.py:32 .\apps\movie\models.py:82
+#: .\apps\music\models.py:32 .\apps\otaku\models.py:129
+#: .\apps\otaku\models.py:181 .\apps\otaku\models.py:233
+#: .\apps\otaku\models.py:285 .\apps\renpy\models.py:31
+#: .\apps\serie\models.py:33 .\apps\serie\models.py:83
 msgid "Padre"
 msgstr ""
 
-#: .\apps\movie\models.py:37 .\apps\otaku\models.py:134
-#: .\apps\otaku\models.py:186 .\apps\otaku\models.py:238
-#: .\apps\renpy\models.py:36 .\apps\serie\models.py:38
+#: .\apps\movie\models.py:38 .\apps\otaku\models.py:135
+#: .\apps\otaku\models.py:187 .\apps\otaku\models.py:239
+#: .\apps\renpy\models.py:37 .\apps\serie\models.py:39
 msgid "Explicito"
 msgstr ""
 
-#: .\apps\movie\models.py:44 .\apps\music\models.py:43
-#: .\apps\otaku\models.py:141 .\apps\renpy\models.py:43
-#: .\apps\serie\models.py:45
+#: .\apps\movie\models.py:45 .\apps\music\models.py:44
+#: .\apps\otaku\models.py:142 .\apps\renpy\models.py:44
+#: .\apps\serie\models.py:46
 msgid "Género"
 msgstr ""
 
-#: .\apps\movie\models.py:45 .\apps\movie\models.py:283
-#: .\apps\music\models.py:44 .\apps\music\models.py:223
-#: .\apps\otaku\models.py:142 .\apps\otaku\models.py:829
-#: .\apps\otaku\models.py:1122 .\apps\renpy\models.py:44
-#: .\apps\renpy\models.py:461 .\apps\serie\models.py:46
-#: .\apps\serie\models.py:289
+#: .\apps\movie\models.py:46 .\apps\movie\models.py:284
+#: .\apps\music\models.py:45 .\apps\music\models.py:224
+#: .\apps\otaku\models.py:143 .\apps\otaku\models.py:830
+#: .\apps\otaku\models.py:1123 .\apps\renpy\models.py:45
+#: .\apps\renpy\models.py:462 .\apps\serie\models.py:47
+#: .\apps\serie\models.py:290
 msgid "Géneros"
 msgstr ""
 
-#: .\apps\movie\models.py:93 .\apps\movie\models.py:281
+#: .\apps\movie\models.py:94 .\apps\movie\models.py:282
 msgid "Tipo Película"
 msgstr ""
 
-#: .\apps\movie\models.py:94
+#: .\apps\movie\models.py:95
 msgid "Tipos Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:135 .\apps\serie\models.py:137
+#: .\apps\movie\models.py:136 .\apps\otaku\models.py:37
+#: .\apps\serie\models.py:138
 msgid "Rol Personal"
 msgstr ""
 
-#: .\apps\movie\models.py:136 .\apps\serie\models.py:138
+#: .\apps\movie\models.py:137 .\apps\serie\models.py:139
 msgid "Rol Elenco"
 msgstr ""
 
-#: .\apps\movie\models.py:143 .\apps\serie\models.py:145
+#: .\apps\movie\models.py:144 .\apps\serie\models.py:146
 msgid "Ros Película"
 msgstr ""
 
-#: .\apps\movie\models.py:144 .\apps\serie\models.py:146
+#: .\apps\movie\models.py:145 .\apps\serie\models.py:147
 msgid "Roles Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:194 .\apps\otaku\models.py:347
-#: .\apps\otaku\models.py:824 .\apps\otaku\models.py:1119
-#: .\apps\serie\models.py:195
+#: .\apps\movie\models.py:195 .\apps\otaku\models.py:348
+#: .\apps\otaku\models.py:825 .\apps\otaku\models.py:1120
+#: .\apps\serie\models.py:196
 msgid "Clasificación"
 msgstr ""
 
-#: .\apps\movie\models.py:195 .\apps\otaku\models.py:348
-#: .\apps\serie\models.py:196
+#: .\apps\movie\models.py:196 .\apps\otaku\models.py:349
+#: .\apps\serie\models.py:197
 msgid "Clasificaciones"
 msgstr ""
 
-#: .\apps\movie\models.py:231 .\apps\serie\models.py:236
+#: .\apps\movie\models.py:232 .\apps\serie\models.py:237
 msgid "Año Fundación"
 msgstr ""
 
-#: .\apps\movie\models.py:238 .\apps\serie\models.py:243
+#: .\apps\movie\models.py:239 .\apps\serie\models.py:244
 msgid "Compañia"
 msgstr ""
 
-#: .\apps\movie\models.py:239 .\apps\serie\models.py:244
+#: .\apps\movie\models.py:240 .\apps\serie\models.py:245
 msgid "Compañias"
 msgstr ""
 
-#: .\apps\movie\models.py:276 .\apps\serie\models.py:281
+#: .\apps\movie\models.py:277 .\apps\serie\models.py:282
 msgid "Título Original"
 msgstr ""
 
-#: .\apps\movie\models.py:277 .\apps\serie\models.py:282
+#: .\apps\movie\models.py:278 .\apps\serie\models.py:283
 msgid "Título Secundario"
 msgstr ""
 
-#: .\apps\movie\models.py:278 .\apps\serie\models.py:283
+#: .\apps\movie\models.py:279 .\apps\serie\models.py:284
 msgid "Año Lanzamiento"
 msgstr ""
 
-#: .\apps\movie\models.py:279
+#: .\apps\movie\models.py:280
 msgid "Duración Minutos"
 msgstr ""
 
-#: .\apps\movie\models.py:280 .\apps\otaku\models.py:814
-#: .\apps\otaku\models.py:1109 .\apps\renpy\models.py:452
-#: .\apps\serie\models.py:286
+#: .\apps\movie\models.py:281 .\apps\otaku\models.py:815
+#: .\apps\otaku\models.py:1110 .\apps\renpy\models.py:453
+#: .\apps\serie\models.py:287
 msgid "Sinopsis"
 msgstr ""
 
-#: .\apps\movie\models.py:282
+#: .\apps\movie\models.py:283
 msgid "Clasificación Película"
 msgstr ""
 
-#: .\apps\movie\models.py:284 .\apps\otaku\models.py:646
-#: .\apps\otaku\models.py:826 .\apps\serie\models.py:290
+#: .\apps\movie\models.py:285 .\apps\otaku\models.py:647
+#: .\apps\otaku\models.py:827 .\apps\serie\models.py:291
 msgid "Productoras"
 msgstr ""
 
-#: .\apps\movie\models.py:285 .\apps\serie\models.py:291
+#: .\apps\movie\models.py:286 .\apps\serie\models.py:292
 msgid "Distribuidoras"
 msgstr ""
 
-#: .\apps\movie\models.py:294 .\apps\movie\models.py:396
-#: .\apps\movie\models.py:437 .\apps\movie\models.py:485
-#: .\apps\movie\models.py:576
+#: .\apps\movie\models.py:295 .\apps\movie\models.py:397
+#: .\apps\movie\models.py:438 .\apps\movie\models.py:486
+#: .\apps\movie\models.py:577
 msgid "Película"
 msgstr ""
 
-#: .\apps\movie\models.py:295
+#: .\apps\movie\models.py:296
 msgid "Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:347
+#: .\apps\movie\models.py:348
 msgid "Pelicula"
 msgstr ""
 
-#: .\apps\movie\models.py:348 .\apps\otaku\models.py:1348
-#: .\apps\otaku\models.py:1396 .\apps\renpy\models.py:1359
-#: .\apps\serie\models.py:356
+#: .\apps\movie\models.py:349 .\apps\otaku\models.py:1349
+#: .\apps\otaku\models.py:1397 .\apps\renpy\models.py:1360
+#: .\apps\serie\models.py:357
 msgid "Lenguaje"
 msgstr ""
 
-#: .\apps\movie\models.py:349 .\apps\movie\models.py:358
-#: .\apps\music\models.py:305 .\apps\music\models.py:358
-#: .\apps\otaku\models.py:808 .\apps\otaku\models.py:1104
-#: .\apps\otaku\models.py:1349 .\apps\otaku\models.py:1397
-#: .\apps\otaku\models.py:1720 .\apps\otaku\models.py:1729
-#: .\apps\otaku\models.py:2910 .\apps\renpy\models.py:447
-#: .\apps\renpy\models.py:1360 .\apps\serie\models.py:357
-#: .\apps\serie\models.py:366
+#: .\apps\movie\models.py:350 .\apps\movie\models.py:359
+#: .\apps\music\models.py:306 .\apps\music\models.py:359
+#: .\apps\otaku\models.py:809 .\apps\otaku\models.py:1105
+#: .\apps\otaku\models.py:1350 .\apps\otaku\models.py:1398
+#: .\apps\otaku\models.py:1725 .\apps\renpy\models.py:448
+#: .\apps\renpy\models.py:1361 .\apps\serie\models.py:358
+#: .\apps\serie\models.py:367
 msgid "Título"
 msgstr ""
 
-#: .\apps\movie\models.py:350 .\apps\music\models.py:306
-#: .\apps\music\models.py:359 .\apps\otaku\models.py:815
-#: .\apps\otaku\models.py:1110 .\apps\otaku\models.py:1350
-#: .\apps\otaku\models.py:1398 .\apps\otaku\models.py:1725
-#: .\apps\renpy\models.py:448 .\apps\renpy\models.py:1361
-#: .\apps\serie\models.py:358
+#: .\apps\movie\models.py:351 .\apps\music\models.py:307
+#: .\apps\music\models.py:360 .\apps\otaku\models.py:816
+#: .\apps\otaku\models.py:1111 .\apps\otaku\models.py:1351
+#: .\apps\otaku\models.py:1399 .\apps\otaku\models.py:1723
+#: .\apps\renpy\models.py:449 .\apps\renpy\models.py:1362
+#: .\apps\serie\models.py:359
 msgid "Título Slug"
 msgstr ""
 
-#: .\apps\movie\models.py:359 .\apps\serie\models.py:367
+#: .\apps\movie\models.py:360 .\apps\serie\models.py:368
 msgid "Títulos"
 msgstr ""
 
-#: .\apps\movie\models.py:398 .\apps\movie\models.py:439
-#: .\apps\music\models.py:90 .\apps\music\models.py:273
-#: .\apps\otaku\models.py:45 .\apps\otaku\models.py:1791
-#: .\apps\otaku\models.py:1816 .\apps\otaku\models.py:1880
-#: .\apps\otaku\models.py:1919 .\apps\serie\models.py:405
-#: .\apps\serie\models.py:446
+#: .\apps\movie\models.py:399 .\apps\movie\models.py:440
+#: .\apps\music\models.py:91 .\apps\music\models.py:274
+#: .\apps\otaku\models.py:46 .\apps\otaku\models.py:1787
+#: .\apps\otaku\models.py:1812 .\apps\otaku\models.py:1874
+#: .\apps\otaku\models.py:1909 .\apps\serie\models.py:406
+#: .\apps\serie\models.py:447
 msgid "Rol"
 msgstr ""
 
-#: .\apps\movie\models.py:405 .\apps\serie\models.py:412
+#: .\apps\movie\models.py:406 .\apps\serie\models.py:413
 msgid "Personal Película"
 msgstr ""
 
-#: .\apps\movie\models.py:406 .\apps\serie\models.py:413
+#: .\apps\movie\models.py:407 .\apps\serie\models.py:414
 msgid "Personal Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:438 .\apps\serie\models.py:445
+#: .\apps\movie\models.py:439 .\apps\serie\models.py:446
 msgid "Actor"
 msgstr ""
 
-#: .\apps\movie\models.py:440 .\apps\otaku\models.py:1533
-#: .\apps\otaku\models.py:1789 .\apps\otaku\models.py:1814
-#: .\apps\otaku\models.py:1842 .\apps\otaku\models.py:1879
-#: .\apps\otaku\models.py:2526 .\apps\otaku\models.py:2617
-#: .\apps\serie\models.py:447
+#: .\apps\movie\models.py:441 .\apps\otaku\models.py:1460
+#: .\apps\otaku\models.py:1534 .\apps\otaku\models.py:1785
+#: .\apps\otaku\models.py:1810 .\apps\otaku\models.py:1837
+#: .\apps\otaku\models.py:2521 .\apps\otaku\models.py:2612
+#: .\apps\serie\models.py:448
 msgid "Personaje"
 msgstr ""
 
-#: .\apps\movie\models.py:441 .\apps\serie\models.py:448
+#: .\apps\movie\models.py:442 .\apps\serie\models.py:449
 msgid "Personaje Slug"
 msgstr ""
 
-#: .\apps\movie\models.py:449
+#: .\apps\movie\models.py:450
 msgid "Reparto Película"
 msgstr ""
 
-#: .\apps\movie\models.py:450
+#: .\apps\movie\models.py:451
 msgid "Reparto Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:487 .\apps\movie\models.py:497
+#: .\apps\movie\models.py:488 .\apps\movie\models.py:498
 msgid "Imagen Película"
 msgstr ""
 
-#: .\apps\movie\models.py:498
+#: .\apps\movie\models.py:499
 msgid "Imágenes Películas"
 msgstr ""
 
-#: .\apps\movie\models.py:504 .\apps\movie\models.py:594
+#: .\apps\movie\models.py:505 .\apps\movie\models.py:595
 msgid "Imagen sin Película"
 msgstr ""
 
-#: .\apps\movie\models.py:577 .\apps\movie\models.py:586
+#: .\apps\movie\models.py:578 .\apps\movie\models.py:587
 msgid "Imagen Extra Película"
 msgstr ""
 
-#: .\apps\movie\models.py:587
+#: .\apps\movie\models.py:588
 msgid "Imágenes Extra Películas"
 msgstr ""
 
-#: .\apps\music\models.py:22
+#: .\apps\music\models.py:23
 msgid "Log Música"
 msgstr ""
 
-#: .\apps\music\models.py:23
+#: .\apps\music\models.py:24
 msgid "Logs Música"
 msgstr ""
 
-#: .\apps\music\models.py:91 .\apps\otaku\models.py:46
+#: .\apps\music\models.py:92 .\apps\otaku\models.py:47
 msgid "Roles"
 msgstr ""
 
-#: .\apps\music\models.py:138
+#: .\apps\music\models.py:139
 msgid "Tipo Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:139
+#: .\apps\music\models.py:140
 msgid "Tipos Álbumes"
 msgstr ""
 
-#: .\apps\music\models.py:182 .\apps\music\models.py:222
+#: .\apps\music\models.py:183 .\apps\music\models.py:223
 msgid "Tipo Artista"
 msgstr ""
 
-#: .\apps\music\models.py:183
+#: .\apps\music\models.py:184
 msgid "Tipos Artistas"
 msgstr ""
 
-#: .\apps\music\models.py:220
+#: .\apps\music\models.py:221
 msgid "Año inicio"
 msgstr ""
 
-#: .\apps\music\models.py:221
+#: .\apps\music\models.py:222
 msgid "Año término"
 msgstr ""
 
-#: .\apps\music\models.py:230 .\apps\music\models.py:270
-#: .\apps\music\models.py:308 .\apps\music\models.py:589
-#: .\apps\music\models.py:680 .\apps\otaku\models.py:1722
+#: .\apps\music\models.py:231 .\apps\music\models.py:271
+#: .\apps\music\models.py:309 .\apps\music\models.py:590
+#: .\apps\music\models.py:681 .\apps\otaku\models.py:1722
 msgid "Artista"
 msgstr ""
 
-#: .\apps\music\models.py:231
+#: .\apps\music\models.py:232
 msgid "Artistas"
 msgstr ""
 
-#: .\apps\music\models.py:274
+#: .\apps\music\models.py:275
 msgid "Fecha Ingreso"
 msgstr ""
 
-#: .\apps\music\models.py:275
+#: .\apps\music\models.py:276
 msgid "Fecha Salida"
 msgstr ""
 
-#: .\apps\music\models.py:282
+#: .\apps\music\models.py:283
 msgid "Miembro de Artista"
 msgstr ""
 
-#: .\apps\music\models.py:283
+#: .\apps\music\models.py:284
 msgid "Miembros de Artistas"
 msgstr ""
 
-#: .\apps\music\models.py:309 .\apps\otaku\models.py:296
-#: .\apps\otaku\models.py:818 .\apps\otaku\models.py:1113
+#: .\apps\music\models.py:310 .\apps\otaku\models.py:297
+#: .\apps\otaku\models.py:819 .\apps\otaku\models.py:1114
 msgid "Tipo"
 msgstr ""
 
-#: .\apps\music\models.py:310 .\apps\music\models.py:363
-#: .\apps\renpy\models.py:451
+#: .\apps\music\models.py:311 .\apps\music\models.py:364
+#: .\apps\renpy\models.py:452
 msgid "Fecha Lanzamiento"
 msgstr ""
 
-#: .\apps\music\models.py:317 .\apps\music\models.py:364
-#: .\apps\music\models.py:409 .\apps\music\models.py:500
+#: .\apps\music\models.py:318 .\apps\music\models.py:365
+#: .\apps\music\models.py:410 .\apps\music\models.py:501
 msgid "Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:318
+#: .\apps\music\models.py:319
 msgid "Álbumes"
 msgstr ""
 
-#: .\apps\music\models.py:361
+#: .\apps\music\models.py:362
 msgid "Letra"
 msgstr ""
 
-#: .\apps\music\models.py:362
+#: .\apps\music\models.py:363
 msgid "ID Canción Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:365
+#: .\apps\music\models.py:366
 msgid "Archivo Audio"
 msgstr ""
 
-#: .\apps\music\models.py:372
+#: .\apps\music\models.py:373
 msgid "Canción"
 msgstr ""
 
-#: .\apps\music\models.py:373
+#: .\apps\music\models.py:374
 msgid "Canciones"
 msgstr ""
 
-#: .\apps\music\models.py:411 .\apps\music\models.py:421
+#: .\apps\music\models.py:412 .\apps\music\models.py:422
 msgid "Imagen Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:422
+#: .\apps\music\models.py:423
 msgid "Imágenes Álbumes"
 msgstr ""
 
-#: .\apps\music\models.py:428 .\apps\music\models.py:517
+#: .\apps\music\models.py:429 .\apps\music\models.py:518
 msgid "Imagen sin Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:501 .\apps\music\models.py:510
+#: .\apps\music\models.py:502 .\apps\music\models.py:511
 msgid "Imagen Extra Álbum"
 msgstr ""
 
-#: .\apps\music\models.py:511
+#: .\apps\music\models.py:512
 msgid "Imágenes Extra Álbumes"
 msgstr ""
 
-#: .\apps\music\models.py:591 .\apps\music\models.py:601
+#: .\apps\music\models.py:592 .\apps\music\models.py:602
 msgid "Imagen Artista"
 msgstr ""
 
-#: .\apps\music\models.py:602
+#: .\apps\music\models.py:603
 msgid "Imágenes Artistas"
 msgstr ""
 
-#: .\apps\music\models.py:608 .\apps\music\models.py:698
+#: .\apps\music\models.py:609 .\apps\music\models.py:698
 msgid "Imagen sin Artista"
 msgstr ""
 
-#: .\apps\music\models.py:681 .\apps\music\models.py:691
+#: .\apps\music\models.py:682 .\apps\music\models.py:691
 msgid "Imagen Extra Artista"
 msgstr ""
 
@@ -897,839 +1243,1161 @@ msgstr ""
 msgid "Imágenes Extra Artista"
 msgstr ""
 
-#: .\apps\otaku\models.py:22
-msgid "Log Otaku"
+#: .\apps\otaku\admin.py:46 .\apps\otaku\admin.py:95 .\apps\otaku\admin.py:141
+#: .\apps\otaku\admin.py:190 .\apps\otaku\admin.py:239
+#: .\apps\otaku\admin.py:282 .\apps\otaku\admin.py:322
+#: .\apps\otaku\admin.py:362 .\apps\otaku\admin.py:402
+#: .\apps\otaku\admin.py:442 .\apps\otaku\admin.py:482
+#: .\apps\otaku\admin.py:522 .\apps\otaku\admin.py:562
+#: .\apps\otaku\admin.py:602 .\apps\otaku\admin.py:642
+#: .\apps\otaku\admin.py:682 .\apps\otaku\admin.py:724
+#: .\apps\otaku\admin.py:776 .\apps\otaku\admin.py:908
+#: .\apps\otaku\admin.py:957 .\apps\otaku\admin.py:1003
+#: .\apps\otaku\admin.py:1054 .\apps\otaku\admin.py:1100
+#: .\apps\otaku\admin.py:1149 .\apps\otaku\admin.py:1194
+#: .\apps\otaku\admin.py:1239 .\apps\otaku\admin.py:1284
+#: .\apps\otaku\admin.py:1329 .\apps\otaku\admin.py:1420
+#: .\apps\otaku\admin.py:1466 .\apps\otaku\admin.py:1512
+#: .\apps\otaku\admin.py:1558 .\apps\otaku\admin.py:1604
+#: .\apps\otaku\admin.py:1650 .\apps\otaku\admin.py:1696
+#: .\apps\otaku\admin.py:1742 .\apps\otaku\admin.py:1788
+#: .\apps\otaku\admin.py:1830 .\apps\otaku\admin.py:1872
+#: .\apps\otaku\admin.py:1914 .\apps\otaku\admin.py:1956
+#: .\apps\otaku\admin.py:1998 .\apps\otaku\admin.py:2040
+#: .\apps\otaku\admin.py:2082 .\apps\otaku\admin.py:2124
+#: .\apps\otaku\admin.py:2166 .\apps\otaku\admin.py:2209
+#: .\apps\otaku\admin.py:2252 .\apps\renpy\admin.py:40 .\apps\renpy\admin.py:86
+#: .\apps\renpy\admin.py:132 .\apps\renpy\admin.py:178
+#: .\apps\renpy\admin.py:224 .\apps\renpy\admin.py:270
+#: .\apps\renpy\admin.py:318 .\apps\renpy\admin.py:366
+#: .\apps\renpy\admin.py:414 .\apps\renpy\admin.py:462
+#: .\apps\renpy\admin.py:517 .\apps\renpy\admin.py:563
+#: .\apps\renpy\admin.py:609 .\apps\renpy\admin.py:655
+#: .\apps\renpy\admin.py:701 .\apps\renpy\admin.py:747
+#: .\apps\renpy\admin.py:793 .\apps\renpy\admin.py:839
+#: .\apps\renpy\admin.py:885 .\apps\renpy\admin.py:931
+#: .\apps\renpy\admin.py:977
+msgid "Información Básica"
 msgstr ""
 
-#: .\apps\otaku\models.py:23
-msgid "Logs Otaku"
+#: .\apps\otaku\admin.py:49
+msgid "Aplicación del Rol"
 msgstr ""
 
-#: .\apps\otaku\models.py:36
-msgid "Rol OtakuPersonal"
-msgstr ""
-
-#: .\apps\otaku\models.py:37
-msgid "Rol OtakuPersonajes"
-msgstr ""
-
-#: .\apps\otaku\models.py:38
-msgid "Rol Mangas"
-msgstr ""
-
-#: .\apps\otaku\models.py:85 .\apps\otaku\models.py:822
-#: .\apps\otaku\models.py:1114
-msgid "Año"
-msgstr ""
-
-#: .\apps\otaku\models.py:86
-msgid "Año Slug"
-msgstr ""
-
-#: .\apps\otaku\models.py:193
-msgid "Tema"
-msgstr ""
-
-#: .\apps\otaku\models.py:194 .\apps\otaku\models.py:830
-#: .\apps\otaku\models.py:1123
-msgid "Temas"
-msgstr ""
-
-#: .\apps\otaku\models.py:245
-msgid "Demografía"
-msgstr ""
-
-#: .\apps\otaku\models.py:246 .\apps\otaku\models.py:831
-#: .\apps\otaku\models.py:1124
-msgid "Demografías"
-msgstr ""
-
-#: .\apps\otaku\models.py:297
-msgid "Tipos"
-msgstr ""
-
-#: .\apps\otaku\models.py:397 .\apps\otaku\models.py:820
-#: .\apps\otaku\models.py:1116
-msgid "Temporada"
-msgstr ""
-
-#: .\apps\otaku\models.py:398
-msgid "Temporadas"
-msgstr ""
-
-#: .\apps\otaku\models.py:448 .\apps\otaku\models.py:819
-#: .\apps\otaku\models.py:1115 .\apps\renpy\models.py:226
-#: .\apps\renpy\models.py:454 .\apps\renpy\models.py:1408
-#: .\core\utils\utils.py:57
+#: .\apps\otaku\admin.py:52 .\apps\otaku\admin.py:98 .\apps\otaku\admin.py:147
+#: .\apps\otaku\admin.py:196 .\apps\otaku\admin.py:245
+#: .\apps\otaku\admin.py:285 .\apps\otaku\admin.py:325
+#: .\apps\otaku\admin.py:365 .\apps\otaku\admin.py:405
+#: .\apps\otaku\admin.py:445 .\apps\otaku\admin.py:485
+#: .\apps\otaku\admin.py:525 .\apps\otaku\admin.py:565
+#: .\apps\otaku\admin.py:605 .\apps\otaku\admin.py:645
+#: .\apps\otaku\admin.py:685 .\apps\otaku\admin.py:737
+#: .\apps\otaku\admin.py:789 .\apps\otaku\admin.py:829
+#: .\apps\otaku\admin.py:869 .\apps\otaku\admin.py:914
+#: .\apps\otaku\admin.py:960 .\apps\otaku\admin.py:1009
+#: .\apps\otaku\admin.py:1057 .\apps\otaku\admin.py:1106
+#: .\apps\otaku\admin.py:1155 .\apps\otaku\admin.py:1200
+#: .\apps\otaku\admin.py:1245 .\apps\otaku\admin.py:1290
+#: .\apps\otaku\admin.py:1335 .\apps\otaku\admin.py:1379
+#: .\apps\otaku\admin.py:1423 .\apps\otaku\admin.py:1469
+#: .\apps\otaku\admin.py:1515 .\apps\otaku\admin.py:1561
+#: .\apps\otaku\admin.py:1607 .\apps\otaku\admin.py:1653
+#: .\apps\otaku\admin.py:1699 .\apps\otaku\admin.py:1745
+#: .\apps\otaku\admin.py:1791 .\apps\otaku\admin.py:1833
+#: .\apps\otaku\admin.py:1875 .\apps\otaku\admin.py:1917
+#: .\apps\otaku\admin.py:1959 .\apps\otaku\admin.py:2001
+#: .\apps\otaku\admin.py:2043 .\apps\otaku\admin.py:2085
+#: .\apps\otaku\admin.py:2127 .\apps\otaku\admin.py:2169
+#: .\apps\otaku\admin.py:2212 .\apps\otaku\admin.py:2255
+#: .\apps\otaku\models.py:449 .\apps\otaku\models.py:820
+#: .\apps\otaku\models.py:1116 .\apps\otaku\models.py:2704
+#: .\apps\otaku\models.py:2726 .\apps\otaku\models.py:2749
+#: .\apps\otaku\models.py:2772 .\apps\otaku\models.py:2795
+#: .\apps\otaku\models.py:2818 .\apps\otaku\models.py:2841
+#: .\apps\otaku\models.py:2864 .\apps\otaku\models.py:2887
+#: .\apps\otaku\models.py:2910 .\apps\otaku\models.py:2933
+#: .\apps\otaku\models.py:2955 .\apps\renpy\admin.py:43
+#: .\apps\renpy\admin.py:89 .\apps\renpy\admin.py:135 .\apps\renpy\admin.py:181
+#: .\apps\renpy\admin.py:227 .\apps\renpy\admin.py:273
+#: .\apps\renpy\admin.py:321 .\apps\renpy\admin.py:369
+#: .\apps\renpy\admin.py:417 .\apps\renpy\admin.py:474
+#: .\apps\renpy\admin.py:520 .\apps\renpy\admin.py:566
+#: .\apps\renpy\admin.py:612 .\apps\renpy\admin.py:658
+#: .\apps\renpy\admin.py:704 .\apps\renpy\admin.py:750
+#: .\apps\renpy\admin.py:796 .\apps\renpy\admin.py:842
+#: .\apps\renpy\admin.py:888 .\apps\renpy\admin.py:934
+#: .\apps\renpy\admin.py:980 .\apps\renpy\admin.py:1026
+#: .\apps\renpy\models.py:227 .\apps\renpy\models.py:455
+#: .\apps\renpy\models.py:1409 .\apps\users\admin.py:28 .\core\models.py:39
 msgid "Estado"
 msgstr ""
 
-#: .\apps\otaku\models.py:449 .\apps\renpy\models.py:227
+#: .\apps\otaku\admin.py:55 .\apps\otaku\admin.py:101 .\apps\otaku\admin.py:150
+#: .\apps\otaku\admin.py:199 .\apps\otaku\admin.py:248
+#: .\apps\otaku\admin.py:288 .\apps\otaku\admin.py:328
+#: .\apps\otaku\admin.py:368 .\apps\otaku\admin.py:408
+#: .\apps\otaku\admin.py:448 .\apps\otaku\admin.py:488
+#: .\apps\otaku\admin.py:528 .\apps\otaku\admin.py:568
+#: .\apps\otaku\admin.py:608 .\apps\otaku\admin.py:648
+#: .\apps\otaku\admin.py:688 .\apps\otaku\admin.py:832
+#: .\apps\otaku\admin.py:872 .\apps\otaku\admin.py:917
+#: .\apps\otaku\admin.py:963 .\apps\otaku\admin.py:1012
+#: .\apps\otaku\admin.py:1060 .\apps\otaku\admin.py:1109
+#: .\apps\otaku\admin.py:1426 .\apps\otaku\admin.py:1472
+#: .\apps\otaku\admin.py:1518 .\apps\otaku\admin.py:1564
+#: .\apps\otaku\admin.py:1610 .\apps\otaku\admin.py:1656
+#: .\apps\otaku\admin.py:1702 .\apps\otaku\admin.py:1748
+#: .\apps\renpy\admin.py:46 .\apps\renpy\admin.py:92 .\apps\renpy\admin.py:138
+#: .\apps\renpy\admin.py:184 .\apps\renpy\admin.py:230
+#: .\apps\renpy\admin.py:276 .\apps\renpy\admin.py:324
+#: .\apps\renpy\admin.py:372 .\apps\renpy\admin.py:420
+#: .\apps\renpy\admin.py:477 .\apps\renpy\admin.py:523
+#: .\apps\renpy\admin.py:569 .\apps\renpy\admin.py:615
+#: .\apps\renpy\admin.py:661 .\apps\renpy\admin.py:707
+#: .\apps\renpy\admin.py:753 .\apps\renpy\admin.py:799
+#: .\apps\renpy\admin.py:845 .\apps\renpy\admin.py:891
+#: .\apps\renpy\admin.py:937 .\apps\renpy\admin.py:983
+#: .\apps\renpy\admin.py:1029
+msgid "Valores generados automáticamente"
+msgstr ""
+
+#: .\apps\otaku\admin.py:59 .\apps\otaku\admin.py:105 .\apps\otaku\admin.py:154
+#: .\apps\otaku\admin.py:203 .\apps\otaku\admin.py:252
+#: .\apps\otaku\admin.py:292 .\apps\otaku\admin.py:332
+#: .\apps\otaku\admin.py:372 .\apps\otaku\admin.py:412
+#: .\apps\otaku\admin.py:452 .\apps\otaku\admin.py:492
+#: .\apps\otaku\admin.py:532 .\apps\otaku\admin.py:572
+#: .\apps\otaku\admin.py:612 .\apps\otaku\admin.py:652
+#: .\apps\otaku\admin.py:692 .\apps\otaku\admin.py:744
+#: .\apps\otaku\admin.py:796 .\apps\otaku\admin.py:836
+#: .\apps\otaku\admin.py:876 .\apps\otaku\admin.py:921
+#: .\apps\otaku\admin.py:967 .\apps\otaku\admin.py:1016
+#: .\apps\otaku\admin.py:1064 .\apps\otaku\admin.py:1113
+#: .\apps\otaku\admin.py:1158 .\apps\otaku\admin.py:1203
+#: .\apps\otaku\admin.py:1248 .\apps\otaku\admin.py:1293
+#: .\apps\otaku\admin.py:1338 .\apps\otaku\admin.py:1382
+#: .\apps\otaku\admin.py:1430 .\apps\otaku\admin.py:1476
+#: .\apps\otaku\admin.py:1522 .\apps\otaku\admin.py:1568
+#: .\apps\otaku\admin.py:1614 .\apps\otaku\admin.py:1660
+#: .\apps\otaku\admin.py:1706 .\apps\otaku\admin.py:1752
+#: .\apps\otaku\admin.py:1794 .\apps\otaku\admin.py:1836
+#: .\apps\otaku\admin.py:1878 .\apps\otaku\admin.py:1920
+#: .\apps\otaku\admin.py:1962 .\apps\otaku\admin.py:2004
+#: .\apps\otaku\admin.py:2046 .\apps\otaku\admin.py:2088
+#: .\apps\otaku\admin.py:2130 .\apps\otaku\admin.py:2172
+#: .\apps\otaku\admin.py:2215 .\apps\otaku\admin.py:2258
+#: .\apps\renpy\admin.py:50 .\apps\renpy\admin.py:96 .\apps\renpy\admin.py:142
+#: .\apps\renpy\admin.py:188 .\apps\renpy\admin.py:234
+#: .\apps\renpy\admin.py:280 .\apps\renpy\admin.py:328
+#: .\apps\renpy\admin.py:376 .\apps\renpy\admin.py:424
+#: .\apps\renpy\admin.py:481 .\apps\renpy\admin.py:527
+#: .\apps\renpy\admin.py:573 .\apps\renpy\admin.py:619
+#: .\apps\renpy\admin.py:665 .\apps\renpy\admin.py:711
+#: .\apps\renpy\admin.py:757 .\apps\renpy\admin.py:803
+#: .\apps\renpy\admin.py:849 .\apps\renpy\admin.py:895
+#: .\apps\renpy\admin.py:941 .\apps\renpy\admin.py:987
+#: .\apps\renpy\admin.py:1033 .\apps\renpy\admin.py:1072
+#: .\apps\users\admin.py:35
+msgid "Fechas"
+msgstr ""
+
+#: .\apps\otaku\admin.py:144 .\apps\otaku\admin.py:193
+#: .\apps\otaku\admin.py:242
+msgid "Atributos"
+msgstr ""
+
+#: .\apps\otaku\admin.py:727 .\apps\otaku\admin.py:779
+#: .\apps\renpy\admin.py:465
+msgid "Relaciones"
+msgstr ""
+
+#: .\apps\otaku\admin.py:734 .\apps\otaku\admin.py:786
+#: .\apps\otaku\admin.py:911 .\apps\otaku\admin.py:1006
+msgid "Información MAL"
+msgstr ""
+
+#: .\apps\otaku\admin.py:740 .\apps\otaku\admin.py:792
+msgid "Generado automáticamente"
+msgstr ""
+
+#: .\apps\otaku\admin.py:826 .\apps\otaku\admin.py:866
+msgid "Relación y Título"
+msgstr ""
+
+#: .\apps\otaku\admin.py:1152 .\apps\otaku\admin.py:1197
+#: .\apps\otaku\admin.py:1242 .\apps\otaku\admin.py:1287
+#: .\apps\otaku\admin.py:1332
+msgid "Datos MAL"
+msgstr ""
+
+#: .\apps\otaku\models.py:23
+msgid "Log Otaku"
+msgstr ""
+
+#: .\apps\otaku\models.py:24
+msgid "Logs Otaku"
+msgstr ""
+
+#: .\apps\otaku\models.py:38
+msgid "Rol Personaje"
+msgstr ""
+
+#: .\apps\otaku\models.py:39
+msgid "Rol Mangas"
+msgstr ""
+
+#: .\apps\otaku\models.py:86 .\apps\otaku\models.py:823
+#: .\apps\otaku\models.py:1115
+msgid "Año"
+msgstr ""
+
+#: .\apps\otaku\models.py:87
+msgid "Año Slug"
+msgstr ""
+
+#: .\apps\otaku\models.py:194
+msgid "Tema"
+msgstr ""
+
+#: .\apps\otaku\models.py:195 .\apps\otaku\models.py:831
+#: .\apps\otaku\models.py:1124
+msgid "Temas"
+msgstr ""
+
+#: .\apps\otaku\models.py:246
+msgid "Demografía"
+msgstr ""
+
+#: .\apps\otaku\models.py:247 .\apps\otaku\models.py:832
+#: .\apps\otaku\models.py:1125
+msgid "Demografías"
+msgstr ""
+
+#: .\apps\otaku\models.py:298
+msgid "Tipos"
+msgstr ""
+
+#: .\apps\otaku\models.py:398 .\apps\otaku\models.py:821
+#: .\apps\otaku\models.py:1117
+msgid "Temporada"
+msgstr ""
+
+#: .\apps\otaku\models.py:399
+msgid "Temporadas"
+msgstr ""
+
+#: .\apps\otaku\models.py:450 .\apps\renpy\models.py:228
 msgid "Estados"
 msgstr ""
 
-#: .\apps\otaku\models.py:499 .\apps\otaku\models.py:823
-#: .\apps\otaku\models.py:1118
+#: .\apps\otaku\models.py:500 .\apps\otaku\models.py:824
+#: .\apps\otaku\models.py:1119
 msgid "Fuente"
 msgstr ""
 
-#: .\apps\otaku\models.py:500
+#: .\apps\otaku\models.py:501
 msgid "Fuentes"
 msgstr ""
 
-#: .\apps\otaku\models.py:547
+#: .\apps\otaku\models.py:548
 msgid "Tipo Relación"
 msgstr ""
 
-#: .\apps\otaku\models.py:548
+#: .\apps\otaku\models.py:549
 msgid "Tipos Relaciones"
 msgstr ""
 
-#: .\apps\otaku\models.py:596
+#: .\apps\otaku\models.py:597
 msgid "Temporada Completa"
 msgstr ""
 
-#: .\apps\otaku\models.py:597
+#: .\apps\otaku\models.py:598
 msgid "Temporadas Completas"
 msgstr ""
 
-#: .\apps\otaku\models.py:645
+#: .\apps\otaku\models.py:646
 msgid "Productora"
 msgstr ""
 
-#: .\apps\otaku\models.py:688
+#: .\apps\otaku\models.py:689
 msgid "Licenciante"
 msgstr ""
 
-#: .\apps\otaku\models.py:689 .\apps\otaku\models.py:827
+#: .\apps\otaku\models.py:690 .\apps\otaku\models.py:828
 msgid "Licenciantes"
 msgstr ""
 
-#: .\apps\otaku\models.py:731
+#: .\apps\otaku\models.py:732
 msgid "Estudio"
 msgstr ""
 
-#: .\apps\otaku\models.py:732 .\apps\otaku\models.py:828
+#: .\apps\otaku\models.py:733 .\apps\otaku\models.py:829
 msgid "Estudios"
 msgstr ""
 
-#: .\apps\otaku\models.py:774
+#: .\apps\otaku\models.py:775
 msgid "Serializadora"
 msgstr ""
 
-#: .\apps\otaku\models.py:775 .\apps\otaku\models.py:1121
+#: .\apps\otaku\models.py:776 .\apps\otaku\models.py:1122
 msgid "Serializadoras"
 msgstr ""
 
-#: .\apps\otaku\models.py:809 .\apps\otaku\models.py:1105
-#: .\apps\otaku\models.py:1732
+#: .\apps\otaku\models.py:810 .\apps\otaku\models.py:1106
+#: .\apps\otaku\models.py:1727
 msgid "Título Ingles"
 msgstr ""
 
-#: .\apps\otaku\models.py:810 .\apps\otaku\models.py:1106
+#: .\apps\otaku\models.py:811 .\apps\otaku\models.py:1107
 msgid "Título Japones"
 msgstr ""
 
-#: .\apps\otaku\models.py:811 .\apps\serie\models.py:285
+#: .\apps\otaku\models.py:812 .\apps\serie\models.py:286
 msgid "Episodios"
 msgstr ""
 
-#: .\apps\otaku\models.py:812
+#: .\apps\otaku\models.py:813
 msgid "Desde"
 msgstr ""
 
-#: .\apps\otaku\models.py:813
+#: .\apps\otaku\models.py:814
 msgid "Hasta"
 msgstr ""
 
-#: .\apps\otaku\models.py:821 .\apps\otaku\models.py:1117
+#: .\apps\otaku\models.py:822 .\apps\otaku\models.py:1118
 msgid "Temporada Año"
-msgstr ""
-
-#: .\apps\otaku\models.py:833 .\apps\otaku\models.py:1128
-#: .\apps\otaku\models.py:1449 .\apps\otaku\models.py:1584
-msgid "URL MyAnimeList"
 msgstr ""
 
 #: .\apps\otaku\models.py:834 .\apps\otaku\models.py:1129
 #: .\apps\otaku\models.py:1450 .\apps\otaku\models.py:1585
-msgid "ID MyAnimesList"
+msgid "URL MyAnimeList"
 msgstr ""
 
 #: .\apps\otaku\models.py:835 .\apps\otaku\models.py:1130
 #: .\apps\otaku\models.py:1451 .\apps\otaku\models.py:1586
+msgid "ID MyAnimesList"
+msgstr ""
+
+#: .\apps\otaku\models.py:836 .\apps\otaku\models.py:1131
+#: .\apps\otaku\models.py:1452 .\apps\otaku\models.py:1587
 msgid "ID MyAnimesList Prefijo"
 msgstr ""
 
-#: .\apps\otaku\models.py:843 .\apps\otaku\models.py:1347
-#: .\apps\otaku\models.py:1717 .\apps\otaku\models.py:1790
-#: .\apps\otaku\models.py:1841 .\apps\otaku\models.py:1878
-#: .\apps\otaku\models.py:1986 .\apps\otaku\models.py:2077
-#: .\apps\otaku\models.py:2907
+#: .\apps\otaku\models.py:844 .\apps\otaku\models.py:1348
+#: .\apps\otaku\models.py:1718 .\apps\otaku\models.py:1786
+#: .\apps\otaku\models.py:1836 .\apps\otaku\models.py:1873
+#: .\apps\otaku\models.py:1982 .\apps\otaku\models.py:2073
 msgid "Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:844
+#: .\apps\otaku\models.py:845
 msgid "Animes"
 msgstr ""
 
-#: .\apps\otaku\models.py:900 .\apps\otaku\models.py:1195
+#: .\apps\otaku\models.py:901 .\apps\otaku\models.py:1196
 msgid "Sin sinopsis disponible"
 msgstr ""
 
-#: .\apps\otaku\models.py:915
+#: .\apps\otaku\models.py:916
 msgid "Fecha Emisión no disponible"
 msgstr ""
 
-#: .\apps\otaku\models.py:919 .\apps\otaku\models.py:1217
+#: .\apps\otaku\models.py:920 .\apps\otaku\models.py:1218
 msgid "Sin Tipo"
 msgstr ""
 
-#: .\apps\otaku\models.py:922 .\apps\otaku\models.py:1220
+#: .\apps\otaku\models.py:923 .\apps\otaku\models.py:1221
 msgid "Sin Estado"
 msgstr ""
 
-#: .\apps\otaku\models.py:925 .\apps\otaku\models.py:1223
+#: .\apps\otaku\models.py:926 .\apps\otaku\models.py:1224
 msgid "Sin Temporada de Emisión"
 msgstr ""
 
-#: .\apps\otaku\models.py:928 .\apps\otaku\models.py:1226
+#: .\apps\otaku\models.py:929 .\apps\otaku\models.py:1227
 msgid "Sin Temporada Completa de Emisión"
 msgstr ""
 
-#: .\apps\otaku\models.py:931 .\apps\otaku\models.py:1229
+#: .\apps\otaku\models.py:932 .\apps\otaku\models.py:1230
 msgid "Sin Año"
 msgstr ""
 
-#: .\apps\otaku\models.py:934 .\apps\otaku\models.py:1232
+#: .\apps\otaku\models.py:935 .\apps\otaku\models.py:1233
 msgid "Sin Fuente"
 msgstr ""
 
-#: .\apps\otaku\models.py:937 .\apps\otaku\models.py:1235
+#: .\apps\otaku\models.py:938 .\apps\otaku\models.py:1236
 msgid "Sin Clasificación"
 msgstr ""
 
-#: .\apps\otaku\models.py:964 .\apps\otaku\models.py:1256
+#: .\apps\otaku\models.py:965 .\apps\otaku\models.py:1257
 msgid "Desconocido"
 msgstr ""
 
-#: .\apps\otaku\models.py:1107
+#: .\apps\otaku\models.py:1108
 msgid "Capítulos"
 msgstr ""
 
-#: .\apps\otaku\models.py:1108
+#: .\apps\otaku\models.py:1109
 msgid "volúmenes"
 msgstr ""
 
-#: .\apps\otaku\models.py:1125
+#: .\apps\otaku\models.py:1126
 msgid "Publicado Desde"
 msgstr ""
 
-#: .\apps\otaku\models.py:1126
+#: .\apps\otaku\models.py:1127
 msgid "Publicado Hasta"
 msgstr ""
 
-#: .\apps\otaku\models.py:1138 .\apps\otaku\models.py:1395
-#: .\apps\otaku\models.py:1815 .\apps\otaku\models.py:1918
-#: .\apps\otaku\models.py:2166 .\apps\otaku\models.py:2257
+#: .\apps\otaku\models.py:1139 .\apps\otaku\models.py:1396
+#: .\apps\otaku\models.py:1811 .\apps\otaku\models.py:1908
+#: .\apps\otaku\models.py:2162 .\apps\otaku\models.py:2253
 msgid "Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:1139
+#: .\apps\otaku\models.py:1140
 msgid "Mangas"
 msgstr ""
 
-#: .\apps\otaku\models.py:1213
+#: .\apps\otaku\models.py:1214
 msgid "Fecha publicación no disponible"
 msgstr ""
 
-#: .\apps\otaku\models.py:1358
+#: .\apps\otaku\models.py:1359
 msgid "Título Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:1359
+#: .\apps\otaku\models.py:1360
 msgid "Títulos Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:1406
+#: .\apps\otaku\models.py:1407
 msgid "Título Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:1407
+#: .\apps\otaku\models.py:1408
 msgid "Títulos Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:1444 .\apps\otaku\models.py:1575
+#: .\apps\otaku\models.py:1445 .\apps\otaku\models.py:1576
 msgid "Nombre Kanji"
 msgstr ""
 
-#: .\apps\otaku\models.py:1459
-msgid "OtakuPersonaje"
-msgstr ""
-
-#: .\apps\otaku\models.py:1460
-msgid "OtakuPersonajes"
-msgstr ""
-
-#: .\apps\otaku\models.py:1543
-msgid "Apodo OtakuPersonaje"
+#: .\apps\otaku\models.py:1461
+msgid "Personajes"
 msgstr ""
 
 #: .\apps\otaku\models.py:1544
-msgid "Apodos OtakuPersonajes"
+msgid "Apodo Personaje"
 msgstr ""
 
-#: .\apps\otaku\models.py:1594
-msgid "OtakuPersona"
+#: .\apps\otaku\models.py:1545
+msgid "Apodos Personajes"
 msgstr ""
 
 #: .\apps\otaku\models.py:1595
-msgid "OtakuPersonas"
+msgid " Persona"
 msgstr ""
 
-#: .\apps\otaku\models.py:1719 .\apps\otaku\models.py:2909
+#: .\apps\otaku\models.py:1720
 msgid "ID Canción"
 msgstr ""
 
-#: .\apps\otaku\models.py:1723 .\apps\otaku\models.py:2912
-msgid "Título Kanji TEMP"
-msgstr ""
-
-#: .\apps\otaku\models.py:1724 .\apps\otaku\models.py:2913
-msgid "Título Ingles TEMP"
-msgstr ""
-
-#: .\apps\otaku\models.py:1731
+#: .\apps\otaku\models.py:1726
 msgid "Título Kanji"
 msgstr ""
 
-#: .\apps\otaku\models.py:1742
+#: .\apps\otaku\models.py:1738
 msgid "Canción Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:1743
+#: .\apps\otaku\models.py:1739
 msgid "Canciones Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:1882 .\apps\otaku\models.py:1921
-msgid "Mal Id Persona"
-msgstr ""
-
-#: .\apps\otaku\models.py:1883
-msgid "Mal Id Anime"
-msgstr ""
-
-#: .\apps\otaku\models.py:1884
+#: .\apps\otaku\models.py:1789 .\apps\otaku\models.py:1814
+#: .\apps\otaku\models.py:1842
 msgid "MAL ID Personaje"
 msgstr ""
 
-#: .\apps\otaku\models.py:1922
+#: .\apps\otaku\models.py:1790 .\apps\otaku\models.py:1841
+#: .\apps\otaku\models.py:1877
+msgid "MAL ID Anime"
+msgstr ""
+
+#: .\apps\otaku\models.py:1798
+msgid "Personaje Anime"
+msgstr ""
+
+#: .\apps\otaku\models.py:1799
+msgid "Personajes Animes"
+msgstr ""
+
+#: .\apps\otaku\models.py:1815 .\apps\otaku\models.py:1912
 msgid "MAL ID Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:1988 .\apps\otaku\models.py:2168
-#: .\apps\otaku\models.py:2347 .\apps\otaku\models.py:2528
-#: .\apps\renpy\models.py:511 .\apps\renpy\models.py:820
-#: .\apps\renpy\models.py:1000 .\apps\renpy\models.py:1180
+#: .\apps\otaku\models.py:1823
+msgid "Personaje Manga"
+msgstr ""
+
+#: .\apps\otaku\models.py:1824
+msgid "Personajes Mangas"
+msgstr ""
+
+#: .\apps\otaku\models.py:1840 .\apps\otaku\models.py:1876
+#: .\apps\otaku\models.py:1911
+msgid "MAL ID Persona"
+msgstr ""
+
+#: .\apps\otaku\models.py:1850
+msgid "Actor de Voz"
+msgstr ""
+
+#: .\apps\otaku\models.py:1851
+msgid "Actores de Voz"
+msgstr ""
+
+#: .\apps\otaku\models.py:1885
+msgid "Personal de Anime"
+msgstr ""
+
+#: .\apps\otaku\models.py:1886
+msgid "Personal de Animes"
+msgstr ""
+
+#: .\apps\otaku\models.py:1946
+msgid "Tipo de relación"
+msgstr ""
+
+#: .\apps\otaku\models.py:1947
+msgid "MAL ID Desde"
+msgstr ""
+
+#: .\apps\otaku\models.py:1948
+msgid "Tipo Desde"
+msgstr ""
+
+#: .\apps\otaku\models.py:1949
+msgid "MAL ID Hacia"
+msgstr ""
+
+#: .\apps\otaku\models.py:1950
+msgid "Tipo Hacia"
+msgstr ""
+
+#: .\apps\otaku\models.py:1984 .\apps\otaku\models.py:2164
+#: .\apps\otaku\models.py:2343 .\apps\otaku\models.py:2523
+#: .\apps\renpy\models.py:512 .\apps\renpy\models.py:821
+#: .\apps\renpy\models.py:1001 .\apps\renpy\models.py:1181
 msgid "Imagen"
 msgstr ""
 
-#: .\apps\otaku\models.py:1998
+#: .\apps\otaku\models.py:1994
 msgid "Imagen Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:1999
+#: .\apps\otaku\models.py:1995
 msgid "Imágenes Animes"
 msgstr ""
 
-#: .\apps\otaku\models.py:2005 .\apps\otaku\models.py:2094
+#: .\apps\otaku\models.py:2001 .\apps\otaku\models.py:2090
 msgid "Imagen sin Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:2078 .\apps\otaku\models.py:2087
+#: .\apps\otaku\models.py:2074 .\apps\otaku\models.py:2083
 msgid "Imagen Extra Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:2088
+#: .\apps\otaku\models.py:2084
 msgid "Imágenes Extra Anime"
 msgstr ""
 
-#: .\apps\otaku\models.py:2178
+#: .\apps\otaku\models.py:2174
 msgid "Imagen Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:2179
+#: .\apps\otaku\models.py:2175
 msgid "Imágenes Mangas"
 msgstr ""
 
-#: .\apps\otaku\models.py:2185 .\apps\otaku\models.py:2274
+#: .\apps\otaku\models.py:2181 .\apps\otaku\models.py:2270
 msgid "Imagen sin Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:2258 .\apps\otaku\models.py:2267
+#: .\apps\otaku\models.py:2254 .\apps\otaku\models.py:2263
 msgid "Imagen Extra Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:2268
+#: .\apps\otaku\models.py:2264
 msgid "Imágenes Extra Manga"
 msgstr ""
 
-#: .\apps\otaku\models.py:2538
+#: .\apps\otaku\models.py:2443
+msgid "Imágenes Extra Personas"
+msgstr ""
+
+#: .\apps\otaku\models.py:2533
 msgid "Imagen Personaje"
 msgstr ""
 
-#: .\apps\otaku\models.py:2539
+#: .\apps\otaku\models.py:2534
 msgid "Imágenes Personajes"
 msgstr ""
 
-#: .\apps\otaku\models.py:2545 .\apps\otaku\models.py:2634
+#: .\apps\otaku\models.py:2540 .\apps\otaku\models.py:2629
 msgid "Imagen sin Personaje"
 msgstr ""
 
-#: .\apps\otaku\models.py:2618 .\apps\otaku\models.py:2627
+#: .\apps\otaku\models.py:2613 .\apps\otaku\models.py:2622
 msgid "Imagen Extra Personaje"
 msgstr ""
 
-#: .\apps\otaku\models.py:2628
+#: .\apps\otaku\models.py:2623
 msgid "Imágenes Extra Personajes"
 msgstr ""
 
-#: .\apps\otaku\models.py:2710
-msgid "Estado de obtención de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2711
-msgid "Estados de obtención de animes (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2726
-msgid "Estado de obtención de personaje de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2727
-msgid "Estados de obtención de personajes de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2742
-msgid "Estado de obtención de imagen de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2743
-msgid "Estados de obtención de imágenes de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2758
-msgid "Estado de obtención de staff de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2759
-msgid "Estados de obtención de staffs de anime (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2774
-msgid "Estado de obtención de manga (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2775
-msgid "Estados de obtención de mangas (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2790
-msgid "Estado de obtención de personaje de manga (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2791
-msgid "Estados de obtención de personajes de manga (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2806
-msgid "Estado de obtención de imagen de manga (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2807
-msgid "Estados de obtención de imágenes de manga (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2822
-msgid "Estado de obtención de personaje (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2823
-msgid "Estados de obtención de personajes (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2838
-msgid "Estado de obtención de imagen de personaje (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2839
-msgid "Estados de obtención de imágenes de personajes (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2854
-msgid "Estado de obtención de persona (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2855
-msgid "Estados de obtención de personas (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2870
-msgid "Estado de obtención de imagen de persona (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2871
-msgid "Estados de obtención de imágenes de personas (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2888
-msgid "Estado de obtención de imagen URL (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2889
-msgid "Estados de obtención de imágenes URL (MAL)"
-msgstr ""
-
-#: .\apps\otaku\models.py:2922
-msgid "Temp Canción Anime"
-msgstr ""
-
-#: .\apps\otaku\models.py:2923
-msgid "Temp Canciones Anime"
-msgstr ""
-
-#: .\apps\renpy\models.py:21
-msgid "Log Renpy"
-msgstr ""
-
-#: .\apps\renpy\models.py:22
-msgid "Logs Renpy"
-msgstr ""
-
-#: .\apps\renpy\models.py:89
-msgid "Motor Desarrollo"
-msgstr ""
-
-#: .\apps\renpy\models.py:90
-msgid "Motores Desarrollo"
-msgstr ""
-
-#: .\apps\renpy\models.py:134 .\apps\renpy\models.py:462
-msgid "Censura"
-msgstr ""
-
-#: .\apps\renpy\models.py:135
-msgid "Censuras"
-msgstr ""
-
-#: .\apps\renpy\models.py:181
-msgid "Prefijo"
-msgstr ""
-
-#: .\apps\renpy\models.py:182
-msgid "Prefijos"
-msgstr ""
-
-#: .\apps\renpy\models.py:273
-msgid "Plataforma"
-msgstr ""
-
-#: .\apps\renpy\models.py:274 .\apps\renpy\models.py:456
-msgid "Plataformas"
-msgstr ""
-
-#: .\apps\renpy\models.py:318 .\apps\renpy\models.py:457
-#: .\apps\renpy\models.py:689 .\apps\renpy\models.py:818
-#: .\apps\renpy\models.py:909
-msgid "Desarrollador"
-msgstr ""
-
-#: .\apps\renpy\models.py:319
-msgid "Desarrolladores"
-msgstr ""
-
-#: .\apps\renpy\models.py:364 .\apps\renpy\models.py:732
-#: .\apps\renpy\models.py:998 .\apps\renpy\models.py:1089
-msgid "Traductor"
-msgstr ""
-
-#: .\apps\renpy\models.py:365 .\apps\renpy\models.py:460
-msgid "Traductores"
-msgstr ""
-
-#: .\apps\renpy\models.py:410 .\apps\renpy\models.py:458
-#: .\apps\renpy\models.py:775 .\apps\renpy\models.py:1178
-#: .\apps\renpy\models.py:1269
-msgid "Editor"
-msgstr ""
-
-#: .\apps\renpy\models.py:411
-msgid "Editores"
-msgstr ""
-
-#: .\apps\renpy\models.py:449
-msgid "Versión"
-msgstr ""
-
-#: .\apps\renpy\models.py:453
-msgid "Reseña"
-msgstr ""
-
-#: .\apps\renpy\models.py:455
-msgid "Motor Desarrollado"
-msgstr ""
-
-#: .\apps\renpy\models.py:464
-msgid "URL F95"
-msgstr ""
-
-#: .\apps\renpy\models.py:465
-msgid "URL Steam"
-msgstr ""
-
-#: .\apps\renpy\models.py:466
-msgid "ID F95-Zone"
-msgstr ""
-
-#: .\apps\renpy\models.py:467
-msgid "Versión Text"
-msgstr ""
-
-#: .\apps\renpy\models.py:475 .\apps\renpy\models.py:509
-#: .\apps\renpy\models.py:600 .\apps\renpy\models.py:1358
-msgid "Juego"
-msgstr ""
-
-#: .\apps\renpy\models.py:476
-msgid "Juegos"
-msgstr ""
-
-#: .\apps\renpy\models.py:483
-msgid "Sin Desarrolladores"
-msgstr ""
-
-#: .\apps\renpy\models.py:521
-msgid "Imagen Juego"
-msgstr ""
-
-#: .\apps\renpy\models.py:522
-msgid "Imágenes Juegos"
-msgstr ""
-
-#: .\apps\renpy\models.py:528 .\apps\renpy\models.py:617
-msgid "Imagen sin Juego"
-msgstr ""
-
-#: .\apps\renpy\models.py:601 .\apps\renpy\models.py:610
-msgid "Imagen Extra Juego"
-msgstr ""
-
-#: .\apps\renpy\models.py:611
-msgid "Imágenes Extra Juegos"
-msgstr ""
-
-#: .\apps\renpy\models.py:700
-msgid "Enlace Desarrollador"
-msgstr ""
-
-#: .\apps\renpy\models.py:701
-msgid "Enlaces Desarrolladores"
-msgstr ""
-
-#: .\apps\renpy\models.py:743
-msgid "Enlace Traductor"
-msgstr ""
-
-#: .\apps\renpy\models.py:744
-msgid "Enlaces Traductores"
-msgstr ""
-
-#: .\apps\renpy\models.py:786
-msgid "Enlace Editor"
-msgstr ""
-
-#: .\apps\renpy\models.py:787
-msgid "Enlaces Editores"
-msgstr ""
-
-#: .\apps\renpy\models.py:830
-msgid "Imagen Desarrollador"
-msgstr ""
-
-#: .\apps\renpy\models.py:831
-msgid "Imágenes Desarrolladores"
-msgstr ""
-
-#: .\apps\renpy\models.py:837 .\apps\renpy\models.py:926
-msgid "Imagen sin Desarrollador"
-msgstr ""
-
-#: .\apps\renpy\models.py:910 .\apps\renpy\models.py:919
-msgid "Imagen Extra Desarrollador"
-msgstr ""
-
-#: .\apps\renpy\models.py:920
-msgid "Imágenes Extra Desarrolladores"
-msgstr ""
-
-#: .\apps\renpy\models.py:1010
-msgid "Imagen Traductor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1011
-msgid "Imágenes Traductores"
-msgstr ""
-
-#: .\apps\renpy\models.py:1017 .\apps\renpy\models.py:1106
-msgid "Imagen sin Traductor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1090 .\apps\renpy\models.py:1099
-msgid "Imagen Extra Traductor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1100
-msgid "Imágenes Extra Traductores"
-msgstr ""
-
-#: .\apps\renpy\models.py:1190
-msgid "Imagen Editor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1191
-msgid "Imágenes Editores"
-msgstr ""
-
-#: .\apps\renpy\models.py:1197 .\apps\renpy\models.py:1286
-msgid "Imagen sin Editor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1270 .\apps\renpy\models.py:1279
-msgid "Imagen Extra Editor"
-msgstr ""
-
-#: .\apps\renpy\models.py:1280
-msgid "Imágenes Extra Editores"
-msgstr ""
-
-#: .\apps\renpy\models.py:1407
-msgid "ID F95Zone"
-msgstr ""
-
-#: .\apps\renpy\models.py:1409 .\core\utils\utils.py:58
+#: .\apps\otaku\models.py:2701 .\apps\otaku\models.py:2725
+#: .\apps\otaku\models.py:2748 .\apps\otaku\models.py:2771
+#: .\apps\otaku\models.py:2794 .\apps\otaku\models.py:2817
+#: .\apps\otaku\models.py:2840 .\apps\otaku\models.py:2863
+#: .\apps\otaku\models.py:2886 .\apps\otaku\models.py:2909
+#: .\apps\otaku\models.py:2932 .\core\models.py:38
+msgid "ID MyAnimeList"
+msgstr ""
+
+#: .\apps\otaku\models.py:2703 .\apps\otaku\models.py:2727
+#: .\apps\otaku\models.py:2750 .\apps\otaku\models.py:2773
+#: .\apps\otaku\models.py:2796 .\apps\otaku\models.py:2819
+#: .\apps\otaku\models.py:2842 .\apps\otaku\models.py:2865
+#: .\apps\otaku\models.py:2888 .\apps\otaku\models.py:2911
+#: .\apps\otaku\models.py:2934 .\apps\renpy\models.py:1410 .\core\models.py:40
 msgid "Datos"
 msgstr ""
 
-#: .\apps\renpy\models.py:1410 .\core\utils\utils.py:59
+#: .\apps\otaku\models.py:2705 .\apps\otaku\models.py:2728
+#: .\apps\otaku\models.py:2751 .\apps\otaku\models.py:2774
+#: .\apps\otaku\models.py:2797 .\apps\otaku\models.py:2820
+#: .\apps\otaku\models.py:2843 .\apps\otaku\models.py:2866
+#: .\apps\otaku\models.py:2889 .\apps\otaku\models.py:2912
+#: .\apps\otaku\models.py:2935 .\apps\otaku\models.py:2956
+#: .\apps\renpy\models.py:1411 .\core\models.py:41
 msgid "Procesado"
 msgstr ""
 
-#: .\apps\renpy\models.py:1416
-msgid "Estado de obtención de juego (F95)"
+#: .\apps\otaku\models.py:2711
+msgid "Dato de anime (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2712
+msgid "Datos de animes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2734
+msgid "Dato de personaje de anime (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2735
+msgid "Datos de personajes de animes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2757
+msgid "Dato de imagen de anime (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2758
+msgid "Datos de imágenes de animes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2780
+msgid "Dato de personal de anime (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2781
+msgid "Datos de personal de animes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2803
+msgid "Dato de manga (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2804
+msgid "Datos de mangas (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2826
+msgid "Dato de personaje de manga (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2827
+msgid "Datos de personajes de mangas (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2849
+msgid "Dato de imagen de manga (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2850
+msgid "Datos de imágenes de mangas (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2872
+msgid "Dato de personaje (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2873
+msgid "Datos de personajes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2895
+msgid "Dato de imagen de personaje (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2896
+msgid "Datos de imágenes de personajes (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2918
+msgid "Dato de persona (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2919
+msgid "Datos de personas (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2941
+msgid "Dato de imagen de persona (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2942
+msgid "Datos de imágenes de personas (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2962
+msgid "Dato de imagen URL (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2963
+msgid "Datos de imágenes de URL (MAL)"
+msgstr ""
+
+#: .\apps\otaku\models.py:2980
+msgid "Temp. Otaku Persona"
+msgstr ""
+
+#: .\apps\otaku\models.py:2981
+msgid "Temp. Otaku Personas"
+msgstr ""
+
+#: .\apps\otaku\models.py:2992
+msgid "Temp. Personaje"
+msgstr ""
+
+#: .\apps\otaku\models.py:2993
+msgid "Temp. Personajes"
+msgstr ""
+
+#: .\apps\renpy\admin.py:468
+msgid "F95 Zone"
+msgstr ""
+
+#: .\apps\renpy\admin.py:1023
+msgid "Información del Título"
+msgstr ""
+
+#: .\apps\renpy\admin.py:1069
+msgid "Información de la Obtención"
+msgstr ""
+
+#: .\apps\renpy\models.py:22
+msgid "Log Renpy"
+msgstr ""
+
+#: .\apps\renpy\models.py:23
+msgid "Logs Renpy"
+msgstr ""
+
+#: .\apps\renpy\models.py:90
+msgid "Motor Desarrollo"
+msgstr ""
+
+#: .\apps\renpy\models.py:91
+msgid "Motores Desarrollo"
+msgstr ""
+
+#: .\apps\renpy\models.py:135 .\apps\renpy\models.py:463
+msgid "Censura"
+msgstr ""
+
+#: .\apps\renpy\models.py:136
+msgid "Censuras"
+msgstr ""
+
+#: .\apps\renpy\models.py:182
+msgid "Prefijo"
+msgstr ""
+
+#: .\apps\renpy\models.py:183
+msgid "Prefijos"
+msgstr ""
+
+#: .\apps\renpy\models.py:274
+msgid "Plataforma"
+msgstr ""
+
+#: .\apps\renpy\models.py:275 .\apps\renpy\models.py:457
+msgid "Plataformas"
+msgstr ""
+
+#: .\apps\renpy\models.py:319 .\apps\renpy\models.py:458
+#: .\apps\renpy\models.py:690 .\apps\renpy\models.py:819
+#: .\apps\renpy\models.py:910
+msgid "Desarrollador"
+msgstr ""
+
+#: .\apps\renpy\models.py:320
+msgid "Desarrolladores"
+msgstr ""
+
+#: .\apps\renpy\models.py:365 .\apps\renpy\models.py:733
+#: .\apps\renpy\models.py:999 .\apps\renpy\models.py:1090
+msgid "Traductor"
+msgstr ""
+
+#: .\apps\renpy\models.py:366 .\apps\renpy\models.py:461
+msgid "Traductores"
+msgstr ""
+
+#: .\apps\renpy\models.py:411 .\apps\renpy\models.py:459
+#: .\apps\renpy\models.py:776 .\apps\renpy\models.py:1179
+#: .\apps\renpy\models.py:1270
+msgid "Editor"
+msgstr ""
+
+#: .\apps\renpy\models.py:412
+msgid "Editores"
+msgstr ""
+
+#: .\apps\renpy\models.py:450
+msgid "Versión"
+msgstr ""
+
+#: .\apps\renpy\models.py:454
+msgid "Reseña"
+msgstr ""
+
+#: .\apps\renpy\models.py:456
+msgid "Motor Desarrollado"
+msgstr ""
+
+#: .\apps\renpy\models.py:465
+msgid "URL F95"
+msgstr ""
+
+#: .\apps\renpy\models.py:466
+msgid "URL Steam"
+msgstr ""
+
+#: .\apps\renpy\models.py:467
+msgid "ID F95-Zone"
+msgstr ""
+
+#: .\apps\renpy\models.py:468
+msgid "Versión Text"
+msgstr ""
+
+#: .\apps\renpy\models.py:476 .\apps\renpy\models.py:510
+#: .\apps\renpy\models.py:601 .\apps\renpy\models.py:1359
+msgid "Juego"
+msgstr ""
+
+#: .\apps\renpy\models.py:477
+msgid "Juegos"
+msgstr ""
+
+#: .\apps\renpy\models.py:484
+msgid "Sin Desarrolladores"
+msgstr ""
+
+#: .\apps\renpy\models.py:522
+msgid "Imagen Juego"
+msgstr ""
+
+#: .\apps\renpy\models.py:523
+msgid "Imágenes Juegos"
+msgstr ""
+
+#: .\apps\renpy\models.py:529 .\apps\renpy\models.py:618
+msgid "Imagen sin Juego"
+msgstr ""
+
+#: .\apps\renpy\models.py:602 .\apps\renpy\models.py:611
+msgid "Imagen Extra Juego"
+msgstr ""
+
+#: .\apps\renpy\models.py:612
+msgid "Imágenes Extra Juegos"
+msgstr ""
+
+#: .\apps\renpy\models.py:701
+msgid "Enlace Desarrollador"
+msgstr ""
+
+#: .\apps\renpy\models.py:702
+msgid "Enlaces Desarrolladores"
+msgstr ""
+
+#: .\apps\renpy\models.py:744
+msgid "Enlace Traductor"
+msgstr ""
+
+#: .\apps\renpy\models.py:745
+msgid "Enlaces Traductores"
+msgstr ""
+
+#: .\apps\renpy\models.py:787
+msgid "Enlace Editor"
+msgstr ""
+
+#: .\apps\renpy\models.py:788
+msgid "Enlaces Editores"
+msgstr ""
+
+#: .\apps\renpy\models.py:831
+msgid "Imagen Desarrollador"
+msgstr ""
+
+#: .\apps\renpy\models.py:832
+msgid "Imágenes Desarrolladores"
+msgstr ""
+
+#: .\apps\renpy\models.py:838 .\apps\renpy\models.py:927
+msgid "Imagen sin Desarrollador"
+msgstr ""
+
+#: .\apps\renpy\models.py:911 .\apps\renpy\models.py:920
+msgid "Imagen Extra Desarrollador"
+msgstr ""
+
+#: .\apps\renpy\models.py:921
+msgid "Imágenes Extra Desarrolladores"
+msgstr ""
+
+#: .\apps\renpy\models.py:1011
+msgid "Imagen Traductor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1012
+msgid "Imágenes Traductores"
+msgstr ""
+
+#: .\apps\renpy\models.py:1018 .\apps\renpy\models.py:1107
+msgid "Imagen sin Traductor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1091 .\apps\renpy\models.py:1100
+msgid "Imagen Extra Traductor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1101
+msgid "Imágenes Extra Traductores"
+msgstr ""
+
+#: .\apps\renpy\models.py:1191
+msgid "Imagen Editor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1192
+msgid "Imágenes Editores"
+msgstr ""
+
+#: .\apps\renpy\models.py:1198 .\apps\renpy\models.py:1287
+msgid "Imagen sin Editor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1271 .\apps\renpy\models.py:1280
+msgid "Imagen Extra Editor"
+msgstr ""
+
+#: .\apps\renpy\models.py:1281
+msgid "Imágenes Extra Editores"
+msgstr ""
+
+#: .\apps\renpy\models.py:1408
+msgid "ID F95Zone"
 msgstr ""
 
 #: .\apps\renpy\models.py:1417
+msgid "Estado de obtención de juego (F95)"
+msgstr ""
+
+#: .\apps\renpy\models.py:1418
 msgid "Estados de obtención de juegos (F95)"
 msgstr ""
 
-#: .\apps\serie\models.py:23
+#: .\apps\serie\models.py:24
 msgid "Log Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:24
+#: .\apps\serie\models.py:25
 msgid "Logs Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:95 .\apps\serie\models.py:287
+#: .\apps\serie\models.py:96 .\apps\serie\models.py:288
 msgid "Tipo Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:96
+#: .\apps\serie\models.py:97
 msgid "Tipos Series"
 msgstr ""
 
-#: .\apps\serie\models.py:284
+#: .\apps\serie\models.py:285
 msgid "Año Termino"
 msgstr ""
 
-#: .\apps\serie\models.py:288
+#: .\apps\serie\models.py:289
 msgid "Clasificación Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:300 .\apps\serie\models.py:355
-#: .\apps\serie\models.py:403 .\apps\serie\models.py:444
-#: .\apps\serie\models.py:492 .\apps\serie\models.py:583
+#: .\apps\serie\models.py:301 .\apps\serie\models.py:356
+#: .\apps\serie\models.py:404 .\apps\serie\models.py:445
+#: .\apps\serie\models.py:493 .\apps\serie\models.py:584
 msgid "Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:301
+#: .\apps\serie\models.py:302
 msgid "Series"
 msgstr ""
 
-#: .\apps\serie\models.py:456
+#: .\apps\serie\models.py:457
 msgid "Reparto Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:457
+#: .\apps\serie\models.py:458
 msgid "Reparto Series"
 msgstr ""
 
-#: .\apps\serie\models.py:493 .\apps\serie\models.py:504
+#: .\apps\serie\models.py:494 .\apps\serie\models.py:505
 msgid "Imagen Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:505
+#: .\apps\serie\models.py:506
 msgid "Imágenes Series"
 msgstr ""
 
-#: .\apps\serie\models.py:511
+#: .\apps\serie\models.py:512
 msgid "Imagen sin Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:584 .\apps\serie\models.py:593
+#: .\apps\serie\models.py:585 .\apps\serie\models.py:594
 msgid "Imagen Extra Serie"
 msgstr ""
 
-#: .\apps\serie\models.py:594
+#: .\apps\serie\models.py:595
 msgid "Imágenes Extra Series"
 msgstr ""
 
-#: .\apps\users\models.py:23
-msgid "Log Usuario"
+#: .\apps\users\admin.py:25
+msgid "Información del Usuario"
+msgstr ""
+
+#: .\apps\users\admin.py:31
+msgid "Valores Generados Automáticamente"
 msgstr ""
 
 #: .\apps\users\models.py:24
+msgid "Log Usuario"
+msgstr ""
+
+#: .\apps\users\models.py:25
 msgid "Logs Usuarios"
 msgstr ""
 
-#: .\apps\users\models.py:45
+#: .\apps\users\models.py:46
 msgid "Usuario"
 msgstr ""
 
-#: .\apps\users\models.py:46
-msgid "Usuarios"
-msgstr ""
-
-#: .\apps\users\models.py:75 .\apps\users\models.py:82
+#: .\apps\users\models.py:76 .\apps\users\models.py:83
 msgid "Desconocida"
 msgstr ""
 
-#: .\core\utils\utils.py:40
+#: .\core\mixins.py:8
+msgid "Debes estar logueado para acceder a esta página."
+msgstr ""
+
+#: .\core\mixins.py:9
+msgid "No tienes permisos suficientes para realizar esta acción."
+msgstr ""
+
+#: .\core\models.py:22
 msgid "fecha Añadido"
 msgstr ""
 
-#: .\core\utils\utils.py:41
+#: .\core\models.py:23
 msgid "Proceso"
 msgstr ""
 
-#: .\core\utils\utils.py:42
+#: .\core\models.py:24
 msgid "Nivel"
 msgstr ""
 
-#: .\core\utils\utils.py:43
+#: .\core\models.py:25
 msgid "Mensaje"
 msgstr ""
 
-#: .\core\utils\utils.py:56
-msgid "ID MyAnimeList"
+#: .\core\utils\texts.py:4
+msgid "Regístrate"
+msgstr ""
+
+#: .\core\utils\texts.py:5
+msgid "Editar Perfil"
+msgstr ""
+
+#: .\core\utils\texts.py:6
+msgid "Lista de usuarios"
+msgstr ""
+
+#: .\core\utils\texts.py:8
+msgid "Añadir super usuario"
+msgstr ""
+
+#: .\core\utils\texts.py:9
+msgid "Añadir usuario del equipo"
+msgstr ""
+
+#: .\core\utils\texts.py:11
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: .\core\utils\texts.py:12
+msgid "¡Te has registrado exitosamente!"
+msgstr ""
+
+#: .\core\utils\texts.py:13
+msgid "¡Información actualizada exitosamente!"
+msgstr ""
+
+#: .\core\utils\texts.py:15
+msgid "¡Has iniciado sesión correctamente!"
+msgstr ""
+
+#: .\core\utils\texts.py:16
+msgid "¡Has cerrado sesión correctamente!"
+msgstr ""
+
+#: .\core\utils\texts.py:17
+msgid "Credenciales inválidas. Por favor, inténtalo de nuevo."
+msgstr ""
+
+#: .\core\utils\texts.py:25
+msgid "Sin Información"
+msgstr ""
+
+#: .\core\utils\texts.py:26
+msgid "Error al eliminar la imagen anterior"
+msgstr ""
+
+#: .\core\utils\texts.py:27
+msgid "¡No tienes los permisos para realizar esta acción!"
 msgstr ""

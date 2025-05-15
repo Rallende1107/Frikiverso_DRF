@@ -25,3 +25,22 @@ HOME = _('Inicio')
 NO_INFO = _('Sin Información')
 ERROR_DELETE_IMG = _('Error al eliminar la imagen anterior')
 WITHOUT_PERMISSION = _('¡No tienes los permisos para realizar esta acción!')
+
+
+class Titles:
+    class Common:
+        home_title = _('General')
+
+    class SectionsTitles:
+            admin_title = _('Administración de Usuarios')
+
+
+    class CardTitles:
+        Users = _('Usuarios')
+
+    class CardSubTitles:
+        Users = _()
+
+
+
+

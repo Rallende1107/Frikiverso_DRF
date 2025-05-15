@@ -370,7 +370,7 @@ class PersonImageExtra(models.Model):
 
     class Meta:
         """Meta definition for PersonImageExtra."""
-        verbose_name = _('Imágen extra persona')
+        verbose_name = _('Imagen extra persona')
         verbose_name_plural = _('Imágenes extras de personas')
         ordering = ['person', 'name',]
         unique_together = (('person', 'name',),)

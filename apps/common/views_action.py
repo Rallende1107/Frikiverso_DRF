@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, reverse
 from django.views.generic import View
 from django.contrib import messages
+from django.utils.translation import gettext as _
 # Importando modelos User
 from apps.users.models import CustomUser
 
@@ -77,9 +78,9 @@ class ActionView(View):
 ########################################################################################    COMMON
             'País': {
                 'model': Country,
-                'listas_url': 'common_app:format_list',
-                'update_url': 'common_app:format_update',
-                'detail_url': 'common_app:format_detail',
+                'listas_url': 'common_app:country_list',
+                'update_url': 'common_app:country_update',
+                'detail_url': 'common_app:country_detail',
             },
             'Formato': {
                 'model': Format,
@@ -88,7 +89,7 @@ class ActionView(View):
                 'detail_url': 'common_app:format_detail',
             },
 
-            'Tamaño Img.': {
+            'Tamaño Imagen.': {
                 'model': ImageSize,
                 'listas_url': 'common_app:image_size_list',
                 'update_url': 'common_app:image_size_update',
@@ -512,66 +513,65 @@ class ActionView(View):
                 elif action == "3":  # Activar
                     instance.is_active = True
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} ha sido activado.')
+                    messages.success(request, _('El %(modelo)s %(name)s ha sido activado.') % {'modelo': modelo, 'name': name})
 
                 elif action == "4":  # Desactivar
                     instance.is_active = False
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} ha sido desactivado.')
+                    messages.success(request, _('El %(modelo)s %(name)s ha sido desactivado.') % {'modelo': modelo, 'name': name})
 
                 elif action == "5":  # Hacer Explicito Solo Generos
                     instance.explicit = True
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} es Explicito.')
+                    messages.success(request, _('El %(modelo)s %(name)s es explícito.') % {'modelo': modelo, 'name': name})
 
                 elif action == "6":  # Hacer No Explicito Solo Generos
                     instance.explicit = False
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} ya no es Explicito.')
+                    messages.success(request, _('El %(modelo)s %(name)s ya no es explícito.') % {'modelo': modelo, 'name': name})
 
                 elif action == "7":  # Hacer Staff Solo User
                     instance.is_staff = True
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} es miembro del equipo ahora.')
+                    messages.success(request, _('El %(modelo)s %(name)s es miembro del equipo ahora.') % {'modelo': modelo, 'name': name})
 
                 elif action == "8":  # Quitar de Staff Solo User
                     instance.is_staff = False
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} ya no es miembro del equipo.')
+                    messages.success(request, _('El %(modelo)s %(name)s ya no es miembro del equipo.') % {'modelo': modelo, 'name': name})
 
                 elif action == "9":  # Hacer Super User Solo User
                     instance.is_superuser = True
                     instance.is_staff = True
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} Es Super Usuario Ahora.')
+                    messages.success(request, _('El %(modelo)s %(name)s es superusuario ahora.') % {'modelo': modelo, 'name': name})
 
-                elif action == "10":  # Hacer Super User Solo User
+                elif action == "10":  # Quitar Super User Solo User
                     instance.is_superuser = False
                     instance.is_staff = False
                     instance.save()
-                    messages.success(request, f'El {modelo} {name} ya no es Super Usuario.')
+                    messages.success(request, _('El %(modelo)s %(name)s ya no es superusuario.') % {'modelo': modelo, 'name': name})
 
-                elif action == "11":  # Hacer Super User Solo User
-                    # print(modelo)
+                elif action == "11":  # Reiniciar contraseña
                     new_password = 'frikiverso'
                     instance.set_password(new_password)
                     instance.save()
-                    messages.success(request, f'La Contraseña de {modelo} {name} Ha sido Reiniciada.')
+                    messages.success(request, _('La contraseña de %(modelo)s %(name)s ha sido reiniciada.') % {'modelo': modelo, 'name': name})
 
                 elif action == "99":  # Eliminar
                     instance.delete()
-                    messages.success(request, f'El {modelo} {name} ha sido eliminado.')
+                    messages.success(request, _('El %(modelo)s %(name)s ha sido eliminado.') % {'modelo': modelo, 'name': name})
 
                 else:
-                    messages.error(request, 'Acción no válida.')
+                    messages.error(request, _('Acción no válida.'))
 
                 return redirect(model_data['listas_url'])
 
             else:
-                messages.error(request, f'Modelo "{modelo}" no encontrado en el mapa.')
+                messages.error(request, _('Modelo "%(modelo)s" no encontrado en el mapa.') % {'modelo': modelo})
                 return redirect('home_app:home')
 
         except model_data['model'].DoesNotExist:
-            messages.error(request, f'{modelo} no encontrado.')
+            messages.error(request, _('%(modelo)s no encontrado.') % {'modelo': modelo})
 
         return redirect('home_app:home')

@@ -6,14 +6,14 @@ from .views import (
     CountryListView, CountryCreateView, CountryUpdateView, CountryDetailView,
     FormatListView, FormatCreateView, FormatUpdateView, FormatDetailView,
 
-    # ImageSizeListView, ImageSizeCreateView, ImageSizeUpdateView, ImageSizeDetailView,
+    ImageSizeListView, ImageSizeCreateView, ImageSizeUpdateView, ImageSizeDetailView,
     LanguageListView, LanguageCreateView, LanguageUpdateView, LanguageDetailView,
     # PersonListView, PersonCreateView, PersonUpdateView, PersonDetailView,
     # PersonImageListView, PersonImageCreateView, PersonImageUpdateView, PersonImageDetailView,
     # PersonImageExtraListView, PersonImageExtraCreateView, PersonImageExtraUpdateView, PersonImageExtraDetailView,
     # PersonNicknameListView, PersonNicknameCreateView, PersonNicknameUpdateView, PersonNicknameDetailView,
-    # QualityListView, QualityCreateView, QualityUpdateView, QualityDetailView,
-    # WebsiteListView, WebsiteCreateView, WebsiteUpdateView, WebsiteDetailView,
+    QualityListView, QualityCreateView, QualityUpdateView, QualityDetailView,
+    WebsiteListView, WebsiteCreateView, WebsiteUpdateView, WebsiteDetailView,
 )
 app_name = 'common_app'
 
@@ -34,10 +34,10 @@ urlpatterns = [
     path('format/update/<int:pk>/', FormatUpdateView.as_view(), name='format_update'),
     path('format/<int:pk>/', FormatDetailView.as_view(), name='format_detail'),
 
-    # path('imagesize/list/', ImageSizeListView.as_view(),   name='image_size_list'),
-    # path('imagesize/create/', ImageSizeCreateView.as_view(), name='image_size_create'),
-    # path('imagesize/update/<int:pk>/', ImageSizeUpdateView.as_view(), name='image_size_update'),
-    # path('imagesize/<int:pk>/', ImageSizeDetailView.as_view(), name='image_size_detail'),
+    path('imagesize/list/', ImageSizeListView.as_view(),   name='image_size_list'),
+    path('imagesize/create/', ImageSizeCreateView.as_view(), name='image_size_create'),
+    path('imagesize/update/<int:pk>/', ImageSizeUpdateView.as_view(), name='image_size_update'),
+    path('imagesize/<int:pk>/', ImageSizeDetailView.as_view(), name='image_size_detail'),
 
     path('language/list/', LanguageListView.as_view(), name='language_list'),
     path('language/create/', LanguageCreateView.as_view(), name='language_create'),
@@ -64,15 +64,15 @@ urlpatterns = [
     # path('person/nickname/update/<int:pk>/', PersonNicknameUpdateView.as_view(), name='person_nickname_update'),
     # path('person/nickname/<int:pk>/', PersonNicknameDetailView.as_view(), name='person_nickname_detail'),
 
-    # path('quality/list/', QualityListView.as_view(), name='quality_list'),
-    # path('quality/create/', QualityCreateView.as_view(), name='quality_create'),
-    # path('quality/update/<int:pk>/', QualityUpdateView.as_view(), name='quality_update'),
-    # path('quality/<int:pk>/', QualityDetailView.as_view(), name='quality_detail'),
+    path('quality/list/', QualityListView.as_view(), name='quality_list'),
+    path('quality/create/', QualityCreateView.as_view(), name='quality_create'),
+    path('quality/update/<int:pk>/', QualityUpdateView.as_view(), name='quality_update'),
+    path('quality/<int:pk>/', QualityDetailView.as_view(), name='quality_detail'),
 
-    # path('website/list/', WebsiteListView.as_view(), name='website_list'),
-    # path('website/create/', WebsiteCreateView.as_view(), name='website_create'),
-    # path('website/update/<int:pk>/', WebsiteUpdateView.as_view(), name='website_update'),
-    # path('website/<int:pk>/', WebsiteDetailView.as_view(), name='website_detail'),
+    path('website/list/', WebsiteListView.as_view(), name='website_list'),
+    path('website/create/', WebsiteCreateView.as_view(), name='website_create'),
+    path('website/update/<int:pk>/', WebsiteUpdateView.as_view(), name='website_update'),
+    path('website/<int:pk>/', WebsiteDetailView.as_view(), name='website_detail'),
 
     # apis url
 

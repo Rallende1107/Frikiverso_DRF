@@ -1,20 +1,25 @@
-# Django imports
+# Imports de Django
 from django.contrib import messages
 from django.views.generic import (CreateView, UpdateView, ListView, DetailView, DeleteView, TemplateView, View)
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import Http404
 from django.urls import reverse_lazy, reverse
-# Modelos
-from .models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
-# Fomularios
-from .forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
+# Imports de la app (modelos y formularios)
+from .models import (
+    Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra,
+    PersonNickname, Quality, Website
+)
+from .forms import (
+    CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm,
+    PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm
+)
+# Imports de utilidades y mixins propios
 from core.mixins import PermissionRequiredMessageMixin
+from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
 
-############################################################################################################################################    Constantes
-
+# Create your views here.
 ############################################################################################################################################    HomeView
 class HomeView(TemplateView):
     template_name = Templates.HOME
@@ -161,10 +166,7 @@ class HomeView(TemplateView):
         context['card_sections'] = filtered_sections
         return context
 
-
-####################################################################    CORE   #####################################################################
-
-############################################################################################################################################    Country
+############################################################################################################################################    Country Create
 class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Country
     form_class = CountryForm
@@ -194,6 +196,7 @@ class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
+############################################################################################################################################    Country Update
 class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Country
     form_class = CountryForm
@@ -222,7 +225,7 @@ class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-
+############################################################################################################################################    Country List
 class CountryListView(PermissionRequiredMessageMixin, ListView):
     model = Country
     template_name = Templates.Common.Country.LST
@@ -266,6 +269,7 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
         ]
         return context
 
+############################################################################################################################################    Country Detail
 class CountryDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Country
     template_name = Templates.Common.Country.DTL

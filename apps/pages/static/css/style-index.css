@@ -336,7 +336,7 @@
 #contact {
     color: var(--color-white);
     background-image: var(--gradient-transparent-dark),
-        var(--bg-index-contact);
+        var(--bg-home-contact);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center, center;

@@ -5,6 +5,7 @@
     --fuente: "Roboto", sans-serif;
     /* Colores */
     --color-black: #000000;
+    --color-navbar-bg: #333333;
     --color-white: #ffffff;
     --color-purple: #800080;
     --color-royalpurple: #a32d91;
@@ -44,6 +45,7 @@
     --color-green-light: #18cf7a;
     --color-gray: #1e020f;
     --color-mauve: #8f428f;
+
 
     --color-orange: #b84f17;
     --color-magenta-dark: #9e0178;

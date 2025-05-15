@@ -10,7 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # # Imports locales del proyecto
 from apps.common.models import Person, ImageSize
-from core.utils.utils import BaseLog, obtener_inicial, YearField
+from core.models import BaseLog, YearField
+from core.utils.utils import obtener_inicial
 from .utils.uploads import song_path, album_image_path, album_image_extra_path, artist_image_path, artist_image_extra_path
 
 # Create your models here.

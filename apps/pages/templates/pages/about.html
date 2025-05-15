@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/style-about.css'%}?=v1" />
+
+{% endblock head %} {% block title %} {{title}} {% endblock title %} {% block contenido %}
+<div class="about">
+    <section class="intro">
+      <h1>Sobre Frikiverso</h1>
+      <p>Frikiverso es una plataforma dedicada a los amantes del cine, la música y la cultura geek. Queremos conectar a la comunidad con contenido, recomendaciones y herramientas para explorar su universo favorito.</p>
+    </section>
+
+    <section class="team">
+      <h2>Quién está detrás</h2>
+      <p>Soy Juan Pérez, desarrollador full-stack con una pasión por el desarrollo web, la música épica, y las maratones de películas sci-fi.</p>
+    </section>
+
+    <section class="tech">
+      <h2>Hecho con ❤️ en:</h2>
+      <ul>
+        <li>Django</li>
+        <li>HTML5 + CSS3</li>
+        <li>JavaScript</li>
+        <li>PostgreSQL</li>
+      </ul>
+    </section>
+
+    <section class="cta">
+      <p>¿Te interesa colaborar o dar feedback? <a href="{% url 'pages_app:contact' %}">Contáctame aquí</a>.</p>
+    </section>
+  </div>
+{% endblock contenido %}

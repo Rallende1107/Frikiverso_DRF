@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style-form-users.css'%}?=v1" />
+{% endblock head %}
+
+{% block title %} {{title}} {% endblock title %}
+
+{% block contenido %}
+{% if not special %}
+<div class="{{class}}">
+    <div class="formulario">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="formulario__title">{{title}}</h1>
+            <div class="user__form__contenedor">
+
+                <div class="formulario__campos">
+                    <div class="formulario__campo__input">
+                        <label>{{ form.first_name.label }}
+                        </label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="formulario__campo__input">
+                        <label>{{ form.last_name.label }}
+                        </label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+
+                <div class="formulario__campos">
+                    <div class="formulario__campo__input">
+                        <label>{{ form.username.label }}
+                        </label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="formulario__campo__input">
+                        <label>
+                            {{ form.email.label }}
+                        </label>
+                        {{ form.email }}
+                    </div>
+                </div>
+
+                <div class="formulario__campos">
+                    <div class="formulario__campo__input">
+                        <label>
+                            {{ form.phone.label }}
+                        </label>
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="formulario__campo__input">
+                        <label>
+                            {{ form.birth_date.label }}
+                        </label>
+                        {{ form.birth_date }}
+                    </div>
+                </div>
+
+                <div class="formulario__campos">
+                    <div class="formulario__campo__input">
+                        <label>
+                            {{ form.password1.label }}
+                        </label>
+                        {{ form.password1 }}
+                    </div>
+
+                    <div class="formulario__campo__input">
+                        <label>
+                            {{ form.password2.label }}
+                        </label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+
+                <div class="formulario__checkbox__detail">
+                    <div class="checkbox__category">
+                        <div>
+                            {{ form.acepto_terminos }}
+                            <label>{{ form.acepto_terminos.label }}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formulario__buttons">
+                    <button type="submit" class="btn btn__save">
+                        <i class="bi bi-person-plus-fill"></i>
+                        {{title}}
+                    </button>
+                </div>
+
+                <div class="formulario__link">
+                    <p>
+                        Ya Tienes Cuenta?<a href="{{ login_url }}">
+                            Ingresa</a
+                        >
+                    </p>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% else %}
+<div class="{{class}}">
+    <div class="formulario">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="formulario__title">{{title}}</h1>
+            <div class="user__form__contenedor">
+
+            <div class="formulario__campos">
+                <div class="formulario__campo__input">
+                    <label>{{ form.username.label }}
+                    </label>
+                    {{ form.username }}
+                </div>
+
+                <div class="formulario__campo__input">
+                    <label>
+                        {{ form.password1.label }}
+                    </label>
+                    {{ form.password1 }}
+                </div>
+            </div>
+
+            <div class="formulario__buttons">
+                <button type="submit" class="btn btn__save">
+                    <i class="bi bi-person-plus-fill"></i>
+                    {{title}}
+                </button>
+
+                <a class="btn btn__cancel" href="{{cancel_url}}">
+                    <i class="bi bi-x-octagon"></i>
+                    Cancelar
+                </a>
+            </div>
+
+        </div>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock contenido %} {% block javascript %}
+
+
+{% endblock javascript %}

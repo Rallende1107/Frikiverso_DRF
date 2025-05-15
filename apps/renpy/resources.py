@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import ( Genre, GameEngine, Censorship, Prefix, Status, Platform, Developer, Translator, Publisher, Game,
+from .models import (Genre, GameEngine, Censorship, Prefix, Status, Platform, Developer, Translator, Publisher, Game,
     GameImage, GameImageExtra, DeveloperLink, TranslatorLink, PublisherLink, DeveloperImage, DeveloperImageExtra,
     TranslatorImage, TranslatorImageExtra, PublisherImage, PublisherImageExtra, TitleGame, F95GameFetchStatus,
 )

@@ -1,0 +1,54 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.name.label_tag }}</label>
+        {{ form.name }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.description.label_tag }}</label>
+        {{ form.description }}
+    </div>
+</div>
+
+<div class="form__checkbox">
+    <span class="checkbox__title">Opciones</span>
+    <div class="checkbox__category">
+        <div>
+            <label>{{ form.is_active.label_tag }}</label>
+            {{ form.is_active }}
+        </div>
+
+        <div>
+            <label>{{ form.for_video.label_tag }}</label>
+            {{ form.for_video }}
+        </div>
+        <div>
+            <label>{{ form.for_music.label_tag }}</label>
+            {{ form.for_music }}
+        </div>
+        <div>
+            <label>{{ form.for_image.label_tag }}</label>
+            {{ form.for_image }}
+        </div>
+        <div>
+            <label>{{ form.for_document.label_tag }}</label>
+            {{ form.for_document }}
+        </div>
+        <div>
+            <label>{{ form.for_other.label_tag }}</label>
+            {{ form.for_other }}
+        </div>
+    </div>
+</div>
+{% endblock formulario %}
+
+{% block javascript %}
+
+{% endblock javascript %}

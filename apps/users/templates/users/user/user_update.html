@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/style-form-user-update.css'%}?=v3" />
+
+{% endblock head %}
+
+{% block title %} {{title}} {{username}} {% endblock title %}
+
+
+{% block contenido %}
+<main class="update-perfil">
+    <section class="formulario-update">
+        <div class="container">
+            <h2>Actualizar Información del Usuario {{username}}</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %} {{ form.as_table }}
+                <button type="submit" class="btn btn-primary">
+                    Guardar Cambios
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+
+{% endblock contenido %}

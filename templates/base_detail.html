@@ -1,0 +1,86 @@
+{% extends "base.html" %} {% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/master-style-detail.css'%}?v1" />
+{% endblock head %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block contenido %}
+<div class="container__detail {{ class }}">
+    <div class="container">
+        <div class="detail">
+            <div class="page-title">
+                <h2>{{ title }}</h2>
+            </div>
+            <div class="breadcrumbs">
+                <ol>
+                    <li>
+                        <a href="{{ homeURL }}">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ listURL }}">
+                            Lista Completa
+                        </a>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="breadcrumbs-line"></div>
+
+            <section id="blog" class="blog">
+                <div class="blog-details">
+                    {% block detail %} {% endblock detail %}
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Botón para volver arriba -->
+    <div class="go-top-container" title="Al inicio">
+        <button class="go-top-button" onclick="scrollToTop()">
+            <i class="bi bi-chevron-up"></i>
+        </button>
+    </div>
+</div>
+{% endblock contenido %}
+
+{% block javascript %}
+<script>
+    window.addEventListener("scroll", function () {
+        const goTopButton = document.querySelector(".go-top-button");
+        if (window.scrollY > 100) {
+            goTopButton.classList.add("show");
+        } else {
+            goTopButton.classList.remove("show");
+        }
+    });
+    // Función para desplazar hacia arriba
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener todas las secciones colapsables
+        const collapsibleSections = document.querySelectorAll('.collapsible-title');
+
+        collapsibleSections.forEach(function (section) {
+            section.addEventListener('click', function () {
+                const content = section.nextElementSibling;
+
+                // Alternar la clase "active" para mostrar/ocultar el contenido
+                section.parentElement.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+<script src="{% static 'js/lightbox.js' %}"></script>
+
+
+
+{% endblock javascript %}

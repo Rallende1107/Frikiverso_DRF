@@ -10,7 +10,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
-from core.utils.utils import BaseLog, YearField
+from core.models import BaseLog, YearField
+from core.utils.utils import obtener_inicial
 from .utils.uploads import user_img_upload_path
 # Create your models here.
 

@@ -1,4 +1,5 @@
-from django.db import models
+import os, datetime
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -20,46 +21,31 @@ def obtener_inicial(texto):
 
     return initial
 
-class YearField(models.IntegerField):
-    def __init__(self, *args, **kwargs):
-        # Asegúrate de que el validador no se agregue si ya existe
-        validators = kwargs.get('validators', [])
-        if validate_year not in validators:
-            validators.append(validate_year)
-        kwargs['validators'] = validators
+def delete_previous_media(media_url):
+    try:
+        # Obtener la ruta del archivo desde la URL
+        img_path = os.path.join(settings.MEDIA_ROOT, media_url[len(settings.MEDIA_URL):])
 
-        # Llama al constructor de la clase base
-        super().__init__(*args, **kwargs)
+        # Verificar si el archivo existe y eliminarlo
+        if os.path.isfile(img_path):
+            os.remove(img_path)
+    except Exception as e:
+        # Manejar cualquier excepción que pueda ocurrir al eliminar el archivo
+        print(f"Error al eliminar la imagen anterior: {str(e)}")
 
+def formato_fecha(date):
+    """Esta función toma un objeto de fecha como entrada y devuelve una representación de cadena formateada de la fecha.
 
-########################################################################################################    Modelo para BaseLog
-class BaseLog(models.Model):
-    """Model definition for BaseLog."""
-    LEVELS = ['INFO', 'ERROR', 'WARNING', 'DEBUG']
+    Args:
+        date (datetime.date o datetime.datetime): La fecha que se formateará.
 
-    timestamp = models.DateTimeField(auto_now_add=True, verbose_name=_('fecha Añadido'))
-    process = models.TextField(default='', verbose_name=_('Proceso'))
-    level = models.CharField(max_length=10, default='INFO', verbose_name=_('Nivel'))
-    message = models.TextField(verbose_name=_('Mensaje'))
+    Returns:
+        str: La fecha formateada como una cadena de texto, o 'Invalid date' si la entrada no es válida.
+    """
+    if not isinstance(date, (datetime.date, datetime)):
+        return 'Invalid date'
 
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        """Representación del objeto Log."""
-        return f"{self.level} - {self.process} - {self.message}"
-
-########################################################################################################    Modelo para BaseMALFetchStatus
-class BaseMALFetchStatus(models.Model):
-    """Model definition for BaseMALFetchStatus."""
-    url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
-    mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
-    status = models.BooleanField(default=False, verbose_name=_('Estado'))
-    data = models.JSONField(blank=True, null=True, verbose_name=_("Datos"))
-    processed = models.BooleanField(default=False, verbose_name=_('Procesado'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        abstract = True
-
+    try:
+        return date.strftime("%d, %b %Y")
+    except Exception as e:
+        return f"Error al formatear la fecha: {e}"

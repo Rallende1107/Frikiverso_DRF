@@ -1,0 +1,31 @@
+{% extends 'base_DataTables.html' %}{% load static %}
+
+{% block dateTableThead %}
+<th scope="col" class="table-th th-id">ID</th>
+<th scope="col" class="table-th th-name_short">Nombre</th>
+<th scope="col" class="table-th th-yes-no">Activo</th>
+<th scope="col" class="table-th th-actions">Acciones</th>
+{% endblock dateTableThead %}
+
+{% block dataTableBody %}
+{% for quality in qualitys %}
+<tr>
+    <td>{{ quality.id }}</td>
+    <td>{{ quality.name }}</td>
+    <td>{{ quality.is_active|yesno:"Sí,No" }}</td>
+    <td>
+        <select onchange="handleAction(this, '{{ quality.id }}', '{{ quality.name }}', '{{ key_map }}')">
+            <option value="">Acciones</option>
+            <option value="1">Ver</option>
+            <option value="2">Editar</option>
+            {% if not quality.is_active %}
+            <option value="3">Activar</option>
+            {% else %}
+            <option value="4">Desactivar</option>
+            {% endif %}
+            <option value="99">Eliminar</option>
+        </select>
+    </td>
+</tr>
+{% endfor %}
+{% endblock dataTableBody %}

@@ -1,10 +1,10 @@
 from django.urls import path, include
-from .views import IndexView
+from .views import HomeView
 
 
 app_name = 'music_app'
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('home/', HomeView.as_view(), name='home'),
 
     # apis url
     # path('api/', include('apps.music.api.urls')),

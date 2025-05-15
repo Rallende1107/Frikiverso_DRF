@@ -1,5 +1,5 @@
 from import_export import resources
-from apps.common.models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
+from .models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
 # Register your models here.
 ########################################################################################################    Resource para Country
 class CountryResource(resources.ModelResource):

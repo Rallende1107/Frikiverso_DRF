@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/master-style-form.css'%}?v2" />
+{% endblock head %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+{% block contenido %}
+<div class="container__form {{ class }}">
+    <div class="contenedor-formulario">
+        <h1 class="form__title"> {{ title }} </h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% block formulario %}
+
+
+
+            {% endblock formulario %}
+            <div class="form__buttons__short">
+                <button type="submit" class="btn btn__primary" id="btn__primary">
+                    {% if not cargar %}
+                    <i class="bi bi-floppy">
+                        Guardar
+                    </i>
+                    {% else %}
+                    <i class="bi bi-cloud-upload">
+                        Cargar
+                    </i>
+                    {% endif %}
+
+                </button>
+                {% if cancel_url %}
+                <a href="{{ cancel_url }}" class="btn btn__cancel" id="btn__cancel">
+                    <i class="bi bi-x-circle">
+                        Cancelar
+                    </i>
+                </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock contenido %}
+
+
+{% block javascript %}
+
+
+
+{% endblock javascript %}

@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<!-- CSS Personalizado (Siempre al final para sobreescribir otros estilos) -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/master-style-datatables.css' %}?v=1" />
+
+{% block styles %}
+{% endblock styles %}
+
+{% endblock head %}
+{% block title %}{{ title }}
+{% endblock title %}
+{% block contenido %}
+<div class="container__list {{ class }}">
+    <div class="container">
+        <!-- <div class="list"> -->
+            <div class="page-title">
+                <h2>{{ title }}</h2>
+            </div>
+
+            <div class="breadcrumbs">
+                <ol>
+                    {% for button in buttons %}
+                    {% if button.show %}
+                    <li>
+                        <a href="{{ button.url }}">
+                            <i class="{{ button.icon }}"></i> {{ button.label }}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+            <section id="blog" class="blog">
+                <div class="blog-lists">
+                    <div class="content-wrapper">
+                        <article class="blog-list">
+
+                            <table id="example" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        {% block dateTableThead %}
+
+                                        {% endblock dateTableThead %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% block dataTableBody %}
+
+                                    {% endblock dataTableBody %}
+                                </tbody>
+                            </table>
+
+                        </article>
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="breadcrumbs list_btn">
+                <ol>
+                    {% for button in buttons %}
+                    {% if button.show %}
+                    <li>
+                        <a href="{{ button.url }}">
+                            <i class="{{ button.icon }}"></i> {{ button.label }}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>
+
+<form id="action-form" method="post" action="{% url 'common_app:action' %}" style="display: none;">
+    {% csrf_token %}
+    <input type="hidden" name="id" id="id">
+    <input type="hidden" name="action" id="action">
+    <input type="hidden" name="model" id="model">
+    <input type="hidden" name="name" id="name">
+</form>
+<div class="go-top-container" title="Al inicio">
+    <button class="go-top-button" onclick="scrollToTop()">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+</div>
+
+<!-- Modal de Imagen a Pantalla Completa -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document"> <!-- modal-xl para más grande -->
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Botón de cerrar -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton" style="color: white; font-size: 3rem;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- Imagen a pantalla completa -->
+                <img id="modalImage" src="" alt="Imagen Anime" class="img-fluid w-100"> <!-- img-fluid hace que la imagen ocupe todo el espacio -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vista de las imágenes en miniatura -->
+<div class="container" style="display: none;">
+    {% csrf_token %}
+    {% for image in coverAnimes %}
+    <a href="#" class="view-image" data-url="{{ image.image_url }}">
+        <img src="{{ image.image.url }}" alt="Imagen Anime" class="img-thumbnail" style="cursor: pointer;">
+    </a>
+    {% endfor %}
+</div>
+
+
+{% block extracontenido %}
+{% endblock extracontenido %}
+{% endblock contenido %}
+
+{% block javascript %}
+<!-- 7️⃣ Archivos personalizados (Siempre al final) -->
+<script src="{% static js_action %}"></script>
+<script src="{% static js_script %}"></script>
+
+<script>
+    window.addEventListener("scroll", function () {
+        const goTopButton = document.querySelector(".go-top-button");
+        if (window.scrollY > 100) {
+            goTopButton.classList.add("show");
+        } else {
+            goTopButton.classList.remove("show");
+        }
+    });
+    // Función para desplazar hacia arriba
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Maneja el clic en los enlaces de vista de imagen
+        $('.view-image').on('click', function (event) {
+            event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+            var imageUrl = $(this).data('url'); // Obtener la URL de la imagen
+            $('#modalImage').attr('src', imageUrl); // Establecer la URL de la imagen en el modal
+            $('#imageModal').modal('show'); // Mostrar el modal
+        });
+
+        // Asegurarse de que el botón de cerrar funciona
+        $('#closeModalButton').on('click', function () {
+            $('#imageModal').modal('hide'); // Cierra el modal al hacer clic en el botón de cierre
+        });
+    });
+</script>
+
+{% block extrajavascript %}
+
+{% endblock extrajavascript %}
+{% endblock javascript %}

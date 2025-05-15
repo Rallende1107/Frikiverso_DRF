@@ -51,6 +51,7 @@ PROJECT_APPS = [
     'apps.renpy.apps.RenpyConfig',
     'apps.serie.apps.SerieConfig',
     'apps.users.apps.UsersConfig',
+    'apps.pages.apps.PagesConfig',
 ]
 EXTERNAL_APPS = [
     'rest_framework',
@@ -99,9 +100,20 @@ if RAILWAY:
     DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
 else:
     print('Usando DB Local')
-    DATABASES = {'default': dj_database_url.config(default='postgres://postgres:postgres@localhost:5433/postgres')}
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('LOCAL_DB_NAME'),
+        'USER': os.getenv('LOCAL_DB_USER'),
+        'PASSWORD': os.getenv('LOCAL_DB_PASSWORD'),
+        'HOST': os.getenv('LOCAL_DB_HOST'),
+        'PORT': os.getenv('LOCAL_DB_PORT'),
+    }
+}
 
-
+LOGIN_URL = '/users/login/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -159,3 +171,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = ['https://web-production-e829.up.railway.app', 'http://*']
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"

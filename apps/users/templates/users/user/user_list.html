@@ -1,0 +1,45 @@
+{% extends 'base_DataTables.html' %}{% load static %}
+
+{% block dateTableThead %}
+<th scope="col" class="table-th th-id">ID</th>
+<th scope="col" class="table-th th-actions">Usuario</th>
+<th scope="col" class="table-th th-actions">Nombre Completo</th>
+<th scope="col" class="table-th th-name_short">Correo</th>
+<th scope="col" class="table-th th-actions">Último Acceso</th>
+<th scope="col" class="table-th th-actions">Fecha Nacimiento</th>
+<th scope="col" class="table-th th-yes-no">Staff</th>
+<th scope="col" class="table-th th-yes-no">Super</th>
+<th scope="col" class="table-th th-yes-no">Activo</th>
+<th scope="col" class="table-th th-actions">Acciones</th>
+{% endblock dateTableThead %}
+
+{% block dataTableBody %}
+{% for user in usuarios %}
+<tr>
+    <td class="td-id">{{ user.id }}</td>
+    <td class="td-name" >{{ user.username }}</td>
+    <td>{{ user.full_name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.last_login }}</td>
+    <td>{{ user.display_age_birthdate }}</td>
+    <td class="td-yes-no">{{ user.is_staff|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ user.is_superuser|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ user.is_active|yesno:"Sí,No" }}</td>
+    <td>
+        <select onchange="handleAction(this, '{{ user.id }}', '{{ user.full_name }}', '{{ key_map }}')">
+            <option value="">Acciones</option>
+            <option value="1">Ver</option>
+            <option value="2">Editar</option>
+            <option value="3">Activar</option>
+            <option value="4">Desactivar</option>
+            <option value="7">Hacer Miembro</option>
+            <option value="8">Quitar del Equipo</option>
+            <option value="9">Hacer Super Usuario</option>
+            <option value="10">Hacer Usuario Normal</option>
+            <option value="11">Reiniciar Contraseña</option>
+            <option value="99">Eliminar</option>
+        </select>
+    </td>
+</tr>
+{% endfor %}
+{% endblock dataTableBody %}

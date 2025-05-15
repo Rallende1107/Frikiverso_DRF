@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style-form-user.css'%}?=v3" />
+{% endblock head %}
+
+{% block title %} {{title}} {% endblock title %}
+
+{% block contenido %}
+<div class="{{class}}">
+    <div class="form-box">
+        <form method="post">
+            {% csrf_token %}
+            <div class="container-title">
+                <h2 class="title-form">{{title}}</h2>
+            </div>
+
+            <div class="input-field">
+                <span class="input-icon">
+                    <i class="bi bi-person-fill"></i>
+                </span>
+                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            </div>
+
+            <div class="input-field">
+                <span class="input-icon">
+                    <i class="bi bi-lock-fill"></i>
+                </span>
+                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+            </div>
+
+            <div class="remember-forget">
+                <label>
+                    <input type="checkbox" name="remember-forget-chk" id="remember-forget-chk" />
+                    Recordarme
+                </label>
+                <a href="#">Olvide la Contraseña</a>
+            </div>
+
+            <button type="submit" class="form-btn form-btn-success">Iniciar Sesión</button>
+
+            <div class="form-link">
+                <p>
+                    ¿No tienes cuenta?
+                    <a href="{{ register_url }}">Regístrate</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock contenido %}

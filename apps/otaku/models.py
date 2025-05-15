@@ -10,7 +10,8 @@ from PIL import Image as PILImage
 # Imports locales del proyecto
 from apps.common.models import Language, ImageSize
 from apps.music.models import Artist
-from core.utils.utils import BaseLog, obtener_inicial, YearField
+from core.models import BaseLog, YearField
+from core.utils.utils import obtener_inicial
 from .utils.uploads import anime_image_path, anime_image_extra_path, manga_image_path, manga_image_extra_path, character_image_path, character_image_extra_path, otaku_person_image_path, otaku_person_image_extra_path
 
 # Create your models here.

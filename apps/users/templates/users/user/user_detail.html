@@ -1,0 +1,154 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+        <section class="section profile">
+            <div class="row">
+                <!-- Card Derecha -->
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            {% if img_url is None %}
+                            <img src="{% static 'img/default/default.webp' %}" alt="Profile" />
+                            {% else %}
+                            <img src="{{ img_url }}" alt="Profile" />
+                            {% endif %}
+                            <h2>{{usuario.first_name}}</h2>
+                            <h3>{{usuario.username}}</h3>
+                            <div class="social-links mt-2">
+                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="profile-overview" id="profile-overview">
+                                <h5 class="card-title">Datos:</h5>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Nombre Completo
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.get_full_name}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Dirección
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{ user.address|default:"Sin Dirección" }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Teléfono
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.phone}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Email
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.email}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        último Acceso
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.last_login}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Fecha de Registro
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.date_joined}}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Fecha Nacimiento
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.birth_date}} ({{edad}} Años)
+                                    </div>
+                                </div>
+
+                                {% if user.is_superuser %}
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Super Usuario
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.is_superuser|yesno:"Sí,No" }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Staff
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.is_staff|yesno:"Sí,No" }}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">
+                                        Activo
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 perfil-dto">
+                                        {{user.is_active|yesno:"Sí,No" }}
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                <div class="contenedor-btn mt-4">
+
+                                    <a href="{{ cancel_url }}" class="btn btn__cancel">
+                                        <i class="bi bi-arrow-left"></i>
+                                        Atras
+                                    </a>
+                                    {% if usuario == request.user %}
+                                    <a href="{% url 'core_app:user_detail' user.id %}" class="btn btn__primary">
+                                        <i class="bi bi-pencil"></i>
+                                        Editar Mi Perfil
+                                    </a>
+
+
+                                    <a href="{% url 'core_app:password_change' %}" class="btn btn__password">
+                                        <i class="bi bi-person-fill-lock"></i>
+                                        Cambiar Contraseña
+                                    </a>
+                                    {% endif %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock detail %}

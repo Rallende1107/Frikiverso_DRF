@@ -9,7 +9,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
-from core.utils.utils import BaseLog, obtener_inicial
+from core.utils.utils import obtener_inicial
+from core.models import BaseLog
 from .utils.uploads import person_image_path, person_image_extra_path
 
 # Create your models here.
@@ -172,7 +173,7 @@ class Language(models.Model):
         """Meta definition for MODELNAME."""
         verbose_name = _('Idioma')
         verbose_name_plural = _('Idiomas')
-        ordering = ['-created_at', 'name',]
+        ordering = ['created_at', 'name',]
         unique_together = (("name", "acronym", "name_esp",),)
 
     def __str__(self):
@@ -306,6 +307,7 @@ class PersonImage(models.Model):
         # Guardar solo si se modificó algo
         if updated_fields:
             super().save(update_fields=updated_fields)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for PersonImage."""

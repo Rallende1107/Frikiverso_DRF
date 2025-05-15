@@ -1,0 +1,805 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+    /* Fuentes */
+    --fuente: "Roboto", sans-serif;
+    /* Colores */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-purple: #800080;
+    --color-royalpurple: #a32d91;
+    --color-red: #ff0000;
+    --color-dark-red: #8b0000;
+    --color-blue: #0000ff;
+    --color-green: #008000;
+    --color-spring-green: #00ff7f;
+    --color-blueviolet: #8a2be2;
+    --color-dim-gray: #696969;
+    --color-magenta: #c223f7;
+    --color-cyan: #00ffff;
+    --color-dark-cyan: #1e93ae;
+    --color-purple-light: #ac56e9;
+    --color-emerald: #11e43e;
+    --color-gold: #cfa022;
+    --color-fuchsia: #db35b6;
+    --color-olive: #b1d18f;
+    --color-lime: #aee921;
+    --color-royalblue: #0069b2;
+    --color-neon: #8bf008;
+    --color-hotpink: #f8168b;
+    --color-copper: #8b5608;
+    --color-military: #5e6f1f;
+    --color-pink: #fd42d8;
+    --color-tomato: #d7302c;
+    --color-aqua: #ade5ce;
+    --color-ochre: #b57825;
+    --color-indigo: #090979;
+    --color-cyan-light: #00d4ff;
+    --color-green-transparent: #0cf83b43;
+    --color-amber: #b4a316;
+    --color-purple-deep: #6320d1;
+    --color-green-emerald: #00a04e;
+    --color-green-medium: #57f229;
+    --color-blue-dark: #0f0ed9;
+    --color-green-light: #18cf7a;
+    --color-gray: #1e020f;
+    --color-mauve: #8f428f;
+
+    --color-orange: #b84f17;
+    --color-magenta-dark: #9e0178;
+    --color-green-bright: #20b645;
+    --color-blue-bright: #2c5fce;
+
+    --color-primary: #007bff;
+    /* Azul */
+    --color-secondary: #6c757d;
+    /* Gris */
+    --color-success: #28a745;
+    /* Verde */
+    --color-danger: #dc3545;
+    /* Rojo */
+    --color-warning: #ffc107;
+    /* Amarillo */
+    --color-info: #17a2b8;
+    /* Azul claro */
+    --color-light: #f8f9fa;
+    /* Gris claro */
+    --color-dark: #343a40;
+    /* Gris oscuro */
+
+    --color-copy: #4285F4;
+    /* Azul de Google para "Copiar" */
+    --color-copy-hover: #3574E6;
+    --color-excel: #20A052;
+    /* Verde para "Excel" */
+    --color-excel-hover: #188841;
+    --color-pdf: #EA4335;
+    /* Rojo para "PDF" */
+    --color-pdf-hover: #D33A2D;
+    --color-print: #000000;
+    /* Negro para "Imprimir" */
+    --color-print-hover: #111111;
+    --color-colvis: #9AA0A6;
+    /* Gris para "Columnas" */
+    --color-colvis-hover: #8A8F95;
+    --color-pageLength: #A1A1A1;
+    /* Gris claro para "Filas" */
+    --color-pageLength-hover: #919191;
+    /* Gradientes */
+    --gradient-royalpurple-purple: linear-gradient(90deg, var(--color-royalpurple), var(--color-purple));
+    --gradient-royalpurple-purple-hover: linear-gradient(90deg, var(--color-purple), var(--color-royalpurple));
+    --gradient-red-dark-red: linear-gradient(90deg, var(--color-red), var(--color-dark-red));
+    --gradient-red-dark-red-hover: linear-gradient(90deg, var(--color-dark-red), var(--color-red));
+    --gradient-blue-green: linear-gradient(90deg, var(--color-blue), var(--color-green));
+    --gradient-blue-green-hover: linear-gradient(90deg, var(--color-green), var(--color-blue));
+    --gradient-spring-green-green: linear-gradient(90deg, var(--color-spring-green), var(--color-green));
+    --gradient-spring-green-green-hover: linear-gradient(90deg, var(--color-green), var(--color-spring-green));
+    --gradient-purple-blueviolet: linear-gradient(90deg, var(--color-blueviolet), var(--color-purple));
+    --gradient-purple-blueviolet-hover: linear-gradient(90deg, var(--color-purple), var(--color-blueviolet));
+    --gradient-dim-gray-black: linear-gradient(90deg, var(--color-dim-gray), var(--color-black));
+    --gradient-dim-gray-black-hover: linear-gradient(90deg, var(--color-black), var(--color-dim-gray));
+    --gradient-magenta-cyan: linear-gradient(90deg, var(--color-magenta), var(--color-cyan));
+    --gradient-magenta-cyan-hover: linear-gradient(90deg, var(--color-cyan), var(--color-magenta));
+    --gradient-purple-light-emerald: linear-gradient(90deg, var(--color-purple-light), var(--color-emerald));
+    --gradient-purple-light-emerald-hover: linear-gradient(90deg, var(--color-emerald), var(--color-purple-light));
+    --gradient-gold-fuchsia: linear-gradient(90deg, var(--color-gold), var(--color-fuchsia));
+    --gradient-gold-fuchsia-hover: linear-gradient(90deg, var(--color-fuchsia), var(--color-gold));
+    --gradient-olive-lime: linear-gradient(90deg, var(--color-olive), var(--color-lime));
+    --gradient-olive-lime-hover: linear-gradient(90deg, var(--color-lime), var(--color-olive));
+    --gradient-royalblue-neon: linear-gradient(90deg, var(--color-royalblue), var(--color-neon));
+    --gradient-royalblue-neon-hover: linear-gradient(90deg, var(--color-neon), var(--color-royalblue));
+    --gradient-hotpink-copper: linear-gradient(90deg, var(--color-hotpink), var(--color-copper));
+    --gradient-hotpink-copper-hover: linear-gradient(90deg, var(--color-copper), var(--color-hotpink));
+    --gradient-military-pink: linear-gradient(90deg, var(--color-military), var(--color-pink));
+    --gradient-military-pink-hover: linear-gradient(90deg, var(--color-pink), var(--color-military));
+    --gradient-royalpurple-tomato: linear-gradient(90deg, var(--color-royalpurple), var(--color-tomato));
+    --gradient-royalpurple-tomato-hover: linear-gradient(90deg, var(--color-tomato), var(--color-royalpurple));
+    --gradient-aqua-ochre: linear-gradient(90deg, var(--color-aqua), var(--color-ochre));
+    --gradient-aqua-ochre-hover: linear-gradient(90deg, var(--color-ochre), var(--color-aqua));
+    --gradient-indigo-cyan: linear-gradient(90deg, var(--color-indigo), var(--color-cyan-light));
+    --gradient-indigo-cyan-hover: linear-gradient(90deg, var(--color-cyan-light), var(--color-indigo));
+    --gradient-green-red: linear-gradient(90deg, var(--color-green-transparent), var(--color-red));
+    --gradient-green-red-hover: linear-gradient(90deg, var(--color-red), var(--color-green-transparent));
+    --gradient-amber-purple: linear-gradient(90deg, var(--color-amber), var(--color-purple-deep));
+    --gradient-amber-purple-hover: linear-gradient(90deg, var(--color-purple-deep), var(--color-amber));
+    --gradient-green: linear-gradient(90deg, var(--color-green-emerald), var(--color-green-medium));
+    --gradient-green-hover: linear-gradient(90deg, var(--color-green-medium), var(--color-green-emerald));
+    --gradient-blue-dark-green-light: linear-gradient(90deg, var(--color-blue-dark), var(--color-green-light));
+    --gradient-blue-dark-green-light-hover: linear-gradient(90deg, var(--color-green-light), var(--color-blue-dark));
+    --gradient-gray-mauve: linear-gradient(90deg, var(--color-gray), var(--color-mauve));
+    --gradient-gray-mauve-hover: linear-gradient(90deg, var(--color-mauve), var(--color-gray));
+
+    /* Colors */
+    --gradient-green-bright-blue-bright: linear-gradient(90deg, var(--color-green-bright), var(--color-blue-bright));
+    --gradient-green-bright-blue-bright-hover: linear-gradient(90deg, var(--color-blue-bright), var(--color-green-bright));
+    --gradient-orange-magenta-dark: linear-gradient(90deg, var(--color-orange), var(--color-magenta-dark));
+    --gradient-orange-magenta-dark-hover: linear-gradient(90deg, var(--color-magenta-dark), var(--color-orange));
+
+    /* Gradientes para botones */
+    --cancel: linear-gradient(90deg, var(--color-light), var(--color-dark));
+    --cancel-hover: linear-gradient(90deg, var(--color-dark), var(--color-light));
+    --primary: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    --primary-hover: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+    --success: var(--gradient-green-bright-blue-bright);
+    --success-hover: var(--gradient-green-bright-blue-bright-hover);
+    --danger: var(--gradient-orange-magenta-dark);
+    --danger-hover: var(--gradient-orange-magenta-dark-hover);
+    --warning: linear-gradient(90deg, var(--color-gold), var(--color-amber));
+    --warning-hover: linear-gradient(90deg, var(--color-amber), var(--color-gold));
+    --warning2: linear-gradient(90deg, var(--color-lime), var(--color-olive));
+    --warning2-hover: linear-gradient(90deg, var(--color-olive), var(--color-lime));
+
+    /* Colores transparentes */
+    --color-transparent-black-light: rgba(0, 0, 0, 0.1);
+    --color-transparent-black-medium: rgba(0, 0, 0, 0.2);
+    --color-transparent-black-dark: rgba(0, 0, 0, 0.5);
+    --color-transparent-black-darker: rgba(0, 0, 0, 0.7);
+    --color-transparent-black-darkest: rgba(0, 0, 0, 0.9);
+
+    --color-transparent-white-light: rgba(255, 255, 255, 0.1);
+    --color-transparent-white-medium: rgba(255, 255, 255, 0.2);
+    --color-transparent-white-dark: rgba(255, 255, 255, 0.5);
+    --color-transparent-white-darker: rgba(255, 255, 255, 0.7);
+    --color-transparent-white-darkest: rgba(255, 255, 255, 0.9);
+
+    /* Gradientes transparentes */
+    --gradient-transparent-light: linear-gradient(0deg, var(--color-transparent-black-light), var(--color-transparent-black-light));
+    --gradient-transparent-medium: linear-gradient(0deg, var(--color-transparent-black-medium), var(--color-transparent-black-medium));
+    --gradient-transparent-dark: linear-gradient(0deg, var(--color-transparent-black-dark), var(--color-transparent-black-dark));
+    --gradient-transparent-darker: linear-gradient(0deg, var(--color-transparent-black-darker), var(--color-transparent-black-darker));
+    --gradient-transparent-darkest: linear-gradient(0deg, var(--color-transparent-black-darkest), var(--color-transparent-black-darkest));
+
+    /* Gradientes transparentes */
+    --gradient-transparent-white-light: linear-gradient(0deg, var(--color-transparent-white-light), var(--color-transparent-white-light));
+    --gradient-transparent-white-medium: linear-gradient(0deg, var(--color-transparent-white-medium), var(--color-transparent-white-medium));
+    --gradient-transparent-white-dark: linear-gradient(0deg, var(--color-transparent-white-dark), var(--color-transparent-white-dark));
+    --gradient-transparent-white-darker: linear-gradient(0deg, var(--color-transparent-white-darker), var(--color-transparent-white-darker));
+    --gradient-transparent-white-darkest: linear-gradient(0deg, var(--color-transparent-white-darkest), var(--color-transparent-white-darkest));
+    /* Bordes */
+    --border01: 0.1em;
+    --border05: 0.5em;
+    --border07: 0.7em;
+    --border15: 1.5em;
+    --em01: 0.1em;
+    --em05: 0.5em;
+    --em07: 0.7em;
+    --em15: 1.5em;
+    /* IMG de Navbar*/
+    --hamburger: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* IMG INDEX */
+
+    --bg-section-hero: url("../img/sections/bg-section-hero.webp");
+    --bg-section-about: url("../img/sections/bg-section-about.webp");
+    --bg-section-caract: url("../img/sections/bg-section-caracteristicas.webp");
+    /* BG IMG HOME */
+}
+
+
+@media screen and (min-width: 1440px) {
+    /* desktop → wide */
+    :root {
+        /** BG Homes **/
+        --bg-home-common:                   url("../img/screen/wide/bg-home-common.webp");
+        --bg-home-contact:                  url("../img/screen/wide/bg-home-contact.webp");
+        --bg-home-movie:                    url("../img/screen/wide/bg-home-movie.webp");
+        --bg-home-music:                    url("../img/screen/wide/bg-home-music.webp");
+        --bg-home-otaku:                    url("../img/screen/wide/bg-home-otaku.webp");
+        --bg-home-otaku-anime:              url("../img/screen/wide/bg-home-otaku-anime.webp");
+        --bg-home-otaku-data:               url("../img/screen/wide/bg-home-otaku-data.webp");
+        --bg-home-otaku-imagen:             url("../img/screen/wide/bg-home-otaku-imagen.webp");
+        --bg-home-otaku-manga:              url("../img/screen/wide/bg-home-otaku-manga.webp");
+        --bg-home-otaku-person_character:   url("../img/screen/wide/bg-home-otaku-person_character.webp");
+        --bg-home-otaku-relation:           url("../img/screen/wide/bg-home-otaku-relation.webp");
+        --bg-home-renpy:                    url("../img/screen/wide/bg-home-renpy.webp");
+        --bg-home-serie:                    url("../img/screen/wide/bg-home-serie.webp");
+        /** BG Users **/
+        --bg-users-user:                url("../img/screen/wide/bg-users-user.webp");
+        /** BG common **/
+        --bg-common-country:            url("../img/screen/wide/bg-common-country.webp");
+        --bg-common-format:             url("../img/screen/wide/bg-common-format.webp");
+        --bg-common-image_size:         url("../img/screen/wide/bg-common-image_size.webp");
+        --bg-common-language:           url("../img/screen/wide/bg-common-language.webp");
+        --bg-common-person:             url("../img/screen/wide/bg-common-person.webp");
+        --bg-common-person_image:       url("../img/screen/wide/bg-common-person_image.webp");
+        --bg-common-person_image_extra: url("../img/screen/wide/bg-common-person_image_extra.webp");
+        --bg-common-person_nickname:    url("../img/screen/wide/bg-common-person_nickname.webp");
+        --bg-common-quality:            url("../img/screen/wide/bg-common-quality.webp");
+        --bg-common-website:            url("../img/screen/wide/bg-common-website.webp");
+        /** BG Movie **/
+        --bg-movie-company:             url("../img/screen/wide/bg-movie-company.webp");
+        --bg-movie-genre:               url("../img/screen/wide/bg-movie-genre.webp");
+        --bg-movie-movie:               url("../img/screen/wide/bg-movie-movie.webp");
+        --bg-movie-movie_cast:          url("../img/screen/wide/bg-movie-movie_cast.webp");
+        --bg-movie-movie_image:         url("../img/screen/wide/bg-movie-movie_image.webp");
+        --bg-movie-movie_image_extra:   url("../img/screen/wide/bg-movie-movie_image_extra.webp");
+        --bg-movie-movie_staff:         url("../img/screen/wide/bg-movie-movie_staff.webp");
+        --bg-movie-rating:              url("../img/screen/wide/bg-movie-rating.webp");
+        --bg-movie-role:                url("../img/screen/wide/bg-movie-role.webp");
+        --bg-movie-title_movie:         url("../img/screen/wide/bg-movie-title_movie.webp");
+        --bg-movie-type:                url("../img/screen/wide/bg-movie-type.webp");
+        /** BG Music **/
+        --bg-music-album:               url("../img/screen/wide/bg-music-album.webp");
+        --bg-music-album_image:         url("../img/screen/wide/bg-music-album_image.webp");
+        --bg-music-album_image_extra:   url("../img/screen/wide/bg-music-album_image_extra.webp");
+        --bg-music-album_type:          url("../img/screen/wide/bg-music-album_type.webp");
+        --bg-music-artist:              url("../img/screen/wide/bg-music-artist.webp");
+        --bg-music-artist_image:        url("../img/screen/wide/bg-music-artist_image.webp");
+        --bg-music-artist_image_extra:  url("../img/screen/wide/bg-music-artist_image_extra.webp");
+        --bg-music-artist_member:       url("../img/screen/wide/bg-music-artist_member.webp");
+        --bg-music-artist_type:         url("../img/screen/wide/bg-music-artist_type.webp");
+        --bg-music-genre:               url("../img/screen/wide/bg-music-genre.webp");
+        --bg-music-role:                url("../img/screen/wide/bg-music-role.webp");
+        --bg-music-song:                url("../img/screen/wide/bg-music-song.webp");
+        /** BG Otaku **/
+        --bg-otaku-anime:                   url("../img/screen/wide/bg-otaku-anime.webp");
+        --bg-otaku-anime_character:         url("../img/screen/wide/bg-otaku-anime_character.webp");
+        --bg-otaku-anime_image:             url("../img/screen/wide/bg-otaku-anime_image.webp");
+        --bg-otaku-anime_image_extra:       url("../img/screen/wide/bg-otaku-anime_image_extra.webp");
+        --bg-otaku-anime_staff:             url("../img/screen/wide/bg-otaku-anime_staff.webp");
+        --bg-otaku-author_manga:            url("../img/screen/wide/bg-otaku-author_manga.webp");
+        --bg-otaku-character:               url("../img/screen/wide/bg-otaku-character.webp");
+        --bg-otaku-character_image:         url("../img/screen/wide/bg-otaku-character_image.webp");
+        --bg-otaku-character_image_extra:   url("../img/screen/wide/bg-otaku-character_image_extra.webp");
+        --bg-otaku-character_nickname:      url("../img/screen/wide/bg-otaku-character_nickname.webp");
+        --bg-otaku-data_anime:              url("../img/screen/wide/bg-otaku-data_anime.webp");
+        --bg-otaku-data_anime_characters:   url("../img/screen/wide/bg-otaku-data_anime_characters.webp");
+        --bg-otaku-data_anime_pictures:     url("../img/screen/wide/bg-otaku-data_anime_pictures.webp");
+        --bg-otaku-data_anime_staff:        url("../img/screen/wide/bg-otaku-data_anime_staff.webp");
+        --bg-otaku-data_character:          url("../img/screen/wide/bg-otaku-data_character.webp");
+        --bg-otaku-data_character_pictures: url("../img/screen/wide/bg-otaku-data_character_pictures.webp");
+        --bg-otaku-data_image_url:          url("../img/screen/wide/bg-otaku-data_image_url.webp");
+        --bg-otaku-data_manga:              url("../img/screen/wide/bg-otaku-data_manga.webp");
+        --bg-otaku-data_manga_characters:   url("../img/screen/wide/bg-otaku-data_manga_characters.webp");
+        --bg-otaku-data_manga_pictures:     url("../img/screen/wide/bg-otaku-data_manga_pictures.webp");
+        --bg-otaku-data_person:             url("../img/screen/wide/bg-otaku-data_person.webp");
+        --bg-otaku-data_person_pictures:    url("../img/screen/wide/bg-otaku-data_person_pictures.webp");
+        --bg-otaku-demographic:             url("../img/screen/wide/bg-otaku-demographic.webp");
+        --bg-otaku-genre:                   url("../img/screen/wide/bg-otaku-genre.webp");
+        --bg-otaku-licensor:                url("../img/screen/wide/bg-otaku-licensor.webp");
+        --bg-otaku-manga:                   url("../img/screen/wide/bg-otaku-manga.webp");
+        --bg-otaku-manga_character:         url("../img/screen/wide/bg-otaku-manga_character.webp");
+        --bg-otaku-manga_image:             url("../img/screen/wide/bg-otaku-manga_image.webp");
+        --bg-otaku-manga_image_extra:       url("../img/screen/wide/bg-otaku-manga_image_extra.webp");
+        --bg-otaku-media_relation:          url("../img/screen/wide/bg-otaku-media_relation.webp");
+        --bg-otaku-media_relation_anime:    url("../img/screen/wide/bg-otaku-media_relation_anime.webp");
+        --bg-otaku-media_relation_manga:    url("../img/screen/wide/bg-otaku-media_relation_manga.webp");
+        --bg-otaku-person:                  url("../img/screen/wide/bg-otaku-person.webp");
+        --bg-otaku-person_image:            url("../img/screen/wide/bg-otaku-person_image.webp");
+        --bg-otaku-person_image_extra:      url("../img/screen/wide/bg-otaku-person_image_extra.webp");
+        --bg-otaku-person_nickname:         url("../img/screen/wide/bg-otaku-person_nickname.webp");
+        --bg-otaku-producer:                url("../img/screen/wide/bg-otaku-producer.webp");
+        --bg-otaku-rating:                  url("../img/screen/wide/bg-otaku-rating.webp");
+        --bg-otaku-relation_type:           url("../img/screen/wide/bg-otaku-relation_type.webp");
+        --bg-otaku-role:                    url("../img/screen/wide/bg-otaku-role.webp");
+        --bg-otaku-season:                  url("../img/screen/wide/bg-otaku-season.webp");
+        --bg-otaku-season_full:             url("../img/screen/wide/bg-otaku-season_full.webp");
+        --bg-otaku-serialization:           url("../img/screen/wide/bg-otaku-serialization.webp");
+        --bg-otaku-song:                    url("../img/screen/wide/bg-otaku-song.webp");
+        --bg-otaku-song_ED:                 url("../img/screen/wide/bg-otaku-song_ED.webp");
+        --bg-otaku-song_IN:                 url("../img/screen/wide/bg-otaku-song_IN.webp");
+        --bg-otaku-song_OP:                 url("../img/screen/wide/bg-otaku-song_OP.webp");
+        --bg-otaku-source:                  url("../img/screen/wide/bg-otaku-source.webp");
+        --bg-otaku-status:                  url("../img/screen/wide/bg-otaku-status.webp");
+        --bg-otaku-studio:                  url("../img/screen/wide/bg-otaku-studio.webp");
+        --bg-otaku-temp_character:          url("../img/screen/wide/bg-otaku-temp_character.webp");
+        --bg-otaku-temp_persons:            url("../img/screen/wide/bg-otaku-temp_persons.webp");
+        --bg-otaku-theme:                   url("../img/screen/wide/bg-otaku-theme.webp");
+        --bg-otaku-title_anime:             url("../img/screen/wide/bg-otaku-title_anime.webp");
+        --bg-otaku-title_manga:             url("../img/screen/wide/bg-otaku-title_manga.webp");
+        --bg-otaku-type:                    url("../img/screen/wide/bg-otaku-type.webp");
+        --bg-otaku-voice_character:         url("../img/screen/wide/bg-otaku-voice_character.webp");
+        --bg-otaku-year:                    url("../img/screen/wide/bg-otaku-year.webp");
+        /** BG Renpy */
+        --bg-renpy-censorship:              url("../img/screen/wide/bg-renpy-censorship.webp");
+        --bg-renpy-data_game:               url("../img/screen/wide/bg-renpy-data_game.webp");
+        --bg-renpy-developer:               url("../img/screen/wide/bg-renpy-developer.webp");
+        --bg-renpy-developer_image:         url("../img/screen/wide/bg-renpy-developer_image.webp");
+        --bg-renpy-developer_image_extra:   url("../img/screen/wide/bg-renpy-developer_image_extra.webp");
+        --bg-renpy-developer_links:         url("../img/screen/wide/bg-renpy-developer_link.webp");
+        --bg-renpy-game:                    url("../img/screen/wide/bg-renpy-game.webp");
+        --bg-renpy-game_engine:             url("../img/screen/wide/bg-renpy-game_engine.webp");
+        --bg-renpy-game_image:              url("../img/screen/wide/bg-renpy-game_image.webp");
+        --bg-renpy-game_image_extra:        url("../img/screen/wide/bg-renpy-game_image_extra.webp");
+        --bg-renpy-genre:                   url("../img/screen/wide/bg-renpy-genre.webp");
+        --bg-renpy-platform:                url("../img/screen/wide/bg-renpy-platform.webp");
+        --bg-renpy-prefix:                  url("../img/screen/wide/bg-renpy-prefix.webp");
+        --bg-renpy-publisher:               url("../img/screen/wide/bg-renpy-publisher.webp");
+        --bg-renpy-publisher_image:         url("../img/screen/wide/bg-renpy-publisher_image.webp");
+        --bg-renpy-publisher_image_extra:   url("../img/screen/wide/bg-renpy-publisher_image_extra.webp");
+        --bg-renpy-publisher_links:         url("../img/screen/wide/bg-renpy-publisher_links.webp");
+        --bg-renpy-status:                  url("../img/screen/wide/bg-renpy-status.webp");
+        --bg-renpy-title_game:              url("../img/screen/wide/bg-renpy-title_game.webp");
+        --bg-renpy-translator:              url("../img/screen/wide/bg-renpy-translator.webp");
+        --bg-renpy-translator_image:        url("../img/screen/wide/bg-renpy-translator_image.webp");
+        --bg-renpy-translator_image_extra:  url("../img/screen/wide/bg-renpy-translator_image_extra.webp");
+        --bg-renpy-translator_links:        url("../img/screen/wide/bg-renpy-translator_links.webp");
+        /** BG Serie */
+        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
+        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
+        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
+        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
+        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    /* laptop → landscape*/
+    :root {
+        /** BG Homes **/
+        --bg-home-common:                   url("../img/screen/landscape/bg-home-common.webp");
+        --bg-home-contact:                  url("../img/screen/landscape/bg-home-contact.webp");
+        --bg-home-movie:                    url("../img/screen/landscape/bg-home-movie.webp");
+        --bg-home-music:                    url("../img/screen/landscape/bg-home-music.webp");
+        --bg-home-otaku:                    url("../img/screen/landscape/bg-home-otaku.webp");
+        --bg-home-otaku-anime:              url("../img/screen/landscape/bg-home-otaku-anime.webp");
+        --bg-home-otaku-data:               url("../img/screen/landscape/bg-home-otaku-data.webp");
+        --bg-home-otaku-imagen:             url("../img/screen/landscape/bg-home-otaku-imagen.webp");
+        --bg-home-otaku-manga:              url("../img/screen/landscape/bg-home-otaku-manga.webp");
+        --bg-home-otaku-person_character:   url("../img/screen/landscape/bg-home-otaku-person_character.webp");
+        --bg-home-otaku-relation:           url("../img/screen/landscape/bg-home-otaku-relation.webp");
+        --bg-home-renpy:                    url("../img/screen/landscape/bg-home-renpy.webp");
+        --bg-home-serie:                    url("../img/screen/landscape/bg-home-serie.webp");
+        /** BG Users **/
+        --bg-users-user:                url("../img/screen/landscape/bg-users-user.webp");
+        /** BG common **/
+        --bg-common-country:            url("../img/screen/landscape/bg-common-country.webp");
+        --bg-common-format:             url("../img/screen/landscape/bg-common-format.webp");
+        --bg-common-image_size:         url("../img/screen/landscape/bg-common-image_size.webp");
+        --bg-common-language:           url("../img/screen/landscape/bg-common-language.webp");
+        --bg-common-person:             url("../img/screen/landscape/bg-common-person.webp");
+        --bg-common-person_image:       url("../img/screen/landscape/bg-common-person_image.webp");
+        --bg-common-person_image_extra: url("../img/screen/landscape/bg-common-person_image_extra.webp");
+        --bg-common-person_nickname:    url("../img/screen/landscape/bg-common-person_nickname.webp");
+        --bg-common-quality:            url("../img/screen/landscape/bg-common-quality.webp");
+        --bg-common-website:            url("../img/screen/landscape/bg-common-website.webp");
+        /** BG Movie **/
+        --bg-movie-company:             url("../img/screen/landscape/bg-movie-company.webp");
+        --bg-movie-genre:               url("../img/screen/landscape/bg-movie-genre.webp");
+        --bg-movie-movie:               url("../img/screen/landscape/bg-movie-movie.webp");
+        --bg-movie-movie_cast:          url("../img/screen/landscape/bg-movie-movie_cast.webp");
+        --bg-movie-movie_image:         url("../img/screen/landscape/bg-movie-movie_image.webp");
+        --bg-movie-movie_image_extra:   url("../img/screen/landscape/bg-movie-movie_image_extra.webp");
+        --bg-movie-movie_staff:         url("../img/screen/landscape/bg-movie-movie_staff.webp");
+        --bg-movie-rating:              url("../img/screen/landscape/bg-movie-rating.webp");
+        --bg-movie-role:                url("../img/screen/landscape/bg-movie-role.webp");
+        --bg-movie-title_movie:         url("../img/screen/landscape/bg-movie-title_movie.webp");
+        --bg-movie-type:                url("../img/screen/landscape/bg-movie-type.webp");
+        /** BG Music **/
+        --bg-music-album:               url("../img/screen/landscape/bg-music-album.webp");
+        --bg-music-album_image:         url("../img/screen/landscape/bg-music-album_image.webp");
+        --bg-music-album_image_extra:   url("../img/screen/landscape/bg-music-album_image_extra.webp");
+        --bg-music-album_type:          url("../img/screen/landscape/bg-music-album_type.webp");
+        --bg-music-artist:              url("../img/screen/landscape/bg-music-artist.webp");
+        --bg-music-artist_image:        url("../img/screen/landscape/bg-music-artist_image.webp");
+        --bg-music-artist_image_extra:  url("../img/screen/landscape/bg-music-artist_image_extra.webp");
+        --bg-music-artist_member:       url("../img/screen/landscape/bg-music-artist_member.webp");
+        --bg-music-artist_type:         url("../img/screen/landscape/bg-music-artist_type.webp");
+        --bg-music-genre:               url("../img/screen/landscape/bg-music-genre.webp");
+        --bg-music-role:                url("../img/screen/landscape/bg-music-role.webp");
+        --bg-music-song:                url("../img/screen/landscape/bg-music-song.webp");
+        /** BG Otaku **/
+        --bg-otaku-anime:                   url("../img/screen/landscape/bg-otaku-anime.webp");
+        --bg-otaku-anime_character:         url("../img/screen/landscape/bg-otaku-anime_character.webp");
+        --bg-otaku-anime_image:             url("../img/screen/landscape/bg-otaku-anime_image.webp");
+        --bg-otaku-anime_image_extra:       url("../img/screen/landscape/bg-otaku-anime_image_extra.webp");
+        --bg-otaku-anime_staff:             url("../img/screen/landscape/bg-otaku-anime_staff.webp");
+        --bg-otaku-author_manga:            url("../img/screen/landscape/bg-otaku-author_manga.webp");
+        --bg-otaku-character:               url("../img/screen/landscape/bg-otaku-character.webp");
+        --bg-otaku-character_image:         url("../img/screen/landscape/bg-otaku-character_image.webp");
+        --bg-otaku-character_image_extra:   url("../img/screen/landscape/bg-otaku-character_image_extra.webp");
+        --bg-otaku-character_nickname:      url("../img/screen/landscape/bg-otaku-character_nickname.webp");
+        --bg-otaku-data_anime:              url("../img/screen/landscape/bg-otaku-data_anime.webp");
+        --bg-otaku-data_anime_characters:   url("../img/screen/landscape/bg-otaku-data_anime_characters.webp");
+        --bg-otaku-data_anime_pictures:     url("../img/screen/landscape/bg-otaku-data_anime_pictures.webp");
+        --bg-otaku-data_anime_staff:        url("../img/screen/landscape/bg-otaku-data_anime_staff.webp");
+        --bg-otaku-data_character:          url("../img/screen/landscape/bg-otaku-data_character.webp");
+        --bg-otaku-data_character_pictures: url("../img/screen/landscape/bg-otaku-data_character_pictures.webp");
+        --bg-otaku-data_image_url:          url("../img/screen/landscape/bg-otaku-data_image_url.webp");
+        --bg-otaku-data_manga:              url("../img/screen/landscape/bg-otaku-data_manga.webp");
+        --bg-otaku-data_manga_characters:   url("../img/screen/landscape/bg-otaku-data_manga_characters.webp");
+        --bg-otaku-data_manga_pictures:     url("../img/screen/landscape/bg-otaku-data_manga_pictures.webp");
+        --bg-otaku-data_person:             url("../img/screen/landscape/bg-otaku-data_person.webp");
+        --bg-otaku-data_person_pictures:    url("../img/screen/landscape/bg-otaku-data_person_pictures.webp");
+        --bg-otaku-demographic:             url("../img/screen/landscape/bg-otaku-demographic.webp");
+        --bg-otaku-genre:                   url("../img/screen/landscape/bg-otaku-genre.webp");
+        --bg-otaku-licensor:                url("../img/screen/landscape/bg-otaku-licensor.webp");
+        --bg-otaku-manga:                   url("../img/screen/landscape/bg-otaku-manga.webp");
+        --bg-otaku-manga_character:         url("../img/screen/landscape/bg-otaku-manga_character.webp");
+        --bg-otaku-manga_image:             url("../img/screen/landscape/bg-otaku-manga_image.webp");
+        --bg-otaku-manga_image_extra:       url("../img/screen/landscape/bg-otaku-manga_image_extra.webp");
+        --bg-otaku-media_relation:          url("../img/screen/landscape/bg-otaku-media_relation.webp");
+        --bg-otaku-media_relation_anime:    url("../img/screen/landscape/bg-otaku-media_relation_anime.webp");
+        --bg-otaku-media_relation_manga:    url("../img/screen/landscape/bg-otaku-media_relation_manga.webp");
+        --bg-otaku-person:                  url("../img/screen/landscape/bg-otaku-person.webp");
+        --bg-otaku-person_image:            url("../img/screen/landscape/bg-otaku-person_image.webp");
+        --bg-otaku-person_image_extra:      url("../img/screen/landscape/bg-otaku-person_image_extra.webp");
+        --bg-otaku-person_nickname:         url("../img/screen/landscape/bg-otaku-person_nickname.webp");
+        --bg-otaku-producer:                url("../img/screen/landscape/bg-otaku-producer.webp");
+        --bg-otaku-rating:                  url("../img/screen/landscape/bg-otaku-rating.webp");
+        --bg-otaku-relation_type:           url("../img/screen/landscape/bg-otaku-relation_type.webp");
+        --bg-otaku-role:                    url("../img/screen/landscape/bg-otaku-role.webp");
+        --bg-otaku-season:                  url("../img/screen/landscape/bg-otaku-season.webp");
+        --bg-otaku-season_full:             url("../img/screen/landscape/bg-otaku-season_full.webp");
+        --bg-otaku-serialization:           url("../img/screen/landscape/bg-otaku-serialization.webp");
+        --bg-otaku-song:                    url("../img/screen/landscape/bg-otaku-song.webp");
+        --bg-otaku-song_ED:                 url("../img/screen/landscape/bg-otaku-song_ED.webp");
+        --bg-otaku-song_IN:                 url("../img/screen/landscape/bg-otaku-song_IN.webp");
+        --bg-otaku-song_OP:                 url("../img/screen/landscape/bg-otaku-song_OP.webp");
+        --bg-otaku-source:                  url("../img/screen/landscape/bg-otaku-source.webp");
+        --bg-otaku-status:                  url("../img/screen/landscape/bg-otaku-status.webp");
+        --bg-otaku-studio:                  url("../img/screen/landscape/bg-otaku-studio.webp");
+        --bg-otaku-temp_character:          url("../img/screen/landscape/bg-otaku-temp_character.webp");
+        --bg-otaku-temp_persons:            url("../img/screen/landscape/bg-otaku-temp_persons.webp");
+        --bg-otaku-theme:                   url("../img/screen/landscape/bg-otaku-theme.webp");
+        --bg-otaku-title_anime:             url("../img/screen/landscape/bg-otaku-title_anime.webp");
+        --bg-otaku-title_manga:             url("../img/screen/landscape/bg-otaku-title_manga.webp");
+        --bg-otaku-type:                    url("../img/screen/landscape/bg-otaku-type.webp");
+        --bg-otaku-voice_character:         url("../img/screen/landscape/bg-otaku-voice_character.webp");
+        --bg-otaku-year:                    url("../img/screen/landscape/bg-otaku-year.webp");
+        /** BG Renpy */
+        --bg-renpy-censorship:              url("../img/screen/landscape/bg-renpy-censorship.webp");
+        --bg-renpy-data_game:               url("../img/screen/landscape/bg-renpy-data_game.webp");
+        --bg-renpy-developer:               url("../img/screen/landscape/bg-renpy-developer.webp");
+        --bg-renpy-developer_image:         url("../img/screen/landscape/bg-renpy-developer_image.webp");
+        --bg-renpy-developer_image_extra:   url("../img/screen/landscape/bg-renpy-developer_image_extra.webp");
+        --bg-renpy-developer_links:         url("../img/screen/landscape/bg-renpy-developer_link.webp");
+        --bg-renpy-game:                    url("../img/screen/landscape/bg-renpy-game.webp");
+        --bg-renpy-game_engine:             url("../img/screen/landscape/bg-renpy-game_engine.webp");
+        --bg-renpy-game_image:              url("../img/screen/landscape/bg-renpy-game_image.webp");
+        --bg-renpy-game_image_extra:        url("../img/screen/landscape/bg-renpy-game_image_extra.webp");
+        --bg-renpy-genre:                   url("../img/screen/landscape/bg-renpy-genre.webp");
+        --bg-renpy-platform:                url("../img/screen/landscape/bg-renpy-platform.webp");
+        --bg-renpy-prefix:                  url("../img/screen/landscape/bg-renpy-prefix.webp");
+        --bg-renpy-publisher:               url("../img/screen/landscape/bg-renpy-publisher.webp");
+        --bg-renpy-publisher_image:         url("../img/screen/landscape/bg-renpy-publisher_image.webp");
+        --bg-renpy-publisher_image_extra:   url("../img/screen/landscape/bg-renpy-publisher_image_extra.webp");
+        --bg-renpy-publisher_links:         url("../img/screen/landscape/bg-renpy-publisher_links.webp");
+        --bg-renpy-status:                  url("../img/screen/landscape/bg-renpy-status.webp");
+        --bg-renpy-title_game:              url("../img/screen/landscape/bg-renpy-title_game.webp");
+        --bg-renpy-translator:              url("../img/screen/landscape/bg-renpy-translator.webp");
+        --bg-renpy-translator_image:        url("../img/screen/landscape/bg-renpy-translator_image.webp");
+        --bg-renpy-translator_image_extra:  url("../img/screen/landscape/bg-renpy-translator_image_extra.webp");
+        --bg-renpy-translator_links:        url("../img/screen/landscape/bg-renpy-translator_links.webp");
+        /** BG Serie */
+        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
+        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
+        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
+        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
+        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* tablet → portrait*/
+    :root {
+        /** BG Homes **/
+        --bg-home-common:                   url("../img/screen/portrait/bg-home-common.webp");
+        --bg-home-contact:                  url("../img/screen/portrait/bg-home-contact.webp");
+        --bg-home-movie:                    url("../img/screen/portrait/bg-home-movie.webp");
+        --bg-home-music:                    url("../img/screen/portrait/bg-home-music.webp");
+        --bg-home-otaku:                    url("../img/screen/portrait/bg-home-otaku.webp");
+        --bg-home-otaku-anime:              url("../img/screen/portrait/bg-home-otaku-anime.webp");
+        --bg-home-otaku-data:               url("../img/screen/portrait/bg-home-otaku-data.webp");
+        --bg-home-otaku-imagen:             url("../img/screen/portrait/bg-home-otaku-imagen.webp");
+        --bg-home-otaku-manga:              url("../img/screen/portrait/bg-home-otaku-manga.webp");
+        --bg-home-otaku-person_character:   url("../img/screen/portrait/bg-home-otaku-person_character.webp");
+        --bg-home-otaku-relation:           url("../img/screen/portrait/bg-home-otaku-relation.webp");
+        --bg-home-renpy:                    url("../img/screen/portrait/bg-home-renpy.webp");
+        --bg-home-serie:                    url("../img/screen/portrait/bg-home-serie.webp");
+        /** BG Users **/
+        --bg-users-user:                url("../img/screen/portrait/bg-users-user.webp");
+        /** BG common **/
+        --bg-common-country:            url("../img/screen/portrait/bg-common-country.webp");
+        --bg-common-format:             url("../img/screen/portrait/bg-common-format.webp");
+        --bg-common-image_size:         url("../img/screen/portrait/bg-common-image_size.webp");
+        --bg-common-language:           url("../img/screen/portrait/bg-common-language.webp");
+        --bg-common-person:             url("../img/screen/portrait/bg-common-person.webp");
+        --bg-common-person_image:       url("../img/screen/portrait/bg-common-person_image.webp");
+        --bg-common-person_image_extra: url("../img/screen/portrait/bg-common-person_image_extra.webp");
+        --bg-common-person_nickname:    url("../img/screen/portrait/bg-common-person_nickname.webp");
+        --bg-common-quality:            url("../img/screen/portrait/bg-common-quality.webp");
+        --bg-common-website:            url("../img/screen/portrait/bg-common-website.webp");
+        /** BG Movie **/
+        --bg-movie-company:             url("../img/screen/portrait/bg-movie-company.webp");
+        --bg-movie-genre:               url("../img/screen/portrait/bg-movie-genre.webp");
+        --bg-movie-movie:               url("../img/screen/portrait/bg-movie-movie.webp");
+        --bg-movie-movie_cast:          url("../img/screen/portrait/bg-movie-movie_cast.webp");
+        --bg-movie-movie_image:         url("../img/screen/portrait/bg-movie-movie_image.webp");
+        --bg-movie-movie_image_extra:   url("../img/screen/portrait/bg-movie-movie_image_extra.webp");
+        --bg-movie-movie_staff:         url("../img/screen/portrait/bg-movie-movie_staff.webp");
+        --bg-movie-rating:              url("../img/screen/portrait/bg-movie-rating.webp");
+        --bg-movie-role:                url("../img/screen/portrait/bg-movie-role.webp");
+        --bg-movie-title_movie:         url("../img/screen/portrait/bg-movie-title_movie.webp");
+        --bg-movie-type:                url("../img/screen/portrait/bg-movie-type.webp");
+        /** BG Music **/
+        --bg-music-album:               url("../img/screen/portrait/bg-music-album.webp");
+        --bg-music-album_image:         url("../img/screen/portrait/bg-music-album_image.webp");
+        --bg-music-album_image_extra:   url("../img/screen/portrait/bg-music-album_image_extra.webp");
+        --bg-music-album_type:          url("../img/screen/portrait/bg-music-album_type.webp");
+        --bg-music-artist:              url("../img/screen/portrait/bg-music-artist.webp");
+        --bg-music-artist_image:        url("../img/screen/portrait/bg-music-artist_image.webp");
+        --bg-music-artist_image_extra:  url("../img/screen/portrait/bg-music-artist_image_extra.webp");
+        --bg-music-artist_member:       url("../img/screen/portrait/bg-music-artist_member.webp");
+        --bg-music-artist_type:         url("../img/screen/portrait/bg-music-artist_type.webp");
+        --bg-music-genre:               url("../img/screen/portrait/bg-music-genre.webp");
+        --bg-music-role:                url("../img/screen/portrait/bg-music-role.webp");
+        --bg-music-song:                url("../img/screen/portrait/bg-music-song.webp");
+        /** BG Otaku **/
+        --bg-otaku-anime:                   url("../img/screen/portrait/bg-otaku-anime.webp");
+        --bg-otaku-anime_character:         url("../img/screen/portrait/bg-otaku-anime_character.webp");
+        --bg-otaku-anime_image:             url("../img/screen/portrait/bg-otaku-anime_image.webp");
+        --bg-otaku-anime_image_extra:       url("../img/screen/portrait/bg-otaku-anime_image_extra.webp");
+        --bg-otaku-anime_staff:             url("../img/screen/portrait/bg-otaku-anime_staff.webp");
+        --bg-otaku-author_manga:            url("../img/screen/portrait/bg-otaku-author_manga.webp");
+        --bg-otaku-character:               url("../img/screen/portrait/bg-otaku-character.webp");
+        --bg-otaku-character_image:         url("../img/screen/portrait/bg-otaku-character_image.webp");
+        --bg-otaku-character_image_extra:   url("../img/screen/portrait/bg-otaku-character_image_extra.webp");
+        --bg-otaku-character_nickname:      url("../img/screen/portrait/bg-otaku-character_nickname.webp");
+        --bg-otaku-data_anime:              url("../img/screen/portrait/bg-otaku-data_anime.webp");
+        --bg-otaku-data_anime_characters:   url("../img/screen/portrait/bg-otaku-data_anime_characters.webp");
+        --bg-otaku-data_anime_pictures:     url("../img/screen/portrait/bg-otaku-data_anime_pictures.webp");
+        --bg-otaku-data_anime_staff:        url("../img/screen/portrait/bg-otaku-data_anime_staff.webp");
+        --bg-otaku-data_character:          url("../img/screen/portrait/bg-otaku-data_character.webp");
+        --bg-otaku-data_character_pictures: url("../img/screen/portrait/bg-otaku-data_character_pictures.webp");
+        --bg-otaku-data_image_url:          url("../img/screen/portrait/bg-otaku-data_image_url.webp");
+        --bg-otaku-data_manga:              url("../img/screen/portrait/bg-otaku-data_manga.webp");
+        --bg-otaku-data_manga_characters:   url("../img/screen/portrait/bg-otaku-data_manga_characters.webp");
+        --bg-otaku-data_manga_pictures:     url("../img/screen/portrait/bg-otaku-data_manga_pictures.webp");
+        --bg-otaku-data_person:             url("../img/screen/portrait/bg-otaku-data_person.webp");
+        --bg-otaku-data_person_pictures:    url("../img/screen/portrait/bg-otaku-data_person_pictures.webp");
+        --bg-otaku-demographic:             url("../img/screen/portrait/bg-otaku-demographic.webp");
+        --bg-otaku-genre:                   url("../img/screen/portrait/bg-otaku-genre.webp");
+        --bg-otaku-licensor:                url("../img/screen/portrait/bg-otaku-licensor.webp");
+        --bg-otaku-manga:                   url("../img/screen/portrait/bg-otaku-manga.webp");
+        --bg-otaku-manga_character:         url("../img/screen/portrait/bg-otaku-manga_character.webp");
+        --bg-otaku-manga_image:             url("../img/screen/portrait/bg-otaku-manga_image.webp");
+        --bg-otaku-manga_image_extra:       url("../img/screen/portrait/bg-otaku-manga_image_extra.webp");
+        --bg-otaku-media_relation:          url("../img/screen/portrait/bg-otaku-media_relation.webp");
+        --bg-otaku-media_relation_anime:    url("../img/screen/portrait/bg-otaku-media_relation_anime.webp");
+        --bg-otaku-media_relation_manga:    url("../img/screen/portrait/bg-otaku-media_relation_manga.webp");
+        --bg-otaku-person:                  url("../img/screen/portrait/bg-otaku-person.webp");
+        --bg-otaku-person_image:            url("../img/screen/portrait/bg-otaku-person_image.webp");
+        --bg-otaku-person_image_extra:      url("../img/screen/portrait/bg-otaku-person_image_extra.webp");
+        --bg-otaku-person_nickname:         url("../img/screen/portrait/bg-otaku-person_nickname.webp");
+        --bg-otaku-producer:                url("../img/screen/portrait/bg-otaku-producer.webp");
+        --bg-otaku-rating:                  url("../img/screen/portrait/bg-otaku-rating.webp");
+        --bg-otaku-relation_type:           url("../img/screen/portrait/bg-otaku-relation_type.webp");
+        --bg-otaku-role:                    url("../img/screen/portrait/bg-otaku-role.webp");
+        --bg-otaku-season:                  url("../img/screen/portrait/bg-otaku-season.webp");
+        --bg-otaku-season_full:             url("../img/screen/portrait/bg-otaku-season_full.webp");
+        --bg-otaku-serialization:           url("../img/screen/portrait/bg-otaku-serialization.webp");
+        --bg-otaku-song:                    url("../img/screen/portrait/bg-otaku-song.webp");
+        --bg-otaku-song_ED:                 url("../img/screen/portrait/bg-otaku-song_ED.webp");
+        --bg-otaku-song_IN:                 url("../img/screen/portrait/bg-otaku-song_IN.webp");
+        --bg-otaku-song_OP:                 url("../img/screen/portrait/bg-otaku-song_OP.webp");
+        --bg-otaku-source:                  url("../img/screen/portrait/bg-otaku-source.webp");
+        --bg-otaku-status:                  url("../img/screen/portrait/bg-otaku-status.webp");
+        --bg-otaku-studio:                  url("../img/screen/portrait/bg-otaku-studio.webp");
+        --bg-otaku-temp_character:          url("../img/screen/portrait/bg-otaku-temp_character.webp");
+        --bg-otaku-temp_persons:            url("../img/screen/portrait/bg-otaku-temp_persons.webp");
+        --bg-otaku-theme:                   url("../img/screen/portrait/bg-otaku-theme.webp");
+        --bg-otaku-title_anime:             url("../img/screen/portrait/bg-otaku-title_anime.webp");
+        --bg-otaku-title_manga:             url("../img/screen/portrait/bg-otaku-title_manga.webp");
+        --bg-otaku-type:                    url("../img/screen/portrait/bg-otaku-type.webp");
+        --bg-otaku-voice_character:         url("../img/screen/portrait/bg-otaku-voice_character.webp");
+        --bg-otaku-year:                    url("../img/screen/portrait/bg-otaku-year.webp");
+        /** BG Renpy */
+        --bg-renpy-censorship:              url("../img/screen/portrait/bg-renpy-censorship.webp");
+        --bg-renpy-data_game:               url("../img/screen/portrait/bg-renpy-data_game.webp");
+        --bg-renpy-developer:               url("../img/screen/portrait/bg-renpy-developer.webp");
+        --bg-renpy-developer_image:         url("../img/screen/portrait/bg-renpy-developer_image.webp");
+        --bg-renpy-developer_image_extra:   url("../img/screen/portrait/bg-renpy-developer_image_extra.webp");
+        --bg-renpy-developer_links:         url("../img/screen/portrait/bg-renpy-developer_link.webp");
+        --bg-renpy-game:                    url("../img/screen/portrait/bg-renpy-game.webp");
+        --bg-renpy-game_engine:             url("../img/screen/portrait/bg-renpy-game_engine.webp");
+        --bg-renpy-game_image:              url("../img/screen/portrait/bg-renpy-game_image.webp");
+        --bg-renpy-game_image_extra:        url("../img/screen/portrait/bg-renpy-game_image_extra.webp");
+        --bg-renpy-genre:                   url("../img/screen/portrait/bg-renpy-genre.webp");
+        --bg-renpy-platform:                url("../img/screen/portrait/bg-renpy-platform.webp");
+        --bg-renpy-prefix:                  url("../img/screen/portrait/bg-renpy-prefix.webp");
+        --bg-renpy-publisher:               url("../img/screen/portrait/bg-renpy-publisher.webp");
+        --bg-renpy-publisher_image:         url("../img/screen/portrait/bg-renpy-publisher_image.webp");
+        --bg-renpy-publisher_image_extra:   url("../img/screen/portrait/bg-renpy-publisher_image_extra.webp");
+        --bg-renpy-publisher_links:         url("../img/screen/portrait/bg-renpy-publisher_links.webp");
+        --bg-renpy-status:                  url("../img/screen/portrait/bg-renpy-status.webp");
+        --bg-renpy-title_game:              url("../img/screen/portrait/bg-renpy-title_game.webp");
+        --bg-renpy-translator:              url("../img/screen/portrait/bg-renpy-translator.webp");
+        --bg-renpy-translator_image:        url("../img/screen/portrait/bg-renpy-translator_image.webp");
+        --bg-renpy-translator_image_extra:  url("../img/screen/portrait/bg-renpy-translator_image_extra.webp");
+        --bg-renpy-translator_links:        url("../img/screen/portrait/bg-renpy-translator_links.webp");
+        /** BG Serie */
+        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
+        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
+        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
+        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
+        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+    }
+}
+@media screen and (max-width: 767px) {
+    /* mobile → tall */
+    :root {
+        /** BG Homes **/
+        --bg-home-common:                   url("../img/screen/tall/bg-home-common.webp");
+        --bg-home-contact:                  url("../img/screen/tall/bg-home-contact.webp");
+        --bg-home-movie:                    url("../img/screen/tall/bg-home-movie.webp");
+        --bg-home-music:                    url("../img/screen/tall/bg-home-music.webp");
+        --bg-home-otaku:                    url("../img/screen/tall/bg-home-otaku.webp");
+        --bg-home-otaku-anime:              url("../img/screen/tall/bg-home-otaku-anime.webp");
+        --bg-home-otaku-data:               url("../img/screen/tall/bg-home-otaku-data.webp");
+        --bg-home-otaku-imagen:             url("../img/screen/tall/bg-home-otaku-imagen.webp");
+        --bg-home-otaku-manga:              url("../img/screen/tall/bg-home-otaku-manga.webp");
+        --bg-home-otaku-person_character:   url("../img/screen/tall/bg-home-otaku-person_character.webp");
+        --bg-home-otaku-relation:           url("../img/screen/tall/bg-home-otaku-relation.webp");
+        --bg-home-renpy:                    url("../img/screen/tall/bg-home-renpy.webp");
+        --bg-home-serie:                    url("../img/screen/tall/bg-home-serie.webp");
+        /** BG Users **/
+        --bg-users-user:                url("../img/screen/tall/bg-users-user.webp");
+        /** BG common **/
+        --bg-common-country:            url("../img/screen/tall/bg-common-country.webp");
+        --bg-common-format:             url("../img/screen/tall/bg-common-format.webp");
+        --bg-common-image_size:         url("../img/screen/tall/bg-common-image_size.webp");
+        --bg-common-language:           url("../img/screen/tall/bg-common-language.webp");
+        --bg-common-person:             url("../img/screen/tall/bg-common-person.webp");
+        --bg-common-person_image:       url("../img/screen/tall/bg-common-person_image.webp");
+        --bg-common-person_image_extra: url("../img/screen/tall/bg-common-person_image_extra.webp");
+        --bg-common-person_nickname:    url("../img/screen/tall/bg-common-person_nickname.webp");
+        --bg-common-quality:            url("../img/screen/tall/bg-common-quality.webp");
+        --bg-common-website:            url("../img/screen/tall/bg-common-website.webp");
+        /** BG Movie **/
+        --bg-movie-company:             url("../img/screen/tall/bg-movie-company.webp");
+        --bg-movie-genre:               url("../img/screen/tall/bg-movie-genre.webp");
+        --bg-movie-movie:               url("../img/screen/tall/bg-movie-movie.webp");
+        --bg-movie-movie_cast:          url("../img/screen/tall/bg-movie-movie_cast.webp");
+        --bg-movie-movie_image:         url("../img/screen/tall/bg-movie-movie_image.webp");
+        --bg-movie-movie_image_extra:   url("../img/screen/tall/bg-movie-movie_image_extra.webp");
+        --bg-movie-movie_staff:         url("../img/screen/tall/bg-movie-movie_staff.webp");
+        --bg-movie-rating:              url("../img/screen/tall/bg-movie-rating.webp");
+        --bg-movie-role:                url("../img/screen/tall/bg-movie-role.webp");
+        --bg-movie-title_movie:         url("../img/screen/tall/bg-movie-title_movie.webp");
+        --bg-movie-type:                url("../img/screen/tall/bg-movie-type.webp");
+        /** BG Music **/
+        --bg-music-album:               url("../img/screen/tall/bg-music-album.webp");
+        --bg-music-album_image:         url("../img/screen/tall/bg-music-album_image.webp");
+        --bg-music-album_image_extra:   url("../img/screen/tall/bg-music-album_image_extra.webp");
+        --bg-music-album_type:          url("../img/screen/tall/bg-music-album_type.webp");
+        --bg-music-artist:              url("../img/screen/tall/bg-music-artist.webp");
+        --bg-music-artist_image:        url("../img/screen/tall/bg-music-artist_image.webp");
+        --bg-music-artist_image_extra:  url("../img/screen/tall/bg-music-artist_image_extra.webp");
+        --bg-music-artist_member:       url("../img/screen/tall/bg-music-artist_member.webp");
+        --bg-music-artist_type:         url("../img/screen/tall/bg-music-artist_type.webp");
+        --bg-music-genre:               url("../img/screen/tall/bg-music-genre.webp");
+        --bg-music-role:                url("../img/screen/tall/bg-music-role.webp");
+        --bg-music-song:                url("../img/screen/tall/bg-music-song.webp");
+        /** BG Otaku **/
+        --bg-otaku-anime:                   url("../img/screen/tall/bg-otaku-anime.webp");
+        --bg-otaku-anime_character:         url("../img/screen/tall/bg-otaku-anime_character.webp");
+        --bg-otaku-anime_image:             url("../img/screen/tall/bg-otaku-anime_image.webp");
+        --bg-otaku-anime_image_extra:       url("../img/screen/tall/bg-otaku-anime_image_extra.webp");
+        --bg-otaku-anime_staff:             url("../img/screen/tall/bg-otaku-anime_staff.webp");
+        --bg-otaku-author_manga:            url("../img/screen/tall/bg-otaku-author_manga.webp");
+        --bg-otaku-character:               url("../img/screen/tall/bg-otaku-character.webp");
+        --bg-otaku-character_image:         url("../img/screen/tall/bg-otaku-character_image.webp");
+        --bg-otaku-character_image_extra:   url("../img/screen/tall/bg-otaku-character_image_extra.webp");
+        --bg-otaku-character_nickname:      url("../img/screen/tall/bg-otaku-character_nickname.webp");
+        --bg-otaku-data_anime:              url("../img/screen/tall/bg-otaku-data_anime.webp");
+        --bg-otaku-data_anime_characters:   url("../img/screen/tall/bg-otaku-data_anime_characters.webp");
+        --bg-otaku-data_anime_pictures:     url("../img/screen/tall/bg-otaku-data_anime_pictures.webp");
+        --bg-otaku-data_anime_staff:        url("../img/screen/tall/bg-otaku-data_anime_staff.webp");
+        --bg-otaku-data_character:          url("../img/screen/tall/bg-otaku-data_character.webp");
+        --bg-otaku-data_character_pictures: url("../img/screen/tall/bg-otaku-data_character_pictures.webp");
+        --bg-otaku-data_image_url:          url("../img/screen/tall/bg-otaku-data_image_url.webp");
+        --bg-otaku-data_manga:              url("../img/screen/tall/bg-otaku-data_manga.webp");
+        --bg-otaku-data_manga_characters:   url("../img/screen/tall/bg-otaku-data_manga_characters.webp");
+        --bg-otaku-data_manga_pictures:     url("../img/screen/tall/bg-otaku-data_manga_pictures.webp");
+        --bg-otaku-data_person:             url("../img/screen/tall/bg-otaku-data_person.webp");
+        --bg-otaku-data_person_pictures:    url("../img/screen/tall/bg-otaku-data_person_pictures.webp");
+        --bg-otaku-demographic:             url("../img/screen/tall/bg-otaku-demographic.webp");
+        --bg-otaku-genre:                   url("../img/screen/tall/bg-otaku-genre.webp");
+        --bg-otaku-licensor:                url("../img/screen/tall/bg-otaku-licensor.webp");
+        --bg-otaku-manga:                   url("../img/screen/tall/bg-otaku-manga.webp");
+        --bg-otaku-manga_character:         url("../img/screen/tall/bg-otaku-manga_character.webp");
+        --bg-otaku-manga_image:             url("../img/screen/tall/bg-otaku-manga_image.webp");
+        --bg-otaku-manga_image_extra:       url("../img/screen/tall/bg-otaku-manga_image_extra.webp");
+        --bg-otaku-media_relation:          url("../img/screen/tall/bg-otaku-media_relation.webp");
+        --bg-otaku-media_relation_anime:    url("../img/screen/tall/bg-otaku-media_relation_anime.webp");
+        --bg-otaku-media_relation_manga:    url("../img/screen/tall/bg-otaku-media_relation_manga.webp");
+        --bg-otaku-person:                  url("../img/screen/tall/bg-otaku-person.webp");
+        --bg-otaku-person_image:            url("../img/screen/tall/bg-otaku-person_image.webp");
+        --bg-otaku-person_image_extra:      url("../img/screen/tall/bg-otaku-person_image_extra.webp");
+        --bg-otaku-person_nickname:         url("../img/screen/tall/bg-otaku-person_nickname.webp");
+        --bg-otaku-producer:                url("../img/screen/tall/bg-otaku-producer.webp");
+        --bg-otaku-rating:                  url("../img/screen/tall/bg-otaku-rating.webp");
+        --bg-otaku-relation_type:           url("../img/screen/tall/bg-otaku-relation_type.webp");
+        --bg-otaku-role:                    url("../img/screen/tall/bg-otaku-role.webp");
+        --bg-otaku-season:                  url("../img/screen/tall/bg-otaku-season.webp");
+        --bg-otaku-season_full:             url("../img/screen/tall/bg-otaku-season_full.webp");
+        --bg-otaku-serialization:           url("../img/screen/tall/bg-otaku-serialization.webp");
+        --bg-otaku-song:                    url("../img/screen/tall/bg-otaku-song.webp");
+        --bg-otaku-song_ED:                 url("../img/screen/tall/bg-otaku-song_ED.webp");
+        --bg-otaku-song_IN:                 url("../img/screen/tall/bg-otaku-song_IN.webp");
+        --bg-otaku-song_OP:                 url("../img/screen/tall/bg-otaku-song_OP.webp");
+        --bg-otaku-source:                  url("../img/screen/tall/bg-otaku-source.webp");
+        --bg-otaku-status:                  url("../img/screen/tall/bg-otaku-status.webp");
+        --bg-otaku-studio:                  url("../img/screen/tall/bg-otaku-studio.webp");
+        --bg-otaku-temp_character:          url("../img/screen/tall/bg-otaku-temp_character.webp");
+        --bg-otaku-temp_persons:            url("../img/screen/tall/bg-otaku-temp_persons.webp");
+        --bg-otaku-theme:                   url("../img/screen/tall/bg-otaku-theme.webp");
+        --bg-otaku-title_anime:             url("../img/screen/tall/bg-otaku-title_anime.webp");
+        --bg-otaku-title_manga:             url("../img/screen/tall/bg-otaku-title_manga.webp");
+        --bg-otaku-type:                    url("../img/screen/tall/bg-otaku-type.webp");
+        --bg-otaku-voice_character:         url("../img/screen/tall/bg-otaku-voice_character.webp");
+        --bg-otaku-year:                    url("../img/screen/tall/bg-otaku-year.webp");
+        /** BG Renpy */
+        --bg-renpy-censorship:              url("../img/screen/tall/bg-renpy-censorship.webp");
+        --bg-renpy-data_game:               url("../img/screen/tall/bg-renpy-data_game.webp");
+        --bg-renpy-developer:               url("../img/screen/tall/bg-renpy-developer.webp");
+        --bg-renpy-developer_image:         url("../img/screen/tall/bg-renpy-developer_image.webp");
+        --bg-renpy-developer_image_extra:   url("../img/screen/tall/bg-renpy-developer_image_extra.webp");
+        --bg-renpy-developer_links:         url("../img/screen/tall/bg-renpy-developer_link.webp");
+        --bg-renpy-game:                    url("../img/screen/tall/bg-renpy-game.webp");
+        --bg-renpy-game_engine:             url("../img/screen/tall/bg-renpy-game_engine.webp");
+        --bg-renpy-game_image:              url("../img/screen/tall/bg-renpy-game_image.webp");
+        --bg-renpy-game_image_extra:        url("../img/screen/tall/bg-renpy-game_image_extra.webp");
+        --bg-renpy-genre:                   url("../img/screen/tall/bg-renpy-genre.webp");
+        --bg-renpy-platform:                url("../img/screen/tall/bg-renpy-platform.webp");
+        --bg-renpy-prefix:                  url("../img/screen/tall/bg-renpy-prefix.webp");
+        --bg-renpy-publisher:               url("../img/screen/tall/bg-renpy-publisher.webp");
+        --bg-renpy-publisher_image:         url("../img/screen/tall/bg-renpy-publisher_image.webp");
+        --bg-renpy-publisher_image_extra:   url("../img/screen/tall/bg-renpy-publisher_image_extra.webp");
+        --bg-renpy-publisher_links:         url("../img/screen/tall/bg-renpy-publisher_links.webp");
+        --bg-renpy-status:                  url("../img/screen/tall/bg-renpy-status.webp");
+        --bg-renpy-title_game:              url("../img/screen/tall/bg-renpy-title_game.webp");
+        --bg-renpy-translator:              url("../img/screen/tall/bg-renpy-translator.webp");
+        --bg-renpy-translator_image:        url("../img/screen/tall/bg-renpy-translator_image.webp");
+        --bg-renpy-translator_image_extra:  url("../img/screen/tall/bg-renpy-translator_image_extra.webp");
+        --bg-renpy-translator_links:        url("../img/screen/tall/bg-renpy-translator_links.webp");
+        /** BG Serie */
+        --bg-serie-company:             url("../img/screen/tall/bg-serie-company.webp");
+        --bg-serie-genre:               url("../img/screen/tall/bg-serie-genre.webp");
+        --bg-serie-rating:              url("../img/screen/tall/bg-serie-rating.webp");
+        --bg-serie-role:                url("../img/screen/tall/bg-serie-role.webp");
+        --bg-serie-serie:               url("../img/screen/tall/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("../img/screen/tall/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("../img/screen/tall/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("../img/screen/tall/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("../img/screen/tall/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("../img/screen/tall/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("../img/screen/tall/bg-serie-type.webp");
+    }
+}

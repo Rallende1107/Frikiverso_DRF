@@ -1,0 +1,454 @@
+@import url("base.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+.container__list {
+    width: 100%;
+    padding: 10px;
+    min-height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Contenedor interior */
+.container {
+    background: var(--gradient-transparent-dark);
+    min-width: 95%;
+    padding: 15px;
+    color: var(--color-white);
+    border: 1px solid var(--color-cyan);
+}
+
+/** Titulo **/
+.page-title {
+    text-align: center;
+    margin-bottom: 0.2em;
+}
+
+.page-title h2 {
+    font-size: 3em;
+    margin-top: 0.2em;
+    display: inline-block;
+    border-bottom: 1px solid var(--color-white);
+    letter-spacing: 5px;
+    color: var(--color-white);
+}
+
+/** Breadcrumbs **/
+.breadcrumbs {
+    padding: 10px;
+    color: var(--color-white);
+    background: var(--gradient-transparent-light);
+    font-size: 1.2em;
+    margin-top: 5px;
+    border-bottom: 1px solid white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.breadcrumbs a {
+    color: var(--color-white);
+}
+
+.breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs ol li+li {
+    padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+    display: inline-block;
+    color: var(--color-white);
+    content: "|";
+}
+
+.breadcrumbs ol li a:hover {
+    text-decoration: underline;
+    color: var(--color-royalblue);
+}
+
+.dataTable-buttons {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+}
+
+.btn-copy {
+    background: var(--color-copy);
+}
+
+.btn-copy:hover {
+    background: var(--color-copy-hover);
+}
+
+.btn-excel {
+    background: var(--color-excel);
+}
+
+.btn-excel:hover {
+    background: var(--color-excel-hover);
+}
+
+.btn-pdf {
+    background: var(--color-pdf);
+}
+
+.btn-pdf:hover {
+    background: var(--color-pdf-hover);
+}
+
+.btn-print,
+.btn-colvis,
+.btn-pageLength {
+    background: var(--color-colvis);
+}
+
+.btn-print:hover,
+.btn-colvis:hover,
+.btn-pageLength:hover {
+    background: var(--color-colvis-hover);
+}
+
+.dt-paging-button {
+    padding: 0 !important;
+    margin: 0;
+}
+
+/* Hace el input del buscador transparente */
+.dt-search input.form-control {
+    background-color: transparent !important; /* Fondo transparente */
+    color: white !important;  /* Texto blanco */
+    outline: none !important; /* Quita el borde de foco azul */
+    border: 1px solid var(--color-white) !important; /* Borde blanco al enfocar */
+    transition: all 0.3s ease-in-out; /* Efecto de transición suave */
+}
+
+/* Cambia el borde cuando el input está en foco */
+.dt-search input.form-control:focus {
+    border: 1px solid var(--color-royalblue) !important; /* Borde blanco al enfocar */
+}
+
+/* Centrar todo el contenido de la primera columna */
+/* Centra el contenido de una columna específica */
+.center-column {
+    text-align: center !important;
+}
+
+
+.dtr-control::before {
+    color: black !important;
+    background-color: cyan;
+}
+
+#example th {
+    text-align: center;
+    text-transform: capitalize;
+    vertical-align: middle;
+    background: var(--gradient-transparent-medium);
+    color: var(--color-white);
+    border-bottom: 1px var(--color-cyan) solid;
+    border-left: 1px var(--color-cyan) solid;
+    border-right: 1px var(--color-cyan) solid;
+    font-size: 1.2em;
+}
+
+#example th:hover {
+    color: var(--color-cyan);
+}
+
+#example tr:hover {
+    background: var(--gradient-transparent-medium);
+    color: var(--color-white);
+}
+
+
+select {
+    width: 130px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: roboto, sans-serif;
+    outline: 0;
+    background: transparent;
+    color: var(--color-white);
+    padding: 4px;
+    border-radius: 9px;
+    font-size: 20px;
+}
+
+select:focus {
+    background-color: #222;
+    color: var(--color-white);
+}
+
+select:hover {
+    color: var(--color-cyan);
+}
+
+option {
+    background-color: #444;
+    color: var(--color-white);
+}
+
+.go-top-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.go-top-button {
+    background-color: var(--color-cyan);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s, transform 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.9);
+    -webkit-transition: opacity 0.3s, transform 0.4s ease;
+    -moz-transition: opacity 0.3s, transform 0.4s ease;
+    -ms-transition: opacity 0.3s, transform 0.4s ease;
+    -o-transition: opacity 0.3s, transform 0.4s ease;
+}
+
+.go-top-button.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.go-top-button:hover {
+    background-color: var(--color-white);
+    color: var(--color-royalpurple);
+    font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+
+    .btn-excel,
+    .btn-copy,
+    .btn-pdf,
+    .btn-print,
+    .btn-colvis,
+    .btn-pageLength {
+        display: none;
+    }
+
+    .breadcrumbs ol li i {
+        /* Oculta los iconos */
+        display: none;
+    }
+
+    .breadcrumbs ol li {
+        padding-left: 0;
+    }
+}
+
+
+/** backgrounds **/
+.th-id {
+    width: 1%;
+    text-align: center;
+}
+.td-id {
+    text-align: center !important;
+}
+
+.th-name {
+    width: 30%;
+}
+.td-name {
+    text-align: left;;
+}
+
+
+.th-name_short {
+    width: 20%;
+}
+
+.th-counts {
+    width: 5%;
+}
+
+.th-yes-no {
+    width: 4%;
+}
+.td-yes-no {
+    text-align: center !important;
+}
+
+
+.th-actions {
+    width: 5%;
+}
+
+
+/** backgrounds Users **/
+.bg-users-user {background-image: var(--bg-users-user)}
+
+/** backgrounds Common **/
+.bg-common-country {background-image: var(--bg-common-country)}
+.bg-common-format {background-image: var(--bg-common-format)}
+.bg-common-image_size {background-image: var(--bg-common-image_size)}
+.bg-common-language {background-image: var(--bg-common-language)}
+.bg-common-person {background-image: var(--bg-common-person)}
+.bg-common-person_image {background-image: var(--bg-common-person_image)}
+.bg-common-person_image_extra {background-image: var(--bg-common-person_image_extra)}
+.bg-common-person_nickname {background-image: var(--bg-common-person_nickname)}
+.bg-common-quality {background-image: var(--bg-common-quality)}
+.bg-common-website {background-image: var(--bg-common-website)}
+
+/** backgrounds Movie **/
+.bg-movie-genre {background-image: var(--bg-movie-genre)}
+.bg-movie-type {background-image: var(--bg-movie-type)}
+.bg-movie-role {background-image: var(--bg-movie-role)}
+.bg-movie-rating {background-image: var(--bg-movie-rating)}
+.bg-movie-company {background-image: var(--bg-movie-company)}
+.bg-movie-movie {background-image: var(--bg-movie-movie)}
+.bg-movie-title_movie {background-image: var(--bg-movie-title_movie)}
+.bg-movie-movie_staff {background-image: var(--bg-movie-movie_staff)}
+.bg-movie-movie_cast {background-image: var(--bg-movie-movie_cast)}
+.bg-movie-movie_image {background-image: var(--bg-movie-movie_image)}
+.bg-movie-movie_image_extra {background-image: var(--bg-movie-movie_image_extra)}
+
+/** backgrounds Music **/
+.bg-music-genre {background-image: var(--bg-music-genre)}
+.bg-music-role {background-image: var(--bg-music-role)}
+.bg-music-album_type {background-image: var(--bg-music-album_type)}
+.bg-music-artist_type {background-image: var(--bg-music-artist_type)}
+.bg-music-artist {background-image: var(--bg-music-artist)}
+.bg-music-artist_member {background-image: var(--bg-music-artist_member)}
+.bg-music-album {background-image: var(--bg-music-album)}
+.bg-music-song {background-image: var(--bg-music-song)}
+.bg-music-album_image {background-image: var(--bg-music-album_image)}
+.bg-music-album_image_extra {background-image: var(--bg-music-album_image_extra)}
+.bg-music-artist_image {background-image: var(--bg-music-artist_image)}
+.bg-music-artist_image_extra {background-image: var(--bg-music-artist_image_extra)}
+
+/** backgrounds Otaku**/
+.bg-otaku-role {background-image: var(--bg-otaku-role)}
+.bg-otaku-year {background-image: var(--bg-otaku-year)}
+.bg-otaku-genre {background-image: var(--bg-otaku-genre)}
+.bg-otaku-theme {background-image: var(--bg-otaku-theme)}
+.bg-otaku-demographic {background-image: var(--bg-otaku-demographic)}
+.bg-otaku-type {background-image: var(--bg-otaku-type)}
+.bg-otaku-rating {background-image: var(--bg-otaku-rating)}
+.bg-otaku-season {background-image: var(--bg-otaku-season)}
+.bg-otaku-status {background-image: var(--bg-otaku-status)}
+.bg-otaku-source {background-image: var(--bg-otaku-source)}
+.bg-otaku-relation_type {background-image: var(--bg-otaku-relation_type)}
+.bg-otaku-season_full {background-image: var(--bg-otaku-season_full)}
+.bg-otaku-producer {background-image: var(--bg-otaku-producer)}
+.bg-otaku-licensor {background-image: var(--bg-otaku-licensor)}
+.bg-otaku-studio {background-image: var(--bg-otaku-studio)}
+.bg-otaku-serialization {background-image: var(--bg-otaku-serialization)}
+.bg-otaku-anime {background-image: var(--bg-otaku-anime)}
+.bg-otaku-manga {background-image: var(--bg-otaku-manga)}
+.bg-otaku-title_anime {background-image: var(--bg-otaku-title_anime)}
+.bg-otaku-title_manga {background-image: var(--bg-otaku-title_manga)}
+.bg-otaku-character {background-image: var(--bg-otaku-character)}
+.bg-otaku-character_nickname {background-image: var(--bg-otaku-character_nickname)}
+.bg-otaku-person {background-image: var(--bg-otaku-person)}
+.bg-otaku-person_nickname {background-image: var(--bg-otaku-person_nickname)}
+.bg-otaku-song {background-image: var(--bg-otaku-song)}
+.bg-otaku-song_OP {background-image: var(--bg-otaku-song_OP)}
+.bg-otaku-song_ED {background-image: var(--bg-otaku-song_ED)}
+.bg-otaku-song_IN {background-image: var(--bg-otaku-song_IN)}
+.bg-otaku-anime_character {background-image: var(--bg-otaku-anime_character)}
+.bg-otaku-manga_character {background-image: var(--bg-otaku-manga_character)}
+.bg-otaku-voice_character {background-image: var(--bg-otaku-voice_character)}
+.bg-otaku-anime_staff {background-image: var(--bg-otaku-anime_staff)}
+.bg-otaku-author_manga {background-image: var(--bg-otaku-author_manga)}
+.bg-otaku-media_relation {background-image: var(--bg-otaku-media_relation)}
+.bg-otaku-media_relation_anime {background-image: var(--bg-otaku-media_relation_anime)}
+.bg-otaku-media_relation_manga {background-image: var(--bg-otaku-media_relation_manga)}
+.bg-otaku-anime_image {background-image: var(--bg-otaku-anime_image)}
+.bg-otaku-anime_image_extra {background-image: var(--bg-otaku-anime_image_extra)}
+.bg-otaku-manga_image {background-image: var(--bg-otaku-manga_image)}
+.bg-otaku-manga_image_extra {background-image: var(--bg-otaku-manga_image_extra)}
+.bg-otaku-person_image {background-image: var(--bg-otaku-person_image)}
+.bg-otaku-person_image_extra {background-image: var(--bg-otaku-person_image_extra)}
+.bg-otaku-character_image {background-image: var(--bg-otaku-character_image)}
+.bg-otaku-character_image_extra {background-image: var(--bg-otaku-character_image_extra)}
+.bg-otaku-data_anime {background-image: var(--bg-otaku-data_anime)}
+.bg-otaku-data_anime_characters {background-image: var(--bg-otaku-data_anime_characters)}
+.bg-otaku-data_anime_pictures {background-image: var(--bg-otaku-data_anime_pictures)}
+.bg-otaku-data_anime_staff {background-image: var(--bg-otaku-data_anime_staff)}
+.bg-otaku-data_manga {background-image: var(--bg-otaku-data_manga)}
+.bg-otaku-data_manga_characters {background-image: var(--bg-otaku-data_manga_characters)}
+.bg-otaku-data_manga_pictures {background-image: var(--bg-otaku-data_manga_pictures)}
+.bg-otaku-data_character {background-image: var(--bg-otaku-data_character)}
+.bg-otaku-data_character_pictures {background-image: var(--bg-otaku-data_character_pictures)}
+.bg-otaku-data_person {background-image: var(--bg-otaku-data_person)}
+.bg-otaku-data_person_pictures {background-image: var(--bg-otaku-data_person_pictures)}
+.bg-otaku-data_image_url {background-image: var(--bg-otaku-data_image_url)}
+.bg-otaku-temp_persons {background-image: var(--bg-otaku-temp_personsl)}
+.bg-otaku-temp_character {background-image: var(--bg-otaku-temp_characterl)}
+
+/** backgrounds renpy **/
+.bg-renpy-genre {background-image: var(--bg-renpy-genre)}
+.bg-renpy-game_engine {background-image: var(--bg-renpy-game_engine)}
+.bg-renpy-censorship {background-image: var(--bg-renpy-censorship)}
+.bg-renpy-prefix {background-image: var(--bg-renpy-prefix)}
+.bg-renpy-status {background-image: var(--bg-renpy-status)}
+.bg-renpy-platform {background-image: var(--bg-renpy-platform)}
+.bg-renpy-developer {background-image: var(--bg-renpy-developer)}
+.bg-renpy-translator {background-image: var(--bg-renpy-translator)}
+.bg-renpy-publisher {background-image: var(--bg-renpy-publisher)}
+.bg-renpy-game {background-image: var(--bg-renpy-game)}
+.bg-renpy-game_image {background-image: var(--bg-renpy-game_image)}
+.bg-renpy-game_image_extra {background-image: var(--bg-renpy-game_image_extra)}
+.bg-renpy-developer_link {background-image: var(--bg-renpy-developer_links)}
+.bg-renpy-translator_links {background-image: var(--bg-renpy-translator_links)}
+.bg-renpy-publisher_links {background-image: var(--bg-renpy-publisher_links)}
+.bg-renpy-developer_image {background-image: var(--bg-renpy-developer_image)}
+.bg-renpy-developer_image_extra {background-image: var(--bg-renpy-developer_image_extra)}
+.bg-renpy-translator_image {background-image: var(--bg-renpy-translator_image)}
+.bg-renpy-translator_image_extra {background-image: var(--bg-renpy-translator_image_extra)}
+.bg-renpy-publisher_image {background-image: var(--bg-renpy-publisher_image)}
+.bg-renpy-publisher_image_extra {background-image: var(--bg-renpy-publisher_image_extra)}
+.bg-renpy-title_game {background-image: var(--bg-renpy-title_game)}
+.bg-renpy-data_game {background-image: var(--bg-renpy-data_game)}
+
+/** backgrounds Serie **/
+.bg-serie-genre {background-image: var(--bg-serie-genre)}
+.bg-serie-type {background-image: var(--bg-serie-type)}
+.bg-serie-role {background-image: var(--bg-serie-role)}
+.bg-serie-rating {background-image: var(--bg-serie-rating)}
+.bg-serie-company {background-image: var(--bg-serie-company)}
+.bg-serie-serie {background-image: var(--bg-serie-serie)}
+.bg-serie-title_serie {background-image: var(--bg-serie-title_serie)}
+.bg-serie-serie_staff {background-image: var(--bg-serie-serie_staff)}
+.bg-serie-serie_cast {background-image: var(--bg-serie-serie_cast)}
+.bg-serie-serie_image {background-image: var(--bg-serie-serie_image)}
+.bg-serie-serie_image_extra {background-image: var(--bg-serie-serie_image_extra)}

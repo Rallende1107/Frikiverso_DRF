@@ -1,0 +1,174 @@
+@import url("base.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+.contacto {
+    align-items: center;
+    color: var(--color-white);
+    height: 100vh;
+    width: 100%;
+    background: var(--gradient-transparent-dark), var(--bg-home-contact);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contacto .contact-title h2 {
+    color: var(--color-white);
+    text-align: center;
+    align-items: center;
+    letter-spacing: 5px;
+    border-bottom: 1px solid var(--color-white);
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 2.5rem;
+}
+.contacto form {
+    width: 90%;
+    max-width: 700px;
+    background-color: var(--color-transparent-black-dark);
+    padding: 10px;
+}
+@media (min-width: 770px) {
+    .contacto form {
+        height: auto;
+        box-shadow: 5px 5px 20px 2px var(--color-dark-red);
+        border-radius: var(--border05);
+        -webkit-border-radius: var(--border05);
+        -moz-border-radius: var(--border05);
+        -ms-border-radius: var(--border05);
+        -o-border-radius: var(--border05);
+    }
+}
+.input-contact {
+    margin-bottom: 30px;
+    position: relative;
+}
+.input-contact input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
+    background: transparent;
+    font-size: 15px;
+}
+.input-contact label {
+    margin-left: 15px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    color: var(--color-white);
+    cursor: text;
+    transition: 0.3s;
+}
+.btn-contact {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 0;
+    color: var(--color-black);
+    outline: none;
+    background: var(--gradient-magenta-cyan);
+    border-radius: var(--border05);
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 15px;
+    -webkit-border-radius: var(--border05);
+    -moz-border-radius: var(--border05);
+    -ms-border-radius: var(--border05);
+    -o-border-radius: var(--border05);
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+.btn-contact:hover {
+    color: var(--color-black);
+    background: var(--gradient-magenta-cyan-hover);
+    box-shadow: 0 0 30px var(--color-dark-red);
+}
+.input-contact input:focus ~ label,
+.input-contact input:valid ~ label,
+.input-contact textarea:focus ~ label,
+.input-contact textarea:valid ~ label {
+    top: -35px;
+    font-size: 17px;
+}
+.input-contact input:valid ~ label,
+.input-contact textarea:valid ~ label {
+    color: var(--color-royalpurple);
+}
+.form-contacto .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.row .input-contact {
+    flex-basis: 48%;
+}
+.contact-socials-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.contact-socials-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.contact-socials-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.icons-contacto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: x-large;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    gap: 10px;
+    width: 100%;
+}
+.icons-contacto a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    line-height: 36px;
+    font-weight: 100;
+    width: 38px;
+    font-size: 1.1em;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color 0.3s;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    -ms-transition: color 0.3s;
+    -o-transition: color 0.3s;
+}
+.icons-contacto a:hover {
+    color: var(--color-royalpurple);
+}
+@media (max-width: 768px) {
+    .icons-contacto a {
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,42 @@
+.about {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .about h1,
+  .about h2 {
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+  }
+
+  .about p,
+  .about ul {
+    color: #34495e;
+    margin-bottom: 1em;
+  }
+
+  .about ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .about a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .about a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .about {
+      padding: 1rem;
+    }
+  }

@@ -1,0 +1,619 @@
+@import url("base.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+/* common */
+.section_contend {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 50px);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+
+
+}
+
+.form {
+    border: 0.1px solid var(--color-dark-cyan);
+    padding: 1em;
+    background: var(--gradient-transparent-dark);
+    min-width: auto;
+    margin: auto;
+    color: var(--color-dark-cyan);
+    box-shadow: inset -2px 2px 2px var(--color-dark-cyan),
+        0 5px 5px var(--color-dark-cyan);
+    border-radius: 20px;
+    overflow: hidden;
+    /* Oculta el contenido que se sale */
+}
+
+.form__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-dark-cyan);
+    border-bottom: 2px solid var(--color-dark-cyan);
+    margin: 0;
+    letter-spacing: 5px;
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form__container {
+    background: var(--gradient-transparent-dark);
+    min-width: 95%;
+    padding: 15px;
+    color: var(--color-white);
+    border: 1px solid var(--color-cyan);
+}
+
+.form__container::-webkit-scrollbar {
+    width: 1px;
+    padding: 1px;
+    margin: 1px;
+    display: none;
+}
+
+.form__container::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-cyan);
+    /* Color del scrollbar */
+    border-radius: 10px;
+    /* Bordes redondeados del scrollbar */
+}
+
+.form__container::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Fondo del track del scrollbar */
+}
+
+/* campos formulario */
+.form__campos {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.form__input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__input label {
+    color: var(--color-dark-cyan);
+    margin-left: 0.5em;
+    font-weight: bold;
+}
+
+.form__input input,
+.form__input select,
+.form__input textarea {
+    padding: 0.5em;
+    background: var(--color-transparent-black-medium);
+    color: var(--color-white);
+    border-color: var(--color-dark-cyan);
+    outline: none;
+}
+
+.form__input input::placeholder,
+.form__input select::placeholder,
+.form__input textarea::placeholder {
+    color: var(--color-white);
+}
+
+.form__input input:focus,
+.form__input select::placeholder,
+.form__input textarea:focus {
+    background: var(--color-transparent-black-medium);
+    border-color: var(--color-dark-cyan);
+    color: var(--color-white);
+}
+
+/* Select2 */
+.form__input .select2-container--default .select2-selection--single .select2-selection__placeholder,
+.form__input .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: var(--color-white);
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+.form__input .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+}
+
+.form__input .select2-container--default .select2-selection--single {
+    background-color: var(--color-transparent-black-medium);
+    border-color: var(--color-dark-cyan);
+    color: var(--color-white);
+    padding: 0.5em;
+    height: auto;
+    outline: none;
+}
+
+.form__input .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--color-white);
+}
+
+.form__input .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: var(--color-white);
+}
+
+.form__input .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+}
+
+.form__input .select2-container--default .select2-selection--multiple {
+    background-color: var(--color-transparent-black-medium);
+    border-color: var(--color-dark-cyan);
+    color: var(--color-white);
+    outline: none;
+}
+
+.form__input .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    color: var(--color-white);
+}
+
+.form__input .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: var(--color-white);
+}
+
+.form__input .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--color-dark-cyan);
+    border-color: var(--color-dark-cyan);
+    color: var(--color-white);
+}
+
+/* Asegura que el contenedor de Select2 se expanda al 100% del ancho del formulario */
+.form__input .select2-container {
+    width: 100% !important;
+    /* Asegura el ajuste del contenedor al ancho del campo */
+    margin: 0;
+    /* Quita cualquier margen extra */
+    padding: 0;
+    /* Elimina cualquier padding extra */
+}
+
+/* Ajuste para el contenedor de selección única */
+.form__input .select2-container--default .select2-selection--single {
+    background-color: var(--color-transparent-black-medium);
+    border: 1px solid var(--color-dark-cyan);
+    color: var(--color-white);
+    border-radius: 4px;
+    padding: 8px 12px;
+    /* Ajusta el padding para alinearse con los otros campos */
+    box-sizing: border-box;
+    /* Asegura que padding y borde no modifiquen el tamaño del campo */
+    height: auto;
+    /* Ajusta la altura para que coincida con el resto */
+}
+
+/* Ajuste para el contenedor de selección múltiple */
+.form__input .select2-container--default .select2-selection--multiple {
+    background-color: var(--color-transparent-black-medium);
+    border: 1px solid var(--color-dark-cyan);
+    color: var(--color-white);
+    border-radius: 4px;
+    padding: 8px 12px;
+    /* Similar al ajuste de selección única */
+    box-sizing: border-box;
+}
+
+/* Ajustes para el placeholder (opcional, solo si deseas más consistencia en el texto de placeholder) */
+.form__input .select2-selection__placeholder {
+    color: var(--color-white);
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+/* Ajuste de alineación del icono de flecha */
+.form__input .select2-selection__arrow {
+    height: 100%;
+    right: 10px;
+    /* Ajusta la posición si es necesario */
+}
+
+/* Ajuste de margen para alinear mejor con el resto del formulario */
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    /* Ajusta el interlineado */
+}
+
+/* checkbox del formulario */
+.form__checkbox {
+    margin-bottom: 1em;
+}
+
+.checkbox__title {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--color-dark-cyan);
+}
+
+.checkbox__category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.checkbox__category div {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox__category label {
+    margin-right: 0.5em;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.checkbox__category input[type="checkbox"] {
+    /* Ajusta el tamaño del checkbox */
+    width: 20px;
+    height: 20px;
+    /* Cambia el cursor al pasar el ratón */
+    cursor: pointer;
+    /* Elimina el estilo predeterminado del navegador */
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--color-white);
+    /* Color del borde */
+    display: inline-block;
+    position: relative;
+    margin-right: 0.5em;
+    /* Color de fondo del checkbox */
+    background-color: var(--color-transparent-black-medium);
+}
+
+.checkbox__category input[type="checkbox"]:checked {
+    /* Color de fondo cuando está seleccionado */
+    background-color: var(--color-dark-cyan);
+    border: none;
+}
+
+.checkbox__category input[type="checkbox"]:checked::after {
+    content: "✓";
+    /*Símbolo de check*/
+    font-size: 14px;
+    /*Color del símbolo de check*/
+    color: var(--color-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+/* botones */
+.form__buttons__large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    gap: 1em;
+}
+
+.form__buttons__large .btn {
+    width: 100%;
+    padding: 0.5em 0.75em;
+    border: none;
+    border-radius: 24px;
+    font-size: 1.5em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    color: var(--color-white);
+}
+
+.form__buttons__large .btn:hover {
+    box-shadow: inset 2px -2px 2px var(--color-white);
+}
+
+.form__buttons__short {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    gap: 1em;
+}
+
+.form__buttons__short .btn {
+    padding: 0.5em 0.75em;
+    border: none;
+    border-radius: 24px;
+    font-size: 1.5em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    color: var(--color-white);
+}
+
+.form__buttons__short .btn:hover {
+    box-shadow: inset 2px -2px 2px var(--color-white);
+}
+
+#btn__primary {
+    background: var(--success);
+}
+
+#btn__primary:hover {
+    background: var(--success-hover);
+}
+
+#btn__cancel {
+    background: var(--danger);
+}
+
+#btn__cancel:hover {
+    background: var(--danger-hover);
+}
+
+.img__container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos para la tabla del formulario */
+
+.image-container {
+    border: 1px solid var(--color-dark-cyan);
+    /* Define un borde alrededor del contenedor de imagen */
+    display: flex;
+    /* Permite que los hijos se alineen en fila */
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed;
+    /* Establece un ancho fijo para las celdas */
+}
+
+.table th {
+    text-align: center;
+    font-size: 1.5em;
+    /* Tamaño de fuente grande para encabezados */
+    font-weight: 600;
+    /* Negrita para encabezados */
+}
+
+.table th,
+.table td {
+    background: transparent;
+    /* Fondo transparente para celdas */
+    color: var(--color-dark-cyan);
+    /* Color del texto */
+    width: 50%;
+    /* Ancho del 50% para las celdas */
+}
+
+.bordered-table {
+    border-collapse: collapse;
+    /* Colapsa bordes para evitar duplicaciones */
+    border: 1px solid var(--color-dark-cyan);
+    /* Borde alrededor de la tabla */
+    width: 100%;
+    /* Ancho total de la tabla */
+}
+
+.bordered-table th,
+.bordered-table td {
+    padding: 10px;
+    /* Espaciado interno de celdas */
+    text-align: center;
+    /* Alineación centrada para el texto en celdas */
+}
+
+.image-container-inner {
+    max-width: 50%;
+    /* Limita el ancho del contenedor interno */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    overflow: hidden;
+    /* Esconde cualquier contenido que sobresalga */
+}
+
+.image-preview {
+    max-width: 100%;
+    /* Ancho máximo para la imagen */
+    height: auto;
+    /* Altura automática para mantener la relación de aspecto */
+    object-fit: contain;
+    /* Mantiene la relación de aspecto */
+}
+
+.image-form a,
+.audio-form a {
+    display: none;
+    /* Ocultar enlace en el formulario de imagen */
+}
+
+/* Para ocultar el texto específico "Actualmente:" */
+.image-form label:contains("Actualmente: ") {
+    display: none;
+    /* Oculta la etiqueta con este texto específico */
+}
+
+/* Ocultar el checkbox y su etiqueta */
+#photo-clear_id,
+#cover_image-clear_id,
+#audio_file-clear_id,
+label[for="cover_image-clear_id"],
+label[for="audio_file-clear_id"],
+label[for="photo-clear_id"] {
+    display: none;
+}
+
+/* Si deseas ocultar todas las etiquetas en el formulario de imagen */
+.image-form label {
+    display: none;
+    /* Oculta todas las etiquetas dentro de .image-form */
+}
+
+input[type="file"] {
+    background-color: transparent;
+    border: 1px solid var(--color-dark-cyan);
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-size: 16px;
+    /* Tamaño de fuente */
+    transition: background-color 0.3s;
+    /* Transición suave */
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--color-dark-cyan);
+    /* Color de fondo del botón */
+    color: var(--color-white);
+    /* Color del texto */
+    border: none;
+    /* Sin borde */
+    padding: 5px 10px;
+    /* Espaciado interno */
+    margin: 0 5px;
+    /* Espaciado interno */
+    border-radius: 5px;
+    /* Esquinas redondeadas */
+    cursor: pointer;
+    /* Cursor de puntero */
+    font-size: 16px;
+    /* Tamaño de fuente */
+    transition: background-color 0.3s;
+    /* Transición suave */
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--color-blue);
+    /* Color de fondo al pasar el mouse */
+    color: var(--color-black);
+    /* Color del texto */
+}
+
+.audio-preview {
+    text-align: center;
+    /* Centrar el contenido de audio */
+}
+
+
+/* Core */
+.bg-common-format {background-image: var(--bg-common-format)}
+.bg-common-website {background-image: var(--bg-common-website)}
+.bg-common-language {background-image: var(--bg-common-language)}
+.bg-common-quality {background-image: var(--bg-common-quality)}
+/* Music */
+.bg-music-album {background-image: var(--bg-music-album)}
+.bg-music-artist {background-image: var(--bg-music-artist)}
+.bg-music-genre {background-image: var(--bg-music-genre)}
+.bg-music-member {background-image: var(--bg-music-member)}
+.bg-music-song {background-image: var(--bg-music-song)}
+.bg-music-nickname {background-image: var(--bg-music-nickname)}
+.bg-music-membership {background-image: var(--bg-music-membership)}
+/* renpy */
+.bg-renpy-developer {background-image: var(--bg-renpy-developer)}
+.bg-renpy-genre {background-image: var(--bg-renpy-genre)}
+.bg-renpy-game-engine {background-image: var(--bg-renpy-game-engine)}
+.bg-renpy-platform {background-image: var(--bg-renpy-platform)}
+.bg-renpy-statu {background-image: var(--bg-renpy-statu)}
+.bg-renpy-game {background-image: var(--bg-renpy-game)}
+.bg-renpy-translator {background-image: var(--bg-renpy-translator)}
+.bg-renpy-publisher {background-image: var(--bg-renpy-publisher)}
+.bg-renpy-developer-web {background-image: var(--bg-renpy-developer-web)}
+.bg-renpy-translator-web {background-image: var(--bg-renpy-translator-web)}
+.bg-renpy-publisher-web {background-image: var(--bg-renpy-publisher-web)}
+.bg-renpy-game-image {background-image: var(--bg-renpy-game-image)}
+/* Otaku General Data */
+.bg-otaku-genre {background-image: var(--bg-otaku-genre)}
+.bg-otaku-theme {background-image: var(--bg-otaku-theme)}
+.bg-otaku-demographic {background-image: var(--bg-otaku-demographic)}
+.bg-otaku-year {background-image: var(--bg-otaku-year)}
+.bg-otaku-season {background-image: var(--bg-otaku-season)}
+.bg-otaku-season_full {background-image: var(--bg-otaku-season_full)}
+.bg-otaku-type {background-image: var(--bg-otaku-type)}
+.bg-otaku-title_anime {background-image: var(--bg-otaku-title_anime)}
+.bg-otaku-title_manga {background-image: var(--bg-otaku-title_manga)}
+.bg-otaku-statu {background-image: var(--bg-otaku-statu)}
+.bg-otaku-relation_type {background-image: var(--bg-otaku-relation_type)}
+.bg-otaku-source {background-image: var(--bg-otaku-source)}
+.bg-otaku-rating {background-image: var(--bg-otaku-rating)}
+/* Otaku Companies */
+.bg-otaku-producer {background-image: var(--bg-otaku-producer)}
+.bg-otaku-licensor {background-image: var(--bg-otaku-licensor)}
+.bg-otaku-studio {background-image: var(--bg-otaku-studio)}
+.bg-otaku-serialization {background-image: var(--bg-otaku-serialization)}
+/* Otaku Base */
+.bg-otaku-anime {background-image: var(--bg-otaku-anime)}
+.bg-otaku-manga {background-image: var(--bg-otaku-manga)}
+/* Otaku Characters Person */
+.bg-otaku-chara_general {background-image: var(--bg-otaku-chara_general)}
+.bg-otaku-chara_anime {background-image: var(--bg-otaku-chara_anime)}
+.bg-otaku-chara_manga {background-image: var(--bg-otaku-chara_manga)}
+.bg-otaku-person {background-image: var(--bg-otaku-person)}
+.bg-otaku-person_voice_actors {background-image: var(--bg-otaku-person_voice_actors)}
+.bg-otaku-person_anime_staff {background-image: var(--bg-otaku-person_anime_staff)}
+.bg-otaku-person_author {background-image: var(--bg-otaku-person_author)}
+.bg-otaku-nickname_character {background-image: var(--bg-otaku-nickname_character)}
+.bg-otaku-nickname_person {background-image: var(--bg-otaku-nickname_person)}
+/* Otaku Songs */
+.bg-otaku-songs_ALL {background-image: var(--bg-otaku-songs_ALL)}
+.bg-otaku-songs_OP {background-image: var(--bg-otaku-songs_OP)}
+.bg-otaku-songs_ED {background-image: var(--bg-otaku-songs_ED)}
+.bg-otaku-songs_IN {background-image: var(--bg-otaku-songs_IN)}
+/* Otaku Relaciones */
+.bg-otaku-relation {background-image: var(--bg-otaku-relation)}
+.bg-otaku-relation_anime_anime {background-image: var(--bg-otaku-relation_anime_anime)}
+.bg-otaku-relation_anime_manga {background-image: var(--bg-otaku-relation_anime_manga)}
+.bg-otaku-relation_manga_manga {background-image: var(--bg-otaku-relation_manga_manga)}
+/* Otaku Covers */
+.bg-otaku-cover_anime {background-image: var(--bg-otaku-cover_anime)}
+.bg-otaku-cover_manga {background-image: var(--bg-otaku-cover_manga)}
+.bg-otaku-cover_character {background-image: var(--bg-otaku-cover_character)}
+.bg-otaku-cover_person {background-image: var(--bg-otaku-cover_person)}
+/* Otaku Imagen */
+.bg-otaku-image_anime {background-image: var(--bg-otaku-image_anime)}
+.bg-otaku-image_manga {background-image: var(--bg-otaku-image_manga)}
+.bg-otaku-image_character {background-image: var(--bg-otaku-image_character)}
+.bg-otaku-image_person {background-image: var(--bg-otaku-image_person)}

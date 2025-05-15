@@ -1,0 +1,175 @@
+@import url("base.css");
+:root {
+    --screen-form-developer: url("../img/screen/screen-renpy-developer.webp");
+    --users-user: url("../img/screen/screen-users-user.webp");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+.developer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-image: var(--screen-form-developer);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: var(--color-blue);
+}
+.users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-image: var(--users-user);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: var(--color-blue);
+}
+
+
+
+/*--------------------------------------------------------------
+# Profie Page
+--------------------------------------------------------------*/
+.profile .profile-card img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile .profile-card h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--color-cyan);
+    letter-spacing: 2px;
+    margin: 10px 0 0 0;
+}
+
+.profile .profile-card h3 {
+    font-size: 1.5em;
+}
+
+.profile .profile-card .social-links a {
+    font-size: 1.5em;
+    display: inline-block;
+    color: var(--color-blue);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.profile .profile-card .social-links a:hover {
+    color: var(--color-white);
+}
+
+.profile .profile-overview .row {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+.profile .profile-overview .perfil-dto {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--color-white);
+}
+.profile .profile-overview .card-title {
+    letter-spacing: 2px;
+    color: var(--color-cyan);
+    border-bottom: 1px solid var(--color-cyan);
+}
+
+.profile .profile-overview .label {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--color-dark-red);
+
+    /* color: rgba(1, 41, 112, 0.6); */
+}
+
+.profile .profile-edit label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+}
+
+.profile .profile-edit img {
+    max-width: 120px;
+}
+
+/* Card */
+.card {
+    background: var(--gradient-transparent-dark);
+    color: var(--color-white);
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: inset 2px -2px 2px var(--color-cyan);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.card-title {
+    padding: 20px 0 5px 0;
+    font-size: 2em;
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.card-body {
+    padding: 0 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.contenedor-btn {
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor-btn .btn{
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--color-white);
+    margin: 5px;
+    box-sizing: border-box;
+}
+.contenedor-btn .btn:hover{
+    box-shadow: inset 2px -2px 2px var(--color-white);
+}
+
+.btn__primary {
+    background: var(--primary);
+}
+.btn__primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn__cancel {
+    background: var(--danger);
+}
+.btn__cancel:hover {
+    background: var(--danger-hover);
+}
+
+.btn__password {
+    background: var(--success);
+}
+
+.btn__password:hover {
+    background: var(--success-hover);
+}

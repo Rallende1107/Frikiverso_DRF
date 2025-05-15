@@ -1,0 +1,232 @@
+@import url("base.css");
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+.bg-users-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-users-user);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.formulario {
+    padding: .4em;
+    background: var(--gradient-transparent-dark);
+    width: 850px;
+    color: var(--color-white);
+    box-shadow: inset -2px 2px 2px var(--color-cyan);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.user__form__contenedor {
+    margin: 20px;
+}
+
+.formulario__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    margin-bottom: 0.5em;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.formulario__campos {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.formulario__campo__input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario__campo__input label {
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+.formulario__campo__input input,
+.formulario__campo__input textarea {
+    padding: 0.5em;
+    background: var(--color-transparent-black-medium);
+    color: var(--color-white);
+    border-color: var(--color-white);
+    outline: none;
+}
+
+.formulario__campo__input input::placeholder,
+.formulario__campo__input textarea::placeholder {
+    color: var(--color-white);
+}
+
+.formulario__campo__input input:focus,
+.formulario__campo__input textarea:focus {
+    background: var(--color-transparent-black-medium);
+    border-color: var(--color-cyan);
+    color: var(--color-white);
+}
+
+.formulario__checkbox__detail {
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox__title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    margin-left: 15px;
+    color: var(--color-cyan);
+}
+
+.checkbox__category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.checkbox__category div {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox__category label {
+    font-weight: bold;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+}
+
+.formulario__buttons {
+    display: flex;
+    flex-direction: column;
+    /* Cambia la dirección del flex a columna */
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    gap: 1em;
+}
+
+.formulario__buttons .btn {
+    width: 100%;
+    padding: 0.5em 0.75em;
+    border: none;
+    border-radius: 24px;
+    font-size: 1.5em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+    color: var(--color-white);
+}
+
+.formulario__buttons .btn:hover {
+    color: var(--color-white);
+    box-shadow: inset 2px -2px 2px var(--color-white);
+
+}
+
+.btn__save {
+    background: var(--success);
+}
+
+.btn__save:hover {
+    background: var(--success-hover);
+}
+
+.btn__cancel {
+    background: var(--danger);
+}
+
+.btn__cancel:hover {
+    background: var(--danger-hover);
+}
+
+/* Estilo general para los checkboxes */
+.checkbox__category input[type="checkbox"] {
+    /* Ajusta el tamaño del checkbox */
+    width: 20px;
+    height: 20px;
+    /* Cambia el cursor al pasar el ratón */
+    cursor: pointer;
+    /* Elimina el estilo predeterminado del navegador */
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--color-white);
+    /* Color del borde */
+    display: inline-block;
+    position: relative;
+    margin-right: 0.5em;
+    /* Color de fondo del checkbox */
+    background-color: var(--color-transparent-black-medium);
+}
+
+.checkbox__category input[type="checkbox"]:checked {
+    /* Color de fondo cuando está seleccionado */
+    background-color: var(--color-cyan);
+    border: none;
+}
+
+.checkbox__category input[type="checkbox"]:checked::after {
+    content: "✓";
+    /*Símbolodecheck*/
+    font-size: 14px;
+    /*Colordelsímbolodecheck*/
+    color: var(--color-white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+.formulario__link {
+    color: var(--color-white);
+    font-size: 0.9em;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.formulario__link p a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.formulario__link p a:hover {
+    color: var(--color-cyan);
+    text-decoration: none;
+}

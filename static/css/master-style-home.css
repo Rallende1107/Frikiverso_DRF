@@ -1,0 +1,308 @@
+/* ==================================================
+   ============== BASE / GLOBALES ===================
+================================================== */
+
+@import url("base.css");
+
+:root {
+    --transition-default: 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+/* Soporte para light/dark mode */
+:root {
+    --bg-main: #121212;
+    --text-color: #eee;
+    --accent-color: var(--color-cyan);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-main: #ffffff;
+        --text-color: #222;
+        --accent-color: #007bff;
+    }
+}
+
+/* ==================================================
+   =============== HOME MAIN ========================
+================================================== */
+
+.home-main {
+    padding: 10px;
+    position: relative;
+    height: calc(100vh - 50px);
+    width: 100%;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home-main__container__content {
+    padding-top: 5rem;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.home-main__container__content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+/* ==================================================
+   ================== CARDS =========================
+================================================== */
+
+.card {
+    margin: 1em;
+    backdrop-filter: blur(5px);
+    background: var(--gradient-transparent-medium);
+    color: var(--color-white);
+    transition: var(--transition-default);
+    border: 2px solid var(--color-cyan);
+    box-shadow: 0 0 15px var(--color-cyan), 0 0 15px var(--color-cyan) inset;
+    overflow: hidden;
+    cursor: pointer;
+    max-height: 450px;
+    min-height: 450px;
+    width: 100%;
+    max-width: 18rem;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        margin: 1rem auto;
+    }
+}
+
+.card:hover {
+    border: 2px solid var(--color-red);
+    box-shadow: 0 0 15px var(--color-red), 0 0 15px var(--color-red) inset;
+}
+
+.card-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    height: 150px;
+}
+
+.card-img-container img {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.card-body {
+    text-align: center;
+    padding: 5px;
+    min-height: 80px;
+}
+
+.card-text {
+    padding: 0;
+    min-height: 30px;
+    font: 1em sans-serif;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-footer {
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+    min-height: 165px;
+    text-align: center;
+    padding: 10px;
+}
+
+.card a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card a:hover {
+    color: inherit;
+}
+
+/* Botones */
+.btn-success {
+    background-color: green;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: var(--transition-default);
+}
+
+.btn-success:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+/* ==================================================
+   ============= FONDOS POR SECCIÓN =================
+================================================== */
+
+.bg-home-common { background-image: var(--bg-home-common); }
+.bg-home-renpy { background-image: var(--bg-home-renpy); }
+.bg-home-music { background-image: var(--bg-home-music); }
+.bg-home-movie { background-image: var(--bg-home-movie); }
+.bg-home-serie { background-image: var(--bg-home-serie); }
+
+.bg-home-otaku { background-image: var(--bg-home-otaku); }
+.bg-home-otaku-anime { background-image: var(--bg-home-otaku-anime); }
+.bg-home-otaku-data { background-image: var(--bg-home-otaku-data); }
+.bg-home-otaku-imagen { background-image: var(--bg-home-otaku-imagen); }
+.bg-home-otaku-manga { background-image: var(--bg-home-otaku-manga); }
+.bg-home-otaku-person_character { background-image: var(--bg-home-otaku-person_character); }
+.bg-home-otaku-relation { background-image: var(--bg-home-otaku-relation); }
+
+/* ==================================================
+   ========== SECCIONES DE CONTENIDO ================
+================================================== */
+
+.section-title {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-cyan);
+    margin: 2rem 0 1rem 0;
+    text-shadow: 1px 1px 5px black;
+}
+
+.card-section-wrapper {
+    width: 100%;
+    margin-bottom: 3rem;
+    display: block;
+}
+
+.card-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+/* ==================================================
+   ================== ACCORDION =====================
+================================================== */
+
+/* Título del accordion */
+.accordion-button {
+    background: var(--color-transparent-black-dark);
+    color: var(--color-cyan);
+    font-size: 1.8rem;
+    text-align: center;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-default);
+}
+
+/* Focus accesible (solo se muestra con teclado) */
+.accordion-button:focus {
+    outline: none;
+}
+
+.accordion-button:focus:not(:focus-visible) {
+    box-shadow: none;
+}
+
+.accordion-button:focus:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-cyan);
+}
+
+/* Ocultar flecha por defecto */
+.accordion-button::after {
+    display: none !important;
+}
+
+/* Hover */
+.accordion-button:hover {
+    background: var(--color-transparent-black-darker);
+    color: var(--color-cyan);
+}
+
+/* Activo (cuando está expandido) */
+.accordion-button:not(.collapsed) {
+    background: var(--color-transparent-black-dark);
+    color: var(--color-cyan);
+}
+
+/* Animación íconos (si usás algún <i>) */
+.accordion-button.collapsed i {
+    font-weight: bolder;
+    transform: rotate(0deg);
+    transition: transform var(--transition-default);
+}
+
+.accordion-button i {
+    font-weight: bolder;
+    transform: rotate(180deg);
+    transition: transform var(--transition-default);
+}
+
+/* Cuerpo del accordion */
+.accordion-body {
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+/* Limpieza de fondo y bordes */
+.accordion-item {
+    background: transparent;
+    border: none;
+}
+
+#accordion-sections {
+    border: none;
+}
+
+/*
+==================================================
+================== ANIMACIONES ===================
+==================================================
+*/
+
+@keyframes gradient {
+    0% { background-position: 200% 200%; }
+    100% { background-position: 400% 400%; }
+}
+
+@keyframes effect_two {
+    from { transform: translateY(-99%); }
+    to { transform: translateY(-1%); }
+}

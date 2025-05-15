@@ -1,0 +1,380 @@
+@import url("base.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuente);
+}
+
+/* Hero de Tablas  */
+.section-hero-lista {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 15vh;
+    color: var(--color-white);
+    background-image: var(--gradient-transparent-medium), var(--bg-section-lista);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center, center;
+}
+
+.section-tbl-lista {
+    padding: 10px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* flex-direction: column; */
+    min-height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* Clases específicas para cada imagen de fondo */
+/*  Users  */
+.bg-users-user {background-image: var(--bg-users-user);}
+/*  Common  */
+.bg-common-format {background-image: var(--bg-common-format);}
+.bg-common-website {background-image: var(--bg-common-website);}
+.bg-common-language {background-image: var(--bg-common-language);}
+.bg-common-quality {background-image: var(--bg-common-quality);}
+
+/* Music */
+.bg-music-album {background-image: var(--bg-music-album);}
+.bg-music-artist {background-image: var(--bg-music-artist);}
+.bg-music-genre {background-image: var(--bg-music-genre);}
+.bg-music-member {background-image: var(--bg-music-member);}
+.bg-music-song {background-image: var(--bg-music-song);}
+.bg-music-membership {background-image: var(--bg-music-membership);}
+.bg-music-nickname {background-image: var(--bg-music-nickname);}
+/* renpy */
+.bg-renpy-developer {background-image: var(--bg-renpy-developer);}
+.bg-renpy-genre {background-image: var(--bg-renpy-genre);}
+.bg-renpy-game-engine {background-image: var(--bg-renpy-game-engine);}
+.bg-renpy-platform {background-image: var(--bg-renpy-platform);}
+.bg-renpy-statu {background-image: var(--bg-renpy-statu);}
+.bg-renpy-game {background-image: var(--bg-renpy-game);}
+.bg-renpy-translator {background-image: var(--bg-renpy-translator);}
+.bg-renpy-publisher {background-image: var(--bg-renpy-publisher);}
+.bg-renpy-developer-web {background-image: var(--bg-renpy-developer-web);}
+.bg-renpy-translator-web {background-image: var(--bg-renpy-translator-web);}
+.bg-renpy-publisher-web {background-image: var(--bg-renpy-publisher-web);}
+.bg-renpy-game-image {background-image: var(--bg-renpy-game-image);}
+/* Otaku General Data */
+.bg-otaku-genre {background-image: var(--bg-otaku-genre)}
+.bg-otaku-theme {background-image: var(--bg-otaku-theme)}
+.bg-otaku-demographic {background-image: var(--bg-otaku-demographic)}
+.bg-otaku-year {background-image: var(--bg-otaku-year)}
+.bg-otaku-season {background-image: var(--bg-otaku-season)}
+.bg-otaku-season_full {background-image: var(--bg-otaku-season_full)}
+.bg-otaku-type {background-image: var(--bg-otaku-type)}
+.bg-otaku-title_anime {background-image: var(--bg-otaku-title_anime)}
+.bg-otaku-title_manga {background-image: var(--bg-otaku-title_manga)}
+.bg-otaku-statu {background-image: var(--bg-otaku-statu)}
+.bg-otaku-relation_type {background-image: var(--bg-otaku-relation_type)}
+.bg-otaku-source {background-image: var(--bg-otaku-source)}
+.bg-otaku-rating {background-image: var(--bg-otaku-rating)}
+/* Otaku Companies */
+.bg-otaku-producer {background-image: var(--bg-otaku-producer)}
+.bg-otaku-licensor {background-image: var(--bg-otaku-licensor)}
+.bg-otaku-studio {background-image: var(--bg-otaku-studio)}
+.bg-otaku-serialization {background-image: var(--bg-otaku-serialization)}
+/* Otaku Base */
+.bg-otaku-anime {background-image: var(--bg-otaku-anime)}
+.bg-otaku-manga {background-image: var(--bg-otaku-manga)}
+/* Otaku Characters Person */
+.bg-otaku-chara_general {background-image: var(--bg-otaku-chara_general)}
+.bg-otaku-chara_anime {background-image: var(--bg-otaku-chara_anime)}
+.bg-otaku-chara_manga {background-image: var(--bg-otaku-chara_manga)}
+.bg-otaku-person {background-image: var(--bg-otaku-person)}
+.bg-otaku-person_voice_actors {background-image: var(--bg-otaku-person_voice_actors)}
+.bg-otaku-person_anime_staff {background-image: var(--bg-otaku-person_anime_staff)}
+.bg-otaku-person_author {background-image: var(--bg-otaku-person_author)}
+.bg-otaku-nickname_character {background-image: var(--bg-otaku-nickname_character)}
+.bg-otaku-nickname_person {background-image: var(--bg-otaku-nickname_person)}
+/* Otaku Songs */
+.bg-otaku-songs_ALL {background-image: var(--bg-otaku-songs_ALL)}
+.bg-otaku-songs_OP {background-image: var(--bg-otaku-songs_OP)}
+.bg-otaku-songs_ED {background-image: var(--bg-otaku-songs_ED)}
+.bg-otaku-songs_IN {background-image: var(--bg-otaku-songs_IN)}
+/* Otaku Relaciones */
+.bg-otaku-relation {background-image: var(--bg-otaku-relation)}
+.bg-otaku-relation_anime_anime {background-image: var(--bg-otaku-relation_anime_anime)}
+.bg-otaku-relation_anime_manga {background-image: var(--bg-otaku-relation_anime_manga)}
+.bg-otaku-relation_manga_manga {background-image: var(--bg-otaku-relation_manga_manga)}
+/* Otaku Covers */
+.bg-otaku-cover_anime {background-image: var(--bg-otaku-cover_anime)}
+.bg-otaku-cover_manga {background-image: var(--bg-otaku-cover_manga)}
+.bg-otaku-cover_character {background-image: var(--bg-otaku-cover_character)}
+.bg-otaku-cover_person {background-image: var(--bg-otaku-cover_person)}
+/* Otaku Imagen */
+.bg-otaku-image_anime {background-image: var(--bg-otaku-image_anime)}
+.bg-otaku-image_manga {background-image: var(--bg-otaku-image_manga)}
+.bg-otaku-image_character {background-image: var(--bg-otaku-image_character)}
+.bg-otaku-image_person {background-image: var(--bg-otaku-image_person)}
+
+/* Estilos */
+.section-hero-lista-title {
+    color: var(--color-dark-red);
+    font-size: 4em;
+    font-weight: 600;
+}
+
+.section-hero-lista-p {
+    color: var(--color-blue);
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.card-default {
+    color: var(--color-white);
+    font-weight: bold;
+    /* Fondo blanco más opaco */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Eliminar el borde */
+    border: none;
+    /* Eliminar el padding */
+    padding: 0;
+}
+
+.card-title {
+    color: var(--color-blue);
+}
+
+.card-header,
+.card-footer {
+    /* Fondo blanco más opaco */
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    margin: 10px;
+}
+
+.table-responsive {
+    background-color: transparent;
+}
+
+.table thead th {
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+    padding: 10px;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 0, 0, 0.699);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+
+.btn-warning {
+    color: var(--color-white);
+    background: var(--gradient-amber-purple);
+    transition: 5s;
+    -webkit-transition: 5s;
+    -moz-transition: 5s;
+    -ms-transition: 5s;
+    -o-transition: 5s;
+}
+
+.btn-warning:hover {
+    color: var(--color-white);
+    background: var(--gradient-amber-purple-hover);
+}
+
+.btn-success {
+    background: var(--gradient-blue-green);
+}
+
+.btn-success:hover {
+    background: var(--gradient-blue-green-hover);
+}
+
+.btn-copy,
+.btn-excel,
+.btn-pdf,
+.btn-print,
+.btn-pageLength,
+.btn-colvis {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 3px;
+    width: auto;
+    color: var(--color-white);
+}
+
+.btn-copy {
+    background: var(--gradient-blue-green);
+}
+
+.btn-copy:hover {
+    background: var(--gradient-blue-green-hover);
+}
+
+.btn-excel {
+    background: var(--gradient-blue-dark-green-light);
+}
+
+.btn-excel:hover {
+    background: var(--gradient-blue-dark-green-light-hover);
+}
+
+.btn-pdf {
+    background: var(--gradient-hotpink-copper);
+}
+
+.btn-pdf:hover {
+    background: var(--gradient-hotpink-copper-hover);
+}
+
+.btn-print {
+    background: var(--gradient-gold-fuchsia);
+}
+
+.btn-print:hover {
+    background: var(--gradient-gold-fuchsia-hover);
+}
+
+.btn-pageLength,
+.btn-colvis {
+    background: var(--gradient-dim-gray-black);
+}
+
+.btn-pageLength:hover,
+.btn-colvis:hover {
+    background: var(--gradient-dim-gray-black-hover);
+}
+
+select {
+    width: 130px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: cursive, sans-serif;
+    outline: 0;
+    background: transparent;
+    color: var(--color-white);
+    padding: 4px;
+    border-radius: 9px;
+    font-size: 20px;
+}
+
+select:focus {
+    /* Cambia el color de fondo al abrir */
+    background-color: #222;
+    /* Cambia el color del texto */
+    color: var(--color-white);
+}
+
+option {
+    /* Cambia el color de fondo de las opciones */
+    background-color: #444;
+    /* Cambia el color del texto */
+    color: var(--color-white);
+}
+
+.dataTable-custom-link {
+    /* Color del texto */
+    color: #007bff;
+    /* Quita el subrayado */
+    text-decoration: none;
+    /* Negrita */
+    font-weight: bold
+}
+
+.dataTable-custom-link:hover {
+    /* Color del texto al pasar el mouse */
+    color: #0056b3;
+    /* Subrayado al pasar el mouse */
+    text-decoration: underline;
+}
+
+
+/* Estilo general para los botones de paginación */
+ul.pagination .page-item .page-link {
+    /*Fondodelosbotones*/
+    background-color: #444;
+    /*Colordeltexto*/
+    color: var(--color-white);
+    /*Borde*/
+    border: 1px solid #555;
+    /*Espaciado*/
+    padding: 6px 12px;
+    /*Margenentrebotones*/
+    margin: 0 2px;
+    /*Bordesredondeados*/
+    border-radius: 5px;
+    /*Cursordemano*/
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+/* Estilo del botón de paginación activo */
+ul.pagination .page-item.active .page-link {
+    /* Color de fondo del botón activo */
+    background-color: #007bff;
+    /* Color del texto del botón activo */
+    color: var(--color-white);
+    /* Borde del botón activo */
+    border-color: #007bff;
+}
+
+/* Cambiar el estilo al pasar el cursor */
+ul.pagination .page-item .page-link:hover {
+    /* Fondo al pasar el mouse */
+    background-color: #555;
+    /* Color del texto al pasar el mouse */
+    color: var(--color-white);
+    /* Borde al pasar el mouse */
+    border-color: #666;
+}
+
+/* Estilo para botones deshabilitados */
+ul.pagination .page-item.disabled .page-link {
+    /* Fondo para botones deshabilitados */
+    background-color: #333;
+    /* Color del texto en botones deshabilitados */
+    color: #777;
+    /* Borde en botones deshabilitados */
+    border-color: #444;
+    /* Cursor para botones deshabilitados */
+    cursor: not-allowed;
+}
+
+/* Estilo personalizado para los botones 'Primero', 'Anterior', 'Siguiente', 'Último' */
+ul.pagination .page-item:first-child .page-link,
+ul.pagination .page-item:last-child .page-link {
+    /* Hacer que el texto sea más grueso */
+    font-weight: bold;
+}
+
+/* Estilo para el campo de búsqueda */
+input[name="q"] {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+    background: #f4f4f4;
+}
+
+input[name="q"]:focus {
+    background: #f4f4f4;
+    border-color: #007bff;
+    outline: none;
+}
+
+
+  /* Alineación del campo y el botón */
+.input-group {
+    display: flex;
+    align-items: center;
+}

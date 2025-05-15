@@ -11,6 +11,7 @@ from .models import (Country, Format, ImageSize, Language, Person, PersonImage, 
 from .forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
 from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
+from core.mixins import PermissionRequiredMessageMixin
 
 ############################################################################################################################################    Constantes
 
@@ -164,20 +165,16 @@ class HomeView(TemplateView):
 ####################################################################    CORE   #####################################################################
 
 ############################################################################################################################################    Country
-class CountryCreateView(CreateView):
+class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Country
     form_class = CountryForm
     template_name = Templates.Common.Country.ADD
     success_url = reverse_lazy(URLS.Common.Country.LST)
     title = 'Añadir País'
+    permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
-        # Permitir acceso si es superusuario o staff
         return self.request.user.is_superuser or self.request.user.is_staff
-
-    def handle_no_permission(self):
-        messages.error(self.request, 'No tienes los permisos para realizar esta acción.')
-        return redirect(URLS.Home.COMMON)
 
     def form_valid(self, form):
         name = form.cleaned_data.get('name')
@@ -197,7 +194,7 @@ class CountryCreateView(CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-class CountryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Country
     form_class = CountryForm
     template_name = Templates.Common.Country.ADD
@@ -206,10 +203,6 @@ class CountryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
-
-    def handle_no_permission(self):
-        messages.error(self.request, 'No tienes los permisos para realizar esta acción.')
-        return redirect(URLS.Home.COMMON)
 
     def form_valid(self, form):
         name = form.cleaned_data.get('name')
@@ -229,18 +222,13 @@ class CountryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-class CountryListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+
+class CountryListView(PermissionRequiredMessageMixin, ListView):
     model = Country
     template_name = Templates.Common.Country.LST
     context_object_name = 'country'
     title = 'Lista de Países'
 
-    def test_func(self):
-        return self.request.user.is_authenticated
-
-    def handle_no_permission(self):
-        messages.error(self.request, 'Debes estar logueado para acceder a esta página.')
-        return redirect(URLS.Home.COMMON)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -613,3 +601,23 @@ class LanguageDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
 # ############################################################################################################################################    FormatosLenguaje
 
+
+
+"""
+class CountryCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    # Configuración...
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, "Debes estar logueado para acceder a esta página.")
+            return redirect(f"{settings.LOGIN_URL}?next={request.path}")
+        return super().dispatch(request, *args, **kwargs)
+
+    def test_func(self):
+        return request.user.is_staff or request.user.is_superuser
+
+    def handle_no_permission(self):
+        messages.error(self.request, "No tienes permisos para realizar esta acción.")
+        return redirect(URLS.Home.COMMON)
+
+"""

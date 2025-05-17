@@ -1,7 +1,8 @@
 from django import forms
 from apps.common.models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
 from django.forms.widgets import DateInput
-
+from core.utils.validators import validate_file_extension, ALLOWED_IMAGE_EXTENSIONS
+from django.utils.translation import gettext_lazy as _
 # Create your forms here.
 ########################################################################################################    Modelo para Country
 class CountryForm(forms.ModelForm):
@@ -627,19 +628,31 @@ class PersonImageForm(forms.ModelForm):
         )
     )
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            validate_file_extension(image, ALLOWED_IMAGE_EXTENSIONS)
+        return image
+
     def clean_image_url(self):
         url = self.cleaned_data.get('image_url', '').strip()
         return url or None  # Si está vacío, se guarda como None
 
     def clean(self):
         cleaned_data = super().clean()
+
+        # Si ya hay errores en 'image' o 'image_url', no continuar validación general
+        if self.errors.get('image') or self.errors.get('image_url'):
+            return cleaned_data
+
         image = cleaned_data.get('image')
         image_url = cleaned_data.get('image_url')
 
         if not image and not image_url:
-            raise forms.ValidationError('Debe subir una imagen o proporcionar una URL.')
+            raise forms.ValidationError(_('Debe subir una imagen o proporcionar una URL.'))
 
         return cleaned_data
+
 
 ########################################################################################################    Modelo para PersonImageExtra
 class PersonImageExtraForm(forms.ModelForm):
@@ -686,11 +699,23 @@ class PersonImageExtraForm(forms.ModelForm):
         )
     )
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            validate_file_extension(image, ALLOWED_IMAGE_EXTENSIONS)
+        return image
+
     def clean(self):
         cleaned_data = super().clean()
+
+        # Si ya hay errores en 'image', no continuar validación general
+        if self.errors.get('image'):
+            return cleaned_data
+
         image = cleaned_data.get('image')
         if not image:
             raise forms.ValidationError('Debe subir una imagen.')
+
         return cleaned_data
 
 ########################################################################################################    Modelo para PersonNickname

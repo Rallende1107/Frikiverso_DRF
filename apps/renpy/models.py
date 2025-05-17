@@ -1357,7 +1357,7 @@ class PublisherImageExtra(models.Model):
 class TitleGame(models.Model):
     """Model definition for TitleGame."""
     game = models.ForeignKey(Game, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_as_games', on_delete=models.CASCADE, verbose_name=_('Juego'))
-    language = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_games_as_languages', on_delete=models.CASCADE, verbose_name=_('Lenguaje'))
+    language = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_games_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name=_('Título'))
     slug = models.SlugField(max_length=20000, unique=False, null=False, blank=True, editable=False, verbose_name=_('Título Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))

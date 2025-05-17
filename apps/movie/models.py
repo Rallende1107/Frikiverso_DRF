@@ -141,7 +141,7 @@ class Role(models.Model):
 
     class Meta:
         """Meta definition for Role."""
-        verbose_name = _('Ros Película')
+        verbose_name = _('Rol Película')
         verbose_name_plural = _('Roles Películas')
         ordering = ['-created_at', 'name',]
         unique_together = (('name', 'name_esp', 'role_staff', 'role_cast',),)
@@ -345,8 +345,8 @@ class Movie(models.Model):
 ########################################################################################################    Modelo para TitleMovie
 class TitleMovie(models.Model):
     """Model definition for TitleMovie."""
-    movie = models.ForeignKey(Movie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='movies_as_title', on_delete=models.CASCADE, verbose_name=_('Pelicula'))
-    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_movies_as_languages', on_delete=models.CASCADE, verbose_name=_('Lenguaje'))
+    movie = models.ForeignKey(Movie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='movies_as_title', on_delete=models.CASCADE, verbose_name=_('Película'))
+    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_movies_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=255, unique=False, null=False, blank=False, verbose_name=_('Título'))
     slug = models.SlugField(max_length=255, unique=False, null=False, blank=True, editable=False, verbose_name=_('Título Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))

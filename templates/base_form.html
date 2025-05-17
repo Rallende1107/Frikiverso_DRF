@@ -1,7 +1,5 @@
 
 {% extends "base.html" %}
-
-
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/master-style-form.css'%}?v2" />
@@ -15,10 +13,7 @@
         <h1 class="form__title"> {{ title }} </h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-
             {% block formulario %}
-
-
 
             {% endblock formulario %}
             <div class="form__buttons__short">
@@ -47,9 +42,5 @@
 </div>
 {% endblock contenido %}
 
-
 {% block javascript %}
-
-
-
 {% endblock javascript %}

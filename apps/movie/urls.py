@@ -7,5 +7,5 @@ urlpatterns = [
 
     path('home/', HomeView.as_view(), name='home'),
     # apis url
-    # path('api/', include('apps.common.api.urls')),
+    path('api/', include('apps.movie.api.urls')),
 ]

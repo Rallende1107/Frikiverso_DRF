@@ -11,8 +11,7 @@ urlpatterns = [
 
     path('person/list/', PersonListView.as_view(), name='person_list'),
     path('character/list/', CharacterListView.as_view(), name='character_list'),
-    # apis url
-    # path('api/', include('apps.music.api.urls')),
+
 
 
     path('anime/load/', AnimesLoadView.as_view(), name='anime_load'),
@@ -20,7 +19,8 @@ urlpatterns = [
     path('person/load/', PersonLoadView.as_view(), name='person_load'),
     path('character/load/', CharacterLoadView.as_view(), name='character_load'),
 
-
+    # apis url
+    path('api/', include('apps.otaku.api.urls')),
 ]
 
 

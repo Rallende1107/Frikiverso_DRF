@@ -6,7 +6,7 @@ from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, Im
 
 
 class HomeView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Peliculas'
 
     def get_context_data(self, **kwargs):

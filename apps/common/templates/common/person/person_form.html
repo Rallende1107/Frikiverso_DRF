@@ -1,0 +1,44 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.full_name.label_tag }}</label>
+        {{ form.full_name }}
+    </div>
+    <div class="form__input">
+        <label>{{ form.birth_date.label_tag }}</label>
+        {{ form.birth_date }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.country.label_tag }}</label>
+        {{ form.country }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.biography.label_tag }}</label>
+        {{ form.biography }}
+    </div>
+</div>
+
+<div class="form__checkbox">
+    <span class="checkbox__title">Opciones</span>
+    <div class="checkbox__category">
+        <div>
+            <label>{{ form.is_active.label_tag }}</label>
+            {{ form.is_active }}
+        </div>
+    </div>
+</div>
+{% endblock formulario %}
+
+{% block javascript %}
+
+{% endblock javascript %}

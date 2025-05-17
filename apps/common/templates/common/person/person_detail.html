@@ -1,0 +1,10 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+    <h1>Detalles de : {{ person.full_name }}</h1>
+    <p><strong>Tipo de Autor:</strong> {{ person.type }}</p>
+    <p><strong>Activo:</strong> {{ object.is_active|yesno:"Sí,No" }}</p>
+    <p><strong>Creado el:</strong> {{ object.created_at }}</p>
+    <p><strong>Actualizado el:</strong> {{ object.updated_at }}</p>
+
+{% endblock detail %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-15 18:15-0400\n"
+"POT-Creation-Date: 2025-05-16 17:45-0400\n"
 "PO-Revision-Date: 2025-05-15 18:29-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -176,7 +176,9 @@ msgid "Código"
 msgstr "Code"
 
 #: .\apps\common\models.py:38
-msgid "Código Numerico"
+#, fuzzy
+#| msgid "Código Numerico"
+msgid "Código Numérico"
 msgstr "Numeric Code"
 
 #: .\apps\common\models.py:39 .\apps\common\models.py:92
@@ -428,8 +430,10 @@ msgstr "Image Sizes"
 msgid "Acrónimo"
 msgstr "Acronym"
 
-#: .\apps\common\models.py:174 .\apps\otaku\models.py:1838
-#: .\apps\renpy\models.py:460
+#: .\apps\common\models.py:174 .\apps\movie\models.py:349
+#: .\apps\otaku\models.py:1349 .\apps\otaku\models.py:1397
+#: .\apps\otaku\models.py:1838 .\apps\renpy\models.py:460
+#: .\apps\renpy\models.py:1360 .\apps\serie\models.py:357
 msgid "Idioma"
 msgstr "Language"
 
@@ -644,245 +648,254 @@ msgstr "Websites"
 msgid "Gestionar sitios web del sistema."
 msgstr "Manage system websites."
 
-#: .\apps\common\views.py:177
+#: .\apps\common\views.py:170
+msgid "Ir"
+msgstr "Go"
+
+#: .\apps\common\views.py:171
+msgid "Todos"
+msgstr "All"
+
+#: .\apps\common\views.py:172 .\apps\common\views.py:275
+#: .\apps\common\views.py:398 .\apps\common\views.py:521
+#: .\apps\common\views.py:786 .\apps\common\views.py:921
+#: .\core\utils\texts.py:23
+msgid "Añadir"
+msgstr "Add"
+
+#: .\apps\common\views.py:184
 msgid "Añadir País"
 msgstr "Add Country"
 
-#: .\apps\common\views.py:185
+#: .\apps\common\views.py:192
 #, python-format
 msgid "¡El país \"%(name)s\" fue creado exitosamente!"
 msgstr "The country \"%(name)s\" was created successfully!"
 
-#: .\apps\common\views.py:207
+#: .\apps\common\views.py:214
 msgid "Editar País"
 msgstr "Edit Country"
 
-#: .\apps\common\views.py:215
+#: .\apps\common\views.py:222
 #, python-format
 msgid "¡El país \"%(name)s\" fue editado exitosamente!"
 msgstr "The country \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:236
+#: .\apps\common\views.py:243
 msgid "Lista de Países"
 msgstr "List of Countries"
 
-#: .\apps\common\views.py:262 .\apps\common\views.py:385
-#: .\apps\common\views.py:508 .\apps\common\views.py:773
-#: .\apps\common\views.py:911 .\core\utils\texts.py:24
+#: .\apps\common\views.py:269 .\apps\common\views.py:392
+#: .\apps\common\views.py:515 .\apps\common\views.py:780
+#: .\apps\common\views.py:915 .\core\utils\texts.py:24
 msgid "Inicio"
 msgstr "Home"
 
-#: .\apps\common\views.py:268 .\apps\common\views.py:391
-#: .\apps\common\views.py:514 .\apps\common\views.py:779
-#: .\apps\common\views.py:917 .\core\utils\texts.py:23
-msgid "Añadir"
-msgstr "Add"
-
-#: .\apps\common\views.py:287
+#: .\apps\common\views.py:294
 msgid "El País que buscas no se encontró."
-msgstr ""
+msgstr "The country you are looking for was not found."
 
-#: .\apps\common\views.py:313
+#: .\apps\common\views.py:320
 msgid "Añadir Formato"
-msgstr ""
+msgstr "Add Format"
 
-#: .\apps\common\views.py:321
+#: .\apps\common\views.py:328
 #, python-format
 msgid "¡El Formato \"%(name)s\" fue creado exitosamente!"
-msgstr ""
+msgstr "The Format \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:343
+#: .\apps\common\views.py:350
 msgid "Editar Formato"
-msgstr ""
+msgstr "Edit Format"
 
-#: .\apps\common\views.py:351
+#: .\apps\common\views.py:358
 #, python-format
 msgid "¡El Formato \"%(name)s\" fue editado exitosamente!"
-msgstr ""
+msgstr "Format \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:372
+#: .\apps\common\views.py:379
 msgid "Lista de Formatos"
-msgstr ""
+msgstr "Format List"
 
-#: .\apps\common\views.py:410
+#: .\apps\common\views.py:417
 msgid "El formato que buscas no se encontró."
-msgstr ""
+msgstr "The format you are looking for was not found."
 
-#: .\apps\common\views.py:436
+#: .\apps\common\views.py:443
 msgid "Añadir Tamaño de Imágenes"
-msgstr ""
+msgstr "Add Image Size"
 
-#: .\apps\common\views.py:444
+#: .\apps\common\views.py:451
 #, python-format
 msgid "¡El Tamaño de Imágen \"%(name)s\" fue creado exitosamente!"
-msgstr ""
+msgstr "Image Size \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:466
+#: .\apps\common\views.py:473
 msgid "Editar Tamaño de Imágenes"
-msgstr ""
+msgstr "Edit Image Size"
 
-#: .\apps\common\views.py:474
+#: .\apps\common\views.py:481
 #, python-format
 msgid "¡El Tamaño de Imágen \"%(name)s\" fue editado exitosamente!"
-msgstr ""
+msgstr "Image Size \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:495
+#: .\apps\common\views.py:502
 msgid "Lista de Tamaños de Imágenes"
-msgstr ""
+msgstr "List of Image Sizes"
 
-#: .\apps\common\views.py:533
+#: .\apps\common\views.py:540
 msgid "El Tamaño de imagen que buscas no se encontró."
-msgstr ""
+msgstr "The Image Size you are looking for was not found."
 
-#: .\apps\common\views.py:559
+#: .\apps\common\views.py:566
 msgid "Añadir Idioma"
-msgstr ""
+msgstr "Add Language"
 
-#: .\apps\common\views.py:567
+#: .\apps\common\views.py:574
 #, python-format
 msgid "¡El idioma \"%(name)s\" fue creado exitosamente!"
-msgstr ""
+msgstr "Language \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:589
+#: .\apps\common\views.py:596
 msgid "Editar Idioma"
-msgstr ""
+msgstr "Edit Language"
 
-#: .\apps\common\views.py:597
+#: .\apps\common\views.py:604
 #, python-format
 msgid "¡El idioma \"%(name)s\" fue editado exitosamente!"
-msgstr ""
+msgstr "The language \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:618
+#: .\apps\common\views.py:625
 msgid "Lista de Idiomas"
-msgstr ""
+msgstr "Language List"
 
-#: .\apps\common\views.py:669
+#: .\apps\common\views.py:676
 msgid "El Idioma que buscas no se encontró."
-msgstr ""
+msgstr "The language you are looking for was not found."
 
-#: .\apps\common\views.py:699
+#: .\apps\common\views.py:706
 msgid "Añadir Calidad"
-msgstr ""
+msgstr "Add Quality"
 
-#: .\apps\common\views.py:707
+#: .\apps\common\views.py:714
 #, python-format
 msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
-msgstr ""
+msgstr "Quality \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:729
+#: .\apps\common\views.py:736
 msgid "Editar Calidad"
-msgstr ""
+msgstr "Edit Quality"
 
-#: .\apps\common\views.py:737
+#: .\apps\common\views.py:744
 #, python-format
 msgid "¡La Calidad \"%(name)s\" fue editada exitosamente!"
-msgstr ""
+msgstr "Quality \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:758
+#: .\apps\common\views.py:765
 msgid "Lista de Calidades"
-msgstr ""
+msgstr "Quality List"
 
-#: .\apps\common\views.py:798
+#: .\apps\common\views.py:805
 msgid "La Calidad que buscas no se encontró."
-msgstr ""
+msgstr "The Quality you are looking for was not found."
 
-#: .\apps\common\views.py:827
+#: .\apps\common\views.py:831
 msgid "Añadir Sitio Web"
-msgstr ""
+msgstr "Add Website"
 
-#: .\apps\common\views.py:835
+#: .\apps\common\views.py:839
 #, python-format
 msgid "El Sitio Web \"%(name)s\" fue creado exitosamente!"
-msgstr ""
+msgstr "Website \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:857
+#: .\apps\common\views.py:861
 msgid "Editar Sitio Web"
-msgstr ""
+msgstr "Edit Website"
 
-#: .\apps\common\views.py:865
+#: .\apps\common\views.py:869
 #, python-format
 msgid "¡El Sitio Web \"%(name)s\" fue editado exitosamente!"
-msgstr ""
+msgstr "Website \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:886
+#: .\apps\common\views.py:890
 msgid "Lista de Sitios Web's"
-msgstr ""
+msgstr "List of Websites"
 
-#: .\apps\common\views.py:936
+#: .\apps\common\views.py:940
 msgid "El Sitio Web que buscas no se encontró."
-msgstr ""
+msgstr "The Web Site you are looking for was not found."
 
 #: .\apps\common\views_action.py:516
 #, python-format
 msgid "El %(modelo)s %(name)s ha sido activado."
-msgstr ""
+msgstr "The %(modelo)s %(name)s has been activated."
 
 #: .\apps\common\views_action.py:521
 #, python-format
 msgid "El %(modelo)s %(name)s ha sido desactivado."
-msgstr ""
+msgstr "The %(modelo)s %(name)s has been deactivated."
 
 #: .\apps\common\views_action.py:526
 #, python-format
 msgid "El %(modelo)s %(name)s es explícito."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is explicit."
 
 #: .\apps\common\views_action.py:531
 #, python-format
 msgid "El %(modelo)s %(name)s ya no es explícito."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is no longer explicit."
 
 #: .\apps\common\views_action.py:536
 #, python-format
 msgid "El %(modelo)s %(name)s es miembro del equipo ahora."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is a member of the team now."
 
 #: .\apps\common\views_action.py:541
 #, python-format
 msgid "El %(modelo)s %(name)s ya no es miembro del equipo."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is no longer a staff."
 
 #: .\apps\common\views_action.py:547
 #, python-format
 msgid "El %(modelo)s %(name)s es superusuario ahora."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is superuser now."
 
 #: .\apps\common\views_action.py:553
 #, python-format
 msgid "El %(modelo)s %(name)s ya no es superusuario."
-msgstr ""
+msgstr "The %(modelo)s %(name)s is no longer superuser."
 
 #: .\apps\common\views_action.py:559
 #, python-format
 msgid "La contraseña de %(modelo)s %(name)s ha sido reiniciada."
-msgstr ""
+msgstr "The %(modelo)s %(name)s password has been reset."
 
 #: .\apps\common\views_action.py:563
 #, python-format
 msgid "El %(modelo)s %(name)s ha sido eliminado."
-msgstr ""
+msgstr "The %(modelo)s %(name)s has been deleted."
 
 #: .\apps\common\views_action.py:566
 msgid "Acción no válida."
-msgstr ""
+msgstr "Invalid action."
 
 #: .\apps\common\views_action.py:571
 #, python-format
 msgid "Modelo \"%(modelo)s\" no encontrado en el mapa."
-msgstr ""
+msgstr "Model “%(modelo)s” not found in the map."
 
 #: .\apps\common\views_action.py:575
 #, python-format
 msgid "%(modelo)s no encontrado."
-msgstr ""
+msgstr "Model “%(modelo)s” not found."
 
 #: .\apps\movie\models.py:23
 msgid "Log Película"
-msgstr ""
+msgstr "Logs Movie"
 
 #: .\apps\movie\models.py:24
 msgid "Logs Películas"
-msgstr ""
+msgstr "Logs Movies"
 
 #: .\apps\movie\models.py:32 .\apps\movie\models.py:82
 #: .\apps\music\models.py:32 .\apps\otaku\models.py:129
@@ -890,19 +903,19 @@ msgstr ""
 #: .\apps\otaku\models.py:285 .\apps\renpy\models.py:31
 #: .\apps\serie\models.py:33 .\apps\serie\models.py:83
 msgid "Padre"
-msgstr ""
+msgstr "Father"
 
 #: .\apps\movie\models.py:38 .\apps\otaku\models.py:135
 #: .\apps\otaku\models.py:187 .\apps\otaku\models.py:239
 #: .\apps\renpy\models.py:37 .\apps\serie\models.py:39
 msgid "Explicito"
-msgstr ""
+msgstr "Explicit"
 
 #: .\apps\movie\models.py:45 .\apps\music\models.py:44
 #: .\apps\otaku\models.py:142 .\apps\renpy\models.py:44
 #: .\apps\serie\models.py:46
 msgid "Género"
-msgstr ""
+msgstr "Genre"
 
 #: .\apps\movie\models.py:46 .\apps\movie\models.py:284
 #: .\apps\music\models.py:45 .\apps\music\models.py:224
@@ -911,110 +924,102 @@ msgstr ""
 #: .\apps\renpy\models.py:462 .\apps\serie\models.py:47
 #: .\apps\serie\models.py:290
 msgid "Géneros"
-msgstr ""
+msgstr "Genres"
 
 #: .\apps\movie\models.py:94 .\apps\movie\models.py:282
 msgid "Tipo Película"
-msgstr ""
+msgstr "Movie Type"
 
 #: .\apps\movie\models.py:95
 msgid "Tipos Películas"
-msgstr ""
+msgstr "Movie Types"
 
 #: .\apps\movie\models.py:136 .\apps\otaku\models.py:37
 #: .\apps\serie\models.py:138
 msgid "Rol Personal"
-msgstr ""
+msgstr "Personal Role"
 
 #: .\apps\movie\models.py:137 .\apps\serie\models.py:139
 msgid "Rol Elenco"
-msgstr ""
+msgstr "Role Cast"
 
-#: .\apps\movie\models.py:144 .\apps\serie\models.py:146
-msgid "Ros Película"
-msgstr ""
+#: .\apps\movie\models.py:144
+#, fuzzy
+#| msgid "Log Película"
+msgid "Rol Película"
+msgstr "Role Movies"
 
 #: .\apps\movie\models.py:145 .\apps\serie\models.py:147
 msgid "Roles Películas"
-msgstr ""
+msgstr "Roles Movies"
 
 #: .\apps\movie\models.py:195 .\apps\otaku\models.py:348
 #: .\apps\otaku\models.py:825 .\apps\otaku\models.py:1120
 #: .\apps\serie\models.py:196
 msgid "Clasificación"
-msgstr ""
+msgstr "Rating"
 
 #: .\apps\movie\models.py:196 .\apps\otaku\models.py:349
 #: .\apps\serie\models.py:197
 msgid "Clasificaciones"
-msgstr ""
+msgstr "Ratings"
 
 #: .\apps\movie\models.py:232 .\apps\serie\models.py:237
 msgid "Año Fundación"
-msgstr ""
+msgstr "Year Founded"
 
 #: .\apps\movie\models.py:239 .\apps\serie\models.py:244
 msgid "Compañia"
-msgstr ""
+msgstr "Company"
 
 #: .\apps\movie\models.py:240 .\apps\serie\models.py:245
 msgid "Compañias"
-msgstr ""
+msgstr "Companies"
 
 #: .\apps\movie\models.py:277 .\apps\serie\models.py:282
 msgid "Título Original"
-msgstr ""
+msgstr "Original Title"
 
 #: .\apps\movie\models.py:278 .\apps\serie\models.py:283
 msgid "Título Secundario"
-msgstr ""
+msgstr "Secondary Title"
 
 #: .\apps\movie\models.py:279 .\apps\serie\models.py:284
 msgid "Año Lanzamiento"
-msgstr ""
+msgstr "Year Released"
 
 #: .\apps\movie\models.py:280
 msgid "Duración Minutos"
-msgstr ""
+msgstr "Running Time Minutes"
 
 #: .\apps\movie\models.py:281 .\apps\otaku\models.py:815
 #: .\apps\otaku\models.py:1110 .\apps\renpy\models.py:453
 #: .\apps\serie\models.py:287
 msgid "Sinopsis"
-msgstr ""
+msgstr "Synopsis"
 
 #: .\apps\movie\models.py:283
 msgid "Clasificación Película"
-msgstr ""
+msgstr "Movie Rating"
 
 #: .\apps\movie\models.py:285 .\apps\otaku\models.py:647
 #: .\apps\otaku\models.py:827 .\apps\serie\models.py:291
 msgid "Productoras"
-msgstr ""
+msgstr "Producers"
 
 #: .\apps\movie\models.py:286 .\apps\serie\models.py:292
 msgid "Distribuidoras"
-msgstr ""
+msgstr "Distributors"
 
-#: .\apps\movie\models.py:295 .\apps\movie\models.py:397
-#: .\apps\movie\models.py:438 .\apps\movie\models.py:486
-#: .\apps\movie\models.py:577
+#: .\apps\movie\models.py:295 .\apps\movie\models.py:348
+#: .\apps\movie\models.py:397 .\apps\movie\models.py:438
+#: .\apps\movie\models.py:486 .\apps\movie\models.py:577
 msgid "Película"
-msgstr ""
+msgstr "Movie"
 
 #: .\apps\movie\models.py:296
 msgid "Películas"
-msgstr ""
-
-#: .\apps\movie\models.py:348
-msgid "Pelicula"
-msgstr ""
-
-#: .\apps\movie\models.py:349 .\apps\otaku\models.py:1349
-#: .\apps\otaku\models.py:1397 .\apps\renpy\models.py:1360
-#: .\apps\serie\models.py:357
-msgid "Lenguaje"
-msgstr ""
+msgstr "Movies"
 
 #: .\apps\movie\models.py:350 .\apps\movie\models.py:359
 #: .\apps\music\models.py:306 .\apps\music\models.py:359
@@ -1024,7 +1029,7 @@ msgstr ""
 #: .\apps\renpy\models.py:1361 .\apps\serie\models.py:358
 #: .\apps\serie\models.py:367
 msgid "Título"
-msgstr ""
+msgstr "Title"
 
 #: .\apps\movie\models.py:351 .\apps\music\models.py:307
 #: .\apps\music\models.py:360 .\apps\otaku\models.py:816
@@ -1033,11 +1038,11 @@ msgstr ""
 #: .\apps\renpy\models.py:449 .\apps\renpy\models.py:1362
 #: .\apps\serie\models.py:359
 msgid "Título Slug"
-msgstr ""
+msgstr "Title Slug"
 
 #: .\apps\movie\models.py:360 .\apps\serie\models.py:368
 msgid "Títulos"
-msgstr ""
+msgstr "Titles"
 
 #: .\apps\movie\models.py:399 .\apps\movie\models.py:440
 #: .\apps\music\models.py:91 .\apps\music\models.py:274
@@ -1046,19 +1051,19 @@ msgstr ""
 #: .\apps\otaku\models.py:1909 .\apps\serie\models.py:406
 #: .\apps\serie\models.py:447
 msgid "Rol"
-msgstr ""
+msgstr "Role"
 
 #: .\apps\movie\models.py:406 .\apps\serie\models.py:413
 msgid "Personal Película"
-msgstr ""
+msgstr "Movie Staff"
 
 #: .\apps\movie\models.py:407 .\apps\serie\models.py:414
 msgid "Personal Películas"
-msgstr ""
+msgstr "Movie Staff"
 
 #: .\apps\movie\models.py:439 .\apps\serie\models.py:446
 msgid "Actor"
-msgstr ""
+msgstr "Actor"
 
 #: .\apps\movie\models.py:441 .\apps\otaku\models.py:1460
 #: .\apps\otaku\models.py:1534 .\apps\otaku\models.py:1785
@@ -1066,180 +1071,180 @@ msgstr ""
 #: .\apps\otaku\models.py:2521 .\apps\otaku\models.py:2612
 #: .\apps\serie\models.py:448
 msgid "Personaje"
-msgstr ""
+msgstr "Character"
 
 #: .\apps\movie\models.py:442 .\apps\serie\models.py:449
 msgid "Personaje Slug"
-msgstr ""
+msgstr "Character Slug"
 
 #: .\apps\movie\models.py:450
 msgid "Reparto Película"
-msgstr ""
+msgstr "Cast Movie"
 
 #: .\apps\movie\models.py:451
 msgid "Reparto Películas"
-msgstr ""
+msgstr "Movie Cast"
 
 #: .\apps\movie\models.py:488 .\apps\movie\models.py:498
 msgid "Imagen Película"
-msgstr ""
+msgstr "Movie Image"
 
 #: .\apps\movie\models.py:499
 msgid "Imágenes Películas"
-msgstr ""
+msgstr "Images Movie"
 
 #: .\apps\movie\models.py:505 .\apps\movie\models.py:595
 msgid "Imagen sin Película"
-msgstr ""
+msgstr "Image without Movie"
 
 #: .\apps\movie\models.py:578 .\apps\movie\models.py:587
 msgid "Imagen Extra Película"
-msgstr ""
+msgstr "Image Extra Movie"
 
 #: .\apps\movie\models.py:588
 msgid "Imágenes Extra Películas"
-msgstr ""
+msgstr "Extra Images Movies"
 
 #: .\apps\music\models.py:23
 msgid "Log Música"
-msgstr ""
+msgstr "Log Music"
 
 #: .\apps\music\models.py:24
 msgid "Logs Música"
-msgstr ""
+msgstr "Logs Music"
 
 #: .\apps\music\models.py:92 .\apps\otaku\models.py:47
 msgid "Roles"
-msgstr ""
+msgstr "Roles"
 
 #: .\apps\music\models.py:139
 msgid "Tipo Álbum"
-msgstr ""
+msgstr "Album Type"
 
 #: .\apps\music\models.py:140
 msgid "Tipos Álbumes"
-msgstr ""
+msgstr "Album Type"
 
 #: .\apps\music\models.py:183 .\apps\music\models.py:223
 msgid "Tipo Artista"
-msgstr ""
+msgstr "Artist Type"
 
 #: .\apps\music\models.py:184
 msgid "Tipos Artistas"
-msgstr ""
+msgstr "Artist Type"
 
 #: .\apps\music\models.py:221
 msgid "Año inicio"
-msgstr ""
+msgstr "Start Year"
 
 #: .\apps\music\models.py:222
 msgid "Año término"
-msgstr ""
+msgstr "Year ending"
 
 #: .\apps\music\models.py:231 .\apps\music\models.py:271
 #: .\apps\music\models.py:309 .\apps\music\models.py:590
 #: .\apps\music\models.py:681 .\apps\otaku\models.py:1722
 msgid "Artista"
-msgstr ""
+msgstr "Artist"
 
 #: .\apps\music\models.py:232
 msgid "Artistas"
-msgstr ""
+msgstr "Artist"
 
 #: .\apps\music\models.py:275
 msgid "Fecha Ingreso"
-msgstr ""
+msgstr "Entry Date"
 
 #: .\apps\music\models.py:276
 msgid "Fecha Salida"
-msgstr ""
+msgstr "Departure Date"
 
 #: .\apps\music\models.py:283
 msgid "Miembro de Artista"
-msgstr ""
+msgstr "Artist Member"
 
 #: .\apps\music\models.py:284
 msgid "Miembros de Artistas"
-msgstr ""
+msgstr "Artist Member"
 
 #: .\apps\music\models.py:310 .\apps\otaku\models.py:297
 #: .\apps\otaku\models.py:819 .\apps\otaku\models.py:1114
 msgid "Tipo"
-msgstr ""
+msgstr "Type"
 
 #: .\apps\music\models.py:311 .\apps\music\models.py:364
 #: .\apps\renpy\models.py:452
 msgid "Fecha Lanzamiento"
-msgstr ""
+msgstr "Release Date"
 
 #: .\apps\music\models.py:318 .\apps\music\models.py:365
 #: .\apps\music\models.py:410 .\apps\music\models.py:501
 msgid "Álbum"
-msgstr ""
+msgstr "Album"
 
 #: .\apps\music\models.py:319
 msgid "Álbumes"
-msgstr ""
+msgstr "Albums"
 
 #: .\apps\music\models.py:362
 msgid "Letra"
-msgstr ""
+msgstr "Lyrics"
 
 #: .\apps\music\models.py:363
 msgid "ID Canción Álbum"
-msgstr ""
+msgstr "Track ID"
 
 #: .\apps\music\models.py:366
 msgid "Archivo Audio"
-msgstr ""
+msgstr "Audio File"
 
 #: .\apps\music\models.py:373
 msgid "Canción"
-msgstr ""
+msgstr "Song"
 
 #: .\apps\music\models.py:374
 msgid "Canciones"
-msgstr ""
+msgstr "Songs"
 
 #: .\apps\music\models.py:412 .\apps\music\models.py:422
 msgid "Imagen Álbum"
-msgstr ""
+msgstr "Image Album"
 
 #: .\apps\music\models.py:423
 msgid "Imágenes Álbumes"
-msgstr ""
+msgstr "Images Album"
 
 #: .\apps\music\models.py:429 .\apps\music\models.py:518
 msgid "Imagen sin Álbum"
-msgstr ""
+msgstr "Image without Album"
 
 #: .\apps\music\models.py:502 .\apps\music\models.py:511
 msgid "Imagen Extra Álbum"
-msgstr ""
+msgstr "Image Extra Album"
 
 #: .\apps\music\models.py:512
 msgid "Imágenes Extra Álbumes"
-msgstr ""
+msgstr "Images Extra Album"
 
 #: .\apps\music\models.py:592 .\apps\music\models.py:602
 msgid "Imagen Artista"
-msgstr ""
+msgstr "Artist Image"
 
 #: .\apps\music\models.py:603
 msgid "Imágenes Artistas"
-msgstr ""
+msgstr "Artist Images"
 
 #: .\apps\music\models.py:609 .\apps\music\models.py:698
 msgid "Imagen sin Artista"
-msgstr ""
+msgstr "Image without Artist"
 
 #: .\apps\music\models.py:682 .\apps\music\models.py:691
 msgid "Imagen Extra Artista"
-msgstr ""
+msgstr "Image Extra Artist"
 
 #: .\apps\music\models.py:692
 msgid "Imágenes Extra Artista"
-msgstr ""
+msgstr "Images Extra Artist"
 
 #: .\apps\otaku\admin.py:46 .\apps\otaku\admin.py:95 .\apps\otaku\admin.py:141
 #: .\apps\otaku\admin.py:190 .\apps\otaku\admin.py:239
@@ -1276,11 +1281,11 @@ msgstr ""
 #: .\apps\renpy\admin.py:885 .\apps\renpy\admin.py:931
 #: .\apps\renpy\admin.py:977
 msgid "Información Básica"
-msgstr ""
+msgstr "Basic Information"
 
 #: .\apps\otaku\admin.py:49
 msgid "Aplicación del Rol"
-msgstr ""
+msgstr "Role Application"
 
 #: .\apps\otaku\admin.py:52 .\apps\otaku\admin.py:98 .\apps\otaku\admin.py:147
 #: .\apps\otaku\admin.py:196 .\apps\otaku\admin.py:245
@@ -1328,7 +1333,7 @@ msgstr ""
 #: .\apps\renpy\models.py:227 .\apps\renpy\models.py:455
 #: .\apps\renpy\models.py:1409 .\apps\users\admin.py:28 .\core\models.py:39
 msgid "Estado"
-msgstr ""
+msgstr "Status"
 
 #: .\apps\otaku\admin.py:55 .\apps\otaku\admin.py:101 .\apps\otaku\admin.py:150
 #: .\apps\otaku\admin.py:199 .\apps\otaku\admin.py:248
@@ -1337,7 +1342,8 @@ msgstr ""
 #: .\apps\otaku\admin.py:448 .\apps\otaku\admin.py:488
 #: .\apps\otaku\admin.py:528 .\apps\otaku\admin.py:568
 #: .\apps\otaku\admin.py:608 .\apps\otaku\admin.py:648
-#: .\apps\otaku\admin.py:688 .\apps\otaku\admin.py:832
+#: .\apps\otaku\admin.py:688 .\apps\otaku\admin.py:740
+#: .\apps\otaku\admin.py:792 .\apps\otaku\admin.py:832
 #: .\apps\otaku\admin.py:872 .\apps\otaku\admin.py:917
 #: .\apps\otaku\admin.py:963 .\apps\otaku\admin.py:1012
 #: .\apps\otaku\admin.py:1060 .\apps\otaku\admin.py:1109
@@ -1357,7 +1363,7 @@ msgstr ""
 #: .\apps\renpy\admin.py:937 .\apps\renpy\admin.py:983
 #: .\apps\renpy\admin.py:1029
 msgid "Valores generados automáticamente"
-msgstr ""
+msgstr "Automatically generated values"
 
 #: .\apps\otaku\admin.py:59 .\apps\otaku\admin.py:105 .\apps\otaku\admin.py:154
 #: .\apps\otaku\admin.py:203 .\apps\otaku\admin.py:252
@@ -1397,208 +1403,201 @@ msgstr ""
 #: .\apps\renpy\admin.py:1033 .\apps\renpy\admin.py:1072
 #: .\apps\users\admin.py:35
 msgid "Fechas"
-msgstr ""
+msgstr "Dates"
 
 #: .\apps\otaku\admin.py:144 .\apps\otaku\admin.py:193
 #: .\apps\otaku\admin.py:242
 msgid "Atributos"
-msgstr ""
+msgstr "Attributes"
 
 #: .\apps\otaku\admin.py:727 .\apps\otaku\admin.py:779
 #: .\apps\renpy\admin.py:465
 msgid "Relaciones"
-msgstr ""
+msgstr "Relationships"
 
 #: .\apps\otaku\admin.py:734 .\apps\otaku\admin.py:786
 #: .\apps\otaku\admin.py:911 .\apps\otaku\admin.py:1006
-msgid "Información MAL"
-msgstr ""
-
-#: .\apps\otaku\admin.py:740 .\apps\otaku\admin.py:792
-msgid "Generado automáticamente"
-msgstr ""
-
-#: .\apps\otaku\admin.py:826 .\apps\otaku\admin.py:866
-msgid "Relación y Título"
-msgstr ""
-
 #: .\apps\otaku\admin.py:1152 .\apps\otaku\admin.py:1197
 #: .\apps\otaku\admin.py:1242 .\apps\otaku\admin.py:1287
 #: .\apps\otaku\admin.py:1332
-msgid "Datos MAL"
-msgstr ""
+msgid "Información MAL"
+msgstr "MAL Information"
+
+#: .\apps\otaku\admin.py:826 .\apps\otaku\admin.py:866
+msgid "Relación y Título"
+msgstr "Relationship and Title"
 
 #: .\apps\otaku\models.py:23
 msgid "Log Otaku"
-msgstr ""
+msgstr "Otaku Log"
 
 #: .\apps\otaku\models.py:24
 msgid "Logs Otaku"
-msgstr ""
+msgstr "Otaku Logs"
 
 #: .\apps\otaku\models.py:38
 msgid "Rol Personaje"
-msgstr ""
+msgstr "Role Character"
 
 #: .\apps\otaku\models.py:39
 msgid "Rol Mangas"
-msgstr ""
+msgstr "Role Mangas"
 
 #: .\apps\otaku\models.py:86 .\apps\otaku\models.py:823
 #: .\apps\otaku\models.py:1115
 msgid "Año"
-msgstr ""
+msgstr "Year"
 
 #: .\apps\otaku\models.py:87
 msgid "Año Slug"
-msgstr ""
+msgstr "Year Slug"
 
 #: .\apps\otaku\models.py:194
 msgid "Tema"
-msgstr ""
+msgstr "Theme"
 
 #: .\apps\otaku\models.py:195 .\apps\otaku\models.py:831
 #: .\apps\otaku\models.py:1124
 msgid "Temas"
-msgstr ""
+msgstr "Themes"
 
 #: .\apps\otaku\models.py:246
 msgid "Demografía"
-msgstr ""
+msgstr "Demographic"
 
 #: .\apps\otaku\models.py:247 .\apps\otaku\models.py:832
 #: .\apps\otaku\models.py:1125
 msgid "Demografías"
-msgstr ""
+msgstr "Demographics"
 
 #: .\apps\otaku\models.py:298
 msgid "Tipos"
-msgstr ""
+msgstr "Types"
 
 #: .\apps\otaku\models.py:398 .\apps\otaku\models.py:821
 #: .\apps\otaku\models.py:1117
 msgid "Temporada"
-msgstr ""
+msgstr "Season"
 
 #: .\apps\otaku\models.py:399
 msgid "Temporadas"
-msgstr ""
+msgstr "Seasons"
 
 #: .\apps\otaku\models.py:450 .\apps\renpy\models.py:228
 msgid "Estados"
-msgstr ""
+msgstr "States"
 
 #: .\apps\otaku\models.py:500 .\apps\otaku\models.py:824
 #: .\apps\otaku\models.py:1119
 msgid "Fuente"
-msgstr ""
+msgstr "Source"
 
 #: .\apps\otaku\models.py:501
 msgid "Fuentes"
-msgstr ""
+msgstr "Sources"
 
 #: .\apps\otaku\models.py:548
 msgid "Tipo Relación"
-msgstr ""
+msgstr "Type Relation"
 
 #: .\apps\otaku\models.py:549
 msgid "Tipos Relaciones"
-msgstr ""
+msgstr "Type Relations"
 
 #: .\apps\otaku\models.py:597
 msgid "Temporada Completa"
-msgstr ""
+msgstr "Season Full"
 
 #: .\apps\otaku\models.py:598
 msgid "Temporadas Completas"
-msgstr ""
+msgstr "Seasons Full"
 
 #: .\apps\otaku\models.py:646
 msgid "Productora"
-msgstr ""
+msgstr "Producer"
 
 #: .\apps\otaku\models.py:689
 msgid "Licenciante"
-msgstr ""
+msgstr "Licensor"
 
 #: .\apps\otaku\models.py:690 .\apps\otaku\models.py:828
 msgid "Licenciantes"
-msgstr ""
+msgstr "Licensors"
 
 #: .\apps\otaku\models.py:732
 msgid "Estudio"
-msgstr ""
+msgstr "Studio"
 
 #: .\apps\otaku\models.py:733 .\apps\otaku\models.py:829
 msgid "Estudios"
-msgstr ""
+msgstr "Studios"
 
 #: .\apps\otaku\models.py:775
 msgid "Serializadora"
-msgstr ""
+msgstr "Serializer"
 
 #: .\apps\otaku\models.py:776 .\apps\otaku\models.py:1122
 msgid "Serializadoras"
-msgstr ""
+msgstr "Serializers"
 
 #: .\apps\otaku\models.py:810 .\apps\otaku\models.py:1106
 #: .\apps\otaku\models.py:1727
 msgid "Título Ingles"
-msgstr ""
+msgstr "English Title"
 
 #: .\apps\otaku\models.py:811 .\apps\otaku\models.py:1107
 msgid "Título Japones"
-msgstr ""
+msgstr "Japanese Title"
 
 #: .\apps\otaku\models.py:812 .\apps\serie\models.py:286
 msgid "Episodios"
-msgstr ""
+msgstr "Episodes"
 
 #: .\apps\otaku\models.py:813
 msgid "Desde"
-msgstr ""
+msgstr "From"
 
 #: .\apps\otaku\models.py:814
 msgid "Hasta"
-msgstr ""
+msgstr "To"
 
 #: .\apps\otaku\models.py:822 .\apps\otaku\models.py:1118
 msgid "Temporada Año"
-msgstr ""
+msgstr "Season Year"
 
 #: .\apps\otaku\models.py:834 .\apps\otaku\models.py:1129
 #: .\apps\otaku\models.py:1450 .\apps\otaku\models.py:1585
 msgid "URL MyAnimeList"
-msgstr ""
+msgstr "URL MyAnimeList"
 
 #: .\apps\otaku\models.py:835 .\apps\otaku\models.py:1130
 #: .\apps\otaku\models.py:1451 .\apps\otaku\models.py:1586
 msgid "ID MyAnimesList"
-msgstr ""
+msgstr "ID MyAnimeList"
 
 #: .\apps\otaku\models.py:836 .\apps\otaku\models.py:1131
 #: .\apps\otaku\models.py:1452 .\apps\otaku\models.py:1587
 msgid "ID MyAnimesList Prefijo"
-msgstr ""
+msgstr "ID MyAnimesList Prefix"
 
 #: .\apps\otaku\models.py:844 .\apps\otaku\models.py:1348
 #: .\apps\otaku\models.py:1718 .\apps\otaku\models.py:1786
 #: .\apps\otaku\models.py:1836 .\apps\otaku\models.py:1873
 #: .\apps\otaku\models.py:1982 .\apps\otaku\models.py:2073
 msgid "Anime"
-msgstr ""
+msgstr "Anime"
 
 #: .\apps\otaku\models.py:845
 msgid "Animes"
-msgstr ""
+msgstr "Animes"
 
 #: .\apps\otaku\models.py:901 .\apps\otaku\models.py:1196
 msgid "Sin sinopsis disponible"
-msgstr ""
+msgstr "No synopsis available"
 
 #: .\apps\otaku\models.py:916
 msgid "Fecha Emisión no disponible"
-msgstr ""
+msgstr "Release date not available"
 
 #: .\apps\otaku\models.py:920 .\apps\otaku\models.py:1218
 msgid "Sin Tipo"
@@ -2248,6 +2247,10 @@ msgstr ""
 
 #: .\apps\serie\models.py:97
 msgid "Tipos Series"
+msgstr ""
+
+#: .\apps\serie\models.py:146
+msgid "Ros Película"
 msgstr ""
 
 #: .\apps\serie\models.py:285

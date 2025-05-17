@@ -18,7 +18,7 @@ class UserCreateView(CreateView):
     model = CustomUser
     form_class = UserForm
     template_name = Templates.Users.ADD
-    success_url = reverse_lazy(URLS.Main.LOGIN)
+    success_url = reverse_lazy(URLS.Users.LOGIN)
     title = 'Registrate'
 
     def form_valid(self, form):
@@ -36,7 +36,7 @@ class UserCreateView(CreateView):
         context['class'] = CSSBackground.Users.USER
         context['title'] = self.title
         context['special'] = False
-        context['login_url'] = reverse(URLS.Main.LOGIN)
+        context['login_url'] = reverse(URLS.Users.LOGIN)
         return context
 
 ############################################################################################################################################    User Update
@@ -239,7 +239,7 @@ class ChangePasswordView(PasswordChangeView, LoginRequiredMixin):
     template_name = Templates.Users.CHANGE_PASS
     title = 'Cambiar Contraseña'
     success_url = reverse_lazy (URLS.Main.INDEX)
-    dispatch_url = reverse_lazy (URLS.Main.LOGIN)
+    dispatch_url = reverse_lazy (URLS.Users.LOGIN)
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

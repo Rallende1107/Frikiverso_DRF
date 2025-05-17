@@ -354,7 +354,7 @@ class Serie(models.Model):
 class TitleSerie(models.Model):
     """Model definition for Title."""
     serie = models.ForeignKey(Serie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_title', on_delete=models.CASCADE, verbose_name=_('Serie'))
-    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_series_as_languages', on_delete=models.CASCADE, verbose_name=_('Lenguaje'))
+    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_series_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=255, unique=False, null=False, blank=False, verbose_name=_('Título'))
     slug = models.SlugField(max_length=255, unique=False, null=False, blank=True, editable=False, verbose_name=_('Título Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))

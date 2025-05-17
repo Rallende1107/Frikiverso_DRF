@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.common.models import (Language, Website, Format, ImageSize, Quality, Country, Person, NicknamePerson, PersonImage, PersonImageExtra)
+from apps.common.models import (Language, Website, Format, ImageSize, Quality, Country, Person, PersonNickname, PersonImage, PersonImageExtra)
 
 ########################################################################################################    Serializer Language
 class LanguageSerializer(serializers.ModelSerializer):
@@ -305,11 +305,11 @@ class PersonListSerializer(serializers.ModelSerializer):
             'updated_at',
         ]
 
-########################################################################################################    Serializer NicknamePerson
-class NicknamePersonSerializer(serializers.ModelSerializer):
+########################################################################################################    Serializer PersonNickname
+class PersonNicknameSerializer(serializers.ModelSerializer):
     # Serializer para Detalle y Crear
     class Meta:
-        model = NicknamePerson
+        model = PersonNickname
         fields = [
             'id',
             'person',
@@ -328,10 +328,10 @@ class NicknamePersonSerializer(serializers.ModelSerializer):
             'updated_at'
             ]
 
-class NicknamePersonListSerializer(serializers.ModelSerializer):
+class PersonNicknameListSerializer(serializers.ModelSerializer):
     # Serializer para Listado (solo campos esenciales)
     class Meta:
-        model = NicknamePerson
+        model = PersonNickname
         fields = [
             'id',
             'person',

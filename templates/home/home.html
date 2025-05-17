@@ -43,7 +43,7 @@
                                         {% if card.go_url %}
                                         <div>
                                             <a href="{% url card.go_url %}" class="btn btn-success mb-2" role="button">
-                                                <i class="bi bi-arrow-right-circle"></i> Ir
+                                                <i class="bi bi-arrow-right-circle"></i> {{ labels.go }}
                                             </a>
                                         </div>
                                         {% endif %}
@@ -51,7 +51,7 @@
                                         {% if card.view_url %}
                                         <div>
                                             <a href="{% url card.view_url %}" class="btn btn-success mb-2" role="button">
-                                                <i class="bi bi-list"></i> Todos
+                                                <i class="bi bi-list"></i> {{ labels.view_all }}
                                             </a>
                                         </div>
                                         {% endif %}
@@ -59,7 +59,7 @@
                                         {% if card.add_url %}
                                         <div>
                                             <a href="{% url card.add_url %}" class="btn btn-primary mb-2" role="button">
-                                                <i class="bi bi-plus-circle"></i> Añadir
+                                                <i class="bi bi-plus-circle"></i> {{ labels.add }}
                                             </a>
                                         </div>
                                         {% endif %}

@@ -737,7 +737,7 @@ class AnimeAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Generado automáticamente'), {
+        (_('Valores generados automáticamente'), {
             'classes': ('collapse',),
             'fields': ('slug', 'initial')
         }),
@@ -789,7 +789,7 @@ class MangaAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Generado automáticamente'), {
+        (_('Valores generados automáticamente'), {
             'classes': ('collapse',),
             'fields': ('slug', 'initial')
         }),
@@ -1149,7 +1149,7 @@ class AnimeCharacterAdmin(ImportExportModelAdmin):
         (_('Información Básica'), {
             'fields': ('character', 'anime', 'role',)
         }),
-        (_('Datos MAL'), {
+        (_('Información MAL'), {
             'fields': ('character_mal_id', 'anime_mal_id',)
         }),
         (_('Estado'), {
@@ -1194,7 +1194,7 @@ class MangaCharacterAdmin(ImportExportModelAdmin):
         (_('Información Básica'), {
             'fields': ('character', 'manga', 'role',)
         }),
-        (_('Datos MAL'), {
+        (_('Información MAL'), {
             'fields': ('character_mal_id', 'manga_mal_id',)
         }),
         (_('Estado'), {
@@ -1239,7 +1239,7 @@ class VoiceCharacterAdmin(ImportExportModelAdmin):
         (_('Información Básica'), {
             'fields': ('person', 'anime', 'character', 'language', )
         }),
-        (_('Datos MAL'), {
+        (_('Información MAL'), {
             'fields': ('person_mal_id', 'anime_mal_id', 'character_mal_id')
         }),
         (_('Estado'), {
@@ -1284,7 +1284,7 @@ class AnimeStaffAdmin(ImportExportModelAdmin):
         (_('Información Básica'), {
             'fields': ('person', 'anime', 'position',)
         }),
-        (_('Datos MAL'), {
+        (_('Información MAL'), {
             'fields': ('person_mal_id', 'anime_mal_id',)
         }),
         (_('Estado'), {
@@ -1329,7 +1329,7 @@ class AuthorMangaAdmin(ImportExportModelAdmin):
         (_('Información Básica'), {
             'fields': ('person', 'manga', 'position',)
         }),
-        (_('Datos MAL'), {
+        (_('Información MAL'), {
             'fields': ('person_mal_id', 'manga_mal_id',)
         }),
         (_('Estado'), {

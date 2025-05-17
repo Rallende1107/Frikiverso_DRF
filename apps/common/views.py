@@ -20,11 +20,12 @@ from .forms import (
 from core.mixins import PermissionRequiredMessageMixin
 from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
 from core.utils.texts import Titles
+from core.utils.utils import delete_previous_media
 
 # Create your views here.
 ############################################################################################################################################    HomeView
 class HomeView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = _('General')
 
     def get_context_data(self, **kwargs):
@@ -87,7 +88,7 @@ class HomeView(TemplateView):
                     'img_url': ImageCards.Common.IMAGE_SIZE,
                     'go_url': None,
                     'view_url': URLS.Common.ImageSize.LST,
-                    'add_url':  URLS.Common.ImageSize.ADD,
+                    'add_url': URLS.Common.ImageSize.ADD,
                     'text': _('Gestionar tamaños de imagen del sistema.'),
                     'extra_buttons': [],
                 },
@@ -108,8 +109,8 @@ class HomeView(TemplateView):
                     'title': _('Personas'),
                     'img_url': ImageCards.Common.PERSON,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Common.Person.LST,
+                    'add_url': URLS.Common.Person.ADD,
                     'text': _('Gestionar personas del sistema.'),
                     'extra_buttons': [],
                 },
@@ -118,8 +119,8 @@ class HomeView(TemplateView):
                     'title': _('Imágenes de personas'),
                     'img_url': ImageCards.Common.PERSON_IMAGE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Common.PersonImage.LST,
+                    'add_url': URLS.Common.PersonImage.ADD,
                     'text': _('Gestionar imágenes de personas.'),
                     'extra_buttons': [],
                 },
@@ -128,9 +129,19 @@ class HomeView(TemplateView):
                     'title': _('Imágenes extra de personas'),
                     'img_url': ImageCards.Common.PERSON_IMAGE_EXTRA,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Common.PersonImageExtra.LST,
+                    'add_url': URLS.Common.PersonImageExtra.ADD,
                     'text': _('Gestionar imágenes adicionales de personas.'),
+                    'extra_buttons': [],
+                },
+
+                {
+                    'title': _('Apodos de personas'),
+                    'img_url': ImageCards.Common.PERSON_NICKNAME,
+                    'go_url': None,
+                    'view_url': URLS.Common.PersonNickname.LST,
+                    'add_url': URLS.Common.PersonNickname.ADD,
+                    'text': _('Gestionar apodeos de las personas.'),
                     'extra_buttons': [],
                 },
             ],
@@ -166,9 +177,16 @@ class HomeView(TemplateView):
                 filtered_sections[section] = filtered_items
 
         context['card_sections'] = filtered_sections
+        context['labels'] = {
+            'go': _('Ir'),
+            'view_all': _('Todos'),
+            'add': _('Añadir'),
+        }
+
+
         return context
 
-############################################################################################################################################    Country Create
+############################################################################################################################################    Country
 class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Country
     form_class = CountryForm
@@ -198,7 +216,6 @@ class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Country Update
 class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Country
     form_class = CountryForm
@@ -228,7 +245,6 @@ class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Country List
 class CountryListView(PermissionRequiredMessageMixin, ListView):
     model = Country
     template_name = Templates.Common.Country.LST
@@ -238,7 +254,7 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        for country in context['country']:
+        for country in context[self.context_object_name]:
             # Combina el nombre y las iniciales en inglés
             if country.code:
                 country.combined_name = f'{country.name} ({country.code})'
@@ -272,7 +288,6 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
         ]
         return context
 
-############################################################################################################################################    Country Detail
 class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Country
     template_name = Templates.Common.Country.DTL
@@ -304,7 +319,7 @@ class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
-############################################################################################################################################    Format Create
+############################################################################################################################################    Format
 class FormatCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Format
     form_class = FormatForm
@@ -334,7 +349,6 @@ class FormatCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Format Update
 class FormatUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Format
     form_class = FormatForm
@@ -364,7 +378,6 @@ class FormatUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Format List
 class FormatListView(PermissionRequiredMessageMixin, ListView):
     model = Format
     template_name = Templates.Common.Format.LST
@@ -395,7 +408,6 @@ class FormatListView(PermissionRequiredMessageMixin, ListView):
         ]
         return context
 
-############################################################################################################################################    Format Detail
 class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Format
     template_name = Templates.Common.Format.DTL
@@ -427,7 +439,7 @@ class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
-############################################################################################################################################    ImageSize  Create
+############################################################################################################################################    ImageSize
 class ImageSizeCreateView(PermissionRequiredMessageMixin, CreateView):
     model = ImageSize
     form_class = ImageSizeForm
@@ -457,7 +469,6 @@ class ImageSizeCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    ImageSize  Update
 class ImageSizeUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = ImageSize
     form_class = ImageSizeForm
@@ -487,7 +498,6 @@ class ImageSizeUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    ImageSize  List
 class ImageSizeListView(PermissionRequiredMessageMixin, ListView):
     model = ImageSize
     template_name = Templates.Common.ImageSize.LST
@@ -518,7 +528,6 @@ class ImageSizeListView(PermissionRequiredMessageMixin, ListView):
         ]
         return context
 
-############################################################################################################################################    ImageSize  Detail
 class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
     model = ImageSize
     template_name = Templates.Common.ImageSize.DTL
@@ -550,7 +559,7 @@ class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
-############################################################################################################################################    Lenguaje  Create
+############################################################################################################################################    Lenguaje
 class LanguageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Language
     form_class = LanguageForm
@@ -580,7 +589,6 @@ class LanguageCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Lenguaje  Update
 class LanguageUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Language
     form_class = LanguageForm
@@ -610,7 +618,6 @@ class LanguageUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['cancel_url'] = self.success_url
         return context
 
-############################################################################################################################################    Lenguaje  List
 class LanguageListView(PermissionRequiredMessageMixin, ListView):
     model = Language
     template_name = Templates.Common.Language.LST
@@ -620,7 +627,7 @@ class LanguageListView(PermissionRequiredMessageMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        for language in context['languages']:
+        for language in context[self.context_object_name]:
             # Combina el nombre y las iniciales en inglés
             if language.acronym:
                 language.combined_language = f'{language.name} ({language.acronym})'
@@ -654,7 +661,6 @@ class LanguageListView(PermissionRequiredMessageMixin, ListView):
         ]
         return context
 
-############################################################################################################################################    Lenguaje  Detail
 class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Language
     template_name = Templates.Common.Language.DTL
@@ -673,7 +679,7 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
 
     def get_object(self):
         """Obtiene el álbum o lanza un Http404 si no se encuentra."""
-        return get_object_or_404(Country, pk=self.kwargs['pk'])
+        return get_object_or_404(Language, pk=self.kwargs['pk'])
 
     # 3. Función de contexto
     def get_context_data(self, **kwargs):
@@ -685,11 +691,545 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
-############################################################################################################################################    FormatosLenguaje
-# PERSON
+############################################################################################################################################    Person
+class PersonCreateView(PermissionRequiredMessageMixin, CreateView):
+    model = Person
+    form_class = PersonForm
+    template_name = Templates.Common.Person.ADD
+    success_url = reverse_lazy(URLS.Common.Person.LST)
+    title = _('Añadir Persona')
+    permission_redirect_url = URLS.Home.COMMON
 
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
 
-############################################################################################################################################    Calidades
+    def form_valid(self, form):
+        name = form.cleaned_data.get('full_name')
+        messages.success(self.request, _('¡La Persona "%(name)s" fue creada exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Person
+    form_class = PersonForm
+    template_name = Templates.Common.Person.ADD
+    success_url = reverse_lazy(URLS.Common.Person.LST)
+    title = _('Editar Persona')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get('full_name')
+        messages.success(self.request, _('¡La Persona "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonListView(PermissionRequiredMessageMixin, ListView):
+    model = Person
+    template_name = Templates.Common.Person.LST
+    context_object_name = 'persons'
+    title = _('Lista de Personas')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.PERSON
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.PERSON
+        context['key_map'] = KeyMap.Common.PERSON
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Person.ADD),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Person
+    template_name = Templates.Common.Person.DTL
+    context_object_name = 'persons'
+    permission_redirect_url = URLS.Home.COMMON
+
+    # 2. Funciones de acceso al objeto
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La Persona que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Person.LST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Person, pk=self.kwargs['pk'])
+
+    # 3. Función de contexto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON
+        context['title'] = self.object.full_name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Person.LST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    PersonImage
+class PersonImageCreateView(PermissionRequiredMessageMixin, CreateView):
+    model = PersonImage
+    form_class = PersonImageForm
+    template_name = Templates.Common.PersonImage.ADD
+    success_url = reverse_lazy(URLS.Common.PersonImage.LST)
+    title = _('Añadir imagen de persona')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        person_name = form.instance.person.full_name
+        messages.success(self.request, _('¡La Imagen de la persona "%(name)s" fue creada exitosamente!') % {'name': person_name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonImageUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = PersonImage
+    form_class = PersonImageForm
+    template_name = Templates.Common.PersonImage.ADD
+    success_url = reverse_lazy(URLS.Common.PersonImage.LST)
+    title = _('Editar Imagen de persona')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        old_instance = self.get_object()
+        old_image_url = old_instance.get_img_url() if old_instance and old_instance.image else None
+
+        self.object = form.save()
+
+        # Solo eliminar la imagen anterior si realmente se cambió
+        if form.has_changed() and 'image' in form.changed_data and old_image_url:
+            try:
+                delete_previous_media(old_image_url)
+            except Exception as e:
+                messages.error(self.request, _('Error al eliminar la imagen anterior: %(error)s') % {'error': e})
+
+        person_name = self.object.person.full_name
+        messages.success(self.request, _('¡La Imagen de la persona "%(name)s" fue actualizada exitosamente!') % {'name': person_name})
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+
+        form = self.get_form()
+        have_media_file = 'image' in form.fields
+        media_url = None
+        if have_media_file:
+            objeto = self.get_object()
+            if objeto and objeto.get_img_url():
+                media_url = objeto.get_img_url()
+
+        context['media_file_table'] = bool(media_url)
+        context['media_url'] = media_url
+        return context
+
+class PersonImageListView(PermissionRequiredMessageMixin, ListView):
+    model = PersonImage
+    template_name = Templates.Common.PersonImage.LST
+    context_object_name = 'images'
+    title = _('Lista de imágenes de personas')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        for img in context[self.context_object_name]:
+            # Si la relación 'anime' es un ForeignKey, accedemos directamente a la propiedad 'anime'
+            img.person_name = img.get_object_name()
+            # Obtener el nombre y la extensión de la imagen
+            img.image_name = img.get_object_name()
+
+            # Obtener la URL de la imagen si está disponible
+            img.image_url_local = img.get_img_url()
+            img.image_url_external = img.image_url if img.image_url else None
+
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.PERSON_IMAGE
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.PERSON_IMAGE
+        context['key_map'] = KeyMap.Common.PERSON_IMAGE
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.PersonImage.ADD),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = PersonImage
+    template_name = Templates.Common.PersonImage.DTL
+    context_object_name = 'image'
+    permission_redirect_url = URLS.Home.COMMON
+
+    # 2. Funciones de acceso al objeto
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La imagen que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.PersonImage.LST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(PersonImage, pk=self.kwargs['pk'])
+
+    # 3. Función de contexto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.PersonImage.LST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    PersonImageExtra
+class PersonImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
+    model = PersonImageExtra
+    form_class = PersonImageExtraForm
+    template_name = Templates.Common.PersonImageExtra.ADD
+    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+    title = _('Añadir imagen adicional de persona')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        person_name = form.instance.person.full_name
+        messages.success(self.request, _('¡La Imagen adicional de la persona "%(name)s" fue creada exitosamente!') % {'name': person_name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonImageExtraUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = PersonImageExtra
+    form_class = PersonImageExtraForm
+    template_name = Templates.Common.PersonImageExtra.ADD
+    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+    title = _('Editar imagen adicional de persona')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        old_instance = self.get_object()
+        old_image_url = old_instance.get_img_url() if old_instance and old_instance.image else None
+
+        self.object = form.save()
+
+        # Solo eliminar la imagen anterior si realmente se cambió
+        if form.has_changed() and 'image' in form.changed_data and old_image_url:
+            try:
+                delete_previous_media(old_image_url)
+            except Exception as e:
+                messages.error(self.request, _('Error al eliminar la imagen anterior: %(error)s') % {'error': e})
+
+        person_name = self.object.person.full_name
+        messages.success(self.request, _('¡La imagen adicional de la persona "%(name)s" fue actualizada exitosamente!') % {'name': person_name})
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+
+        form = self.get_form()
+        have_media_file = 'image' in form.fields
+        media_url = None
+        if have_media_file:
+            objeto = self.get_object()
+            if objeto and objeto.get_img_url():
+                media_url = objeto.get_img_url()
+
+        context['media_file_table'] = bool(media_url)
+        context['media_url'] = media_url
+        return context
+
+class PersonImageExtraListView(PermissionRequiredMessageMixin, ListView):
+    model = PersonImageExtra
+    template_name = Templates.Common.PersonImageExtra.LST
+    context_object_name = 'images'
+    title = _('Lista de imagenes adicionales de personas')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        for img in context[self.context_object_name]:
+            # Si la relación 'anime' es un ForeignKey, accedemos directamente a la propiedad 'anime'
+            img.person_name = img.get_object_name()
+            # Obtener el nombre y la extensión de la imagen
+            img.image_name = img.get_object_name()
+
+            # Obtener la URL de la imagen si está disponible
+            img.image_url_local = img.get_img_url()
+
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.PERSON_IMAGE_EXTRA
+        context['key_map'] = KeyMap.Common.PERSON_IMAGE_EXTRA
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.PersonImageExtra.ADD),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = PersonImageExtra
+    template_name = Templates.Common.PersonImageExtra.DTL
+    context_object_name = 'image'
+    permission_redirect_url = URLS.Home.COMMON
+
+    # 2. Funciones de acceso al objeto
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La imagen adicional que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.PersonImageExtra.LST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(PersonImageExtra, pk=self.kwargs['pk'])
+
+    # 3. Función de contexto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    PersonNickname
+class PersonNicknameCreateView(PermissionRequiredMessageMixin, CreateView):
+    model = PersonNickname
+    form_class = PersonNicknameForm
+    template_name = Templates.Common.PersonNickname.ADD
+    success_url = reverse_lazy(URLS.Common.PersonNickname.LST)
+    title = _('Añadir PersonNicknamea')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get('full_name')
+        messages.success(self.request, _('¡La PersonNicknamea "%(name)s" fue creada exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_NICKNAME
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonNicknameUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = PersonNickname
+    form_class = PersonNicknameForm
+    template_name = Templates.Common.PersonNickname.ADD
+    success_url = reverse_lazy(URLS.Common.PersonNickname.LST)
+    title = _('Editar PersonNicknamea')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get('full_name')
+        messages.success(self.request, _('¡La PersonNicknamea "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_NICKNAME
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class PersonNicknameListView(PermissionRequiredMessageMixin, ListView):
+    model = PersonNickname
+    template_name = Templates.Common.PersonNickname.LST
+    context_object_name = 'nicknames'
+    title = _('Lista de Apodos de personas')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.PERSON_NICKNAME
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.PERSON_NICKNAME
+        context['key_map'] = KeyMap.Common.PERSON_NICKNAME
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.PersonNickname.ADD),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = PersonNickname
+    template_name = Templates.Common.PersonNickname.DTL
+    context_object_name = 'nickname'
+    permission_redirect_url = URLS.Home.COMMON
+
+    # 2. Funciones de acceso al objeto
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('El Apodo de persona que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.PersonNickname.LST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(PersonNickname, pk=self.kwargs['pk'])
+
+    # 3. Función de contexto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.PERSON_NICKNAME
+        context['title'] = self.object.nickname
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.PersonNickname.LST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
 ############################################################################################################################################    Quality Create
 class QualityCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Quality
@@ -765,8 +1305,6 @@ class QualityListView(PermissionRequiredMessageMixin, ListView):
         context['js_action'] = JSConstants.ACTIONS
         context['js_script'] = JSConstants.Common.QUALITY
         context['key_map'] = KeyMap.Common.QUALITY
-        # print('🔑 Key Map:', context['key_map'])  # Debug por consola
-
         context['buttons'] = [
             {
                 'url': reverse_lazy(URLS.Home.COMMON),
@@ -815,9 +1353,6 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
-
-# ############################################################################################################################################    Paginas
-# ############################################################################################################################################    Paginas
 ############################################################################################################################################    Quality Create
 class WebsiteCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Website
@@ -954,155 +1489,7 @@ class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
         return context
 
 
-# ############################################################################################################################################    Paginas
-# class DownloadWebsiteCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-#     model = DownloadWebsite
-#     form_class = DownloadWebsiteForm
-#     template_name = TPL_CORE_WEBSITE_ADD
-#     success_url = reverse_lazy(URL_CORE_WEBSITE_LST)
-#     title = 'Añadir Página de Descarga'
 
-#     def test_func(self):
-#         # Permitir acceso si es superusuario o staff
-#         return self.request.user.is_superuser or self.request.user.is_staff
-
-#     def handle_no_permission(self):
-#         messages.error(self.request, 'No tienes los permisos para realizar esta acción.')
-#         return redirect(URL_CORE_HOME)
-
-#     def form_valid(self, form):
-#         name = form.cleaned_data.get('name')
-#         messages.success(self.request, f'Página "{name}" Creado Exitosamente!')
-#         return super().form_valid(form)
-
-#     def form_invalid(self, form):
-#         for field, errors in form.errors.items():
-#             for error in errors:
-#                 messages.error(self.request, error)
-#         return super().form_invalid(form)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['class'] = BG_CORE_WEBSITE
-#         context['title'] = self.title
-#         context['cancel_url'] = self.success_url
-#         return context
-
-# class DownloadWebsiteUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = DownloadWebsite
-#     form_class = DownloadWebsiteForm
-#     template_name = TPL_CORE_WEBSITE_ADD
-#     success_url = reverse_lazy(URL_CORE_WEBSITE_LST)
-#     title = 'Editar Página de Descarga'
-
-#     def test_func(self):
-#         # Permitir acceso si es superusuario o staff
-#         return self.request.user.is_superuser or self.request.user.is_staff
-
-#     def handle_no_permission(self):
-#         messages.error(self.request, 'No tienes los permisos para realizar esta acción.')
-#         return redirect(URL_CORE_HOME)
-
-#     def form_valid(self, form):
-#         name = form.cleaned_data.get('name')
-#         messages.success(self.request, f'Página "{name}" Editada Exitosamente!')
-#         return super().form_valid(form)
-
-#     def form_invalid(self, form):
-#         for field, errors in form.errors.items():
-#             for error in errors:
-#                 messages.error(self.request, error)
-#         return super().form_invalid(form)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['class'] = BG_CORE_WEBSITE
-#         context['title'] = self.title
-#         context['cancel_url'] = self.success_url
-#         return context
-
-# class DownloadWebsiteListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-#     model = DownloadWebsite
-#     template_name = TPL_CORE_WEBSITE_LST
-#     context_object_name = 'downloadWebsites'
-#     title = 'Lista de Páginas de Descarga'
-
-#     def test_func(self):
-#         return self.request.user.is_authenticated
-
-#     def handle_no_permission(self):
-#         messages.error(self.request, 'Debes estar logueado para acceder a esta página.')
-#         return redirect(URL_CORE_HOME)
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         for website in context[self.context_object_name]:
-#             # Combina el nombre y el acrónimo
-#             if website.acronym:
-#                 website.display_name = f"{website.name} ({website.acronym})"
-#                 website.display_link = website.acronym  # Solo el acrónimo
-#             else:
-#                 website.display_name = website.name
-#                 website.display_link = website.name  # Solo el nombre
-
-#         context['title'] = self.title
-#         context['class'] = BG_CORE_WEBSITE
-#         context['js_action'] = JS_ACTIONS
-#         context['js_script'] = JS_CONFIG_CORE_WEBSITE
-#         context['key_map'] = KEY_CORE_WEBSITE
-#         context['buttons'] = [
-#             {
-#                 'url': reverse_lazy(URL_CORE_HOME),
-#                 'label': 'Inicio',
-#                 'icon': 'bi bi-house',
-#                 'show': True
-#             },
-#             {
-#                 'url': reverse_lazy(URL_CORE_WEBSITE_ADD),
-#                 'label': 'Añadir',
-#                 'icon': 'bi bi-plus-circle',
-#                 'show': self.request.user.is_superuser or self.request.user.is_staff
-#             },
-#         ]
-#         return context
-
-
-# class DownloadWebsiteDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-#     model = DownloadWebsite
-#     template_name = TPL_CORE_WEBSITE_DTL
-#     context_object_name = 'DownloadWebsite'
-
-#     # 1. Funciones de permisos
-#     def test_func(self):
-#         return self.request.user.is_authenticated
-
-#     def handle_no_permission(self):
-#         messages.error(self.request, 'Debes estar logueado para acceder a esta página.')
-#         return redirect(reverse_lazy(URL_CORE_WEBSITE_LST))
-
-#     # 2. Funciones de acceso al objeto
-#     def get(self, request, *args, **kwargs):
-#         try:
-#             self.object = self.get_object()
-#         except Http404:
-#             messages.error(self.request, 'La página que buscas no se encontró.')
-#             return redirect(reverse_lazy(URL_CORE_WEBSITE_LST))
-
-#         return super().get(request, *args, **kwargs)
-
-#     def get_object(self):
-#         """Obtiene el álbum o lanza un Http404 si no se encuentra."""
-#         return get_object_or_404(DownloadWebsite, pk=self.kwargs['pk'])
-
-#     # 3. Función de contexto
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['class'] = BG_CORE_WEBSITE
-#         context['objeto'] = self.object
-#         context['title'] = self.object.name
-#         context['listURL'] = reverse_lazy(URL_CORE_WEBSITE_LST)
-#         context['homeURL'] = reverse_lazy(URL_CORE_HOME)
-#         return context
 
 
 

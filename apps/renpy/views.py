@@ -6,7 +6,7 @@ from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, Im
 
 
 class HomeView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Juegos'
 
     def get_context_data(self, **kwargs):
@@ -25,7 +25,7 @@ class HomeView(TemplateView):
                     'text': 'Gestiona los juegos disponibles en el sistema.',
                     'extra_buttons': [
                         {
-                            'url': URLS.OtakuLoad.ANIME,
+                            'url': URLS.Otaku.Load.ANIME,
                             'label': 'Cargar Juegos de F95',
                             'icon': 'bi bi-cloud-arrow-up',
                             'show': self.request.user.is_superuser,
@@ -289,4 +289,3 @@ class HomeView(TemplateView):
 
         context['card_sections'] = filtered_sections
         return context
-

@@ -1346,7 +1346,7 @@ class Manga(models.Model):
 class TitleAnime(models.Model):
     """Model definition for TitleAnime."""
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='animes_as_title', on_delete=models.CASCADE, verbose_name=_('Anime'))
-    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_animes_as_languages', on_delete=models.CASCADE, verbose_name=_('Lenguaje'))
+    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_animes_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name=_('Título'))
     slug = models.SlugField(max_length=20000, unique=False, null=False, blank=True, editable=False, verbose_name=_('Título Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
@@ -1394,7 +1394,7 @@ class TitleAnime(models.Model):
 class TitleManga(models.Model):
     """Model definition for TitleManga."""
     manga = models.ForeignKey(Manga, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='mangas_as_title', on_delete=models.CASCADE, verbose_name=_('Manga'))
-    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_mangas_as_languages', on_delete=models.CASCADE, verbose_name=_('Lenguaje'))
+    title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_mangas_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name=_('Título'))
     slug = models.SlugField(max_length=20000, unique=False, null=False, blank=True, editable=False, verbose_name=_('Título Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))

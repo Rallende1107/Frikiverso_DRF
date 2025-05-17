@@ -27,5 +27,5 @@ urlpatterns = [
     path('change/password/', ChangePasswordView.as_view(), name='password_change'),
 
     # Rutas de API (descomentarlas si es necesario)
-    # path('api/', include('apps.renpy.api.urls')),
+    path('api/', include('apps.users.api.urls')),
 ]

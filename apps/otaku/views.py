@@ -6,7 +6,7 @@ from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, Im
 
 
 class HomeView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Inicio Otaku'
 
     def get_context_data(self, **kwargs):
@@ -147,7 +147,7 @@ class HomeView(TemplateView):
                     'text': 'Gestión de Animes.',
                     'extra_buttons': [
                         {
-                            'url': URLS.OtakuLoad.ANIME,
+                            'url': URLS.Otaku.Load.ANIME,
                             'label': 'Cargar Animes de MAL',
                             'icon': 'bi bi-cloud-arrow-down',
                             'show': self.request.user.is_superuser,
@@ -219,7 +219,7 @@ class HomeView(TemplateView):
                     'text': 'Gestión de Mangas.',
                     'extra_buttons': [
                         {
-                            'url': URLS.OtakuLoad.MANGA,
+                            'url': URLS.Otaku.Load.MANGA,
                             'label': 'Cargar Mangas de MAL',
                             'icon': 'bi bi-cloud-arrow-down',
                             'show': self.request.user.is_superuser,
@@ -249,7 +249,7 @@ class HomeView(TemplateView):
                     'text': 'Lista de personajes.',
                     'extra_buttons': [
                         {
-                            'url': URLS.OtakuLoad.CHARACTER,
+                            'url': URLS.Otaku.Load.CHARACTER,
                             'label': 'Cargar personajes de MAL',
                             'icon': 'bi bi-cloud-arrow-down',
                             'show': self.request.user.is_superuser,
@@ -321,13 +321,13 @@ class HomeView(TemplateView):
                     'text': 'Lista de personas. Actores de Voz. Autores. Staff Anime. Staff Manga.',
                     'extra_buttons': [
                         {
-                            'url': URLS.OtakuLoad.PERSON,
+                            'url': URLS.Otaku.Load.PERSON,
                             'label': 'Cargar personas de MAL',
                             'icon': 'bi bi-cloud-arrow-down',
                             'show': self.request.user.is_superuser,
                             'btn_class': 'btn-danger'
                         },
-                        ],
+                    ],
                 },
 
                 {
@@ -689,23 +689,21 @@ class HomeView(TemplateView):
         return context
 
 
-
-
-
 class AnimeListView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Inicio Otaku'
+
 
 class MangaListView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Inicio Otaku'
-
 
 
 class CharacterListView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Inicio Otaku'
 
+
 class PersonListView(TemplateView):
-    template_name = Templates.HOME
+    template_name = Templates.Home.HOME
     title = 'Inicio Otaku'

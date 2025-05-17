@@ -35,7 +35,7 @@ class Country(models.Model):
     initial_esp = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial Español'))
     slug = models.SlugField(max_length=60, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     code = models.CharField(max_length=4, unique=False, null=False, blank=True, verbose_name=_('Código'))
-    numeric_code = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('Código Numerico'))
+    numeric_code = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('Código Numérico'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -261,7 +261,7 @@ class Person(models.Model):
         if self.birth_date:
             today = date.today()
             return today.year - self.birth_date.year - ((today.month, today.day) < (self.birth_date.month, self.birth_date.day))
-        return None
+        return 0
 
 ########################################################################################################    Modelo para PersonImage
 class PersonImage(models.Model):
@@ -270,8 +270,8 @@ class PersonImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='persons_images_as_sizes', on_delete=models.PROTECT, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=person_image_path, verbose_name=_('Imagen Persona'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    name = models.CharField(max_length=150, unique=False, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
+    slug = models.SlugField(max_length=150, unique=False, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -288,26 +288,28 @@ class PersonImage(models.Model):
         return self.name if self.person else _('Imagen sin Persona')
 
     def save(self, *args, **kwargs):
-        is_new = self._state.adding
-        super().save(*args, **kwargs)  # Guardar primero para que self.image.name sea definitivo
+        super().save(*args, **kwargs)  # Guardar para que image.name esté definido
 
-        filename = os.path.basename(self.image.name) if self.image else None
+        if not self.image or not hasattr(self.image, 'name'):
+            # No hay imagen o nombre, nada que actualizar
+            return
 
-        # Actualizar name y slug si es necesario
+        filename = os.path.basename(self.image.name)
         updated_fields = []
 
-        if filename and (not self.name or self.name != filename):
+        if self.name != filename:
             self.name = filename
             updated_fields.append('name')
 
-        if self.name and (not self.slug or slugify(self.name) != self.slug):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        name_without_ext = os.path.splitext(filename)[0]
+        new_slug = slugify(name_without_ext)
+
+        if self.slug != new_slug:
+            self.slug = new_slug
             updated_fields.append('slug')
 
-        # Guardar solo si se modificó algo
         if updated_fields:
             super().save(update_fields=updated_fields)
-        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for PersonImage."""
@@ -317,7 +319,7 @@ class PersonImage(models.Model):
     def get_object_name(self):
         if self.person:
             return self.person.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
         if self.image:
@@ -362,8 +364,8 @@ class PersonImageExtra(models.Model):
     """Model definition for PersonImageExtra."""
     person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='persons_as_exta_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
     image = models.ImageField(blank=False, null=False, upload_to=person_image_extra_path, verbose_name=_('Imagen Extra Persona'))
-    name = models.CharField(max_length=150, unique=True, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    name = models.CharField(max_length=150, unique=False, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
+    slug = models.SlugField(max_length=150, unique=False, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -380,23 +382,29 @@ class PersonImageExtra(models.Model):
         return self.name if self.person else _('Imagen sin Persona')
 
     def save(self, *args, **kwargs):
-        """Save method for PersonImageExtra."""
-        old = PersonImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)  # Guardar para que image.name esté definido
+
+        if not self.image or not hasattr(self.image, 'name'):
+            # No hay imagen o nombre, nada que actualizar
+            return
+
+        filename = os.path.basename(self.image.name)
+        updated_fields = []
+
+        if self.name != filename:
+            self.name = filename
+            updated_fields.append('name')
+
+        name_without_ext = os.path.splitext(filename)[0]
+        new_slug = slugify(name_without_ext)
+
+        if self.slug != new_slug:
+            self.slug = new_slug
+            updated_fields.append('slug')
+
+        if updated_fields:
+            super().save(update_fields=updated_fields)
+
 
     def get_absolute_url(self):
         """Return absolute url for PersonImageExtra."""

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 # Importando modelos User
 from apps.users.models import CustomUser
-
+from apps.users.views_password_reset import notify_password_reset, notify_blocked_user, notify_activated_user, notify_deleted_user
 # Importando modelos Common
 from apps.common.models import (
     Country, Format, ImageSize, Language, Person, PersonImage,
@@ -74,6 +74,7 @@ class ActionView(View):
                 'listas_url': 'users_app:users_list',
                 'update_url': 'users_app:users_update',
                 'detail_url': 'users_app:users_detail',
+                'es_usuario': True,
             },
 ########################################################################################    COMMON
             'País': {
@@ -81,12 +82,14 @@ class ActionView(View):
                 'listas_url': 'common_app:country_list',
                 'update_url': 'common_app:country_update',
                 'detail_url': 'common_app:country_detail',
+                'es_usuario': False,
             },
             'Formato': {
                 'model': Format,
                 'listas_url': 'common_app:format_list',
                 'update_url': 'common_app:format_update',
                 'detail_url': 'common_app:format_detail',
+                'es_usuario': False,
             },
 
             'Tamaño Imagen.': {
@@ -94,6 +97,7 @@ class ActionView(View):
                 'listas_url': 'common_app:image_size_list',
                 'update_url': 'common_app:image_size_update',
                 'detail_url': 'common_app:image_size_detail',
+                'es_usuario': False,
             },
 
             'Idioma': {
@@ -101,6 +105,7 @@ class ActionView(View):
                 'listas_url': 'common_app:language_list',
                 'update_url': 'common_app:language_update',
                 'detail_url': 'common_app:language_detail',
+                'es_usuario': False,
             },
 
             'Persona': {
@@ -108,6 +113,7 @@ class ActionView(View):
                 'listas_url': 'common_app:person_list',
                 'update_url': 'common_app:person_update',
                 'detail_url': 'common_app:person_detail',
+                'es_usuario': False,
             },
 
             'Imagen de Persona': {
@@ -115,6 +121,7 @@ class ActionView(View):
                 'listas_url': 'common_app:person_image_list',
                 'update_url': 'common_app:person_image_update',
                 'detail_url': 'common_app:person_image_detail',
+                'es_usuario': False,
             },
 
             'Imagen extra de Persona': {
@@ -122,24 +129,28 @@ class ActionView(View):
                 'listas_url': 'common_app:person_image_extra_list',
                 'update_url': 'common_app:person_image_extra_update',
                 'detail_url': 'common_app:person_image_extra_detail',
+                'es_usuario': False,
             },
             'Apodo de Persona': {
                 'model': PersonNickname,
                 'listas_url': 'common_app:person_nickname_list',
                 'update_url': 'common_app:person_nickname_update',
                 'detail_url': 'common_app:person_nickname_detail',
+                'es_usuario': False,
             },
             'Calidad': {
                 'model': Quality,
                 'listas_url': 'common_app:quality_list',
                 'update_url': 'common_app:quality_update',
                 'detail_url': 'common_app:quality_detail',
+                'es_usuario': False,
             },
             'Sitio Web': {
                 'model': Website,
                 'listas_url': 'common_app:website_list',
                 'update_url': 'common_app:website_update',
                 'detail_url': 'common_app:website_detail',
+                'es_usuario': False,
             },
 # ########################################################################################    Musica
 #             'Album': {
@@ -147,356 +158,412 @@ class ActionView(View):
 #                 'listas_url': 'music_app:album_list',
 #                 'update_url': 'music_app:album_update',
 #                 'detail_url': 'music_app:album_detail',
-#             },
-#             'Artista': {
-#                 'model': Artist,
-#                 'listas_url': 'music_app:artist_list',
-#                 'update_url': 'music_app:artist_update',
-#                 'detail_url': 'music_app:artist_detail',
-#             },
-#             'Género Musical': {
-#                 'model': GenreMusic,
-#                 'listas_url': 'music_app:genre_list',
-#                 'update_url': 'music_app:genre_update',
-#                 'detail_url': 'music_app:genre_detail',
-#             },
-#             'Miembro': {
-#                 'model': Member,
-#                 'listas_url': 'music_app:member_list',
-#                 'update_url': 'music_app:member_update',
-#                 'detail_url': 'music_app:member_detail',
-#             },
-#             'Canción': {
-#                 'model': Song,
-#                 'listas_url': 'music_app:song_list',
-#                 'update_url': 'music_app:song_update',
-#                 'detail_url': 'music_app:song_detail',
-#             },
-#             'Membresia': {
-#                 'model': Membership,
-#                 'listas_url': 'music_app:membership_list',
-#                 'update_url': 'music_app:membership_update',
-#                 'detail_url': 'music_app:membership_detail',
-#             },
-#             'Apodo del Miembro': {
-#                 'model': MemberNickname,
-#                 'listas_url': 'music_app:member_nickname_list',
-#                 'update_url': 'music_app:member_nickname_update',
-#                 'detail_url': 'music_app:member_nickname_detail',
-#             },
-# ########################################################################################    Juegos Renpy
-#             'Desarrollador': {
-#                 'model': Developer,
-#                 'listas_url': 'renpy_app:developer_list',
-#                 'update_url': 'renpy_app:developer_update',
-#                 'detail_url': 'renpy_app:developer_detail',
-#             },
-#             'Traductor': {
-#                 'model': Translator,
-#                 'listas_url': 'renpy_app:translator_list',
-#                 'update_url': 'renpy_app:translator_update',
-#                 'detail_url': 'renpy_app:translator_detail',
-#             },
-#             'Editor': {
-#                 'model': Publisher,
-#                 'listas_url': 'renpy_app:publisher_list',
-#                 'update_url': 'renpy_app:publisher_update',
-#                 'detail_url': 'renpy_app:publisher_detail',
-#             },
-#             'Link de Desarrollador': {
-#                 'model': DeveloperLink,
-#                 'listas_url': 'renpy_app:developer_link_list',
-#                 'update_url': 'renpy_app:developer_link_update',
-#                 'detail_url': 'renpy_app:developer_link_detail',
-#             },
-#             'Link de Traductor': {
-#                 'model': TranslatorLink,
-#                 'listas_url': 'renpy_app:translator_link_list',
-#                 'update_url': 'renpy_app:translator_link_update',
-#                 'detail_url': 'renpy_app:translator_link_detail',
-#             },
-#             'Link de Editor': {
-#                 'model': PublisherLink,
-#                 'listas_url': 'renpy_app:publisher_link_list',
-#                 'update_url': 'renpy_app:publisher_link_update',
-#                 'detail_url': 'renpy_app:publisher_link_detail',
-#             },
-#             'Género de Juego': {
-#                 'model': GenreRenpy,
-#                 'listas_url': 'renpy_app:genre_list',
-#                 'update_url': 'renpy_app:genre_update',
-#                 'detail_url': 'renpy_app:genre_detail',
-#             },
-#             'Motor de Desarrollo': {
-#                 'model': GameEngine,
-#                 'listas_url': 'renpy_app:engine_list',
-#                 'update_url': 'renpy_app:engine_update',
-#                 'detail_url': 'renpy_app:engine_detail',
-#             },
-#             'Estado de Juego': {
-#                 'model': GameState,
-#                 'listas_url': 'renpy_app:game_statu_list',
-#                 'update_url': 'renpy_app:game_statu_update',
-#                 'detail_url': 'renpy_app:game_statu_detail',
-#             },
-#             'Plataforma': {
-#                 'model': Platform,
-#                 'listas_url': 'renpy_app:platform_list',
-#                 'update_url': 'renpy_app:platform_update',
-#                 'detail_url': 'renpy_app:platform_detail',
-#             },
-#             'Juego Renpy': {
-#                 'model': Game,
-#                 'listas_url': 'renpy_app:game_list',
-#                 'update_url': 'renpy_app:game_update',
-#                 'detail_url': 'renpy_app:game_detail',
-#             },
-#             'Imagen de Juego': {
-#                 'model': GameImage,
-#                 'listas_url': 'renpy_app:game_image_list',
-#                 'update_url': 'renpy_app:game_image_update',
-#                 'detail_url': 'renpy_app:game_image_detail',
-#             },
-# ########################################################################################    Otaku Data
-#             'Genéro Otaku': {
-#                 'model': Genre,
-#                 'listas_url': 'otaku_app:genre_list',
-#                 'update_url': 'otaku_app:genre_update',
-#                 'detail_url': 'otaku_app:genre_detail',
-#             },
-#             'Tema Otaku': {
-#                 'model': Theme,
-#                 'listas_url': 'otaku_app:theme_list',
-#                 'update_url': 'otaku_app:theme_update',
-#                 'detail_url': 'otaku_app:theme_detail',
-#             },
-#             'Demografía Otaku': {
-#                 'model': Demographic,
-#                 'listas_url': 'otaku_app:demographic_list',
-#                 'update_url': 'otaku_app:demographic_update',
-#                 'detail_url': 'otaku_app:demographic_detail',
-#             },
-#             'Año': {
-#                 'model': Year,
-#                 'listas_url': 'otaku_app:year_list',
-#                 'update_url': 'otaku_app:year_update',
-#                 'detail_url': 'otaku_app:year_detail',
-#             },
-#             'Temporada': {
-#                 'model': Season,
-#                 'listas_url': 'otaku_app:season_list',
-#                 'update_url': 'otaku_app:season_update',
-#                 'detail_url': 'otaku_app:season_detail',
-#             },
-#             'Temporada Completa': {
-#                 'model': SeasonFull,
-#                 'listas_url': 'otaku_app:seasonfull_list',
-#                 'update_url': 'otaku_app:seasonfull_update',
-#                 'detail_url': 'otaku_app:seasonfull_detail',
-#             },
-#             'Título': {
-#                 'model': Title,
-#                 'listas_url': 'otaku_app:title_list',
-#                 'update_url': 'otaku_app:title_update',
-#                 'detail_url': 'otaku_app:title_detail',
-#             },
-#             'Tipo': {
-#                 'model': Type,
-#                 'listas_url': 'otaku_app:type_list',
-#                 'update_url': 'otaku_app:type_update',
-#                 'detail_url': 'otaku_app:type_detail',
-#             },
-#             'Estado': {
-#                 'model': State,
-#                 'listas_url': 'otaku_app:statu_list',
-#                 'update_url': 'otaku_app:statu_update',
-#                 'detail_url': 'otaku_app:statu_detail',
-#             },
-#             'Tipo de Relación': {
-#                 'model': RelationType,
-#                 'listas_url': 'otaku_app:relation_type_list',
-#                 'update_url': 'otaku_app:relation_type_update',
-#                 'detail_url': 'otaku_app:relation_type_detail',
-#             },
-# ########################################################################################    Otaku Companies
-#             'Productora': {
-#                 'model': Producer,
-#                 'listas_url': 'otaku_app:producer_list',
-#                 'update_url': 'otaku_app:producer_update',
-#                 'detail_url': 'otaku_app:producer_detail',
-#             },
-#             'Licenciante': {
-#                 'model': Licensor,
-#                 'listas_url': 'otaku_app:licensor_list',
-#                 'update_url': 'otaku_app:licensor_update',
-#                 'detail_url': 'otaku_app:licensor_detail',
-#             },
-#             'Estudio': {
-#                 'model': Studio,
-#                 'listas_url': 'otaku_app:studio_list',
-#                 'update_url': 'otaku_app:studio_update',
-#                 'detail_url': 'otaku_app:studio_detail',
-#             },
-#             'Serializadora': {
-#                 'model': Serialization,
-#                 'listas_url': 'otaku_app:serialization_list',
-#                 'update_url': 'otaku_app:serialization_update',
-#                 'detail_url': 'otaku_app:serialization_detail',
-#             },
-# ########################################################################################    Otaku Chara-Voice
-#             'Fuente': {
-#                 'model': Source,
-#                 'listas_url': 'otaku_app:source_list',
-#                 'update_url': 'otaku_app:source_update',
-#                 'detail_url': 'otaku_app:source_detail',
-#             },
-#             'Clasificación de Anime': {
-#                 'model': Rating,
-#                 'listas_url': 'otaku_app:rating_list',
-#                 'update_url': 'otaku_app:rating_update',
-#                 'detail_url': 'otaku_app:rating_detail',
-#             },
-# ########################################################################################    Otaku Chara-Voice
-#             'Personaje': {
-#                 'model': Character,
-#                 'listas_url': 'otaku_app:character_anime_list',
-#                 'update_url': 'otaku_app:character_update',
-#                 'detail_url': 'otaku_app:character_detail',
-#             },
-#             'Personaje de Anime': {
-#                 'model': Character,
-#                 'listas_url': 'otaku_app:character_anime_list',
-#                 'update_url': 'otaku_app:character_update',
-#                 'detail_url': 'otaku_app:character_detail',
-#             },
-#             'Personaje de Manga': {
-#                 'model': Character,
-#                 'listas_url': 'otaku_app:character_manga_list',
-#                 'update_url': 'otaku_app:character_update',
-#                 'detail_url': 'otaku_app:character_detail',
-#             },
-#             'Persona': {
-#                 'model': Person,
-#                 'listas_url': 'otaku_app:person_list',
-#                 'update_url': 'otaku_app:person_update',
-#                 'detail_url': 'otaku_app:person_detail',
-#             },
-#             'Actor de voz': {
-#                 'model': PersonVoiceCharacter,
-#                 'listas_url': 'otaku_app:voice_actors_list',
-#                 'update_url': 'otaku_app:voice_actors_update',
-#                 'detail_url': 'otaku_app:person_detail',
-#             },
-#             'Personal de Anime': {
-#                 'model': PersonStaffAnime,
-#                 'listas_url': 'otaku_app:animestaff_list',
-#                 'update_url': 'otaku_app:animestaff_update',
-#                 'detail_url': 'otaku_app:person_detail',
-#             },
-#             'Autor de Manga': {
-#                 'model': PersonAuthorManga,
-#                 'listas_url': 'otaku_app:author_list',
-#                 'update_url': 'otaku_app:author_update',
-#                 'detail_url': 'otaku_app:person_detail',
-#             },
-#             'Apodo de Persona': {
-#                 'model': NicknamePerson,
-#                 'listas_url': 'otaku_app:nickname_person_list',
-#                 'update_url': 'otaku_app:nickname_person_update',
-#             },
-#             'Apodo de Personaje': {
-#                 'model': NicknameCharacter,
-#                 'listas_url': 'otaku_app:nickname_character_list',
-#                 'update_url': 'otaku_app:nickname_character_update',
-#             },
-# ########################################################################################    Otaku Anime
-#             'Portada de Anime': {
-#                 'model': CoverAnime,
-#                 'listas_url': 'otaku_app:cover_anime_list',
-#                 'update_url': 'otaku_app:cover_anime_update',
-#                 'detail_url': 'otaku_app:cover_anime_detail',
-#             },
-#             'Portada de Manga': {
-#                 'model': CoverManga,
-#                 'listas_url': 'otaku_app:cover_manga_list',
-#                 'update_url': 'otaku_app:cover_manga_update',
-#                 'detail_url': 'otaku_app:cover_manga_detail',
-#             },
-#             'Foto de Personaje': {
-#                 'model': CoverCharacter,
-#                 'listas_url': 'otaku_app:cover_character_list',
-#                 'update_url': 'otaku_app:cover_character_update',
-#                 'detail_url': 'otaku_app:cover_character_detail',
-#             },
-#             'Foto de Persona': {
-#                 'model': CoverPerson,
-#                 'listas_url': 'otaku_app:cover_person_list',
-#                 'update_url': 'otaku_app:cover_person_update',
-#                 'detail_url': 'otaku_app:cover_person_detail',
-#             },
-# ########################################################################################    Otaku Anime
-#             'Imagen de Anime': {
-#                 'model': ExtraImageAnime,
-#                 'listas_url': 'otaku_app:anime_image_list',
-#                 'update_url': 'otaku_app:anime_image_update',
-#                 'detail_url': 'otaku_app:anime_image_detail',
-#             },
-#             'Imagen de Manga': {
-#                 'model': ExtraImageManga,
-#                 'listas_url': 'otaku_app:anime_image_list',
-#                 'update_url': 'otaku_app:anime_image_update',
-#                 'detail_url': 'otaku_app:anime_image_detail',
-#             },
-#             'Imagen de Personaje': {
-#                 'model': ExtraImageCharacter,
-#                 'listas_url': 'otaku_app:anime_image_list',
-#                 'update_url': 'otaku_app:anime_image_update',
-#                 'detail_url': 'otaku_app:anime_image_detail',
-#             },
-#             'Imagen de Persona': {
-#                 'model': ExtraImagePerson,
-#                 'listas_url': 'otaku_app:anime_image_list',
-#                 'update_url': 'otaku_app:anime_image_update',
-#                 'detail_url': 'otaku_app:anime_image_detail',
-#             },
-# ########################################################################################    Otaku AnimeSong
-#             'Canción de Anime': {
-#                 'model': AnimeSong,
-#                 'listas_url': 'otaku_app:anime_song_list',
-#                 'update_url': 'otaku_app:anime_song_update',
-#                 'detail_url': 'otaku_app:anime_song_detail',
-#             },
-#             'Opening': {
-#                 'model': AnimeSong,
-#                 'listas_url': 'otaku_app:anime_song_op_list',
-#                 'update_url': 'otaku_app:anime_song_op_update',
-#                 'detail_url': 'otaku_app:anime_song_detail',
-#             },
-#             'Ending': {
-#                 'model': AnimeSong,
-#                 'listas_url': 'otaku_app:anime_song_ed_list',
-#                 'update_url': 'otaku_app:anime_song_ed_update',
-#                 'detail_url': 'otaku_app:anime_song_detail',
-#             },
-#             'Insert Song': {
-#                 'model': AnimeSong,
-#                 'listas_url': 'otaku_app:anime_song_in_list',
-#                 'update_url': 'otaku_app:anime_song_in_update',
-#                 'detail_url': 'otaku_app:anime_song_detail',
-#             },
-# ########################################################################################    Peliculas
-#             'Anime': {
-#                 'model': Anime,
-#                 'listas_url': 'otaku_app:anime_list',
-#                 'update_url': 'otaku_app:anime_update',
-#                 'detail_url': 'otaku_app:anime_detail',
-#             },
-#             'Manga': {
-#                 'model': Manga,
-#                 'listas_url': 'otaku_app:manga_list',
-#                 'update_url': 'otaku_app:manga_update',
-#                 'detail_url': 'otaku_app:manga_detail',
-#             },
+#                'es_usuario': False,
+##             },
+##             'Artista': {
+##                 'model': Artist,
+##                 'listas_url': 'music_app:artist_list',
+##                 'update_url': 'music_app:artist_update',
+##                 'detail_url': 'music_app:artist_detail',
+#                'es_usuario': False,
+##             },
+##             'Género Musical': {
+##                 'model': GenreMusic,
+##                 'listas_url': 'music_app:genre_list',
+##                 'update_url': 'music_app:genre_update',
+##                 'detail_url': 'music_app:genre_detail',
+#                'es_usuario': False,
+##             },
+##             'Miembro': {
+##                 'model': Member,
+##                 'listas_url': 'music_app:member_list',
+##                 'update_url': 'music_app:member_update',
+##                 'detail_url': 'music_app:member_detail',
+#                'es_usuario': False,
+##             },
+##             'Canción': {
+##                 'model': Song,
+##                 'listas_url': 'music_app:song_list',
+##                 'update_url': 'music_app:song_update',
+##                 'detail_url': 'music_app:song_detail',
+#                'es_usuario': False,
+##             },
+##             'Membresia': {
+##                 'model': Membership,
+##                 'listas_url': 'music_app:membership_list',
+##                 'update_url': 'music_app:membership_update',
+##                 'detail_url': 'music_app:membership_detail',
+#                'es_usuario': False,
+##             },
+##             'Apodo del Miembro': {
+##                 'model': MemberNickname,
+##                 'listas_url': 'music_app:member_nickname_list',
+##                 'update_url': 'music_app:member_nickname_update',
+##                 'detail_url': 'music_app:member_nickname_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Juegos Renpy
+##             'Desarrollador': {
+##                 'model': Developer,
+##                 'listas_url': 'renpy_app:developer_list',
+##                 'update_url': 'renpy_app:developer_update',
+##                 'detail_url': 'renpy_app:developer_detail',
+#                'es_usuario': False,
+##             },
+##             'Traductor': {
+##                 'model': Translator,
+##                 'listas_url': 'renpy_app:translator_list',
+##                 'update_url': 'renpy_app:translator_update',
+##                 'detail_url': 'renpy_app:translator_detail',
+#                'es_usuario': False,
+##             },
+##             'Editor': {
+##                 'model': Publisher,
+##                 'listas_url': 'renpy_app:publisher_list',
+##                 'update_url': 'renpy_app:publisher_update',
+##                 'detail_url': 'renpy_app:publisher_detail',
+#                'es_usuario': False,
+##             },
+##             'Link de Desarrollador': {
+##                 'model': DeveloperLink,
+##                 'listas_url': 'renpy_app:developer_link_list',
+##                 'update_url': 'renpy_app:developer_link_update',
+##                 'detail_url': 'renpy_app:developer_link_detail',
+#                'es_usuario': False,
+##             },
+##             'Link de Traductor': {
+##                 'model': TranslatorLink,
+##                 'listas_url': 'renpy_app:translator_link_list',
+##                 'update_url': 'renpy_app:translator_link_update',
+##                 'detail_url': 'renpy_app:translator_link_detail',
+#                'es_usuario': False,
+##             },
+##             'Link de Editor': {
+##                 'model': PublisherLink,
+##                 'listas_url': 'renpy_app:publisher_link_list',
+##                 'update_url': 'renpy_app:publisher_link_update',
+##                 'detail_url': 'renpy_app:publisher_link_detail',
+#                'es_usuario': False,
+##             },
+##             'Género de Juego': {
+##                 'model': GenreRenpy,
+##                 'listas_url': 'renpy_app:genre_list',
+##                 'update_url': 'renpy_app:genre_update',
+##                 'detail_url': 'renpy_app:genre_detail',
+#                'es_usuario': False,
+##             },
+##             'Motor de Desarrollo': {
+##                 'model': GameEngine,
+##                 'listas_url': 'renpy_app:engine_list',
+##                 'update_url': 'renpy_app:engine_update',
+##                 'detail_url': 'renpy_app:engine_detail',
+#                'es_usuario': False,
+##             },
+##             'Estado de Juego': {
+##                 'model': GameState,
+##                 'listas_url': 'renpy_app:game_statu_list',
+##                 'update_url': 'renpy_app:game_statu_update',
+##                 'detail_url': 'renpy_app:game_statu_detail',
+#                'es_usuario': False,
+##             },
+##             'Plataforma': {
+##                 'model': Platform,
+##                 'listas_url': 'renpy_app:platform_list',
+##                 'update_url': 'renpy_app:platform_update',
+##                 'detail_url': 'renpy_app:platform_detail',
+#                'es_usuario': False,
+##             },
+##             'Juego Renpy': {
+##                 'model': Game,
+##                 'listas_url': 'renpy_app:game_list',
+##                 'update_url': 'renpy_app:game_update',
+##                 'detail_url': 'renpy_app:game_detail',
+#                'es_usuario': False,
+##             },
+##             'Imagen de Juego': {
+##                 'model': GameImage,
+##                 'listas_url': 'renpy_app:game_image_list',
+##                 'update_url': 'renpy_app:game_image_update',
+##                 'detail_url': 'renpy_app:game_image_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku Data
+##             'Genéro Otaku': {
+##                 'model': Genre,
+##                 'listas_url': 'otaku_app:genre_list',
+##                 'update_url': 'otaku_app:genre_update',
+##                 'detail_url': 'otaku_app:genre_detail',
+#                'es_usuario': False,
+##             },
+##             'Tema Otaku': {
+##                 'model': Theme,
+##                 'listas_url': 'otaku_app:theme_list',
+##                 'update_url': 'otaku_app:theme_update',
+##                 'detail_url': 'otaku_app:theme_detail',
+#                'es_usuario': False,
+##             },
+##             'Demografía Otaku': {
+##                 'model': Demographic,
+##                 'listas_url': 'otaku_app:demographic_list',
+##                 'update_url': 'otaku_app:demographic_update',
+##                 'detail_url': 'otaku_app:demographic_detail',
+#                'es_usuario': False,
+##             },
+##             'Año': {
+##                 'model': Year,
+##                 'listas_url': 'otaku_app:year_list',
+##                 'update_url': 'otaku_app:year_update',
+##                 'detail_url': 'otaku_app:year_detail',
+#                'es_usuario': False,
+##             },
+##             'Temporada': {
+##                 'model': Season,
+##                 'listas_url': 'otaku_app:season_list',
+##                 'update_url': 'otaku_app:season_update',
+##                 'detail_url': 'otaku_app:season_detail',
+#                'es_usuario': False,
+##             },
+##             'Temporada Completa': {
+##                 'model': SeasonFull,
+##                 'listas_url': 'otaku_app:seasonfull_list',
+##                 'update_url': 'otaku_app:seasonfull_update',
+##                 'detail_url': 'otaku_app:seasonfull_detail',
+#                'es_usuario': False,
+##             },
+##             'Título': {
+##                 'model': Title,
+##                 'listas_url': 'otaku_app:title_list',
+##                 'update_url': 'otaku_app:title_update',
+##                 'detail_url': 'otaku_app:title_detail',
+#                'es_usuario': False,
+##             },
+##             'Tipo': {
+##                 'model': Type,
+##                 'listas_url': 'otaku_app:type_list',
+##                 'update_url': 'otaku_app:type_update',
+##                 'detail_url': 'otaku_app:type_detail',
+#                'es_usuario': False,
+##             },
+##             'Estado': {
+##                 'model': State,
+##                 'listas_url': 'otaku_app:statu_list',
+##                 'update_url': 'otaku_app:statu_update',
+##                 'detail_url': 'otaku_app:statu_detail',
+#                'es_usuario': False,
+##             },
+##             'Tipo de Relación': {
+##                 'model': RelationType,
+##                 'listas_url': 'otaku_app:relation_type_list',
+##                 'update_url': 'otaku_app:relation_type_update',
+##                 'detail_url': 'otaku_app:relation_type_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku Companies
+##             'Productora': {
+##                 'model': Producer,
+##                 'listas_url': 'otaku_app:producer_list',
+##                 'update_url': 'otaku_app:producer_update',
+##                 'detail_url': 'otaku_app:producer_detail',
+#                'es_usuario': False,
+##             },
+##             'Licenciante': {
+##                 'model': Licensor,
+##                 'listas_url': 'otaku_app:licensor_list',
+##                 'update_url': 'otaku_app:licensor_update',
+##                 'detail_url': 'otaku_app:licensor_detail',
+#                'es_usuario': False,
+##             },
+##             'Estudio': {
+##                 'model': Studio,
+##                 'listas_url': 'otaku_app:studio_list',
+##                 'update_url': 'otaku_app:studio_update',
+##                 'detail_url': 'otaku_app:studio_detail',
+#                'es_usuario': False,
+##             },
+##             'Serializadora': {
+##                 'model': Serialization,
+##                 'listas_url': 'otaku_app:serialization_list',
+##                 'update_url': 'otaku_app:serialization_update',
+##                 'detail_url': 'otaku_app:serialization_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku Chara-Voice
+##             'Fuente': {
+##                 'model': Source,
+##                 'listas_url': 'otaku_app:source_list',
+##                 'update_url': 'otaku_app:source_update',
+##                 'detail_url': 'otaku_app:source_detail',
+#                'es_usuario': False,
+##             },
+##             'Clasificación de Anime': {
+##                 'model': Rating,
+##                 'listas_url': 'otaku_app:rating_list',
+##                 'update_url': 'otaku_app:rating_update',
+##                 'detail_url': 'otaku_app:rating_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku Chara-Voice
+##             'Personaje': {
+##                 'model': Character,
+##                 'listas_url': 'otaku_app:character_anime_list',
+##                 'update_url': 'otaku_app:character_update',
+##                 'detail_url': 'otaku_app:character_detail',
+#                'es_usuario': False,
+##             },
+##             'Personaje de Anime': {
+##                 'model': Character,
+##                 'listas_url': 'otaku_app:character_anime_list',
+##                 'update_url': 'otaku_app:character_update',
+##                 'detail_url': 'otaku_app:character_detail',
+#                'es_usuario': False,
+##             },
+##             'Personaje de Manga': {
+##                 'model': Character,
+##                 'listas_url': 'otaku_app:character_manga_list',
+##                 'update_url': 'otaku_app:character_update',
+##                 'detail_url': 'otaku_app:character_detail',
+#                'es_usuario': False,
+##             },
+##             'Persona': {
+##                 'model': Person,
+##                 'listas_url': 'otaku_app:person_list',
+##                 'update_url': 'otaku_app:person_update',
+##                 'detail_url': 'otaku_app:person_detail',
+#                'es_usuario': False,
+##             },
+##             'Actor de voz': {
+##                 'model': PersonVoiceCharacter,
+##                 'listas_url': 'otaku_app:voice_actors_list',
+##                 'update_url': 'otaku_app:voice_actors_update',
+##                 'detail_url': 'otaku_app:person_detail',
+#                'es_usuario': False,
+##             },
+##             'Personal de Anime': {
+##                 'model': PersonStaffAnime,
+##                 'listas_url': 'otaku_app:animestaff_list',
+##                 'update_url': 'otaku_app:animestaff_update',
+##                 'detail_url': 'otaku_app:person_detail',
+#                'es_usuario': False,
+##             },
+##             'Autor de Manga': {
+##                 'model': PersonAuthorManga,
+##                 'listas_url': 'otaku_app:author_list',
+##                 'update_url': 'otaku_app:author_update',
+##                 'detail_url': 'otaku_app:person_detail',
+#                'es_usuario': False,
+##             },
+##             'Apodo de Persona': {
+##                 'model': NicknamePerson,
+##                 'listas_url': 'otaku_app:nickname_person_list',
+##                 'update_url': 'otaku_app:nickname_person_update',
+##             },
+##             'Apodo de Personaje': {
+##                 'model': NicknameCharacter,
+##                 'listas_url': 'otaku_app:nickname_character_list',
+##                 'update_url': 'otaku_app:nickname_character_update',
+##             },
+## ########################################################################################    Otaku Anime
+##             'Portada de Anime': {
+##                 'model': CoverAnime,
+##                 'listas_url': 'otaku_app:cover_anime_list',
+##                 'update_url': 'otaku_app:cover_anime_update',
+##                 'detail_url': 'otaku_app:cover_anime_detail',
+#                'es_usuario': False,
+##             },
+##             'Portada de Manga': {
+##                 'model': CoverManga,
+##                 'listas_url': 'otaku_app:cover_manga_list',
+##                 'update_url': 'otaku_app:cover_manga_update',
+##                 'detail_url': 'otaku_app:cover_manga_detail',
+#                'es_usuario': False,
+##             },
+##             'Foto de Personaje': {
+##                 'model': CoverCharacter,
+##                 'listas_url': 'otaku_app:cover_character_list',
+##                 'update_url': 'otaku_app:cover_character_update',
+##                 'detail_url': 'otaku_app:cover_character_detail',
+#                'es_usuario': False,
+##             },
+##             'Foto de Persona': {
+##                 'model': CoverPerson,
+##                 'listas_url': 'otaku_app:cover_person_list',
+##                 'update_url': 'otaku_app:cover_person_update',
+##                 'detail_url': 'otaku_app:cover_person_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku Anime
+##             'Imagen de Anime': {
+##                 'model': ExtraImageAnime,
+##                 'listas_url': 'otaku_app:anime_image_list',
+##                 'update_url': 'otaku_app:anime_image_update',
+##                 'detail_url': 'otaku_app:anime_image_detail',
+#                'es_usuario': False,
+##             },
+##             'Imagen de Manga': {
+##                 'model': ExtraImageManga,
+##                 'listas_url': 'otaku_app:anime_image_list',
+##                 'update_url': 'otaku_app:anime_image_update',
+##                 'detail_url': 'otaku_app:anime_image_detail',
+#                'es_usuario': False,
+##             },
+##             'Imagen de Personaje': {
+##                 'model': ExtraImageCharacter,
+##                 'listas_url': 'otaku_app:anime_image_list',
+##                 'update_url': 'otaku_app:anime_image_update',
+##                 'detail_url': 'otaku_app:anime_image_detail',
+#                'es_usuario': False,
+##             },
+##             'Imagen de Persona': {
+##                 'model': ExtraImagePerson,
+##                 'listas_url': 'otaku_app:anime_image_list',
+##                 'update_url': 'otaku_app:anime_image_update',
+##                 'detail_url': 'otaku_app:anime_image_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Otaku AnimeSong
+##             'Canción de Anime': {
+##                 'model': AnimeSong,
+##                 'listas_url': 'otaku_app:anime_song_list',
+##                 'update_url': 'otaku_app:anime_song_update',
+##                 'detail_url': 'otaku_app:anime_song_detail',
+#                'es_usuario': False,
+##             },
+##             'Opening': {
+##                 'model': AnimeSong,
+##                 'listas_url': 'otaku_app:anime_song_op_list',
+##                 'update_url': 'otaku_app:anime_song_op_update',
+##                 'detail_url': 'otaku_app:anime_song_detail',
+#                'es_usuario': False,
+##             },
+##             'Ending': {
+##                 'model': AnimeSong,
+##                 'listas_url': 'otaku_app:anime_song_ed_list',
+##                 'update_url': 'otaku_app:anime_song_ed_update',
+##                 'detail_url': 'otaku_app:anime_song_detail',
+#                'es_usuario': False,
+##             },
+##             'Insert Song': {
+##                 'model': AnimeSong,
+##                 'listas_url': 'otaku_app:anime_song_in_list',
+##                 'update_url': 'otaku_app:anime_song_in_update',
+##                 'detail_url': 'otaku_app:anime_song_detail',
+#                'es_usuario': False,
+##             },
+## ########################################################################################    Peliculas
+##             'Anime': {
+##                 'model': Anime,
+##                 'listas_url': 'otaku_app:anime_list',
+##                 'update_url': 'otaku_app:anime_update',
+##                 'detail_url': 'otaku_app:anime_detail',
+#                'es_usuario': False,
+##             },
+##             'Manga': {
+##                 'model': Manga,
+##                 'listas_url': 'otaku_app:manga_list',
+##                 'update_url': 'otaku_app:manga_update',
+##                 'detail_url': 'otaku_app:manga_detail',
+#                'es_usuario': False,
+##             },
 ########################################################################################    Peliculas
         }
         try:
@@ -511,13 +578,24 @@ class ActionView(View):
                     return redirect(reverse(model_data['update_url'], kwargs={'pk': instance.id}))
 
                 elif action == "3":  # Activar
-                    instance.is_active = True
-                    instance.save()
+                    if model_data.get('es_usuario'):
+                        instance.is_active = True
+                        instance.save()
+                        notify_activated_user(instance)
+                    else:
+                        instance.is_active = True
+                        instance.save()
                     messages.success(request, _('El %(modelo)s %(name)s ha sido activado.') % {'modelo': modelo, 'name': name})
 
                 elif action == "4":  # Desactivar
-                    instance.is_active = False
-                    instance.save()
+                    if model_data.get('es_usuario'):
+                        instance.is_active = False
+                        instance.save()
+                        notify_blocked_user(instance)
+                    else:
+                        instance.is_active = False
+                        instance.save()
+
                     messages.success(request, _('El %(modelo)s %(name)s ha sido desactivado.') % {'modelo': modelo, 'name': name})
 
                 elif action == "5":  # Hacer Explicito Solo Generos
@@ -556,10 +634,20 @@ class ActionView(View):
                     new_password = 'frikiverso'
                     instance.set_password(new_password)
                     instance.save()
+                    notify_password_reset(instance, new_password)
                     messages.success(request, _('La contraseña de %(modelo)s %(name)s ha sido reiniciada.') % {'modelo': modelo, 'name': name})
 
+                # elif action == "99":  # Eliminar
+                #     instance.delete()
+                #     messages.success(request, _('El %(modelo)s %(name)s ha sido eliminado.') % {'modelo': modelo, 'name': name})
+
+
                 elif action == "99":  # Eliminar
-                    instance.delete()
+                    if model_data.get('es_usuario'):
+                        instance.delete()
+                        notify_deleted_user(instance)
+                    else:
+                        instance.delete()
                     messages.success(request, _('El %(modelo)s %(name)s ha sido eliminado.') % {'modelo': modelo, 'name': name})
 
                 else:

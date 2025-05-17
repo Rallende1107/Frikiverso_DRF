@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-16 17:45-0400\n"
+"POT-Creation-Date: 2025-05-17 02:38-0400\n"
 "PO-Revision-Date: 2025-05-15 18:29-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,169 +23,69 @@ msgstr ""
 msgid "¡Idioma creado exitosamente!"
 msgstr "language successfully created!"
 
-#: .\apps\common\models.py:23
-msgid "Log General"
-msgstr "General Log"
+#: .\apps\common\forms.py:16
+msgid "Nombre en Inglés"
+msgstr ""
 
-#: .\apps\common\models.py:24
-msgid "Logs General"
-msgstr "General Logs"
+#: .\apps\common\forms.py:20
+msgid "Nombre del país (inglés)"
+msgstr ""
 
-#: .\apps\common\models.py:32 .\apps\common\models.py:84
-#: .\apps\common\models.py:126 .\apps\common\models.py:163
-#: .\apps\common\models.py:273 .\apps\common\models.py:365
-#: .\apps\common\models.py:493 .\apps\common\models.py:531
-#: .\apps\movie\models.py:33 .\apps\movie\models.py:83
-#: .\apps\movie\models.py:131 .\apps\movie\models.py:186
-#: .\apps\movie\models.py:228 .\apps\movie\models.py:490
-#: .\apps\movie\models.py:579 .\apps\music\models.py:33
-#: .\apps\music\models.py:81 .\apps\music\models.py:129
-#: .\apps\music\models.py:173 .\apps\music\models.py:217
-#: .\apps\music\models.py:414 .\apps\music\models.py:503
-#: .\apps\music\models.py:594 .\apps\music\models.py:683
-#: .\apps\otaku\models.py:32 .\apps\otaku\models.py:130
-#: .\apps\otaku\models.py:182 .\apps\otaku\models.py:234
-#: .\apps\otaku\models.py:286 .\apps\otaku\models.py:337
-#: .\apps\otaku\models.py:387 .\apps\otaku\models.py:438
-#: .\apps\otaku\models.py:489 .\apps\otaku\models.py:537
-#: .\apps\otaku\models.py:586 .\apps\otaku\models.py:637
-#: .\apps\otaku\models.py:680 .\apps\otaku\models.py:723
-#: .\apps\otaku\models.py:766 .\apps\otaku\models.py:1986
-#: .\apps\otaku\models.py:2075 .\apps\otaku\models.py:2166
-#: .\apps\otaku\models.py:2255 .\apps\otaku\models.py:2345
-#: .\apps\otaku\models.py:2434 .\apps\otaku\models.py:2525
-#: .\apps\otaku\models.py:2614 .\apps\renpy\models.py:32
-#: .\apps\renpy\models.py:80 .\apps\renpy\models.py:124
-#: .\apps\renpy\models.py:171 .\apps\renpy\models.py:216
-#: .\apps\renpy\models.py:263 .\apps\renpy\models.py:310
-#: .\apps\renpy\models.py:356 .\apps\renpy\models.py:402
-#: .\apps\renpy\models.py:514 .\apps\renpy\models.py:603
-#: .\apps\renpy\models.py:691 .\apps\renpy\models.py:734
-#: .\apps\renpy\models.py:777 .\apps\renpy\models.py:823
-#: .\apps\renpy\models.py:912 .\apps\renpy\models.py:1003
-#: .\apps\renpy\models.py:1092 .\apps\renpy\models.py:1183
-#: .\apps\renpy\models.py:1272 .\apps\serie\models.py:34
-#: .\apps\serie\models.py:84 .\apps\serie\models.py:133
-#: .\apps\serie\models.py:187 .\apps\serie\models.py:233
-#: .\apps\serie\models.py:497 .\apps\serie\models.py:586
-msgid "Nombre"
-msgstr "Name"
+#: .\apps\common\forms.py:26
+msgid "Debe ingresar el nombre en inglés."
+msgstr ""
 
-#: .\apps\common\models.py:33 .\apps\common\models.py:127
-#: .\apps\common\models.py:164 .\apps\movie\models.py:34
-#: .\apps\movie\models.py:84 .\apps\movie\models.py:132
-#: .\apps\movie\models.py:187 .\apps\music\models.py:34
-#: .\apps\music\models.py:82 .\apps\music\models.py:130
-#: .\apps\music\models.py:174 .\apps\otaku\models.py:33
-#: .\apps\otaku\models.py:131 .\apps\otaku\models.py:183
-#: .\apps\otaku\models.py:235 .\apps\otaku\models.py:287
-#: .\apps\otaku\models.py:338 .\apps\otaku\models.py:388
-#: .\apps\otaku\models.py:439 .\apps\otaku\models.py:490
-#: .\apps\otaku\models.py:538 .\apps\otaku\models.py:587
-#: .\apps\renpy\models.py:33 .\apps\renpy\models.py:125
-#: .\apps\renpy\models.py:172 .\apps\renpy\models.py:217
-#: .\apps\renpy\models.py:264 .\apps\serie\models.py:35
-#: .\apps\serie\models.py:85 .\apps\serie\models.py:134
-#: .\apps\serie\models.py:188
-msgid "Nombre Español"
+#: .\apps\common\forms.py:27 .\apps\common\forms.py:45
+#: .\apps\common\forms.py:483
+msgid "El nombre excede el largo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:34
+#, fuzzy
+#| msgid "Nombre Español"
+msgid "Nombre en Español"
 msgstr "Spanish Name"
 
-#: .\apps\common\models.py:34 .\apps\common\models.py:166
-#: .\apps\common\models.py:215 .\apps\common\models.py:454
-#: .\apps\common\models.py:534 .\apps\movie\models.py:35
-#: .\apps\movie\models.py:85 .\apps\movie\models.py:135
-#: .\apps\movie\models.py:230 .\apps\movie\models.py:287
-#: .\apps\movie\models.py:352 .\apps\movie\models.py:443
-#: .\apps\music\models.py:35 .\apps\music\models.py:83
-#: .\apps\music\models.py:219 .\apps\music\models.py:308
-#: .\apps\music\models.py:361 .\apps\otaku\models.py:36
-#: .\apps\otaku\models.py:132 .\apps\otaku\models.py:184
-#: .\apps\otaku\models.py:236 .\apps\otaku\models.py:288
-#: .\apps\otaku\models.py:389 .\apps\otaku\models.py:440
-#: .\apps\otaku\models.py:491 .\apps\otaku\models.py:539
-#: .\apps\otaku\models.py:588 .\apps\otaku\models.py:638
-#: .\apps\otaku\models.py:681 .\apps\otaku\models.py:724
-#: .\apps\otaku\models.py:767 .\apps\otaku\models.py:817
-#: .\apps\otaku\models.py:1112 .\apps\otaku\models.py:1352
-#: .\apps\otaku\models.py:1400 .\apps\otaku\models.py:1448
-#: .\apps\otaku\models.py:1536 .\apps\otaku\models.py:1579
-#: .\apps\otaku\models.py:1671 .\apps\otaku\models.py:1721
-#: .\apps\renpy\models.py:34 .\apps\renpy\models.py:81
-#: .\apps\renpy\models.py:126 .\apps\renpy\models.py:173
-#: .\apps\renpy\models.py:218 .\apps\renpy\models.py:265
-#: .\apps\renpy\models.py:311 .\apps\renpy\models.py:357
-#: .\apps\renpy\models.py:403 .\apps\renpy\models.py:451
-#: .\apps\renpy\models.py:693 .\apps\renpy\models.py:736
-#: .\apps\renpy\models.py:779 .\apps\renpy\models.py:1363
-#: .\apps\serie\models.py:36 .\apps\serie\models.py:86
-#: .\apps\serie\models.py:137 .\apps\serie\models.py:235
-#: .\apps\serie\models.py:293 .\apps\serie\models.py:360
-#: .\apps\serie\models.py:450
-msgid "Inicial"
-msgstr "Initial"
+#: .\apps\common\forms.py:38
+#, fuzzy
+#| msgid "Nombre Español"
+msgid "Nombre del país (español)"
+msgstr "Spanish Name"
 
-#: .\apps\common\models.py:35
-msgid "Inicial Español"
-msgstr "Spanish Initial"
+#: .\apps\common\forms.py:44
+msgid "Debe ingresar el nombre en español."
+msgstr ""
 
-#: .\apps\common\models.py:36 .\apps\common\models.py:90
-#: .\apps\common\models.py:128 .\apps\common\models.py:167
-#: .\apps\common\models.py:219 .\apps\common\models.py:274
-#: .\apps\common\models.py:366 .\apps\common\models.py:495
-#: .\apps\common\models.py:535 .\apps\movie\models.py:36
-#: .\apps\movie\models.py:86 .\apps\movie\models.py:133
-#: .\apps\movie\models.py:188 .\apps\movie\models.py:229
-#: .\apps\movie\models.py:288 .\apps\movie\models.py:491
-#: .\apps\movie\models.py:580 .\apps\music\models.py:36
-#: .\apps\music\models.py:84 .\apps\music\models.py:131
-#: .\apps\music\models.py:175 .\apps\music\models.py:218
-#: .\apps\music\models.py:415 .\apps\music\models.py:504
-#: .\apps\music\models.py:595 .\apps\music\models.py:684
-#: .\apps\otaku\models.py:34 .\apps\otaku\models.py:133
-#: .\apps\otaku\models.py:185 .\apps\otaku\models.py:237
-#: .\apps\otaku\models.py:289 .\apps\otaku\models.py:339
-#: .\apps\otaku\models.py:390 .\apps\otaku\models.py:441
-#: .\apps\otaku\models.py:492 .\apps\otaku\models.py:540
-#: .\apps\otaku\models.py:589 .\apps\otaku\models.py:639
-#: .\apps\otaku\models.py:682 .\apps\otaku\models.py:725
-#: .\apps\otaku\models.py:768 .\apps\otaku\models.py:1447
-#: .\apps\otaku\models.py:1578 .\apps\otaku\models.py:1987
-#: .\apps\otaku\models.py:2076 .\apps\otaku\models.py:2167
-#: .\apps\otaku\models.py:2256 .\apps\otaku\models.py:2346
-#: .\apps\otaku\models.py:2435 .\apps\otaku\models.py:2526
-#: .\apps\otaku\models.py:2615 .\apps\renpy\models.py:35
-#: .\apps\renpy\models.py:82 .\apps\renpy\models.py:127
-#: .\apps\renpy\models.py:174 .\apps\renpy\models.py:219
-#: .\apps\renpy\models.py:266 .\apps\renpy\models.py:312
-#: .\apps\renpy\models.py:358 .\apps\renpy\models.py:404
-#: .\apps\renpy\models.py:515 .\apps\renpy\models.py:604
-#: .\apps\renpy\models.py:692 .\apps\renpy\models.py:735
-#: .\apps\renpy\models.py:778 .\apps\renpy\models.py:824
-#: .\apps\renpy\models.py:913 .\apps\renpy\models.py:1004
-#: .\apps\renpy\models.py:1093 .\apps\renpy\models.py:1184
-#: .\apps\renpy\models.py:1273 .\apps\serie\models.py:37
-#: .\apps\serie\models.py:87 .\apps\serie\models.py:135
-#: .\apps\serie\models.py:189 .\apps\serie\models.py:234
-#: .\apps\serie\models.py:294 .\apps\serie\models.py:498
-#: .\apps\serie\models.py:587 .\apps\users\models.py:40
-msgid "Nombre Slug"
-msgstr "Slug Name"
-
-#: .\apps\common\models.py:37
+#: .\apps\common\forms.py:52 .\apps\common\models.py:37
 msgid "Código"
 msgstr "Code"
 
-#: .\apps\common\models.py:38
+#: .\apps\common\forms.py:56
+msgid "Código de país (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:65 .\apps\common\models.py:38
 #, fuzzy
 #| msgid "Código Numerico"
 msgid "Código Numérico"
 msgstr "Numeric Code"
 
+#: .\apps\common\forms.py:69
+#, fuzzy
+#| msgid "Código Numerico"
+msgid "Código numérico del país"
+msgstr "Numeric Code"
+
+#: .\apps\common\forms.py:77 .\apps\common\forms.py:232
+#: .\apps\common\forms.py:308 .\apps\common\forms.py:414
+#: .\apps\common\forms.py:527 .\apps\common\forms.py:633
+#: .\apps\common\forms.py:707 .\apps\common\forms.py:778
+#: .\apps\common\forms.py:853 .\apps\common\forms.py:955
 #: .\apps\common\models.py:39 .\apps\common\models.py:92
 #: .\apps\common\models.py:129 .\apps\common\models.py:168
 #: .\apps\common\models.py:220 .\apps\common\models.py:275
-#: .\apps\common\models.py:367 .\apps\common\models.py:456
-#: .\apps\common\models.py:496 .\apps\common\models.py:536
+#: .\apps\common\models.py:369 .\apps\common\models.py:464
+#: .\apps\common\models.py:504 .\apps\common\models.py:544
 #: .\apps\movie\models.py:39 .\apps\movie\models.py:88
 #: .\apps\movie\models.py:138 .\apps\movie\models.py:189
 #: .\apps\movie\models.py:233 .\apps\movie\models.py:289
@@ -237,11 +137,583 @@ msgstr "Numeric Code"
 msgid "Activo"
 msgstr "Active"
 
+#: .\apps\common\forms.py:83
+msgid "Marcar para activar o desmarcar para desactivar el país."
+msgstr ""
+
+#: .\apps\common\forms.py:113
+#, python-format
+msgid "Ya existe un país con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:116
+#, python-format
+msgid ""
+"Ya existe un país con el nombre en español \"%(name_esp)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:133 .\apps\common\forms.py:357
+#: .\apps\common\forms.py:819 .\apps\common\forms.py:895
+#: .\apps\common\models.py:32 .\apps\common\models.py:84
+#: .\apps\common\models.py:126 .\apps\common\models.py:163
+#: .\apps\common\models.py:273 .\apps\common\models.py:367
+#: .\apps\common\models.py:501 .\apps\common\models.py:539
+#: .\apps\movie\models.py:33 .\apps\movie\models.py:83
+#: .\apps\movie\models.py:131 .\apps\movie\models.py:186
+#: .\apps\movie\models.py:228 .\apps\movie\models.py:490
+#: .\apps\movie\models.py:579 .\apps\music\models.py:33
+#: .\apps\music\models.py:81 .\apps\music\models.py:129
+#: .\apps\music\models.py:173 .\apps\music\models.py:217
+#: .\apps\music\models.py:414 .\apps\music\models.py:503
+#: .\apps\music\models.py:594 .\apps\music\models.py:683
+#: .\apps\otaku\models.py:32 .\apps\otaku\models.py:130
+#: .\apps\otaku\models.py:182 .\apps\otaku\models.py:234
+#: .\apps\otaku\models.py:286 .\apps\otaku\models.py:337
+#: .\apps\otaku\models.py:387 .\apps\otaku\models.py:438
+#: .\apps\otaku\models.py:489 .\apps\otaku\models.py:537
+#: .\apps\otaku\models.py:586 .\apps\otaku\models.py:637
+#: .\apps\otaku\models.py:680 .\apps\otaku\models.py:723
+#: .\apps\otaku\models.py:766 .\apps\otaku\models.py:1986
+#: .\apps\otaku\models.py:2075 .\apps\otaku\models.py:2166
+#: .\apps\otaku\models.py:2255 .\apps\otaku\models.py:2345
+#: .\apps\otaku\models.py:2434 .\apps\otaku\models.py:2525
+#: .\apps\otaku\models.py:2614 .\apps\renpy\models.py:32
+#: .\apps\renpy\models.py:80 .\apps\renpy\models.py:124
+#: .\apps\renpy\models.py:171 .\apps\renpy\models.py:216
+#: .\apps\renpy\models.py:263 .\apps\renpy\models.py:310
+#: .\apps\renpy\models.py:356 .\apps\renpy\models.py:402
+#: .\apps\renpy\models.py:514 .\apps\renpy\models.py:603
+#: .\apps\renpy\models.py:691 .\apps\renpy\models.py:734
+#: .\apps\renpy\models.py:777 .\apps\renpy\models.py:823
+#: .\apps\renpy\models.py:912 .\apps\renpy\models.py:1003
+#: .\apps\renpy\models.py:1092 .\apps\renpy\models.py:1183
+#: .\apps\renpy\models.py:1272 .\apps\serie\models.py:34
+#: .\apps\serie\models.py:84 .\apps\serie\models.py:133
+#: .\apps\serie\models.py:187 .\apps\serie\models.py:233
+#: .\apps\serie\models.py:497 .\apps\serie\models.py:586
+msgid "Nombre"
+msgstr "Name"
+
+#: .\apps\common\forms.py:137
+#, fuzzy
+#| msgid "Nombre Completo"
+msgid "Nombre del Formato"
+msgstr "Full Name"
+
+#: .\apps\common\forms.py:145
+msgid "Debe ingresar el Nombre del Formato."
+msgstr ""
+
+#: .\apps\common\forms.py:146
+msgid "El Nombre del Formato excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:153
+#, fuzzy
+#| msgid "Descripción"
+msgid "Descripción Formato"
+msgstr "Description"
+
+#: .\apps\common\forms.py:157
+msgid "Descripción del Formato (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:167 .\apps\common\models.py:85
+msgid "Videos"
+msgstr "Videos"
+
+#: .\apps\common\forms.py:173
+msgid "Marcar si el formato es para Videos."
+msgstr ""
+
+#: .\apps\common\forms.py:180 .\apps\common\models.py:86
+#: .\templates\navbar.html:25
+msgid "Música"
+msgstr "Music"
+
+#: .\apps\common\forms.py:186
+msgid "Marcar si el formato es para Música."
+msgstr ""
+
+#: .\apps\common\forms.py:193 .\apps\common\models.py:87
+msgid "Imágenes"
+msgstr "Images"
+
+#: .\apps\common\forms.py:199
+msgid "Marcar si el formato es para Imágenes."
+msgstr ""
+
+#: .\apps\common\forms.py:206 .\apps\common\models.py:88
+msgid "Documentos"
+msgstr "Documents"
+
+#: .\apps\common\forms.py:212
+msgid "Marcar si el formato es para Documentos."
+msgstr ""
+
+#: .\apps\common\forms.py:219 .\apps\common\models.py:89
+msgid "Otros"
+msgstr "Others"
+
+#: .\apps\common\forms.py:225
+msgid "Marcar si el formato es para Otros tipos de archivos."
+msgstr ""
+
+#: .\apps\common\forms.py:238
+msgid "Marcar para activar o desmarcar para desactivar el formato."
+msgstr ""
+
+#: .\apps\common\forms.py:260
+#, python-format
+msgid "Ya existe un Formato con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:273
+msgid "Nombre (Inglés)"
+msgstr ""
+
+#: .\apps\common\forms.py:277
+msgid "Nombre del tamaño (inglés)"
+msgstr ""
+
+#: .\apps\common\forms.py:283
+msgid "Debe ingresar el nombre del tamaño en inglés."
+msgstr ""
+
+#: .\apps\common\forms.py:284
+msgid "El nombre en inglés excede el largo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:291
+#, fuzzy
+#| msgid "Nombre Español"
+msgid "Nombre (Español)"
+msgstr "Spanish Name"
+
+#: .\apps\common\forms.py:295
+#, fuzzy
+#| msgid "Nombre Español"
+msgid "Nombre del tamaño (español)"
+msgstr "Spanish Name"
+
+#: .\apps\common\forms.py:301
+msgid "Debe ingresar el nombre del tamaño en español."
+msgstr ""
+
+#: .\apps\common\forms.py:302
+msgid "El nombre en español excede el largo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:314
+msgid "Marcar para activar o desmarcar para desactivar el tamaño de imagen."
+msgstr ""
+
+#: .\apps\common\forms.py:339
+#, python-format
+msgid ""
+"Ya existe un Tamaño de imagen con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:342
+#, python-format
+msgid ""
+"Ya existe un Tamaño de imagen con el nombre en español \"%(name_esp)s\" o es "
+"muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:361
+#, fuzzy
+#| msgid "Lista de Idiomas"
+msgid "Nombre del Idioma"
+msgstr "Language List"
+
+#: .\apps\common\forms.py:369
+msgid "Debe ingresar el Nombre del Idioma."
+msgstr ""
+
+#: .\apps\common\forms.py:370
+msgid "El Nombre del Idioma excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:378
+#, fuzzy
+#| msgid "Editar Idioma"
+msgid "Sigla Idioma"
+msgstr "Edit Language"
+
+#: .\apps\common\forms.py:382
+msgid "Sigla del Idioma (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:389
+msgid "La Sigla del Idioma excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:397 .\apps\common\models.py:33
+#: .\apps\common\models.py:127 .\apps\common\models.py:164
+#: .\apps\movie\models.py:34 .\apps\movie\models.py:84
+#: .\apps\movie\models.py:132 .\apps\movie\models.py:187
+#: .\apps\music\models.py:34 .\apps\music\models.py:82
+#: .\apps\music\models.py:130 .\apps\music\models.py:174
+#: .\apps\otaku\models.py:33 .\apps\otaku\models.py:131
+#: .\apps\otaku\models.py:183 .\apps\otaku\models.py:235
+#: .\apps\otaku\models.py:287 .\apps\otaku\models.py:338
+#: .\apps\otaku\models.py:388 .\apps\otaku\models.py:439
+#: .\apps\otaku\models.py:490 .\apps\otaku\models.py:538
+#: .\apps\otaku\models.py:587 .\apps\renpy\models.py:33
+#: .\apps\renpy\models.py:125 .\apps\renpy\models.py:172
+#: .\apps\renpy\models.py:217 .\apps\renpy\models.py:264
+#: .\apps\serie\models.py:35 .\apps\serie\models.py:85
+#: .\apps\serie\models.py:134 .\apps\serie\models.py:188
+msgid "Nombre Español"
+msgstr "Spanish Name"
+
+#: .\apps\common\forms.py:401
+msgid "Nombre del Idioma en Español (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:408
+msgid "El Nombre en Español del Idioma excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:420
+msgid "Marcar para activar o desmarcar para desactivar el idioma."
+msgstr ""
+
+#: .\apps\common\forms.py:453
+#, python-format
+msgid "Ya existe un idioma con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:456
+#, python-format
+msgid ""
+"Ya existe un idioma con el nombre en español \"%(name_esp)s\" o es muy "
+"similar."
+msgstr ""
+
+#: .\apps\common\forms.py:459
+#, python-format
+msgid "Ya existe un idioma con el acrónimo \"%(acronym)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:472 .\apps\common\models.py:214
+#: .\apps\otaku\models.py:1444 .\apps\otaku\models.py:1575
+msgid "Nombre Completo"
+msgstr "Full Name"
+
+#: .\apps\common\forms.py:476
+#, fuzzy
+#| msgid "Nombre Completo"
+msgid "Nombre completo de la persona"
+msgstr "Full Name"
+
+#: .\apps\common\forms.py:482
+msgid "Debe ingresar el nombre completo."
+msgstr ""
+
+#: .\apps\common\forms.py:489 .\apps\common\models.py:216
+#: .\apps\music\models.py:220 .\apps\otaku\models.py:1446
+#: .\apps\otaku\models.py:1577
+msgid "Biografía"
+msgstr "Biography"
+
+#: .\apps\common\forms.py:493
+msgid "Biografía de la persona (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:502
+#, fuzzy
+#| msgid "Fecha Nacimiento"
+msgid "Fecha de Nacimiento"
+msgstr "Date of Birth"
+
+#: .\apps\common\forms.py:515 .\apps\common\models.py:45
+#: .\apps\common\models.py:218 .\apps\movie\models.py:231
+#: .\apps\serie\models.py:236
+msgid "País"
+msgstr "Country"
+
+#: .\apps\common\forms.py:533
+msgid "Marcar para activar o desmarcar para desactivar a la persona."
+msgstr ""
+
+#: .\apps\common\forms.py:557
+#, python-format
+msgid "Ya existe una persona con el nombre \"%(full_name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:570 .\apps\common\models.py:226
+#: .\apps\common\models.py:269 .\apps\common\models.py:365
+#: .\apps\common\models.py:460 .\apps\movie\models.py:398
+#: .\apps\music\models.py:273 .\apps\otaku\models.py:1669
+#: .\apps\otaku\models.py:1835 .\apps\otaku\models.py:1872
+#: .\apps\otaku\models.py:1907 .\apps\otaku\models.py:2341
+#: .\apps\otaku\models.py:2432 .\apps\serie\models.py:405
+msgid "Persona"
+msgstr "Person"
+
+#: .\apps\common\forms.py:578 .\apps\common\forms.py:686
+#: .\apps\common\forms.py:754
+msgid "Debe seleccionar una persona."
+msgstr ""
+
+#: .\apps\common\forms.py:586 .\apps\common\models.py:135
+msgid "Tamaño de Imagen"
+msgstr "Image Size"
+
+#: .\apps\common\forms.py:594
+#, fuzzy
+#| msgid "Gestionar tamaños de imagen del sistema."
+msgid "Debe seleccionar un tamaño de imagen."
+msgstr "Manage system image sizes."
+
+#: .\apps\common\forms.py:600 .\apps\otaku\models.py:1984
+#: .\apps\otaku\models.py:2164 .\apps\otaku\models.py:2343
+#: .\apps\otaku\models.py:2523 .\apps\renpy\models.py:512
+#: .\apps\renpy\models.py:821 .\apps\renpy\models.py:1001
+#: .\apps\renpy\models.py:1181
+msgid "Imagen"
+msgstr ""
+
+#: .\apps\common\forms.py:608 .\apps\common\forms.py:700
+#: .\apps\common\forms.py:733
+msgid "Debe subir una imagen."
+msgstr ""
+
+#: .\apps\common\forms.py:609 .\apps\common\forms.py:701
+msgid "El archivo seleccionado no es válido."
+msgstr ""
+
+#: .\apps\common\forms.py:620
+msgid "URL de la imagen (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:627
+msgid "La URL excede el largo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:639
+msgid ""
+"Marcar para activar o desmarcar para desactivar la imagen de la persona."
+msgstr ""
+
+#: .\apps\common\forms.py:665
+msgid "Debe subir una imagen o proporcionar una URL."
+msgstr ""
+
+#: .\apps\common\forms.py:713
+msgid ""
+"Marcar para activar o desmarcar para desactivar la imagen adicional de la "
+"persona."
+msgstr ""
+
+#: .\apps\common\forms.py:765
+#, fuzzy
+#| msgid "Apodo Persona"
+msgid "Apodo de la Persona"
+msgstr "Person Nickname"
+
+#: .\apps\common\forms.py:771
+msgid "Debe ingresar un apodo."
+msgstr ""
+
+#: .\apps\common\forms.py:772
+msgid "El apodo excede los 100 caracteres permitidos."
+msgstr ""
+
+#: .\apps\common\forms.py:784
+msgid "Marcar para activar o desmarcar para desactivar el apodo de la persona."
+msgstr ""
+
+#: .\apps\common\forms.py:805
+#, python-format
+msgid "El apodo \"%(nickname)s\" ya está registrado para esta persona."
+msgstr ""
+
+#: .\apps\common\forms.py:823
+msgid "Nombre de la Calidad"
+msgstr ""
+
+#: .\apps\common\forms.py:831
+msgid "Debe ingresar el Nombre de la Calidad."
+msgstr ""
+
+#: .\apps\common\forms.py:832
+msgid "El Nombre de la Calidad excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:839
+#, fuzzy
+#| msgid "Descripción"
+msgid "Descripción Calidad"
+msgstr "Description"
+
+#: .\apps\common\forms.py:843
+msgid "Descripción de la Calidad (opcional)"
+msgstr ""
+
+#: .\apps\common\forms.py:859
+msgid "Marcar para activar o desmarcar para desactivar la calidad."
+msgstr ""
+
+#: .\apps\common\forms.py:881
+#, python-format
+msgid "Ya existe una calidad con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:899
+msgid "Nombre de la Página de Descarga"
+msgstr ""
+
+#: .\apps\common\forms.py:907
+msgid "Debe ingresar el Nombre del sitio web."
+msgstr ""
+
+#: .\apps\common\forms.py:908
+msgid "El Nombre del sitio web excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:916 .\apps\common\models.py:165
+#: .\apps\common\models.py:540 .\apps\movie\models.py:185
+#: .\apps\otaku\models.py:336 .\apps\serie\models.py:186
+msgid "Acrónimo"
+msgstr "Acronym"
+
+#: .\apps\common\forms.py:920
+msgid "Acrónimo del sitio web."
+msgstr ""
+
+#: .\apps\common\forms.py:928
+msgid "Debe ingresar el acrónimo del sitio web."
+msgstr ""
+
+#: .\apps\common\forms.py:929
+msgid "El acrónimo del sitio web exceden lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:940
+#, fuzzy
+#| msgid "Lista de Sitios Web's"
+msgid "URL del sitio web"
+msgstr "List of Websites"
+
+#: .\apps\common\forms.py:948
+msgid "Debe ingresar la URL del sitio web."
+msgstr ""
+
+#: .\apps\common\forms.py:949
+msgid "La URL del sitio web excede lo permitido."
+msgstr ""
+
+#: .\apps\common\forms.py:961
+msgid "Marcar para activar o desmarcar para desactivar el sitio web."
+msgstr ""
+
+#: .\apps\common\forms.py:994
+#, python-format
+msgid "Ya existe un sitio web con el nombre \"%(name)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\forms.py:997
+#, python-format
+msgid "Ya existe un sitio web con la URL \"%(url)s\" o es muy similar."
+msgstr ""
+
+#: .\apps\common\models.py:23
+msgid "Log General"
+msgstr "General Log"
+
+#: .\apps\common\models.py:24
+msgid "Logs General"
+msgstr "General Logs"
+
+#: .\apps\common\models.py:34 .\apps\common\models.py:166
+#: .\apps\common\models.py:215 .\apps\common\models.py:462
+#: .\apps\common\models.py:542 .\apps\movie\models.py:35
+#: .\apps\movie\models.py:85 .\apps\movie\models.py:135
+#: .\apps\movie\models.py:230 .\apps\movie\models.py:287
+#: .\apps\movie\models.py:352 .\apps\movie\models.py:443
+#: .\apps\music\models.py:35 .\apps\music\models.py:83
+#: .\apps\music\models.py:219 .\apps\music\models.py:308
+#: .\apps\music\models.py:361 .\apps\otaku\models.py:36
+#: .\apps\otaku\models.py:132 .\apps\otaku\models.py:184
+#: .\apps\otaku\models.py:236 .\apps\otaku\models.py:288
+#: .\apps\otaku\models.py:389 .\apps\otaku\models.py:440
+#: .\apps\otaku\models.py:491 .\apps\otaku\models.py:539
+#: .\apps\otaku\models.py:588 .\apps\otaku\models.py:638
+#: .\apps\otaku\models.py:681 .\apps\otaku\models.py:724
+#: .\apps\otaku\models.py:767 .\apps\otaku\models.py:817
+#: .\apps\otaku\models.py:1112 .\apps\otaku\models.py:1352
+#: .\apps\otaku\models.py:1400 .\apps\otaku\models.py:1448
+#: .\apps\otaku\models.py:1536 .\apps\otaku\models.py:1579
+#: .\apps\otaku\models.py:1671 .\apps\otaku\models.py:1721
+#: .\apps\renpy\models.py:34 .\apps\renpy\models.py:81
+#: .\apps\renpy\models.py:126 .\apps\renpy\models.py:173
+#: .\apps\renpy\models.py:218 .\apps\renpy\models.py:265
+#: .\apps\renpy\models.py:311 .\apps\renpy\models.py:357
+#: .\apps\renpy\models.py:403 .\apps\renpy\models.py:451
+#: .\apps\renpy\models.py:693 .\apps\renpy\models.py:736
+#: .\apps\renpy\models.py:779 .\apps\renpy\models.py:1363
+#: .\apps\serie\models.py:36 .\apps\serie\models.py:86
+#: .\apps\serie\models.py:137 .\apps\serie\models.py:235
+#: .\apps\serie\models.py:293 .\apps\serie\models.py:360
+#: .\apps\serie\models.py:450
+msgid "Inicial"
+msgstr "Initial"
+
+#: .\apps\common\models.py:35
+msgid "Inicial Español"
+msgstr "Spanish Initial"
+
+#: .\apps\common\models.py:36 .\apps\common\models.py:90
+#: .\apps\common\models.py:128 .\apps\common\models.py:167
+#: .\apps\common\models.py:219 .\apps\common\models.py:274
+#: .\apps\common\models.py:368 .\apps\common\models.py:503
+#: .\apps\common\models.py:543 .\apps\movie\models.py:36
+#: .\apps\movie\models.py:86 .\apps\movie\models.py:133
+#: .\apps\movie\models.py:188 .\apps\movie\models.py:229
+#: .\apps\movie\models.py:288 .\apps\movie\models.py:491
+#: .\apps\movie\models.py:580 .\apps\music\models.py:36
+#: .\apps\music\models.py:84 .\apps\music\models.py:131
+#: .\apps\music\models.py:175 .\apps\music\models.py:218
+#: .\apps\music\models.py:415 .\apps\music\models.py:504
+#: .\apps\music\models.py:595 .\apps\music\models.py:684
+#: .\apps\otaku\models.py:34 .\apps\otaku\models.py:133
+#: .\apps\otaku\models.py:185 .\apps\otaku\models.py:237
+#: .\apps\otaku\models.py:289 .\apps\otaku\models.py:339
+#: .\apps\otaku\models.py:390 .\apps\otaku\models.py:441
+#: .\apps\otaku\models.py:492 .\apps\otaku\models.py:540
+#: .\apps\otaku\models.py:589 .\apps\otaku\models.py:639
+#: .\apps\otaku\models.py:682 .\apps\otaku\models.py:725
+#: .\apps\otaku\models.py:768 .\apps\otaku\models.py:1447
+#: .\apps\otaku\models.py:1578 .\apps\otaku\models.py:1987
+#: .\apps\otaku\models.py:2076 .\apps\otaku\models.py:2167
+#: .\apps\otaku\models.py:2256 .\apps\otaku\models.py:2346
+#: .\apps\otaku\models.py:2435 .\apps\otaku\models.py:2526
+#: .\apps\otaku\models.py:2615 .\apps\renpy\models.py:35
+#: .\apps\renpy\models.py:82 .\apps\renpy\models.py:127
+#: .\apps\renpy\models.py:174 .\apps\renpy\models.py:219
+#: .\apps\renpy\models.py:266 .\apps\renpy\models.py:312
+#: .\apps\renpy\models.py:358 .\apps\renpy\models.py:404
+#: .\apps\renpy\models.py:515 .\apps\renpy\models.py:604
+#: .\apps\renpy\models.py:692 .\apps\renpy\models.py:735
+#: .\apps\renpy\models.py:778 .\apps\renpy\models.py:824
+#: .\apps\renpy\models.py:913 .\apps\renpy\models.py:1004
+#: .\apps\renpy\models.py:1093 .\apps\renpy\models.py:1184
+#: .\apps\renpy\models.py:1273 .\apps\serie\models.py:37
+#: .\apps\serie\models.py:87 .\apps\serie\models.py:135
+#: .\apps\serie\models.py:189 .\apps\serie\models.py:234
+#: .\apps\serie\models.py:294 .\apps\serie\models.py:498
+#: .\apps\serie\models.py:587 .\apps\users\models.py:40
+msgid "Nombre Slug"
+msgstr "Slug Name"
+
 #: .\apps\common\models.py:40 .\apps\common\models.py:93
 #: .\apps\common\models.py:130 .\apps\common\models.py:169
 #: .\apps\common\models.py:221 .\apps\common\models.py:276
-#: .\apps\common\models.py:368 .\apps\common\models.py:457
-#: .\apps\common\models.py:497 .\apps\common\models.py:537
+#: .\apps\common\models.py:370 .\apps\common\models.py:465
+#: .\apps\common\models.py:505 .\apps\common\models.py:545
 #: .\apps\movie\models.py:40 .\apps\movie\models.py:89
 #: .\apps\movie\models.py:139 .\apps\movie\models.py:190
 #: .\apps\movie\models.py:234 .\apps\movie\models.py:290
@@ -302,8 +774,8 @@ msgstr "Created"
 #: .\apps\common\models.py:41 .\apps\common\models.py:94
 #: .\apps\common\models.py:131 .\apps\common\models.py:170
 #: .\apps\common\models.py:222 .\apps\common\models.py:277
-#: .\apps\common\models.py:369 .\apps\common\models.py:458
-#: .\apps\common\models.py:498 .\apps\common\models.py:538
+#: .\apps\common\models.py:371 .\apps\common\models.py:466
+#: .\apps\common\models.py:506 .\apps\common\models.py:546
 #: .\apps\movie\models.py:41 .\apps\movie\models.py:90
 #: .\apps\movie\models.py:140 .\apps\movie\models.py:191
 #: .\apps\movie\models.py:235 .\apps\movie\models.py:291
@@ -362,36 +834,11 @@ msgstr "Created"
 msgid "Actualizado"
 msgstr "Updated"
 
-#: .\apps\common\models.py:45 .\apps\common\models.py:218
-#: .\apps\movie\models.py:231 .\apps\serie\models.py:236
-msgid "País"
-msgstr "Country"
-
 #: .\apps\common\models.py:46 .\apps\common\views.py:66
 msgid "Países"
 msgstr "Countries"
 
-#: .\apps\common\models.py:85
-msgid "Videos"
-msgstr "Videos"
-
-#: .\apps\common\models.py:86
-msgid "Música"
-msgstr "Music"
-
-#: .\apps\common\models.py:87
-msgid "Imágenes"
-msgstr "Images"
-
-#: .\apps\common\models.py:88
-msgid "Documentos"
-msgstr "Documents"
-
-#: .\apps\common\models.py:89
-msgid "Otros"
-msgstr "Others"
-
-#: .\apps\common\models.py:91 .\apps\common\models.py:494
+#: .\apps\common\models.py:91 .\apps\common\models.py:502
 #: .\apps\movie\models.py:37 .\apps\movie\models.py:87
 #: .\apps\movie\models.py:134 .\apps\music\models.py:37
 #: .\apps\music\models.py:132 .\apps\music\models.py:176
@@ -416,19 +863,9 @@ msgstr "Format"
 msgid "Formatos"
 msgstr "Formats"
 
-#: .\apps\common\models.py:135
-msgid "Tamaño de Imagen"
-msgstr "Image Size"
-
 #: .\apps\common\models.py:136
 msgid "Tamaños de Imágenes"
 msgstr "Image Sizes"
-
-#: .\apps\common\models.py:165 .\apps\common\models.py:532
-#: .\apps\movie\models.py:185 .\apps\otaku\models.py:336
-#: .\apps\serie\models.py:186
-msgid "Acrónimo"
-msgstr "Acronym"
 
 #: .\apps\common\models.py:174 .\apps\movie\models.py:349
 #: .\apps\otaku\models.py:1349 .\apps\otaku\models.py:1397
@@ -441,29 +878,9 @@ msgstr "Language"
 msgid "Idiomas"
 msgstr "Languages"
 
-#: .\apps\common\models.py:214 .\apps\otaku\models.py:1444
-#: .\apps\otaku\models.py:1575
-msgid "Nombre Completo"
-msgstr "Full Name"
-
-#: .\apps\common\models.py:216 .\apps\music\models.py:220
-#: .\apps\otaku\models.py:1446 .\apps\otaku\models.py:1577
-msgid "Biografía"
-msgstr "Biography"
-
 #: .\apps\common\models.py:217 .\apps\otaku\models.py:1580
 msgid "Fecha Nacimiento"
 msgstr "Date of Birth"
-
-#: .\apps\common\models.py:226 .\apps\common\models.py:269
-#: .\apps\common\models.py:363 .\apps\common\models.py:452
-#: .\apps\movie\models.py:398 .\apps\music\models.py:273
-#: .\apps\otaku\models.py:1669 .\apps\otaku\models.py:1835
-#: .\apps\otaku\models.py:1872 .\apps\otaku\models.py:1907
-#: .\apps\otaku\models.py:2341 .\apps\otaku\models.py:2432
-#: .\apps\serie\models.py:405
-msgid "Persona"
-msgstr "Person"
 
 #: .\apps\common\models.py:227 .\apps\common\views.py:108
 #: .\apps\otaku\models.py:1596
@@ -485,7 +902,7 @@ msgstr "Size"
 msgid "Imagen Persona"
 msgstr "Person Image"
 
-#: .\apps\common\models.py:272 .\apps\common\models.py:533
+#: .\apps\common\models.py:272 .\apps\common\models.py:541
 #: .\apps\movie\models.py:489 .\apps\music\models.py:413
 #: .\apps\music\models.py:593 .\apps\otaku\models.py:1985
 #: .\apps\otaku\models.py:2165 .\apps\otaku\models.py:2344
@@ -508,59 +925,64 @@ msgstr "URL"
 msgid "Imágenes Personas"
 msgstr "Images People"
 
-#: .\apps\common\models.py:288 .\apps\common\models.py:380
+#: .\apps\common\models.py:288 .\apps\common\models.py:382
 #: .\apps\otaku\models.py:2360 .\apps\otaku\models.py:2449
 msgid "Imagen sin Persona"
 msgstr "Image without Person"
 
-#: .\apps\common\models.py:364 .\apps\otaku\models.py:2433
+#: .\apps\common\models.py:322
+msgid "No Asignado"
+msgstr ""
+
+#: .\apps\common\models.py:366 .\apps\otaku\models.py:2433
 #: .\apps\otaku\models.py:2442
 msgid "Imagen Extra Persona"
 msgstr "Extra Person Image"
 
-#: .\apps\common\models.py:373
+#: .\apps\common\models.py:375
 msgid "Imagen extra persona"
 msgstr "Extra Person Image"
 
-#: .\apps\common\models.py:374
+#: .\apps\common\models.py:376
 msgid "Imágenes extras de personas"
 msgstr "Extra images of people"
 
-#: .\apps\common\models.py:453 .\apps\otaku\models.py:1535
+#: .\apps\common\models.py:461 .\apps\otaku\models.py:1535
 #: .\apps\otaku\models.py:1670
 msgid "Apodo"
 msgstr "Nickname"
 
-#: .\apps\common\models.py:455 .\apps\otaku\models.py:1537
+#: .\apps\common\models.py:463 .\apps\otaku\models.py:1537
 #: .\apps\otaku\models.py:1672
 msgid "Apodo Slug"
 msgstr "Nickname Slug"
 
-#: .\apps\common\models.py:462 .\apps\otaku\models.py:1679
+#: .\apps\common\models.py:470 .\apps\otaku\models.py:1679
 msgid "Apodo Persona"
 msgstr "Person Nickname"
 
-#: .\apps\common\models.py:463 .\apps\otaku\models.py:1680
+#: .\apps\common\models.py:471 .\apps\otaku\models.py:1680
 msgid "Apodos Persona"
 msgstr "Person Nicknames"
 
-#: .\apps\common\models.py:502
+#: .\apps\common\models.py:510
 msgid "Calidad"
 msgstr "Quality"
 
-#: .\apps\common\models.py:503 .\apps\common\views.py:140
+#: .\apps\common\models.py:511 .\apps\common\views.py:150
 msgid "Calidades"
 msgstr "Qualities"
 
-#: .\apps\common\models.py:542
+#: .\apps\common\models.py:550
 msgid "Sitio Web"
 msgstr "Website"
 
-#: .\apps\common\models.py:543
+#: .\apps\common\models.py:551
 msgid "Sitios Webs"
 msgstr "Websites"
 
 #: .\apps\common\views.py:28 .\core\utils\texts.py:32
+#: .\templates\navbar.html:19
 msgid "General"
 msgstr "General"
 
@@ -633,125 +1055,141 @@ msgid "Gestionar imágenes adicionales de personas."
 msgstr "Manage additional people images."
 
 #: .\apps\common\views.py:138
+#, fuzzy
+#| msgid "Apodos Persona"
+msgid "Apodos de personas"
+msgstr "Person Nicknames"
+
+#: .\apps\common\views.py:143
+#, fuzzy
+#| msgid "Gestionar imágenes de personas."
+msgid "Gestionar apodeos de las personas."
+msgstr "Manage people images."
+
+#: .\apps\common\views.py:148
 msgid "Configuración Adicional"
 msgstr "Additional Configuration"
 
-#: .\apps\common\views.py:145
+#: .\apps\common\views.py:155
 msgid "Gestionar calidades del sistema."
 msgstr "Manage system qualities."
 
-#: .\apps\common\views.py:150
+#: .\apps\common\views.py:160
 msgid "Sitios web"
 msgstr "Websites"
 
-#: .\apps\common\views.py:155
+#: .\apps\common\views.py:165
 msgid "Gestionar sitios web del sistema."
 msgstr "Manage system websites."
 
-#: .\apps\common\views.py:170
+#: .\apps\common\views.py:180
 msgid "Ir"
 msgstr "Go"
 
-#: .\apps\common\views.py:171
+#: .\apps\common\views.py:181
 msgid "Todos"
 msgstr "All"
 
-#: .\apps\common\views.py:172 .\apps\common\views.py:275
-#: .\apps\common\views.py:398 .\apps\common\views.py:521
-#: .\apps\common\views.py:786 .\apps\common\views.py:921
+#: .\apps\common\views.py:182 .\apps\common\views.py:283
+#: .\apps\common\views.py:403 .\apps\common\views.py:523
+#: .\apps\common\views.py:775 .\apps\common\views.py:927
+#: .\apps\common\views.py:1078 .\apps\common\views.py:1196
+#: .\apps\common\views.py:1316 .\apps\common\views.py:1451
 #: .\core\utils\texts.py:23
 msgid "Añadir"
 msgstr "Add"
 
-#: .\apps\common\views.py:184
+#: .\apps\common\views.py:194
 msgid "Añadir País"
 msgstr "Add Country"
 
-#: .\apps\common\views.py:192
+#: .\apps\common\views.py:202
 #, python-format
 msgid "¡El país \"%(name)s\" fue creado exitosamente!"
 msgstr "The country \"%(name)s\" was created successfully!"
 
-#: .\apps\common\views.py:214
+#: .\apps\common\views.py:223
 msgid "Editar País"
 msgstr "Edit Country"
 
-#: .\apps\common\views.py:222
+#: .\apps\common\views.py:231
 #, python-format
 msgid "¡El país \"%(name)s\" fue editado exitosamente!"
 msgstr "The country \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:243
+#: .\apps\common\views.py:251
 msgid "Lista de Países"
 msgstr "List of Countries"
 
-#: .\apps\common\views.py:269 .\apps\common\views.py:392
-#: .\apps\common\views.py:515 .\apps\common\views.py:780
-#: .\apps\common\views.py:915 .\core\utils\texts.py:24
+#: .\apps\common\views.py:277 .\apps\common\views.py:397
+#: .\apps\common\views.py:517 .\apps\common\views.py:769
+#: .\apps\common\views.py:921 .\apps\common\views.py:1072
+#: .\apps\common\views.py:1190 .\apps\common\views.py:1310
+#: .\apps\common\views.py:1445 .\core\utils\texts.py:24
 msgid "Inicio"
 msgstr "Home"
 
-#: .\apps\common\views.py:294
+#: .\apps\common\views.py:301
 msgid "El País que buscas no se encontró."
 msgstr "The country you are looking for was not found."
 
-#: .\apps\common\views.py:320
+#: .\apps\common\views.py:327
 msgid "Añadir Formato"
 msgstr "Add Format"
 
-#: .\apps\common\views.py:328
+#: .\apps\common\views.py:335
 #, python-format
 msgid "¡El Formato \"%(name)s\" fue creado exitosamente!"
 msgstr "The Format \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:350
+#: .\apps\common\views.py:356
 msgid "Editar Formato"
 msgstr "Edit Format"
 
-#: .\apps\common\views.py:358
+#: .\apps\common\views.py:364
 #, python-format
 msgid "¡El Formato \"%(name)s\" fue editado exitosamente!"
 msgstr "Format \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:379
+#: .\apps\common\views.py:384
 msgid "Lista de Formatos"
 msgstr "Format List"
 
-#: .\apps\common\views.py:417
+#: .\apps\common\views.py:421
 msgid "El formato que buscas no se encontró."
 msgstr "The format you are looking for was not found."
 
-#: .\apps\common\views.py:443
+#: .\apps\common\views.py:447
 msgid "Añadir Tamaño de Imágenes"
 msgstr "Add Image Size"
 
-#: .\apps\common\views.py:451
+#: .\apps\common\views.py:455
 #, python-format
 msgid "¡El Tamaño de Imágen \"%(name)s\" fue creado exitosamente!"
 msgstr "Image Size \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:473
+#: .\apps\common\views.py:476
 msgid "Editar Tamaño de Imágenes"
 msgstr "Edit Image Size"
 
-#: .\apps\common\views.py:481
+#: .\apps\common\views.py:484
 #, python-format
 msgid "¡El Tamaño de Imágen \"%(name)s\" fue editado exitosamente!"
 msgstr "Image Size \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:502
+#: .\apps\common\views.py:504
 msgid "Lista de Tamaños de Imágenes"
 msgstr "List of Image Sizes"
 
-#: .\apps\common\views.py:540
+#: .\apps\common\views.py:541
 msgid "El Tamaño de imagen que buscas no se encontró."
 msgstr "The Image Size you are looking for was not found."
 
-#: .\apps\common\views.py:566
+#: .\apps\common\views.py:567
 msgid "Añadir Idioma"
 msgstr "Add Language"
 
-#: .\apps\common\views.py:574
+#: .\apps\common\views.py:575
 #, python-format
 msgid "¡El idioma \"%(name)s\" fue creado exitosamente!"
 msgstr "Language \"%(name)s\" was successfully created!"
@@ -765,63 +1203,210 @@ msgstr "Edit Language"
 msgid "¡El idioma \"%(name)s\" fue editado exitosamente!"
 msgstr "The language \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:625
+#: .\apps\common\views.py:624
 msgid "Lista de Idiomas"
 msgstr "Language List"
 
-#: .\apps\common\views.py:676
+#: .\apps\common\views.py:674
 msgid "El Idioma que buscas no se encontró."
 msgstr "The language you are looking for was not found."
 
-#: .\apps\common\views.py:706
+#: .\apps\common\views.py:699
+#, fuzzy
+#| msgid "Apodo Persona"
+msgid "Añadir Persona"
+msgstr "Person Nickname"
+
+#: .\apps\common\views.py:707
+#, fuzzy, python-format
+#| msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
+msgid "¡La Persona \"%(name)s\" fue creada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully created!"
+
+#: .\apps\common\views.py:728
+#, fuzzy
+#| msgid "Editar País"
+msgid "Editar Persona"
+msgstr "Edit Country"
+
+#: .\apps\common\views.py:736
+#, fuzzy, python-format
+#| msgid "¡El idioma \"%(name)s\" fue editado exitosamente!"
+msgid "¡La Persona \"%(name)s\" fue editado exitosamente!"
+msgstr "The language \"%(name)s\" was successfully edited!"
+
+#: .\apps\common\views.py:756
+#, fuzzy
+#| msgid "Gestión de Personas"
+msgid "Lista de Personas"
+msgstr "People Management"
+
+#: .\apps\common\views.py:793
+#, fuzzy
+#| msgid "La Calidad que buscas no se encontró."
+msgid "La Persona que buscas no se encontró."
+msgstr "The Quality you are looking for was not found."
+
+#: .\apps\common\views.py:817
+#, fuzzy
+#| msgid "Gestionar imágenes de personas."
+msgid "Añadir imagen de persona"
+msgstr "Manage people images."
+
+#: .\apps\common\views.py:825
+#, fuzzy, python-format
+#| msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
+msgid "¡La Imagen de la persona \"%(name)s\" fue creada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully created!"
+
+#: .\apps\common\views.py:846
+#, fuzzy
+#| msgid "Imagen extra persona"
+msgid "Editar Imagen de persona"
+msgstr "Extra Person Image"
+
+#: .\apps\common\views.py:863 .\apps\common\views.py:1015
+#, python-format
+msgid "Error al eliminar la imagen anterior: %(error)s"
+msgstr ""
+
+#: .\apps\common\views.py:866
+#, fuzzy, python-format
+#| msgid "¡La Calidad \"%(name)s\" fue editada exitosamente!"
+msgid "¡La Imagen de la persona \"%(name)s\" fue actualizada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully edited!"
+
+#: .\apps\common\views.py:897
+#, fuzzy
+#| msgid "Gestionar imágenes de personas."
+msgid "Lista de imágenes de personas"
+msgstr "Manage people images."
+
+#: .\apps\common\views.py:945
+#, fuzzy
+#| msgid "La Calidad que buscas no se encontró."
+msgid "La imagen que buscas no se encontró."
+msgstr "The Quality you are looking for was not found."
+
+#: .\apps\common\views.py:969
+#, fuzzy
+#| msgid "Gestionar imágenes adicionales de personas."
+msgid "Añadir imagen adicional de persona"
+msgstr "Manage additional people images."
+
+#: .\apps\common\views.py:977
+#, fuzzy, python-format
+#| msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
+msgid ""
+"¡La Imagen adicional de la persona \"%(name)s\" fue creada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully created!"
+
+#: .\apps\common\views.py:998
+#, fuzzy
+#| msgid "Gestionar imágenes adicionales de personas."
+msgid "Editar imagen adicional de persona"
+msgstr "Manage additional people images."
+
+#: .\apps\common\views.py:1018
+#, fuzzy, python-format
+#| msgid "¡La Calidad \"%(name)s\" fue editada exitosamente!"
+msgid ""
+"¡La imagen adicional de la persona \"%(name)s\" fue actualizada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully edited!"
+
+#: .\apps\common\views.py:1049
+#, fuzzy
+#| msgid "Gestionar imágenes adicionales de personas."
+msgid "Lista de imagenes adicionales de personas"
+msgstr "Manage additional people images."
+
+#: .\apps\common\views.py:1096
+#, fuzzy
+#| msgid "La Calidad que buscas no se encontró."
+msgid "La imagen adicional que buscas no se encontró."
+msgstr "The Quality you are looking for was not found."
+
+#: .\apps\common\views.py:1120
+msgid "Añadir PersonNicknamea"
+msgstr ""
+
+#: .\apps\common\views.py:1128
+#, fuzzy, python-format
+#| msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
+msgid "¡La PersonNicknamea \"%(name)s\" fue creada exitosamente!"
+msgstr "Quality \"%(name)s\" was successfully created!"
+
+#: .\apps\common\views.py:1149
+msgid "Editar PersonNicknamea"
+msgstr ""
+
+#: .\apps\common\views.py:1157
+#, fuzzy, python-format
+#| msgid "¡El idioma \"%(name)s\" fue editado exitosamente!"
+msgid "¡La PersonNicknamea \"%(name)s\" fue editado exitosamente!"
+msgstr "The language \"%(name)s\" was successfully edited!"
+
+#: .\apps\common\views.py:1177
+#, fuzzy
+#| msgid "Apodos Persona"
+msgid "Lista de Apodos de personas"
+msgstr "Person Nicknames"
+
+#: .\apps\common\views.py:1214
+#, fuzzy
+#| msgid "El Idioma que buscas no se encontró."
+msgid "El Apodo de persona que buscas no se encontró."
+msgstr "The language you are looking for was not found."
+
+#: .\apps\common\views.py:1238
 msgid "Añadir Calidad"
 msgstr "Add Quality"
 
-#: .\apps\common\views.py:714
+#: .\apps\common\views.py:1246
 #, python-format
 msgid "La Calidad \"%(name)s\" fue creada exitosamente!"
 msgstr "Quality \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:736
+#: .\apps\common\views.py:1268
 msgid "Editar Calidad"
 msgstr "Edit Quality"
 
-#: .\apps\common\views.py:744
+#: .\apps\common\views.py:1276
 #, python-format
 msgid "¡La Calidad \"%(name)s\" fue editada exitosamente!"
 msgstr "Quality \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:765
+#: .\apps\common\views.py:1297
 msgid "Lista de Calidades"
 msgstr "Quality List"
 
-#: .\apps\common\views.py:805
+#: .\apps\common\views.py:1335
 msgid "La Calidad que buscas no se encontró."
 msgstr "The Quality you are looking for was not found."
 
-#: .\apps\common\views.py:831
+#: .\apps\common\views.py:1361
 msgid "Añadir Sitio Web"
 msgstr "Add Website"
 
-#: .\apps\common\views.py:839
+#: .\apps\common\views.py:1369
 #, python-format
 msgid "El Sitio Web \"%(name)s\" fue creado exitosamente!"
 msgstr "Website \"%(name)s\" was successfully created!"
 
-#: .\apps\common\views.py:861
+#: .\apps\common\views.py:1391
 msgid "Editar Sitio Web"
 msgstr "Edit Website"
 
-#: .\apps\common\views.py:869
+#: .\apps\common\views.py:1399
 #, python-format
 msgid "¡El Sitio Web \"%(name)s\" fue editado exitosamente!"
 msgstr "Website \"%(name)s\" was successfully edited!"
 
-#: .\apps\common\views.py:890
+#: .\apps\common\views.py:1420
 msgid "Lista de Sitios Web's"
 msgstr "List of Websites"
 
-#: .\apps\common\views.py:940
+#: .\apps\common\views.py:1470
 msgid "El Sitio Web que buscas no se encontró."
 msgstr "The Web Site you are looking for was not found."
 
@@ -1017,7 +1602,7 @@ msgstr "Distributors"
 msgid "Película"
 msgstr "Movie"
 
-#: .\apps\movie\models.py:296
+#: .\apps\movie\models.py:296 .\templates\navbar.html:31
 msgid "Películas"
 msgstr "Movies"
 
@@ -1784,13 +2369,6 @@ msgstr ""
 msgid "Tipo Hacia"
 msgstr ""
 
-#: .\apps\otaku\models.py:1984 .\apps\otaku\models.py:2164
-#: .\apps\otaku\models.py:2343 .\apps\otaku\models.py:2523
-#: .\apps\renpy\models.py:512 .\apps\renpy\models.py:821
-#: .\apps\renpy\models.py:1001 .\apps\renpy\models.py:1181
-msgid "Imagen"
-msgstr ""
-
 #: .\apps\otaku\models.py:1994
 msgid "Imagen Anime"
 msgstr ""
@@ -2109,7 +2687,7 @@ msgstr ""
 msgid "Juego"
 msgstr ""
 
-#: .\apps\renpy\models.py:477
+#: .\apps\renpy\models.py:477 .\templates\navbar.html:43
 msgid "Juegos"
 msgstr ""
 
@@ -2264,6 +2842,7 @@ msgstr ""
 #: .\apps\serie\models.py:301 .\apps\serie\models.py:356
 #: .\apps\serie\models.py:404 .\apps\serie\models.py:445
 #: .\apps\serie\models.py:493 .\apps\serie\models.py:584
+#: .\templates\navbar.html:37
 msgid "Serie"
 msgstr ""
 
@@ -2401,6 +2980,63 @@ msgstr ""
 
 #: .\core\utils\texts.py:27
 msgid "¡No tienes los permisos para realizar esta acción!"
+msgstr ""
+
+#: .\core\utils\validators.py:19
+#, python-format
+msgid "Formato de archivo no permitido: %(ext)s. Solo se permiten: %(allowed)s"
+msgstr ""
+
+#: .\core\utils\validators.py:42
+msgid "Debe ingresar una URL válida."
+msgstr ""
+
+#: .\templates\navbar.html:49
+#, fuzzy
+#| msgid "Log Otaku"
+msgid "Otaku"
+msgstr "Otaku Log"
+
+#: .\templates\navbar.html:67
+msgid "Mi perfil"
+msgstr ""
+
+#: .\templates\navbar.html:72
+msgid "Cambiar contraseña"
+msgstr ""
+
+#: .\templates\navbar.html:79
+#, fuzzy
+#| msgid "Gestión de Personas"
+msgid "Gestión de usuarios"
+msgstr "People Management"
+
+#: .\templates\navbar.html:84
+#, fuzzy
+#| msgid "Administración de Usuarios"
+msgid "Administrador"
+msgstr "User Administration"
+
+#: .\templates\navbar.html:95
+msgid "Ingresar"
+msgstr ""
+
+#: .\templates\navbar.html:100
+msgid "Registrarse"
+msgstr ""
+
+#: .\templates\navbar.html:106
+#, fuzzy
+#| msgid "Otros"
+msgid "Nosotros"
+msgstr "Others"
+
+#: .\templates\navbar.html:111
+msgid "Contacto"
+msgstr ""
+
+#: .\templates\navbar.html:119
+msgid "Salir"
 msgstr ""
 
 #~ msgid "Gestionar lenguajes del sistema."

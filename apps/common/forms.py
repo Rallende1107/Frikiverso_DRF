@@ -1,7 +1,7 @@
 from django import forms
 from apps.common.models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
 from django.forms.widgets import DateInput
-from core.utils.validators import validate_file_extension, ALLOWED_IMAGE_EXTENSIONS
+from core.utils.validators import validate_file_extension, validate_url, ALLOWED_IMAGE_EXTENSIONS
 from django.utils.translation import gettext_lazy as _
 # Create your forms here.
 ########################################################################################################    Modelo para Country
@@ -13,47 +13,47 @@ class CountryForm(forms.ModelForm):
     name = forms.CharField(
         required=True,
         max_length=60,
-        label='Nombre en Inglés',
+        label=_('Nombre en Inglés'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del país (inglés)',
+                'placeholder': _('Nombre del país (inglés)'),
                 'autocomplete': 'off',
                 'id': 'name'
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el nombre en inglés.',
-            'max_length': 'El nombre excede el largo permitido.'
-        }
+            'required': _('Debe ingresar el nombre en inglés.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
     )
 
     name_esp = forms.CharField(
         required=True,
         max_length=60,
-        label='Nombre en Español',
+        label=_('Nombre en Español'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del país (español)',
+                'placeholder': _('Nombre del país (español)'),
                 'autocomplete': 'off',
                 'id': 'name_esp'
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el nombre en español.',
-            'max_length': 'El nombre excede el largo permitido.'
+            'required': _('Debe ingresar el nombre en español.'),
+            'max_length': _('El nombre excede el largo permitido.'),
         }
     )
 
     code = forms.CharField(
         required=False,
         max_length=4,
-        label='Código',
+        label=_('Código'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Código de país (opcional)',
+                'placeholder': _('Código de país (opcional)'),
                 'autocomplete': 'off',
                 'id': 'code'
             }
@@ -62,11 +62,11 @@ class CountryForm(forms.ModelForm):
 
     numeric_code = forms.IntegerField(
         required=False,
-        label='Código Numérico',
+        label=_('Código Numérico'),
         widget=forms.NumberInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Código numérico del país',
+                'placeholder': _('Código numérico del país'),
                 'id': 'numeric_code'
             }
         )
@@ -74,13 +74,13 @@ class CountryForm(forms.ModelForm):
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
-                'title': 'Marcar para activar o desactivar el país',
+                'title': _('Marcar para activar o desmarcar para desactivar el país.'),
             }
         )
     )
@@ -110,9 +110,10 @@ class CountryForm(forms.ModelForm):
 
         for country in qs:
             if normalized_name == ''.join(country.name.upper().split()):
-                raise forms.ValidationError(f'El nombre en inglés "{name}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un país con el nombre "%(name)s" o es muy similar.') % {'name': name})
+
             if normalized_name_esp == ''.join(country.name_esp.upper().split()):
-                raise forms.ValidationError(f'El nombre en español "{name_esp}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un país con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
 
         return cleaned_data
 
@@ -129,11 +130,11 @@ class FormatForm(forms.ModelForm):
         required=True,
         strip=True,
         max_length=15,
-        label='Nombre',
+        label=_('Nombre'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del Formato',
+                'placeholder': _('Nombre del Formato'),
                 'id': 'name',
                 'type': 'text',
                 'required': 'required',
@@ -141,19 +142,19 @@ class FormatForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el Nombre del Formato.',
-            'max_length': 'El Nombre del Formato excede lo permitido.',
+            'required': _('Debe ingresar el Nombre del Formato.'),
+            'max_length': _('El Nombre del Formato excede lo permitido.'),
         }
     )
 
     description = forms.CharField(
         required=False,
         strip=True,
-        label='Descripción Formato',
+        label=_('Descripción Formato'),
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Descripción del Formato (opcional)',
+                'placeholder': _('Descripción del Formato (opcional)'),
                 'id': 'description',
                 'rows': 3,
                 'autocomplete': 'off',
@@ -161,82 +162,80 @@ class FormatForm(forms.ModelForm):
         )
     )
 
-
-
     for_video = forms.BooleanField(
         required=False,
-        label='Videos',
+        label=_('Videos'),
         initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'for_video',
-                'title': 'Marcar si el formato es para Videos',
+                'title': _('Marcar si el formato es para Videos.'),
             }
         )
     )
 
     for_music = forms.BooleanField(
         required=False,
-        label='Música',
+        label=_('Música'),
         initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'for_music',
-                'title': 'Marcar si el formato es para Música',
+                'title': _('Marcar si el formato es para Música.'),
             }
         )
     )
 
     for_image = forms.BooleanField(
         required=False,
-        label='Imágenes',
+        label=_('Imágenes'),
         initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'for_image',
-                'title': 'Marcar si el formato es para Imágenes',
+                'title': _('Marcar si el formato es para Imágenes.'),
             }
         )
     )
 
     for_document = forms.BooleanField(
         required=False,
-        label='Documentos',
+        label=_('Documentos'),
         initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'for_document',
-                'title': 'Marcar si el formato es para Documentos',
+                'title': _('Marcar si el formato es para Documentos.'),
             }
         )
     )
 
     for_other = forms.BooleanField(
         required=False,
-        label='Otros',
+        label=_('Otros'),
         initial=False,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'for_other',
-                'title': 'Marcar si el formato es para Otros tipos de archivos',
+                'title': _('Marcar si el formato es para Otros tipos de archivos.'),
             }
         )
     )
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
-                'title': 'Marcar para activar o desactivar el Formato',
+                'title': _('Marcar para activar o desmarcar para desactivar el formato.'),
             }
         )
     )
@@ -258,7 +257,7 @@ class FormatForm(forms.ModelForm):
             for format_obj in existing_formats:
                 existing_normalized_name = ''.join(format_obj.name.upper().split())
                 if normalized_name == existing_normalized_name:
-                    raise forms.ValidationError(f'El Formato "{name}" ya existe o es muy similar.')
+                    raise forms.ValidationError(_('Ya existe un Formato con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
         return cleaned_data
 
@@ -271,48 +270,48 @@ class ImageSizeForm(forms.ModelForm):
     name = forms.CharField(
         required=True,
         max_length=20,
-        label='Nombre (Inglés)',
+        label=_('Nombre (Inglés)'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del tamaño (inglés)',
+                'placeholder': _('Nombre del tamaño (inglés)'),
                 'autocomplete': 'off',
                 'id': 'name',
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el nombre del tamaño en inglés.',
-            'max_length': 'El nombre en inglés excede el largo permitido.'
+            'required': _('Debe ingresar el nombre del tamaño en inglés.'),
+            'max_length': _('El nombre en inglés excede el largo permitido.'),
         }
     )
 
     name_esp = forms.CharField(
         required=True,
         max_length=20,
-        label='Nombre (Español)',
+        label=_('Nombre (Español)'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del tamaño (español)',
+                'placeholder': _('Nombre del tamaño (español)'),
                 'autocomplete': 'off',
                 'id': 'name_esp',
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el nombre del tamaño en español.',
-            'max_length': 'El nombre en español excede el largo permitido.'
+            'required': _('Debe ingresar el nombre del tamaño en español.'),
+            'max_length': _('El nombre en español excede el largo permitido.'),
         }
     )
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
-                'title': 'Marcar si el tamaño está activo',
+                'title': _('Marcar para activar o desmarcar para desactivar el tamaño de imagen.'),
             }
         )
     )
@@ -337,9 +336,11 @@ class ImageSizeForm(forms.ModelForm):
 
         for size in qs:
             if normalized_name == ''.join(size.name.upper().split()):
-                raise forms.ValidationError(f'El nombre "{name}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un Tamaño de imagen con el nombre "%(name)s" o es muy similar.') % {'name': name})
+
             if normalized_name_esp == ''.join(size.name_esp.upper().split()):
-                raise forms.ValidationError(f'El nombre en español "{name_esp}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un Tamaño de imagen con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
+
 
         return cleaned_data
 
@@ -353,11 +354,11 @@ class LanguageForm(forms.ModelForm):
         required=True,
         strip=True,
         max_length=20,
-        label='Nombre',
+        label=_('Nombre'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del Idioma',
+                'placeholder': _('Nombre del Idioma'),
                 'id': 'name',
                 'type': 'text',
                 'required': 'required',
@@ -365,8 +366,8 @@ class LanguageForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el Nombre del Idioma.',
-            'max_length': 'El Nombre del Idioma excede lo permitido.',
+            'required': _('Debe ingresar el Nombre del Idioma.'),
+            'max_length': _('El Nombre del Idioma excede lo permitido.'),
         }
     )
 
@@ -374,18 +375,18 @@ class LanguageForm(forms.ModelForm):
         required=False,
         strip=True,
         max_length=5,
-        label='Sigla Idioma',
+        label=_('Sigla Idioma'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Sigla del Idioma (opcional)',
+                'placeholder': _('Sigla del Idioma (opcional)'),
                 'id': 'acronym',
                 'type': 'text',
                 'autocomplete': 'off',
             }
         ),
         error_messages={
-            'max_length': 'La Sigla del Idioma excede lo permitido.',
+            'max_length': _('La Sigla del Idioma excede lo permitido.'),
         }
     )
 
@@ -393,31 +394,30 @@ class LanguageForm(forms.ModelForm):
         required=False,
         strip=True,
         max_length=20,
-        label='Nombre Español',
+        label=_('Nombre Español'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre del Idioma en Español (opcional)',
+                'placeholder': _('Nombre del Idioma en Español (opcional)'),
                 'id': 'name_esp',
                 'type': 'text',
                 'autocomplete': 'off',
             }
         ),
         error_messages={
-            'max_length': 'El Nombre en Español del Idioma excede lo permitido.',
+            'max_length': _('El Nombre en Español del Idioma excede lo permitido.'),
         }
     )
 
-
-
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el idioma.'),
             }
         )
     )
@@ -450,14 +450,13 @@ class LanguageForm(forms.ModelForm):
             existing_normalized_acronym = ''.join(language.acronym.lower().split())
 
             if normalized_name == existing_normalized_name:
-                raise forms.ValidationError(f'El idioma "{name}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un idioma con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
             if normalized_name_esp and normalized_name_esp == existing_normalized_name_esp:
-                raise forms.ValidationError(f'El nombre en español "{name_esp}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un idioma con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
 
             if normalized_acronym and normalized_acronym == existing_normalized_acronym:
-                raise forms.ValidationError(f'La sigla "{acronym}" ya existe o es muy similar.')
-
+                raise forms.ValidationError(_('Ya existe un idioma con el acrónimo "%(acronym)s" o es muy similar.') % {'acronym': acronym})
 
         return cleaned_data
 
@@ -469,29 +468,29 @@ class PersonForm(forms.ModelForm):
 
     full_name = forms.CharField(
         required=True,
-        max_length=255,
-        label='Nombre Completo',
+        max_length=150,
+        label=_('Nombre Completo'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre completo de la persona',
+                'placeholder': _('Nombre completo de la persona'),
                 'autocomplete': 'off',
                 'id': 'full_name',
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el nombre completo.',
-            'max_length': 'El nombre excede el largo permitido.',
-        }
+            'required': _('Debe ingresar el nombre completo.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
     )
 
     biography = forms.CharField(
         required=False,
-        label='Biografía',
+        label=_('Biografía'),
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Biografía de la persona (opcional)',
+                'placeholder': _('Biografía de la persona (opcional)'),
                 'rows': 4,
                 'id': 'biography'
             }
@@ -500,8 +499,9 @@ class PersonForm(forms.ModelForm):
 
     birth_date = forms.DateField(
         required=False,
-        label='Fecha de Nacimiento',
+        label=_('Fecha de Nacimiento'),
         widget=DateInput(
+            format='%Y-%m-%d',
             attrs={
                 'class': 'form-control',
                 'type': 'date',
@@ -512,7 +512,7 @@ class PersonForm(forms.ModelForm):
 
     country = forms.ModelChoiceField(
         required=False,
-        label='País',
+        label=_('País'),
         queryset=None,
         widget=forms.Select(
             attrs={
@@ -524,13 +524,13 @@ class PersonForm(forms.ModelForm):
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
-                'title': 'Marcar para activar o desactivar a la persona',
+                'title': _('Marcar para activar o desmarcar para desactivar a la persona.'),
             }
         )
     )
@@ -554,7 +554,7 @@ class PersonForm(forms.ModelForm):
             for person in qs:
                 existing = ''.join(person.full_name.upper().split())
                 if normalized == existing:
-                    raise forms.ValidationError(f'La persona "{full_name}" ya existe o es muy similar.')
+                    raise forms.ValidationError(_('Ya existe una persona con el nombre "%(full_name)s" o es muy similar.') % {'full_name': full_name})
 
         return cleaned_data
 
@@ -567,30 +567,37 @@ class PersonImageForm(forms.ModelForm):
     person = forms.ModelChoiceField(
         queryset=Person.objects.filter(is_active=True),
         required=True,
-        label='Persona',
+        label=_('Persona'),
         widget=forms.Select(
             attrs={
                 'class': 'form-select',
                 'id': 'person'
             }
-        )
+        ),
+        error_messages={
+            'required': _('Debe seleccionar una persona.'),
+        },
     )
+
 
     size_image = forms.ModelChoiceField(
         queryset=ImageSize.objects.filter(is_active=True),
         required=True,
-        label='Tamaño de Imagen',
+        label=_('Tamaño de Imagen'),
         widget=forms.Select(
             attrs={
                 'class': 'form-select',
                 'id': 'size_image'
             }
-        )
+        ),
+        error_messages={
+            'required': _('Debe seleccionar un tamaño de imagen.'),
+        },
     )
 
     image = forms.ImageField(
         required=True,
-        label='Imagen',
+        label=_('Imagen'),
         widget=forms.ClearableFileInput(
             attrs={
                 'class': 'form-control',
@@ -598,32 +605,38 @@ class PersonImageForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe subir una imagen.',
-            'invalid': 'El archivo seleccionado no es válido.',
-        }
+            'required': _('Debe subir una imagen.'),
+            'invalid': _('El archivo seleccionado no es válido.'),
+        },
     )
 
-    image_url = forms.URLField(
+    image_url = forms.CharField(
         required=False,
-        label='URL Alternativa',
+        max_length= 2000,
+        label='URL',
         widget=forms.URLInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'URL de la imagen (opcional)',
+                'placeholder': _('URL de la imagen (opcional)'),
                 'id': 'image_url',
-                'autocomplete': 'off'
+                'autocomplete': 'off',
+                'type': 'url',
             }
-        )
+        ),
+        error_messages={
+            'max_length': _('La URL excede el largo permitido.'),
+        },
     )
 
     is_active = forms.BooleanField(
         required=False,
+        label=_('Activo'),
         initial=True,
-        label='Activo',
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
-                'id': 'is_active'
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar la imagen de la persona.'),
             }
         )
     )
@@ -636,7 +649,7 @@ class PersonImageForm(forms.ModelForm):
 
     def clean_image_url(self):
         url = self.cleaned_data.get('image_url', '').strip()
-        return url or None  # Si está vacío, se guarda como None
+        return validate_url(url)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -653,7 +666,6 @@ class PersonImageForm(forms.ModelForm):
 
         return cleaned_data
 
-
 ########################################################################################################    Modelo para PersonImageExtra
 class PersonImageExtraForm(forms.ModelForm):
     class Meta:
@@ -669,7 +681,10 @@ class PersonImageExtraForm(forms.ModelForm):
                 'class': 'form-select',
                 'id': 'person'
             }
-        )
+        ),
+        error_messages={
+            'required': _('Debe seleccionar una persona.'),
+        },
     )
 
     image = forms.ImageField(
@@ -682,19 +697,20 @@ class PersonImageExtraForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe subir una imagen.',
-            'invalid': 'El archivo seleccionado no es válido.',
-        }
+            'required': _('Debe subir una imagen.'),
+            'invalid': _('El archivo seleccionado no es válido.'),
+        },
     )
 
     is_active = forms.BooleanField(
         required=False,
+        label=_('Activo'),
         initial=True,
-        label='Activo',
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
-                'id': 'is_active'
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar la imagen adicional de la persona.'),
             }
         )
     )
@@ -714,7 +730,7 @@ class PersonImageExtraForm(forms.ModelForm):
 
         image = cleaned_data.get('image')
         if not image:
-            raise forms.ValidationError('Debe subir una imagen.')
+            raise forms.ValidationError(_('Debe subir una imagen.'))
 
         return cleaned_data
 
@@ -733,7 +749,10 @@ class PersonNicknameForm(forms.ModelForm):
                 'class': 'form-select',
                 'id': 'person'
             }
-        )
+        ),
+        error_messages={
+            'required': _('Debe seleccionar una persona.'),
+        },
     )
 
     nickname = forms.CharField(
@@ -743,25 +762,26 @@ class PersonNicknameForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Apodo de la Persona',
+                'placeholder': _('Apodo de la Persona'),
                 'id': 'nickname',
                 'autocomplete': 'off',
             }
         ),
         error_messages={
-            'required': 'Debe ingresar un apodo.',
-            'max_length': 'El apodo excede los 100 caracteres permitidos.',
+            'required': _('Debe ingresar un apodo.'),
+            'max_length': _('El apodo excede los 100 caracteres permitidos.'),
         }
     )
 
     is_active = forms.BooleanField(
         required=False,
+        label=_('Activo'),
         initial=True,
-        label='Activo',
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
-                'id': 'is_active'
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el apodo de la persona.'),
             }
         )
     )
@@ -782,7 +802,7 @@ class PersonNicknameForm(forms.ModelForm):
             for existing in existing_nicks:
                 existing_normalized = ''.join(existing.nickname.upper().split())
                 if normalized_nickname == existing_normalized:
-                    raise forms.ValidationError(f'El apodo "{nickname}" ya está registrado para esta persona.')
+                    raise forms.ValidationError(_('El apodo "%(nickname)s" ya está registrado para esta persona.') % {'nickname': nickname})
 
         return cleaned_data
 
@@ -796,11 +816,11 @@ class QualityForm(forms.ModelForm):
         required=True,
         strip=True,
         max_length=10,
-        label='Nombre',
+        label=_('Nombre'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre de la Calidad',
+                'placeholder': _('Nombre de la Calidad'),
                 'id': 'name',
                 'type': 'text',
                 'required': 'required',
@@ -808,19 +828,19 @@ class QualityForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el Nombre de la Calidad.',
-            'max_length': 'El Nombre de la Calidad excede lo permitido.',
+            'required': _('Debe ingresar el Nombre de la Calidad.'),
+            'max_length': _('El Nombre de la Calidad excede lo permitido.'),
         }
     )
 
     description = forms.CharField(
         required=False,
         strip=True,
-        label='Descripción Calidad',
+        label=_('Descripción Calidad'),
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Descripción de la Calidad (opcional)',
+                'placeholder': _('Descripción de la Calidad (opcional)'),
                 'id': 'description',
                 'rows': 3,
                 'autocomplete': 'off',
@@ -830,13 +850,13 @@ class QualityForm(forms.ModelForm):
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
-                'title': 'Marcar para activar o desactivar la Calidad',
+                'title': _('Marcar para activar o desmarcar para desactivar la calidad.'),
             }
         )
     )
@@ -858,7 +878,7 @@ class QualityForm(forms.ModelForm):
             for quality in existing_qualities:
                 existing_normalized_name = ''.join(quality.name.upper().split())
                 if normalized_name == existing_normalized_name:
-                    raise forms.ValidationError(f'La Calidad "{name}" ya existe o es muy similar.')
+                    raise forms.ValidationError(_('Ya existe una calidad con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
         return cleaned_data
 
@@ -872,11 +892,11 @@ class WebsiteForm(forms.ModelForm):
         required=True,
         strip=True,
         max_length=50,
-        label='Nombre',
+        label=_('Nombre'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nombre de la Página de Descarga',
+                'placeholder': _('Nombre de la Página de Descarga'),
                 'id': 'name',
                 'type': 'text',
                 'required': 'required',
@@ -884,8 +904,8 @@ class WebsiteForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe ingresar el Nombre de la Página de Descarga.',
-            'max_length': 'El Nombre de la Página de Descarga excede lo permitido.',
+            'required': _('Debe ingresar el Nombre del sitio web.'),
+            'max_length': _('El Nombre del sitio web excede lo permitido.'),
         }
     )
 
@@ -893,11 +913,11 @@ class WebsiteForm(forms.ModelForm):
         required=True,
         strip=True,
         max_length=5,
-        label='Siglas',
+        label=_('Acrónimo'),
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Siglas de la Página de Descarga',
+                'placeholder': _('Acrónimo del sitio web.'),
                 'id': 'acronym',
                 'type': 'text',
                 'required': 'required',
@@ -905,40 +925,40 @@ class WebsiteForm(forms.ModelForm):
             }
         ),
         error_messages={
-            'required': 'Debe ingresar las Siglas de la Página de Descarga.',
-            'max_length': 'Las Siglas de la Página de Descarga exceden lo permitido.',
+            'required': _('Debe ingresar el acrónimo del sitio web.'),
+            'max_length': _('El acrónimo del sitio web exceden lo permitido.'),
         }
     )
 
-    url = forms.URLField(
+    url = forms.CharField(
         required=True,
         max_length=250,
         label='URL',
         widget=forms.URLInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'URL de la Página de Descarga',
-                'id': 'URL',
+                'placeholder': _('URL del sitio web'),
+                'id': 'url',
                 'type': 'url',
                 'required': 'required',
                 'autocomplete': 'off',
             }
         ),
         error_messages={
-            'required': 'Debe ingresar la URL de la Página de Descarga.',
-            'max_length': 'La URL de la Página de Descarga excede lo permitido.',
-            'invalid': 'Debe ingresar una URL válida.',
+            'required': _('Debe ingresar la URL del sitio web.'),
+            'max_length': _('La URL del sitio web excede lo permitido.'),
         }
     )
 
     is_active = forms.BooleanField(
         required=False,
-        label='Activo',
+        label=_('Activo'),
         initial=True,
         widget=forms.CheckboxInput(
             attrs={
                 'class': 'form-check-input',
                 'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el sitio web.'),
             }
         )
     )
@@ -951,25 +971,29 @@ class WebsiteForm(forms.ModelForm):
         acronym = self.cleaned_data.get('acronym', '').strip().upper()
         return acronym
 
+    def clean_url(self):
+        url = self.cleaned_data.get('url', '').strip()
+        return validate_url(url)
+
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
-        URL = cleaned_data.get('URL')
+        url = cleaned_data.get('url')
 
         # Normaliza el nombre eliminando espacios y convirtiendo a minúsculas
         normalized_name = ''.join(name.lower().split()) if name else ''
-        normalized_url = URL.lower().strip() if URL else ''
+        normalized_url = url.lower().strip() if url else ''
 
         # Verifica si ya existe una página de descarga con el nombre o URL similares
         existing_websites = Website.objects.exclude(pk=self.instance.pk)
         for website in existing_websites:
             existing_normalized_name = ''.join(website.name.lower().split())
-            existing_normalized_url = website.URL.lower().strip()
+            existing_normalized_url = website.url.lower().strip()
 
             if normalized_name == existing_normalized_name:
-                raise forms.ValidationError(f'La página de descarga "{name}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un sitio web con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
             if normalized_url == existing_normalized_url:
-                raise forms.ValidationError(f'La URL "{URL}" ya existe o es muy similar.')
+                raise forms.ValidationError(_('Ya existe un sitio web con la URL "%(url)s" o es muy similar.') % {'url': url})
 
         return cleaned_data

@@ -488,3 +488,5 @@ class UserUpdateForm(forms.ModelForm):
                 'Este correo electrónico ya está en uso por otro usuario.')
 
         return email
+
+

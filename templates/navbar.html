@@ -16,41 +16,39 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'common_app:home' %}">
-                        General
+                        {% trans 'General' %}
                     </a>
                 </li>
                 <!-- Musica -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'music_app:home' %}">
-                        Musica
+                        {% trans 'Música' %}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'movie_app:home' %}">
-                        Cine
+                        {% trans 'Películas' %}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'serie_app:home' %}">
-                        TV
+                        {% trans 'Serie' %}
                     </a>
                 </li>
                 <!-- Juegos -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'renpy_app:home' %}">
-                        Juegos
+                        {% trans 'Juegos' %}
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'otaku_app:home' %}">
-                        Otaku
+                        {% trans 'Otaku' %}
                     </a>
                 </li>
-
-
                 <!-- Usuario -->
                 {% if user.is_authenticated %}
                 <!-- Animes -->
@@ -59,34 +57,29 @@
                         href="#">
                         {% if user.username %}
                         {{ user.username }}
-                        {% else %}
-                        usuario
                         {% endif %}
                     </a>
                     <ul class="dropdown-menu bg-dark">
                         <li>
                             <a class="dropdown-item" href="#">
-                                Mi pefil
+                                {% trans 'Mi perfil' %}
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">
-                                Cambiar Contraseña
+                                {% trans 'Cambiar contraseña' %}
                             </a>
                         </li>
                         {% if user.is_superuser %}
                         <div class="dropdown-divider" id="divisor"></div>
-
                         <li>
                             <a class="dropdown-item" href="#">
-                                Gestión Usuarios
+                                {% trans 'Gestión de usuarios' %}
                             </a>
                         </li>
-
-
                         <li>
                             <a class="dropdown-item" href="#">
-                                Admin
+                                {% trans 'Administrador' %}
                             </a>
                         </li>
                         {% endif %}
@@ -97,25 +90,23 @@
                 {% if not user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users_app:login' %}">
-                        Ingresar
+                        {% trans 'Ingresar' %}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users_app:users_create' %}">
-                        Registrarse
+                        {% trans 'Registrarse' %}
                     </a>
                 </li>
                 {% endif %}
-
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'pages_app:about' %}">
-                        Nosotros
+                        {% trans 'Nosotros' %}
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'pages_app:contact' %}">
-                        Contacto
+                        {% trans 'Contacto' %}
                     </a>
                 </li>
             </ul>
@@ -123,14 +114,13 @@
             <form action="{% url 'users_app:logout' %}" method="post" class="form-inline my-2 my-lg-0">
                 {% csrf_token %}
                 <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
-                    Salir
+                    {% trans 'Salir' %}
                 </button>
             </form>
             {% endif %}
             <form action="{% url 'set_language' %}" method="post" class="d-inline">
                 {% csrf_token %}
                 <select name="language" onchange="this.form.submit()" class="language-select">
-                <!-- <select name="language" onchange="this.form.submit()" class="form-select form-select-sm w-auto"> -->
                     {% for lang_code, lang_name in LANGUAGES %}
                         <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
                             {{ lang_name }}
@@ -139,7 +129,6 @@
                 </select>
                 <input type="hidden" name="next" value="{{ request.path }}">
             </form>
-
         </div>
     </div>
 </nav>

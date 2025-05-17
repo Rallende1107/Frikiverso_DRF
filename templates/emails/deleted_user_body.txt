@@ -1,0 +1,7 @@
+Hola {{ user.first_name|default:user.username }},
+
+Tu Usuario ha sido Eliminado por un administrador.
+Si tienes dudas Favor contactanos mediante el correo de contacto
+
+Saludos,
+El equipo de OtakuVerse

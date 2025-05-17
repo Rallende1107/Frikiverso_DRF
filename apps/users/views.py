@@ -334,3 +334,5 @@ class SuperUserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         context['cancel_url'] = self.success_url
         context['special'] = True
         return context
+
+############################################################################################################################################    User Staff

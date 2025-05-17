@@ -1,0 +1,8 @@
+Hola {{ user.first_name|default:user.username }},
+
+Tu Usuario ha sido bloqueado por un administrador.
+Si tienes dudas Favor contactanos meadiante el correo de contacto
+
+
+Saludos,
+El equipo de OtakuVerse

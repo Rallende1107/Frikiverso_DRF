@@ -8,42 +8,39 @@
 }
 
 .terms {
-  align-items: center;
-  color: var(--color-white);
-  height: 100vh;
-  width: 100%;
-  background: var(--bg-home-tems);
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 10px;
+    position: relative;
+    height: calc(100vh - 50px);
+    width: 100%;
+    background: var(--bg-home-tems);
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .terms-container {
     color: var(--color-white);
-    max-width: 99%;
-    max-height: 90vh; /* límite máximo de altura para que no crezca más que el 80% de la pantalla */
-    padding: 1rem;
+    max-width: 90%;
+    max-height: 90vh;
+    padding: 1rem 2rem;
     line-height: 1.6;
-    background: var(--gradient-transparent-darker);
+    background: var(--gradient-transparent-medium);
     border-radius: var(--border07);
     overflow-y: auto;
-    box-shadow: 5px 5px 20px 2px var(--color-white);
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none; /* Firefox */
 }
 
-/* Ocultar scrollbar para Webkit (Chrome, Safari) */
+/* Oculta scrollbar en Chrome, Edge y Safari */
 .terms-container::-webkit-scrollbar {
     width: 0;
-}
-
-/* Para Firefox, si quieres ocultarlo: */
-.terms-container {
-  scrollbar-width: none; /* Firefox */
-}
-
-.terms-container::-webkit-scrollbar-thumb {
-  background: transparent; /* Opcional, para que no se vea el "pulgar" del scrollbar */
+    height: 0;
 }
 
 .terms-container h1 {

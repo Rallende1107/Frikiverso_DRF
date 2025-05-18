@@ -124,25 +124,24 @@
                                 {% endif %}
 
                                 <div class="contenedor-btn mt-4">
+                                    {% if user.is_superuser %}
 
-                                    <a href="{{ cancel_url }}" class="btn btn__cancel">
-                                        <i class="bi bi-arrow-left"></i>
-                                        Atras
-                                    </a>
+                                        <a href="{{ cancel_url }}" class="btn btn__cancel">
+                                            <i class="bi bi-arrow-left"></i>
+                                            Atras
+                                        </a>
+                                    {% endif %}
+
                                     {% if usuario == request.user %}
-                                    <a href="{% url 'core_app:user_detail' user.id %}" class="btn btn__primary">
+                                    <a href="{% url 'users_app:users_update' user.id %}" class="btn btn__primary">
                                         <i class="bi bi-pencil"></i>
                                         Editar Mi Perfil
                                     </a>
-
-
-                                    <a href="{% url 'core_app:password_change' %}" class="btn btn__password">
+                                    <a href="{% url 'users_app:password_change' %}" class="btn btn__password">
                                         <i class="bi bi-person-fill-lock"></i>
                                         Cambiar Contraseña
                                     </a>
                                     {% endif %}
-
-
                                 </div>
                             </div>
                         </div>

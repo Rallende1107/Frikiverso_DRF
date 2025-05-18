@@ -61,24 +61,24 @@
                     </a>
                     <ul class="dropdown-menu bg-dark">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'users_app:users_detail' user.id %}">
                                 {% trans 'Mi perfil' %}
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'users_app:password_change' %}">
                                 {% trans 'Cambiar contraseña' %}
                             </a>
                         </li>
                         {% if user.is_superuser %}
                         <div class="dropdown-divider" id="divisor"></div>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'users_app:users_list'%}">
                                 {% trans 'Gestión de usuarios' %}
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">
                                 {% trans 'Administrador' %}
                             </a>
                         </li>

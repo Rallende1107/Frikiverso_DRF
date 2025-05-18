@@ -1,7 +1,8 @@
-import os, datetime
+import os, datetime,  re, random
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from .validators import validate_url
 
 def validate_year(value):
     if len(str(value)) != 4:
@@ -49,3 +50,66 @@ def formato_fecha(date):
         return date.strftime("%d, %b %Y")
     except Exception as e:
         return f"Error al formatear la fecha: {e}"
+
+def procesar_urls(url: str, tipo: int):
+    """
+    Procesa URLs de F95Zone, MAL Anime o MAL Manga.
+
+    Parámetros:
+        url (str): URL a procesar (puede ser None o cadena vacía).
+        tipo (int):
+            1 = F95Zone
+            2 = MyAnimeList (Anime)
+            3 = MyAnimeList (Manga)
+
+    Retorna:
+        tuple[str, int]: URL limpia y ID extraído.
+
+    Excepciones:
+        ValueError: Si no se puede extraer el ID o tipo inválido.
+    """
+
+    if tipo == 1:  # F95Zone
+        if url:
+            match = re.search(r'/threads/(?:.*?)(\d{4,})/?', url)
+            if match:
+                resource_id = int(match.group(1))
+                clean_url = f"https://f95zone.to/threads/{resource_id}/"
+                return validate_url(clean_url), resource_id
+            else:
+                raise ValueError("URL de F95Zone no válida. Asegúrese de que contiene un ID.")
+        else:
+            resource_id = -random.randint(1, 9999999)
+            clean_url = f"https://f95zone.to/threads/{abs(resource_id)}/"
+            return validate_url(clean_url), resource_id
+
+    elif tipo == 2:  # MyAnimeList Anime
+        if url:
+            match = re.search(r'/anime/(\d+)/?', url)
+            if match:
+                resource_id = int(match.group(1))
+                clean_url = f"https://myanimelist.net/anime/{resource_id}"
+                return validate_url(clean_url), resource_id
+            else:
+                raise ValueError("URL de MAL Anime no válida. Asegúrese de que contiene un ID.")
+        else:
+            resource_id = -random.randint(1, 9999999)
+            clean_url = f"https://myanimelist.net/anime/{abs(resource_id)}"
+            return validate_url(clean_url), resource_id
+
+    elif tipo == 3:  # MyAnimeList Manga
+        if url:
+            match = re.search(r'/manga/(\d+)/?', url)
+            if match:
+                resource_id = int(match.group(1))
+                clean_url = f"https://myanimelist.net/manga/{resource_id}"
+                return validate_url(clean_url), resource_id
+            else:
+                raise ValueError("URL de MAL Manga no válida. Asegúrese de que contiene un ID.")
+        else:
+            resource_id = -random.randint(1, 9999999)
+            clean_url = f"https://myanimelist.net/manga/{abs(resource_id)}"
+            return validate_url(clean_url), resource_id
+
+    else:
+        raise ValueError("Tipo inválido. Use 1 para F95, 2 para Anime, o 3 para Manga.")

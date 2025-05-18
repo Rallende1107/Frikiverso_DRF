@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block head %}
+{% extends "base.html" %} {% load static i18n %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/style-index.css'%}?=v1" />
 
 {% endblock head %}
@@ -8,17 +8,16 @@
 {% block contenido %}
 <!-- section Hero -->
 <div>
-
     <section id="section-hero-index" class="section-hero-index">
         <div class="container">
             <h1 id="section-hero-index-title" class="section-hero-index-title">
-                <span class="texto-destaca">Frikiverso</span><br />Todos Tus Gustos Frikis
+                <span class="texto-destaca">Frikiverso</span><br />{% trans "Todos Tus Gustos Frikis" %}
             </h1>
             <p id="section-hero-index-p" class="section-hero-index-p">
-                Tus Gustos en un solo lugar
+                {% trans "Tus Gustos en un solo lugar" %}
             </p>
             <form action="#">
-                <button class="button-index">¡Unete a Nosotros!</button>
+                <button class="button-index">{% trans "¡Unete a Nosotros!" %}</button>
             </form>
         </div>
     </section>
@@ -27,23 +26,24 @@
         <div class="container">
             <div class="img-container"></div>
             <div class="section-about-texto">
-                <h2>
-                    Somos
+                <h2>{% trans "Somos" %}
                     <span class="texto-destaca">
                         Frikis!!!
                     </span>
                 </h2>
                 <p>
+                    {% blocktrans %}
                     En FrikiVerso, nos apasiona ofrecerte los mejores contenidos relacionados con animes, mangas,
-                    juegos, Peliculas y Musica para que colecciones. Nuestro objetivo es mantener a los fanáticos como
+                    juegos, Películas y Música para que colecciones. Nuestro objetivo es mantener a los fanáticos como
                     tú actualizados y entretenidos de forma constante.
+                    {% endblocktrans %}
                 </p>
             </div>
         </div>
     </section>
     <!-- section logos -->
     <section id="section-logo" class="section-logo">
-        <h1 class="section-logo-title">Colecciona</h1>
+        <h1 class="section-logo-title">{% trans "Colecciona" %}</h1>
         <div class="container">
             <img class="logo-brand" src="{% static 'img/icons/Discord.webp' %}" alt="Discord" />
             <img class="logo-brand" src="{% static 'img/icons/Itch.webp' %}" alt="Itch" />
@@ -57,8 +57,7 @@
     <!-- section Servicios -->
     <section id="services-section" class="section-services">
         <div class="title-service-section">
-            <h2>
-                Que Encontraras
+            <h2>{% trans "Que Encontraras" %}
             </h2>
         </div>
         <div class="services-section-servicios">
@@ -70,10 +69,9 @@
                     </div>
                     <div class="content">
                         <p class="heading">
-                            Musica
+                            {% trans "Música" %}
                         </p>
-                        <p>
-                            Agrega Canciones y comparte a los demas usuarios.
+                        <p>{% trans "Agrega Canciones y comparte a los demas usuarios." %}
                         </p>
                     </div>
                 </div>
@@ -87,10 +85,10 @@
                     </div>
                     <div class="content">
                         <p class="heading">
-                            Peliculas
+                            {% trans "Películas" %}
                         </p>
                         <p>
-                            Agrega Peliculas y comparte a los demas usuarios.
+                            {% trans "Agrega Películas y comparte a los demas usuarios." %}
                         </p>
                     </div>
                 </div>
@@ -104,10 +102,10 @@
                     </div>
                     <div class="content">
                         <p class="heading">
-                            Juegos
+                            {% trans "Juegos" %}
                         </p>
                         <p>
-                            Agrega Juegos y comparte a los demas usuarios.
+                            {% trans "Agrega Juegos y comparte a los demas usuarios." %}
                         </p>
                     </div>
                 </div>
@@ -121,10 +119,10 @@
                     </div>
                     <div class="content">
                         <p class="heading">
-                            Manga
+                            {% trans "Manga" %}
                         </p>
                         <p>
-                            Agrega Mangas y comparte a los demas usuarios.
+                            {% trans "Agrega Mangas y comparte a los demas usuarios." %}
                         </p>
                     </div>
                 </div>
@@ -138,10 +136,10 @@
                     </div>
                     <div class="content">
                         <p class="heading">
-                            Animes
+                            {% trans "Animes" %}
                         </p>
                         <p>
-                            Agrega Animes y comparte a los demas usuarios.
+                            {% trans "Agrega Animes y comparte a los demas usuarios." %}
                         </p>
                     </div>
                 </div>
@@ -153,27 +151,33 @@
         <div class="container">
             <div class="section-caracteristicas-texto">
                 <h3>
-                    Más Caraceristicas
+                    {% trans "Más Caraceristicas" %}
                 </h3>
                 <ul>
                     <li>
                         <p>
                             <i class="bi bi-star-fill"></i>
-                            100% online
+                            {% trans "100% online" %}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <i class="bi bi-star-fill"></i>
+                            {% trans "Información de My Anime List" %}
                         </p>
                     </li>
 
                     <li>
                         <p>
                             <i class="bi bi-star-fill"></i>
-                            Información de My Anime List
+                            {% trans "Juegos de F95Zone" %}
                         </p>
                     </li>
 
                     <li>
                         <p>
                             <i class="bi bi-star-fill"></i>
-                            Tus propias colecciones
+                            {% trans "Tus propias colecciones" %}
                         </p>
                     </li>
 
@@ -188,10 +192,10 @@
         <!-- Section Title -->
         <div class="container" data-aos="fade-up">
             <h2>
-                <span class="titulo-contacto">Contacto</span>
+                <span class="titulo-contacto">{% trans "Contacto" %}</span>
             </h2>
             <p>
-                <span class="parrafo-contacto">Contacta con nosotros</span>
+                <span class="parrafo-contacto">{% trans "Contacta con nosotros" %}</span>
             </p>
         </div>
         <!-- End Section Title -->
@@ -210,29 +214,26 @@
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                         <i class="bi bi-geo-alt flex-shrink-0"></i>
                         <div>
-                            <h3>Dirección</h3>
+                            <h3>{% trans "Dirección" %}</h3>
                             <p>A108 Adam Street, New York, NY 535022</p>
                         </div>
                     </div>
 
-
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                         <i class="bi bi-telephone flex-shrink-0"></i>
                         <div>
-                            <h3>LLámanos</h3>
+                            <h3>{% trans "LLámanos" %}</h3>
                             <p>+1 5589 55488 55</p>
                         </div>
                     </div>
 
-
                     <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
                         <i class="bi bi-envelope flex-shrink-0"></i>
                         <div>
-                            <h3>Escribenos</h3>
+                            <h3>{% trans "Escribenos" %}</h3>
                             <p>info@example.com</p>
                         </div>
                     </div>
-
 
                     <!-- End Info Item -->
                 </div>
@@ -255,15 +256,16 @@
                             </div>
                             <div class="col-md-12 text-center">
                                 <div class="loading">
-                                    Cargando
+                                    {% trans "Cargando" %}
                                 </div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">
-                                    Tu mensaje ha sido enviado. ¡Gracias!
+                                    {% trans "Tu mensaje ha sido enviado. ¡Gracias!" %}
+
                                 </div>
                                 <button type="submit">
                                     <i class="bi bi-send"></i>
-                                    Enviar mensaje
+                                    {% trans "Enviar mensaje" %}
                                 </button>
                             </div>
                         </div>
@@ -275,148 +277,8 @@
     </section><!-- /Contact Section -->
 </div>
 <!-- section Footer -->
+{% include 'footer.html' %}
 
-<footer id="footer" class="footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="#" class="logo d-flex align-items-center">
-                        <span class="sitename">Frikiverso</span>
-                    </a>
-                    <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>
-                        Enlaces útiles
-                    </h4>
-                    <ul>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a  href="#">
-                                Sobre nosotros
-                            </a>
-                        </li>
-
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a  href="#">
-                                Servicios
-                            </a>
-                        </li>
-
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Términos de servicio
-                            </a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Política de privacidad</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>
-                        Nuestros servicios
-                    </h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Musica
-                            </a>
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Peliculas
-                            </a>
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Juegos
-                            </a>
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Mangas
-                            </a>
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i>
-                            <a href="#">
-                                Animes
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-12 footer-newsletter">
-                    <h4>
-                        Nuestras Redes
-                    </h4>
-                    <p>
-                        Encuentranos en nuestras redes sociales
-                    </p>
-
-                    <div class="social-links d-flex mt-6">
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        <a href="#"><i class="bi bi-discord"></i></a>
-                        <a href="#"><i class="bi bi-github"></i></a>
-                    </div>
-                    <div class="social-links d-flex mt-6">
-                        <a href="#"><i class="bi bi-gitlab"></i></a>
-                        <a href="#"><i class="bi bi-messenger"></i></a>
-                        <a href="#"><i class="bi bi-slack"></i></a>
-                        <a href="#"><i class="bi bi-telegram"></i></a>
-                        <a href="#"><i class="bi bi-twitch"></i></a>
-                        <a href="#"><i class="bi bi-whatsapp"></i></a>
-                        <a href="#"><i class="bi bi-youtube"></i></a>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright">
-        <div class="container text-center">
-            <p>
-                &copy;
-                <span>
-                    Copyright
-                </span>
-                <strong class="px-1 sitename">
-                    Frikiverso 2024
-                </strong>
-                <span>
-                    Todos los Derechos Reservados.
-                </span>
-            </p>
-        </div>
-    </div>
-
-</footer>
 
 
 {% endblock contenido %}

@@ -11,7 +11,7 @@ from django.utils.translation import gettext as _
 # from .forms import ()
 
 # Project-level imports - mixins and utilities
-from core.mixins import PermissionRequiredMessageMixin
+from core.utils.mixins import PermissionRequiredMessageMixin
 from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
 from core.utils.utils import delete_previous_media
 
@@ -301,3 +301,5 @@ class HomeView(TemplateView):
 
         context['card_sections'] = filtered_sections
         return context
+
+

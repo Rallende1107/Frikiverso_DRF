@@ -4,7 +4,7 @@ from django.forms.widgets import DateInput
 from core.utils.validators import validate_file_extension, validate_url, ALLOWED_IMAGE_EXTENSIONS
 from django.utils.translation import gettext_lazy as _
 # Create your forms here.
-########################################################################################################    Modelo para Country
+########################################################################################################    Formulario para Country
 class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
@@ -12,6 +12,7 @@ class CountryForm(forms.ModelForm):
 
     name = forms.CharField(
         required=True,
+        strip=True,
         max_length=60,
         label=_('Nombre en Inglés'),
         widget=forms.TextInput(
@@ -30,6 +31,7 @@ class CountryForm(forms.ModelForm):
 
     name_esp = forms.CharField(
         required=True,
+        strip=True,
         max_length=60,
         label=_('Nombre en Español'),
         widget=forms.TextInput(
@@ -48,6 +50,7 @@ class CountryForm(forms.ModelForm):
 
     code = forms.CharField(
         required=False,
+        strip=True,
         max_length=4,
         label=_('Código'),
         widget=forms.TextInput(
@@ -117,12 +120,11 @@ class CountryForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para Format
+########################################################################################################    Formulario para Format
 class FormatForm(forms.ModelForm):
     class Meta:
         model = Format
-        fields = [
-            'name',  'description', 'for_video', 'for_music', 'for_image',
+        fields = ['name', 'description', 'for_video', 'for_music', 'for_image',
             'for_document', 'for_other', 'is_active'
         ]
 
@@ -261,7 +263,7 @@ class FormatForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para ImageSize
+########################################################################################################    Formulario para ImageSize
 class ImageSizeForm(forms.ModelForm):
     class Meta:
         model = ImageSize
@@ -269,6 +271,7 @@ class ImageSizeForm(forms.ModelForm):
 
     name = forms.CharField(
         required=True,
+        strip=True,
         max_length=20,
         label=_('Nombre (Inglés)'),
         widget=forms.TextInput(
@@ -287,6 +290,7 @@ class ImageSizeForm(forms.ModelForm):
 
     name_esp = forms.CharField(
         required=True,
+        strip=True,
         max_length=20,
         label=_('Nombre (Español)'),
         widget=forms.TextInput(
@@ -344,7 +348,7 @@ class ImageSizeForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para Language
+########################################################################################################    Formulario para Language
 class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
@@ -441,7 +445,6 @@ class LanguageForm(forms.ModelForm):
         normalized_name_esp = ''.join(name_esp.lower().split()) if name_esp else ''
         normalized_acronym = ''.join(acronym.lower().split()) if acronym else ''
 
-
         # Verifica si ya existe un idioma con el nombre, iniciales, o combinaciones similares
         existing_languages = Language.objects.exclude(pk=self.instance.pk)
         for language in existing_languages:
@@ -460,7 +463,7 @@ class LanguageForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para Person
+########################################################################################################    Formulario para Person
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
@@ -468,6 +471,7 @@ class PersonForm(forms.ModelForm):
 
     full_name = forms.CharField(
         required=True,
+        strip=True,
         max_length=150,
         label=_('Nombre Completo'),
         widget=forms.TextInput(
@@ -486,6 +490,7 @@ class PersonForm(forms.ModelForm):
 
     biography = forms.CharField(
         required=False,
+        strip=True,
         label=_('Biografía'),
         widget=forms.Textarea(
             attrs={
@@ -537,7 +542,6 @@ class PersonForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Solo países activos
         self.fields['country'].queryset = Country.objects.filter(is_active=True)
 
     def clean_full_name(self):
@@ -558,14 +562,14 @@ class PersonForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para PersonImage
+########################################################################################################    Formulario para PersonImage
 class PersonImageForm(forms.ModelForm):
     class Meta:
         model = PersonImage
         fields = ['person', 'size_image', 'image', 'image_url', 'is_active']
 
     person = forms.ModelChoiceField(
-        queryset=Person.objects.filter(is_active=True),
+        queryset=None,
         required=True,
         label=_('Persona'),
         widget=forms.Select(
@@ -579,9 +583,8 @@ class PersonImageForm(forms.ModelForm):
         },
     )
 
-
     size_image = forms.ModelChoiceField(
-        queryset=ImageSize.objects.filter(is_active=True),
+        queryset=None,
         required=True,
         label=_('Tamaño de Imagen'),
         widget=forms.Select(
@@ -641,6 +644,11 @@ class PersonImageForm(forms.ModelForm):
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['person'].queryset = Person.objects.filter(is_active=True)
+        self.fields['size_image'].queryset = ImageSize.objects.filter(is_active=True)
+
     def clean_image(self):
         image = self.cleaned_data.get('image')
         if image:
@@ -666,14 +674,14 @@ class PersonImageForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para PersonImageExtra
+########################################################################################################    Formulario para PersonImageExtra
 class PersonImageExtraForm(forms.ModelForm):
     class Meta:
         model = PersonImageExtra
         fields = ['person', 'image', 'is_active']
 
     person = forms.ModelChoiceField(
-        queryset=Person.objects.filter(is_active=True),
+        queryset=None,
         required=True,
         label='Persona',
         widget=forms.Select(
@@ -715,6 +723,10 @@ class PersonImageExtraForm(forms.ModelForm):
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['person'].queryset = Person.objects.filter(is_active=True)
+
     def clean_image(self):
         image = self.cleaned_data.get('image')
         if image:
@@ -734,14 +746,14 @@ class PersonImageExtraForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para PersonNickname
+########################################################################################################    Formulario para PersonNickname
 class PersonNicknameForm(forms.ModelForm):
     class Meta:
         model = PersonNickname
         fields = ['person', 'nickname', 'is_active']
 
     person = forms.ModelChoiceField(
-        queryset=Person.objects.filter(is_active=True),
+        queryset=None,
         required=True,
         label='Persona',
         widget=forms.Select(
@@ -786,6 +798,10 @@ class PersonNicknameForm(forms.ModelForm):
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['person'].queryset = Person.objects.filter(is_active=True)
+
     def clean_nickname(self):
         nickname = self.cleaned_data.get('nickname', '').strip()
         return ' '.join(part.capitalize() for part in nickname.split())
@@ -806,7 +822,7 @@ class PersonNicknameForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para Quality
+########################################################################################################    Formulario para Quality
 class QualityForm(forms.ModelForm):
     class Meta:
         model = Quality
@@ -882,7 +898,7 @@ class QualityForm(forms.ModelForm):
 
         return cleaned_data
 
-########################################################################################################    Modelo para Website
+########################################################################################################    Formulario para Website
 class WebsiteForm(forms.ModelForm):
     class Meta:
         model = Website
@@ -997,3 +1013,4 @@ class WebsiteForm(forms.ModelForm):
                 raise forms.ValidationError(_('Ya existe un sitio web con la URL "%(url)s" o es muy similar.') % {'url': url})
 
         return cleaned_data
+

@@ -17,7 +17,7 @@ from .forms import (
 )
 
 # Project-level imports - mixins and utilities
-from core.mixins import PermissionRequiredMessageMixin
+from core.utils.mixins import PermissionRequiredMessageMixin
 from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
 from core.utils.utils import delete_previous_media
 

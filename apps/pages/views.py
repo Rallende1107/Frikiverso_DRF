@@ -3,18 +3,14 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import ContactoForm  # Asegúrate de tener este form
-from django.core.mail import send_mail
-from django.conf import settings
-
-
-TEMPLATE_MAIN_INDEX = 'pages/index.html'
-TEMPLATE_MAIN_CONTACT = 'pages/contact.html'
-TEMPLATE_MAIN_ABOUT = 'pages/about.html'
+from core.utils.send_emails import send_contact_email
+from core.utils.constants import Templates, URLS
+from django.utils.translation import gettext_lazy as _
 
 ############################################################################################################################################    IndexView
 class IndexView(TemplateView):
-    template_name = TEMPLATE_MAIN_INDEX
-    title = 'Inicio'
+    template_name = Templates.Main.INDEX
+    title = _('Inicio')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -23,50 +19,36 @@ class IndexView(TemplateView):
 
 ############################################################################################################################################    ContactView
 class ContactView(FormView):
-    template_name = TEMPLATE_MAIN_CONTACT
+    template_name = Templates.Main.CONTACT
     form_class = ContactoForm
-    success_url = reverse_lazy('pages_app:contact')  # Cambia esto según tu config
-    title = 'Contáctanos'
+    success_url = reverse_lazy(URLS.Main.CONTAC)  # Cambia esto según tu config
+    title = _('Contáctanos')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = self.title
+        context['title'] = self.title.upper()
         return context
 
     def form_valid(self, form):
         try:
-            nombre = form.cleaned_data['nombre']
-            fono = form.cleaned_data['fono']
-            correo = form.cleaned_data['correo']
-            asunto = form.cleaned_data['asunto']
-            mensaje = form.cleaned_data['mensaje']
-
-            # Puedes usar una plantilla .txt aquí si lo prefieres
-            cuerpo_mensaje = (
-                f"Has recibido un nuevo mensaje de contacto:\n\n"
-                f"Nombre: {nombre}\n"
-                f"Teléfono: {fono}\n"
-                f"Correo: {correo}\n"
-                f"Asunto: {asunto}\n"
-                f"Mensaje:\n{mensaje}"
+            send_contact_email(
+                nombre=form.cleaned_data['nombre'],
+                fono=form.cleaned_data['fono'],
+                correo=form.cleaned_data['correo'],
+                asunto=form.cleaned_data['asunto'],
+                mensaje=form.cleaned_data['mensaje'],
             )
-            send_mail(
-                subject=f"[Contacto] {asunto}",
-                message=cuerpo_mensaje,
-                from_email=None,
-                recipient_list=[settings.CONTACT_EMAIL],  # O lista de destinatarios
-                fail_silently=False,
-            )
+            messages.success(self.request, _('Tu mensaje fue enviado correctamente'))
         except Exception as e:
-            print(f"Error al enviar el correo de contacto: {e}")
-
-        messages.success(self.request, ('Tu mensaje fue enviado correctamente'))
+            messages.error(self.request, _('Ocurrió un error al enviar tu mensaje. Intenta nuevamente.'))
 
         return super().form_valid(form)
+
+
 ############################################################################################################################################    ContactView
 class AboutView(TemplateView):
-    template_name = TEMPLATE_MAIN_ABOUT
-    title = 'Nosotros'
+    template_name = Templates.Main.ABOUT
+    title = _('Nosotros')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

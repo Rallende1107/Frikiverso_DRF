@@ -187,5 +187,6 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 CONTACT_EMAIL = os.getenv("CONTACT_EMAIL")
-print(DEFAULT_FROM_EMAIL )
-print(CONTACT_EMAIL )
+
+# Tiempo duracion token resert pass
+PASSWORD_RESET_TIMEOUT = 60 * 60 * 5  # 5 horas en segundos

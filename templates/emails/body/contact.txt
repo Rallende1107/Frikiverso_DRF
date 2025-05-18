@@ -1,0 +1,9 @@
+Has recibido un nuevo mensaje de contacto:
+
+Nombre: {{ nombre }}
+Teléfono: {{ fono }}
+Correo: {{ correo }}
+Asunto: {{ asunto }}
+
+Mensaje:
+{{ mensaje }}

@@ -23,21 +23,20 @@ def validate_file_extension(value, allowed_extensions):
 
 def validate_url(value):
     """
-    Valida una URL que puede no incluir http:// o https://.
+    Valida y normaliza una URL. Si no incluye http:// o https://, se agrega https://.
     Lanza ValidationError si no es válida.
     """
     if not value:
         return None
 
     value = value.strip()
-    to_validate = value
 
-    if not to_validate.lower().startswith(('http://', 'https://')):
-        to_validate = 'http://' + to_validate
+    if not value.lower().startswith(('http://', 'https://')):
+        value = 'https://' + value
 
     validator = URLValidator()
     try:
-        validator(to_validate)
+        validator(value)
     except ValidationError:
         raise ValidationError(_('Debe ingresar una URL válida.'))
 

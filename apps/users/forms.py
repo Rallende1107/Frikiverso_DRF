@@ -2,6 +2,8 @@ from .models import CustomUser
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 import datetime
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
 class UserForm(UserCreationForm):
@@ -490,3 +492,19 @@ class UserUpdateForm(forms.ModelForm):
         return email
 
 
+class PasswordRecoveryForm(forms.Form):
+    email = forms.EmailField(
+        label=_("Correo electrónico"),
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Introduce tu correo'),
+            'autocomplete': 'email'
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if not CustomUser.objects.filter(email=email, is_active=True).exists():
+            raise ValidationError(_('No se encontró ninguna cuenta activa con este correo.'))
+        return email

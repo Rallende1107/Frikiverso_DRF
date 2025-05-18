@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 # Importando modelos User
 from apps.users.models import CustomUser
-from apps.users.views_password_reset import notify_password_reset, notify_blocked_user, notify_activated_user, notify_deleted_user
+from core.utils.send_emails import notify_password_reset, notify_blocked_user, notify_activated_user, notify_deleted_user
 # Importando modelos Common
 from apps.common.models import (
     Country, Format, ImageSize, Language, Person, PersonImage,
@@ -631,7 +631,7 @@ class ActionView(View):
                     messages.success(request, _('El %(modelo)s %(name)s ya no es superusuario.') % {'modelo': modelo, 'name': name})
 
                 elif action == "11":  # Reiniciar contraseña
-                    new_password = 'frikiverso'
+                    new_password = 'Frikiverso'
                     instance.set_password(new_password)
                     instance.save()
                     notify_password_reset(instance, new_password)

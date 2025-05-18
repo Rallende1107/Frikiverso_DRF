@@ -1,0 +1,42 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+<h1>{{ game.title }}</h1>
+
+<p><strong>Versión:</strong> {{ game.version }}</p>
+<p><strong>version_txt:</strong> {{ game.version_txt }}</p>
+<p><strong>f95_id:</strong> {{ game.f95_id }}</p>
+<p><strong>Fecha de Lanzamiento:</strong> {{ game.release_date }}</p>
+<p><strong>Desarrolladores:</strong> {{ game.developer_names }}</p>
+<p><strong>Estado:</strong> {{ game.state_names }}</p>
+<p><strong>Motor:</strong> {{ game.engine_names }}</p>
+<p><strong>Géneros:</strong> {{ game.genre_names }}</p>
+<p><strong>Plataformas:</strong> {{ game.platform_names }}</p>
+<p><strong>Idiomas:</strong> {{ game.language_names }}</p>
+<p><strong>Traductores:</strong> {{ game.translator_names }}</p>
+<p><strong>Sinopsis:</strong> {{ game.synopsis }}</p>
+<p><strong>background:</strong> {{ game.background }}</p>
+<p><strong>Enlace F95 Zone:</strong> <a href="{{ game.f95zone_link }}" target="_blank">{{ game.f95zone_link }}</a></p>
+<p><strong>Enlace de Steam:</strong> <a href="{{ game.steam_link }}" target="_blank">{{ game.steam_link }}</a></p>
+<p><strong>Censura:</strong> {{ game.censored }}</p>
+<p><strong>created_at:</strong> {{ game.created_at }}</p>
+<p><strong>updated_at:</strong> {{ game.updated_at }}</p>
+
+<!-- Mostrar la imagen de portada -->
+{% if game.cover %}
+    <h2>Portada:</h2>
+    <img src="{{ game.cover.url }}" alt="{{ game.title }} Portada" />
+{% endif %}
+
+<!-- Mostrar imágenes adicionales -->
+<h2>Imágenes Adicionales:</h2>
+{% if game.images %}
+    <div>
+        {% for image in game.images %}
+            <img src="{{ image.img.url }}" alt="{{ game.title }} Imagen Adicional" />
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No hay imágenes adicionales disponibles.</p>
+{% endif %}
+
+{% endblock detail %}

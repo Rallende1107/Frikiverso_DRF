@@ -21,6 +21,7 @@ class Templates:
         DELETED_USER = 'emails/body/deleted_user.txt'
         PASSWORD_CHANGED = 'emails/body/password_changed.txt'
         CONTACT = 'emails/body/contact.txt'
+
     class emailSubject:
         PASSWORD_RECOVERY = 'emails/subject/password_recovery.txt'
         RESET_PASSWORD = 'emails/subject/reset_password.txt'
@@ -29,8 +30,10 @@ class Templates:
         DELETED_USER = 'emails/subject/deleted_user.txt'
         PASSWORD_CHANGED = 'emails/subject/password_changed.txt'
         CONTACT = 'emails/subject/contact.txt'
+
     class Home:
         HOME =  'home/home.html'
+
     class Users:
         LOGIN  = 'users/user/user_login.html'
 
@@ -227,197 +230,197 @@ class Templates:
             LST = 'otaku/anime/anime_list.html'
             ADD = 'otaku/anime/anime_form.html'
             UPT = 'otaku/anime/anime_form.html'
-            DTL = 'otaku/anime/anime_deta.html'
+            DTL = 'otaku/anime/anime_detail.html'
         class AnimeCharacter:
             LST = 'otaku/anime_character/anime_character_list.html'
             ADD = 'otaku/anime_character/anime_character_form.html'
             UPT = 'otaku/anime_character/anime_character_form.html'
-            DTL = 'otaku/anime_character/anime_character_deta.html'
+            DTL = 'otaku/anime_character/anime_character_detail.html'
         class AnimeImage:
             LST = 'otaku/anime_image/anime_image_list.html'
             ADD = 'otaku/anime_image/anime_image_form.html'
             UPT = 'otaku/anime_image/anime_image_form.html'
-            DTL = 'otaku/anime_image/anime_image_deta.html'
+            DTL = 'otaku/anime_image/anime_image_detail.html'
         class AnimeImageExtra:
             LST = 'otaku/anime_image_extra/anime_image_extra_list.html'
             ADD = 'otaku/anime_image_extra/anime_image_extra_form.html'
             UPT = 'otaku/anime_image_extra/anime_image_extra_form.html'
-            DTL = 'otaku/anime_image_extra/anime_image_extra_deta.html'
+            DTL = 'otaku/anime_image_extra/anime_image_extra_detail.html'
         class AnimeSong:
             LST = 'otaku/anime_song/anime_song_list.html'
             ADD = 'otaku/anime_song/anime_song_form.html'
             UPT = 'otaku/anime_song/anime_song_form.html'
-            DTL = 'otaku/anime_song/anime_song_deta.html'
+            DTL = 'otaku/anime_song/anime_song_detail.html'
         class AnimeStaff:
             LST = 'otaku/anime_staff/anime_staff_list.html'
             ADD = 'otaku/anime_staff/anime_staff_form.html'
             UPT = 'otaku/anime_staff/anime_staff_form.html'
-            DTL = 'otaku/anime_staff/anime_staff_deta.html'
+            DTL = 'otaku/anime_staff/anime_staff_detail.html'
         class AuthorManga:
             LST = 'otaku/author_manga/author_manga_list.html'
             ADD = 'otaku/author_manga/author_manga_form.html'
             UPT = 'otaku/author_manga/author_manga_form.html'
-            DTL = 'otaku/author_manga/author_manga_deta.html'
+            DTL = 'otaku/author_manga/author_manga_detail.html'
         class Character:
             LST = 'otaku/character/character_list.html'
             ADD = 'otaku/character/character_form.html'
             UPT = 'otaku/character/character_form.html'
-            DTL = 'otaku/character/character_deta.html'
+            DTL = 'otaku/character/character_detail.html'
         class CharacterImage:
             LST = 'otaku/character_image/character_image_list.html'
             ADD = 'otaku/character_image/character_image_form.html'
             UPT = 'otaku/character_image/character_image_form.html'
-            DTL = 'otaku/character_image/character_image_deta.html'
+            DTL = 'otaku/character_image/character_image_detail.html'
         class CharacterImageExtra:
             LST = 'otaku/character_image_extra/character_image_extra_list.html'
             ADD = 'otaku/character_image_extra/character_image_extra_form.html'
             UPT = 'otaku/character_image_extra/character_image_extra_form.html'
-            DTL = 'otaku/character_image_extra/character_image_extra_deta.html'
+            DTL = 'otaku/character_image_extra/character_image_extra_detail.html'
         class CharacterNickname:
             LST = 'otaku/character_nickname/character_nickname_list.html'
             ADD = 'otaku/character_nickname/character_nickname_form.html'
             UPT = 'otaku/character_nickname/character_nickname_form.html'
-            DTL = 'otaku/character_nickname/character_nickname_deta.html'
+            DTL = 'otaku/character_nickname/character_nickname_detail.html'
         class Demographic:
             LST = 'otaku/demographic/demographic_list.html'
             ADD = 'otaku/demographic/demographic_form.html'
             UPT = 'otaku/demographic/demographic_form.html'
-            DTL = 'otaku/demographic/demographic_deta.html'
+            DTL = 'otaku/demographic/demographic_detail.html'
         class Genre:
             LST = 'otaku/genre/genre_list.html'
             ADD = 'otaku/genre/genre_form.html'
             UPT = 'otaku/genre/genre_form.html'
-            DTL = 'otaku/genre/genre_deta.html'
+            DTL = 'otaku/genre/genre_detail.html'
         class Licensor:
             LST = 'otaku/licensor/licensor_list.html'
             ADD = 'otaku/licensor/licensor_form.html'
             UPT = 'otaku/licensor/licensor_form.html'
-            DTL = 'otaku/licensor/licensor_deta.html'
+            DTL = 'otaku/licensor/licensor_detail.html'
         class Manga:
             LST = 'otaku/manga/manga_list.html'
             ADD = 'otaku/manga/manga_form.html'
             UPT = 'otaku/manga/manga_form.html'
-            DTL = 'otaku/manga/manga_deta.html'
+            DTL = 'otaku/manga/manga_detail.html'
         class MangaCharacter:
             LST = 'otaku/manga_character/manga_character_list.html'
             ADD = 'otaku/manga_character/manga_character_form.html'
             UPT = 'otaku/manga_character/manga_character_form.html'
-            DTL = 'otaku/manga_character/manga_character_deta.html'
+            DTL = 'otaku/manga_character/manga_character_detail.html'
         class MangaImage:
             LST = 'otaku/manga_image/manga_image_list.html'
             ADD = 'otaku/manga_image/manga_image_form.html'
             UPT = 'otaku/manga_image/manga_image_form.html'
-            DTL = 'otaku/manga_image/manga_image_deta.html'
+            DTL = 'otaku/manga_image/manga_image_detail.html'
         class MangaImageExtra:
             LST = 'otaku/manga_image_extra/manga_image_extra_list.html'
             ADD = 'otaku/manga_image_extra/manga_image_extra_form.html'
             UPT = 'otaku/manga_image_extra/manga_image_extra_form.html'
-            DTL = 'otaku/manga_image_extra/manga_image_extra_deta.html'
+            DTL = 'otaku/manga_image_extra/manga_image_extra_detail.html'
         class MediaRelation:
             LST = 'otaku/media_relation/media_relation_list.html'
             ADD = 'otaku/media_relation/media_relation_form.html'
             UPT = 'otaku/media_relation/media_relation_form.html'
-            DTL = 'otaku/media_relation/media_relation_deta.html'
+            DTL = 'otaku/media_relation/media_relation_detail.html'
         class Person:
             LST = 'otaku/person/person_list.html'
             ADD = 'otaku/person/person_form.html'
             UPT = 'otaku/person/person_form.html'
-            DTL = 'otaku/person/person_deta.html'
+            DTL = 'otaku/person/person_detail.html'
         class PersonImage:
             LST = 'otaku/person_image/person_image_list.html'
             ADD = 'otaku/person_image/person_image_form.html'
             UPT = 'otaku/person_image/person_image_form.html'
-            DTL = 'otaku/person_image/person_image_deta.html'
+            DTL = 'otaku/person_image/person_image_detail.html'
         class PersonImageExtra:
             LST = 'otaku/person_image_extra/person_image_extra_list.html'
             ADD = 'otaku/person_image_extra/person_image_extra_form.html'
             UPT = 'otaku/person_image_extra/person_image_extra_form.html'
-            DTL = 'otaku/person_image_extra/person_image_extra_deta.html'
+            DTL = 'otaku/person_image_extra/person_image_extra_detail.html'
         class PersonNickname:
             LST = 'otaku/person_nickname/person_nickname_list.html'
             ADD = 'otaku/person_nickname/person_nickname_form.html'
             UPT = 'otaku/person_nickname/person_nickname_form.html'
-            DTL = 'otaku/person_nickname/person_nickname_deta.html'
+            DTL = 'otaku/person_nickname/person_nickname_detail.html'
         class Producer:
             LST = 'otaku/producer/producer_list.html'
             ADD = 'otaku/producer/producer_form.html'
             UPT = 'otaku/producer/producer_form.html'
-            DTL = 'otaku/producer/producer_deta.html'
+            DTL = 'otaku/producer/producer_detail.html'
         class Rating:
             LST = 'otaku/rating/rating_list.html'
             ADD = 'otaku/rating/rating_form.html'
             UPT = 'otaku/rating/rating_form.html'
-            DTL = 'otaku/rating/rating_deta.html'
+            DTL = 'otaku/rating/rating_detail.html'
         class RelationType:
             LST = 'otaku/relation_type/relation_type_list.html'
             ADD = 'otaku/relation_type/relation_type_form.html'
             UPT = 'otaku/relation_type/relation_type_form.html'
-            DTL = 'otaku/relation_type/relation_type_deta.html'
+            DTL = 'otaku/relation_type/relation_type_detail.html'
         class Role:
             LST = 'otaku/role/role_list.html'
             ADD = 'otaku/role/role_form.html'
             UPT = 'otaku/role/role_form.html'
-            DTL = 'otaku/role/role_deta.html'
+            DTL = 'otaku/role/role_detail.html'
         class Season:
             LST = 'otaku/season/season_list.html'
             ADD = 'otaku/season/season_form.html'
             UPT = 'otaku/season/season_form.html'
-            DTL = 'otaku/season/season_deta.html'
+            DTL = 'otaku/season/season_detail.html'
         class SeasonFull:
             LST = 'otaku/season_full/season_full_list.html'
             ADD = 'otaku/season_full/season_full_form.html'
             UPT = 'otaku/season_full/season_full_form.html'
-            DTL = 'otaku/season_full/season_full_deta.html'
+            DTL = 'otaku/season_full/season_full_detail.html'
         class Serialization:
             LST = 'otaku/serialization/serialization_list.html'
             ADD = 'otaku/serialization/serialization_form.html'
             UPT = 'otaku/serialization/serialization_form.html'
-            DTL = 'otaku/serialization/serialization_deta.html'
+            DTL = 'otaku/serialization/serialization_detail.html'
         class Source:
             LST = 'otaku/source/source_list.html'
             ADD = 'otaku/source/source_form.html'
             UPT = 'otaku/source/source_form.html'
-            DTL = 'otaku/source/source_deta.html'
+            DTL = 'otaku/source/source_detail.html'
         class Status:
             LST = 'otaku/status/status_list.html'
             ADD = 'otaku/status/status_form.html'
             UPT = 'otaku/status/status_form.html'
-            DTL = 'otaku/status/status_deta.html'
+            DTL = 'otaku/status/status_detail.html'
         class Studio:
             LST = 'otaku/studio/studio_list.html'
             ADD = 'otaku/studio/studio_form.html'
             UPT = 'otaku/studio/studio_form.html'
-            DTL = 'otaku/studio/studio_deta.html'
+            DTL = 'otaku/studio/studio_detail.html'
         class Theme:
             LST = 'otaku/theme/theme_list.html'
             ADD = 'otaku/theme/theme_form.html'
             UPT = 'otaku/theme/theme_form.html'
-            DTL = 'otaku/theme/theme_deta.html'
+            DTL = 'otaku/theme/theme_detail.html'
         class TitleAnime:
             LST = 'otaku/title_anime/title_anime_list.html'
             ADD = 'otaku/title_anime/title_anime_form.html'
             UPT = 'otaku/title_anime/title_anime_form.html'
-            DTL = 'otaku/title_anime/title_anime_deta.html'
+            DTL = 'otaku/title_anime/title_anime_detail.html'
         class TitleManga:
             LST = 'otaku/title_manga/title_manga_list.html'
             ADD = 'otaku/title_manga/title_manga_form.html'
             UPT = 'otaku/title_manga/title_manga_form.html'
-            DTL = 'otaku/title_manga/title_manga_deta.html'
+            DTL = 'otaku/title_manga/title_manga_detail.html'
         class Type:
             LST = 'otaku/type/type_list.html'
             ADD = 'otaku/type/type_form.html'
             UPT = 'otaku/type/type_form.html'
-            DTL = 'otaku/type/type_deta.html'
+            DTL = 'otaku/type/type_detail.html'
         class VoiceCharacter:
             LST = 'otaku/voice_character/voice_character_list.html'
             ADD = 'otaku/voice_character/voice_character_form.html'
             UPT = 'otaku/voice_character/voice_character_form.html'
-            DTL = 'otaku/voice_character/voice_character_deta.html'
+            DTL = 'otaku/voice_character/voice_character_detail.html'
         class Year:
             LST = 'otaku/year/year_list.html'
             ADD = 'otaku/year/year_form.html'
             UPT = 'otaku/year/year_form.html'
-            DTL = 'otaku/year/year_deta.html'
+            DTL = 'otaku/year/year_detail.html'
 
 
             # DataAnime = 'otaku/data/anime'
@@ -465,186 +468,193 @@ class Templates:
             pass
 
     class Renpy:
+
         class Censorship:
             LST = 'renpy/censorship/censorship_list.html'
             ADD = 'renpy/censorship/censorship_form.html'
             UPT = 'renpy/censorship/censorship_form.html'
-            DTL = 'renpy/censorship/censorship_deta.html'
+            DTL = 'renpy/censorship/censorship_detail.html'
         class Developer:
             LST = 'renpy/developer/developer_list.html'
             ADD = 'renpy/developer/developer_form.html'
             UPT = 'renpy/developer/developer_form.html'
-            DTL = 'renpy/developer/developer_deta.html'
+            DTL = 'renpy/developer/developer_detail.html'
         class DeveloperImage:
             LST = 'renpy/developer_image/developer_image_list.html'
             ADD = 'renpy/developer_image/developer_image_form.html'
             UPT = 'renpy/developer_image/developer_image_form.html'
-            DTL = 'renpy/developer_image/developer_image_deta.html'
+            DTL = 'renpy/developer_image/developer_image_detail.html'
         class DeveloperImageExtra:
             LST = 'renpy/developer_image_extra/developer_image_extra_list.html'
             ADD = 'renpy/developer_image_extra/developer_image_extra_form.html'
             UPT = 'renpy/developer_image_extra/developer_image_extra_form.html'
-            DTL = 'renpy/developer_image_extra/developer_image_extra_deta.html'
+            DTL = 'renpy/developer_image_extra/developer_image_extra_detail.html'
         class DeveloperLink:
             LST = 'renpy/developer_link/developer_link_list.html'
             ADD = 'renpy/developer_link/developer_link_form.html'
             UPT = 'renpy/developer_link/developer_link_form.html'
-            DTL = 'renpy/developer_link/developer_link_deta.html'
+            DTL = 'renpy/developer_link/developer_link_detail.html'
         class Game:
-            LST = 'renpy/game/game_list.html'
-            ADD = 'renpy/game/game_form.html'
-            UPT = 'renpy/game/game_form.html'
-            DTL = 'renpy/game/game_deta.html'
+            BASE = 'renpy/game/'
+            LST = BASE + 'game_list.html'
+            ADD = BASE + 'game_form.html'
+            UPT = BASE + 'game_form.html'
+            DTL = BASE + 'game_detail.html'
+            LOAD = BASE + 'game_load.html'
+            GAME_BY = BASE + 'games_by.html'
         class GameEngine:
-            LST = 'renpy/game_engine/game_engine_list.html'
-            ADD = 'renpy/game_engine/game_engine_form.html'
-            UPT = 'renpy/game_engine/game_engine_form.html'
-            DTL = 'renpy/game_engine/game_engine_deta.html'
+            BASE = 'renpy/game_engine/'
+            LST = BASE + 'game_engine_list.html'
+            ADD = BASE + 'game_engine_form.html'
+            UPT = BASE + 'game_engine_form.html'
+            DTL = BASE + 'game_engine_detail.html'
         class GameImage:
-            LST = 'renpy/game_image/game_image_list.html'
-            ADD = 'renpy/game_image/game_image_form.html'
-            UPT = 'renpy/game_image/game_image_form.html'
-            DTL = 'renpy/game_image/game_image_deta.html'
+            BASE = 'renpy/game_image/'
+            LST = BASE + 'game_image_list.html'
+            ADD = BASE + 'game_image_form.html'
+            UPT = BASE + 'game_image_form.html'
+            DTL = BASE + 'game_image_detail.html'
         class GameImageExtra:
-            LST = 'renpy/game_image_extra/game_image_extra_list.html'
-            ADD = 'renpy/game_image_extra/game_image_extra_form.html'
-            UPT = 'renpy/game_image_extra/game_image_extra_form.html'
-            DTL = 'renpy/game_image_extra/game_image_extra_deta.html'
+            BASE = 'renpy/game_image_extra/'
+            LST = BASE + 'game_image_extra_list.html'
+            ADD = BASE + 'game_image_extra_form.html'
+            UPT = BASE + 'game_image_extra_form.html'
+            DTL = BASE + 'game_image_extra_detail.html'
         class Genre:
             LST = 'renpy/genre/genre_list.html'
             ADD = 'renpy/genre/genre_form.html'
             UPT = 'renpy/genre/genre_form.html'
-            DTL = 'renpy/genre/genre_deta.html'
+            DTL = 'renpy/genre/genre_detail.html'
         class Platform:
             LST = 'renpy/platform/platform_list.html'
             ADD = 'renpy/platform/platform_form.html'
             UPT = 'renpy/platform/platform_form.html'
-            DTL = 'renpy/platform/platform_deta.html'
+            DTL = 'renpy/platform/platform_detail.html'
         class Prefix:
             LST = 'renpy/prefix/prefix_list.html'
             ADD = 'renpy/prefix/prefix_form.html'
             UPT = 'renpy/prefix/prefix_form.html'
-            DTL = 'renpy/prefix/prefix_deta.html'
+            DTL = 'renpy/prefix/prefix_detail.html'
         class Publisher:
             LST = 'renpy/publisher/publisher_list.html'
             ADD = 'renpy/publisher/publisher_form.html'
             UPT = 'renpy/publisher/publisher_form.html'
-            DTL = 'renpy/publisher/publisher_deta.html'
+            DTL = 'renpy/publisher/publisher_detail.html'
         class PublisherImage:
             LST = 'renpy/publisher_image/publisher_image_list.html'
             ADD = 'renpy/publisher_image/publisher_image_form.html'
             UPT = 'renpy/publisher_image/publisher_image_form.html'
-            DTL = 'renpy/publisher_image/publisher_image_deta.html'
+            DTL = 'renpy/publisher_image/publisher_image_detail.html'
         class PublisherImageExtra:
             LST = 'renpy/publisher_image_extra/publisher_image_extra_list.html'
             ADD = 'renpy/publisher_image_extra/publisher_image_extra_form.html'
             UPT = 'renpy/publisher_image_extra/publisher_image_extra_form.html'
-            DTL = 'renpy/publisher_image_extra/publisher_image_extra_deta.html'
+            DTL = 'renpy/publisher_image_extra/publisher_image_extra_detail.html'
         class PublisherLink:
             LST = 'renpy/publisher_link/publisher_link_list.html'
             ADD = 'renpy/publisher_link/publisher_link_form.html'
             UPT = 'renpy/publisher_link/publisher_link_form.html'
-            DTL = 'renpy/publisher_link/publisher_link_deta.html'
+            DTL = 'renpy/publisher_link/publisher_link_detail.html'
         class Status:
             LST = 'renpy/status/status_list.html'
             ADD = 'renpy/status/status_form.html'
             UPT = 'renpy/status/status_form.html'
-            DTL = 'renpy/status/status_deta.html'
+            DTL = 'renpy/status/status_detail.html'
         class TitleGame:
             LST = 'renpy/title_game/title_game_list.html'
             ADD = 'renpy/title_game/title_game_form.html'
             UPT = 'renpy/title_game/title_game_form.html'
-            DTL = 'renpy/title_game/title_game_deta.html'
+            DTL = 'renpy/title_game/title_game_detail.html'
         class Translator:
             LST = 'renpy/translator/translator_list.html'
             ADD = 'renpy/translator/translator_form.html'
             UPT = 'renpy/translator/translator_form.html'
-            DTL = 'renpy/translator/translator_deta.html'
+            DTL = 'renpy/translator/translator_detail.html'
         class TranslatorImage:
             LST = 'renpy/translator_image/translator_image_list.html'
             ADD = 'renpy/translator_image/translator_image_form.html'
             UPT = 'renpy/translator_image/translator_image_form.html'
-            DTL = 'renpy/translator_image/translator_image_deta.html'
+            DTL = 'renpy/translator_image/translator_image_detail.html'
         class TranslatorImageExtra:
             LST = 'renpy/translator_image_extra/translator_image_extra_list.html'
             ADD = 'renpy/translator_image_extra/translator_image_extra_form.html'
             UPT = 'renpy/translator_image_extra/translator_image_extra_form.html'
-            DTL = 'renpy/translator_image_extra/translator_image_extra_deta.html'
+            DTL = 'renpy/translator_image_extra/translator_image_extra_detail.html'
         class TranslatorLink:
             LST = 'renpy/translator_link/translator_link_list.html'
             ADD = 'renpy/translator_link/translator_link_form.html'
             UPT = 'renpy/translator_link/translator_link_form.html'
-            DTL = 'renpy/translator_link/translator_link_deta.html'
+            DTL = 'renpy/translator_link/translator_link_detail.html'
         class GameData:
             LST = 'renpy/game_data/game_data_list.html'
             ADD = 'renpy/game_data/game_data_form.html'
             UPT = 'renpy/game_data/game_data_form.html'
-            DTL = 'renpy/game_data/game_data_deta.html'
+            DTL = 'renpy/game_data/game_data_detail.html'
 
     class Serie:
         class Company:
             LST = 'serie/company/company_list.html'
             ADD = 'serie/company/company_form.html'
             UPT = 'serie/company/company_form.html'
-            DTL = 'serie/company/company_deta.html'
+            DTL = 'serie/company/company_detail.html'
         class Genre:
             LST = 'serie/genre/genre_list.html'
             ADD = 'serie/genre/genre_form.html'
             UPT = 'serie/genre/genre_form.html'
-            DTL = 'serie/genre/genre_deta.html'
+            DTL = 'serie/genre/genre_detail.html'
         class Rating:
             LST = 'serie/rating/rating_list.html'
             ADD = 'serie/rating/rating_form.html'
             UPT = 'serie/rating/rating_form.html'
-            DTL = 'serie/rating/rating_deta.html'
+            DTL = 'serie/rating/rating_detail.html'
 
         class Role:
             LST = 'serie/role/role_list.html'
             ADD = 'serie/role/role_form.html'
             UPT = 'serie/role/role_form.html'
-            DTL = 'serie/role/role_deta.html'
+            DTL = 'serie/role/role_detail.html'
 
         class Serie:
             LST = 'serie/serie/serie_list.html'
             ADD = 'serie/serie/serie_form.html'
             UPT = 'serie/serie/serie_form.html'
-            DTL = 'serie/serie/serie_deta.html'
+            DTL = 'serie/serie/serie_detail.html'
 
         class SerieCast:
             LST = 'serie/serie_cast/serie_cast_list.html'
             ADD = 'serie/serie_cast/serie_cast_form.html'
             UPT = 'serie/serie_cast/serie_cast_form.html'
-            DTL = 'serie/serie_cast/serie_cast_deta.html'
+            DTL = 'serie/serie_cast/serie_cast_detail.html'
 
         class SerieImage:
             LST = 'serie/serie_image/serie_image_list.html'
             ADD = 'serie/serie_image/serie_image_form.html'
             UPT = 'serie/serie_image/serie_image_form.html'
-            DTL = 'serie/serie_image/serie_image_deta.html'
+            DTL = 'serie/serie_image/serie_image_detail.html'
 
         class SerieImageExtra:
             LST = 'serie/serie_image_extra/serie_image_extra_list.html'
             ADD = 'serie/serie_image_extra/serie_image_extra_form.html'
             UPT = 'serie/serie_image_extra/serie_image_extra_form.html'
-            DTL = 'serie/serie_image_extra/serie_image_extra_deta.html'
+            DTL = 'serie/serie_image_extra/serie_image_extra_detail.html'
 
         class SerieStaff:
             LST = 'serie/serie_staff/serie_staff_list.html'
             ADD = 'serie/serie_staff/serie_staff_form.html'
             UPT = 'serie/serie_staff/serie_staff_form.html'
-            DTL = 'serie/serie_staff/serie_staff_deta.html'
+            DTL = 'serie/serie_staff/serie_staff_detail.html'
 
         class TitleSerie:
             LST = 'serie/title_serie/title_serie_list.html'
             ADD = 'serie/title_serie/title_serie_form.html'
             UPT = 'serie/title_serie/title_serie_form.html'
-            DTL = 'serie/title_serie/title_serie_deta.html'
+            DTL = 'serie/title_serie/title_serie_detail.html'
 
         class Type:
             LST = 'serie/type/type_list.html'
             ADD = 'serie/type/type_form.html'
             UPT = 'serie/type/type_form.html'
-            DTL = 'serie/type/type_deta.html'
+            DTL = 'serie/type/type_detail.html'
 
 ####################################################    URLS
 class URLS:
@@ -1197,6 +1207,7 @@ class URLS:
             ADD = 'renpy_app:game_create'
             UPD = 'renpy_app:game_update'
             DTL = 'renpy_app:game_detail'
+            LOAD = 'renpy_app:game_load'
 
         class GameEngine:
             LST = 'renpy_app:game_engine_list'
@@ -1499,8 +1510,8 @@ class CSSBackground:
         GAME_IMAGE =                'bg-renpy-game_image'
         GAME_IMAGE_EXTRA =          'bg-renpy-game_image_extra'
         DEVELOPER_LINK =            'bg-renpy-developer_link'
-        TRANSLATOR_LINKS =          'bg-renpy-translator_links'
-        PUBLISHER_LINKS =           'bg-renpy-publisher_links'
+        TRANSLATOR_LINK =           'bg-renpy-translator_link'
+        PUBLISHER_LINK =            'bg-renpy-publisher_link'
         DEVELOPER_IMAGE =           'bg-renpy-developer_image'
         DEVELOPER_IMAGE_EXTRA =     'bg-renpy-developer_image_extra'
         TRANSLATOR_IMAGE =          'bg-renpy-translator_image'
@@ -1635,7 +1646,7 @@ class JSConstants:
         DEVELOPER =                 'js/DataTables/config/renpy/renpy_developer.js'
         DEVELOPER_IMAGE =           'js/DataTables/config/renpy/renpy_developer_image.js'
         DEVELOPER_IMAGE_EXTRA =     'js/DataTables/config/renpy/renpy_developer_image_extra.js'
-        DEVELOPER_LINKS =           'js/DataTables/config/renpy/renpy_developer_links.js'
+        DEVELOPER_LINK =            'js/DataTables/config/renpy/renpy_developer_links.js'
         GAME =                      'js/DataTables/config/renpy/renpy_game.js'
         GAME_ENGINE =               'js/DataTables/config/renpy/renpy_game_engine.js'
         GAME_IMAGE =                'js/DataTables/config/renpy/renpy_game_image.js'
@@ -1646,13 +1657,13 @@ class JSConstants:
         PUBLISHER =                 'js/DataTables/config/renpy/renpy_publisher.js'
         PUBLISHER_IMAGE =           'js/DataTables/config/renpy/renpy_publisher_image.js'
         PUBLISHER_IMAGE_EXTRA =     'js/DataTables/config/renpy/renpy_publisher_image_extra.js'
-        PUBLISHER_LINKS =           'js/DataTables/config/renpy/renpy_publisher_links.js'
+        PUBLISHER_LINK =            'js/DataTables/config/renpy/renpy_publisher_links.js'
         STATUS =                    'js/DataTables/config/renpy/renpy_status.js'
         TITLE_GAME =                'js/DataTables/config/renpy/renpy_title_game.js'
         TRANSLATOR =                'js/DataTables/config/renpy/renpy_translator.js'
         TRANSLATOR_IMAGE =          'js/DataTables/config/renpy/renpy_translator_image.js'
         TRANSLATOR_IMAGE_EXTRA =    'js/DataTables/config/renpy/renpy_translator_image_extra.js'
-        TRANSLATOR_LINKS =          'js/DataTables/config/renpy/renpy_translator_links.js'
+        TRANSLATOR_LINK =           'js/DataTables/config/renpy/renpy_translator_links.js'
 
     class Serie:
         COMPANY =           'js/DataTables/config/serie/serie_company.js'
@@ -1776,7 +1787,7 @@ class ImageCards:
         DEVELOPER =                 'img/screen/wide/bg-renpy-developer.webp'
         DEVELOPER_IMAGE =           'img/screen/wide/bg-renpy-developer_image.webp'
         DEVELOPER_IMAGE_EXTRA =     'img/screen/wide/bg-renpy-developer_image_extra.webp'
-        DEVELOPER_LINKS =           'img/screen/wide/bg-renpy-developer_links.webp'
+        DEVELOPER_LINK =            'img/screen/wide/bg-renpy-developer_link.webp'
         GAME =                      'img/screen/wide/bg-renpy-game.webp'
         GAME_ENGINE =               'img/screen/wide/bg-renpy-game_engine.webp'
         GAME_IMAGE =                'img/screen/wide/bg-renpy-game_image.webp'
@@ -1787,13 +1798,13 @@ class ImageCards:
         PUBLISHER =                 'img/screen/wide/bg-renpy-publisher.webp'
         PUBLISHER_IMAGE =           'img/screen/wide/bg-renpy-publisher_image.webp'
         PUBLISHER_IMAGE_EXTRA =     'img/screen/wide/bg-renpy-publisher_image_extra.webp'
-        PUBLISHER_LINKS =           'img/screen/wide/bg-renpy-publisher_links.webp'
+        PUBLISHER_LINK =            'img/screen/wide/bg-renpy-publisher_link.webp'
         STATUS =                    'img/screen/wide/bg-renpy-status.webp'
         TITLE_GAME =                'img/screen/wide/bg-renpy-title_game.webp'
         TRANSLATOR =                'img/screen/wide/bg-renpy-translator.webp'
         TRANSLATOR_IMAGE =          'img/screen/wide/bg-renpy-translator_image.webp'
         TRANSLATOR_IMAGE_EXTRA =    'img/screen/wide/bg-renpy-translator_image_extra.webp'
-        TRANSLATOR_LINKS =          'img/screen/wide/bg-renpy-translator_links.webp'
+        TRANSLATOR_LINK =           'img/screen/wide/bg-renpy-translator_link.webp'
 
     class Serie:
         COMPANY =           'img/screen/wide/bg-serie-company.webp'
@@ -1918,8 +1929,8 @@ class KeyMap:
         DEVELOPER =                 'Desarrollador'
         DEVELOPER_IMAGE =           'Imagen del desarrollador'
         DEVELOPER_IMAGE_EXTRA =     'Imagen adicional del desarrollador'
-        DEVELOPER_LINKS =           'Enlace del desarrollador'
-        GAME =                      'Juego'
+        DEVELOPER_LINK =            'Enlace del desarrollador'
+        GAME =                      'Juego Renpy'
         GAME_ENGINE =               'Motor de desarrollo'
         GAME_IMAGE =                'Imagen del juego'
         GAME_IMAGE_EXTRA =          'Imagen adicional del juego'
@@ -1929,13 +1940,13 @@ class KeyMap:
         PUBLISHER =                 'Editor'
         PUBLISHER_IMAGE =           'Imagen del editor'
         PUBLISHER_IMAGE_EXTRA =     'Imagen adicional del editor'
-        PUBLISHER_LINKS =           'Enlace del editor'
+        PUBLISHER_LINK =            'Enlace del editor'
         STATUS =                    'Estado de juego'
         TITLE_GAME =                'Título del juego'
         TRANSLATOR =                'Traductor'
         TRANSLATOR_IMAGE =          'Imagen del traductor'
         TRANSLATOR_IMAGE_EXTRA =    'Imagen adicional del traductor'
-        TRANSLATOR_LINKS =          'Enlace del traductor'
+        TRANSLATOR_LINK =           'Enlace del traductor'
         DATA_GAME =                 'datos del juego'
 
     class Serie:

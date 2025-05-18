@@ -1,0 +1,20 @@
+
+
+
+
+{% extends "base_detail.html" %}
+{% load static %}
+
+{% block detail %}
+
+<h1>{{ game_statu.name }}</h1>
+<p>Nombre: {{ game_statu.name }}</p>
+<p>Nombre Español: {{ game_statu.name_esp }}</p>
+<p>Explicito: {{ game_statu.explicit|yesno:"Sí,No" }}</p>
+<p>Descripción: {{ game_statu.description }}</p>
+<p>Número de juegos: {{ game_count }}</p>
+<a href="{% url 'renpy_app:games_by_status' game_statu.id %}">
+    <i class="bi bi-eye">Ver</i>
+</a>
+
+{% endblock detail %}

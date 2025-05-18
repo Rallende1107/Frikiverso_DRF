@@ -1,0 +1,131 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.title.label_tag }}</label>
+        {{ form.title }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.version.label_tag }}</label>
+        {{ form.version }}
+    </div>
+    <div class="form__input">
+        <label>{{ form.release_date.label_tag }}</label>
+        {{ form.release_date }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.developers.label_tag }}</label>
+        {{ form.developers }}
+    </div>
+</div>
+
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.status.label_tag }}</label>
+        {{ form.status }}
+    </div>
+
+    <div class="form__input">
+        <label>{{ form.engine.label_tag }}</label>
+        {{ form.engine }}
+    </div>
+</div>
+
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.url_steam.label_tag }}</label>
+        {{ form.url_steam }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.url_fzone.label_tag }}</label>
+        {{ form.url_fzone }}
+    </div>
+</div>
+
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.languages.label_tag }}</label>
+        {{ form.languages }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.translators.label_tag }}</label>
+        {{ form.translators }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.publishers.label_tag }}</label>
+        {{ form.publishers }}
+    </div>
+</div>
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.platforms.label_tag }}</label>
+        {{ form.platforms }}
+    </div>
+</div>
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.censored.label_tag }}</label>
+        {{ form.censored }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.genres.label_tag }}</label>
+        {{ form.genres }}
+    </div>
+</div>
+
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.synopsis.label_tag }}</label>
+        {{ form.synopsis }}
+    </div>
+</div>
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.background.label_tag }}</label>
+        {{ form.background }}
+    </div>
+</div>
+
+
+<div class="form__checkbox">
+    <span class="checkbox__title">Opciones</span>
+    <div class="checkbox__category">
+        <div>
+            <label>{{ form.is_active.label_tag }}</label>
+            {{ form.is_active }}
+        </div>
+    </div>
+</div>
+{% endblock formulario %}
+
+{% block javascript %}
+
+{% endblock javascript %}
+
+

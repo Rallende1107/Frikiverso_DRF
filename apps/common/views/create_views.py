@@ -13,7 +13,6 @@ from apps.common.forms import (CountryForm, FormatForm, ImageSizeForm, LanguageF
 # Project-level imports - Mixins and utilities
 from core.utils.constants import (CSSBackground, ImageCards, JSConstants, KeyMap, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
-from core.utils.utils import delete_previous_media
 
 # Create your views here.
 ############################################################################################################################################    Country

@@ -1,0 +1,17 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+<h1>{{ objeto.name }}</h1>
+<p>Nombre: {{ objeto.name }}</p>
+<p>Para Videos: {{ objeto.for_video|yesno:"Sí,No" }}</p>
+<p>Para Música: {{ objeto.for_music|yesno:"Sí,No" }}</p>
+<p>Para Imagenes {{ objeto.for_image|yesno:"Sí,No" }}</p>
+<p>Para Documentos {{ objeto.for_document|yesno:"Sí,No" }}</p>
+<p>Para Otros {{ objeto.for_other|yesno:"Sí,No" }}</p>
+
+<p>Activo: {{ objeto.is_active|yesno:"Sí,No" }}</p>
+<p>Creado: {{ objeto.created_at }}</p>
+<p>Actualizado: {{ objeto.updated_at }}</p>
+
+
+{% endblock detail %}

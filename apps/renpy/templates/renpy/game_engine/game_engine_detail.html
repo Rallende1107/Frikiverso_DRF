@@ -1,0 +1,16 @@
+{% extends "base_detail.html" %}
+{% load static %}
+
+{% block detail %}
+
+<h1>{{ engine.name }}</h1>
+<p>Nombre: {{ engine.name }}</p>
+<p>Nombre Español: {{ engine.name_esp }}</p>
+<p>Explicito: {{ engine.explicit|yesno:"Sí,No" }}</p>
+<p>Descripción: {{ engine.description }}</p>
+<p>Número de juegos: {{ game_count }}</p>
+<a href="{% url 'renpy_app:games_by_engine' engine.id %}">
+    <i class="bi bi-eye">Ver</i>
+</a>
+
+{% endblock detail %}

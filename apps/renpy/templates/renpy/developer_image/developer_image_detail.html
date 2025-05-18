@@ -1,0 +1,32 @@
+{% extends "base_detail.html" %} {% load static %}
+
+{% block detail %}
+    <h1>Persona: {{ image.get_object_name }}</h1>
+
+    <p><strong>Nombre:</strong> {{ image.get_image_name }}</p>
+
+    <p><strong>Extensión:</strong> {{ image.get_image_extension }}</p>
+
+    <p><strong>Fecha de creación:</strong> {{ image.created_at }}</p>
+
+    <p><strong>Fecha de actualización:</strong> {{ image.updated_at }}</p>
+
+    <p><strong>Tamaño del archivo:</strong> {{ image.image_file_size }}</p>
+
+    <p><strong>Dimensiones:</strong> {{ image.image_dimensions.0 }} x {{ image.image_dimensions.1 }} píxeles</p>
+
+    <p><strong>Activo:</strong> {{ image.is_active|yesno:"Sí,No" }}</p>
+
+    <p><strong>URL:</strong> <a href="{{ image.url }}">{{ image.url }}</a></p>
+
+    {% if image.get_img_url %}
+    <div>
+        <img src="{{ image.get_img_url }}" alt="Imagen de {{ image.person.full_name }}" class="img-fluid">
+    </div>
+    {% else %}
+    <p>No hay imagen disponible.</p>
+    {% endif %}
+
+
+{% endblock detail %}
+

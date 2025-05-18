@@ -1,0 +1,15 @@
+{% extends "base_detail.html" %}
+{% load static %}
+
+{% block detail %}
+
+<h1>{{ platform.name }}</h1>
+<p>Nombre: {{ platform.name }}</p>
+<p>Nombre Español: {{ platform.name_esp }}</p>
+<p>Descripción: {{ platform.description }}</p>
+<p>Número de juegos: {{ game_count }}</p>
+<a href="{% url 'renpy_app:games_by_platform' platform.id %}">
+    <i class="bi bi-eye">Ver</i>
+</a>
+
+{% endblock detail %}

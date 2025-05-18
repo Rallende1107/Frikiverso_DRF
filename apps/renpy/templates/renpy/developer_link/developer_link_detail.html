@@ -1,0 +1,13 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+<h1>{{ developerlink.name }}</h1>
+
+<!-- Información del enlace -->
+<p>URL: <a href="{{ developer_link.url }}" target="_blank">{{ developer_link.url }}</a></p>
+<p>Activo: {{ developer_link.is_active|yesno:"Sí,No" }}</p>
+
+<!-- Mostrar el nombre del desarrollador relacionado -->
+<p>Desarrollador: {{ developer_name }}</p>
+<a href="{% url 'renpy_app:developer_detail' developer.pk %}">Ver detalles de {{ developer.name }}</a>
+
+{% endblock detail %}

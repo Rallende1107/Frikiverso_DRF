@@ -314,7 +314,7 @@
         --bg-renpy-developer:               url("../img/screen/wide/bg-renpy-developer.webp");
         --bg-renpy-developer_image:         url("../img/screen/wide/bg-renpy-developer_image.webp");
         --bg-renpy-developer_image_extra:   url("../img/screen/wide/bg-renpy-developer_image_extra.webp");
-        --bg-renpy-developer_links:         url("../img/screen/wide/bg-renpy-developer_link.webp");
+        --bg-renpy-developer_link:          url("../img/screen/wide/bg-renpy-developer_link.webp");
         --bg-renpy-game:                    url("../img/screen/wide/bg-renpy-game.webp");
         --bg-renpy-game_engine:             url("../img/screen/wide/bg-renpy-game_engine.webp");
         --bg-renpy-game_image:              url("../img/screen/wide/bg-renpy-game_image.webp");
@@ -325,13 +325,13 @@
         --bg-renpy-publisher:               url("../img/screen/wide/bg-renpy-publisher.webp");
         --bg-renpy-publisher_image:         url("../img/screen/wide/bg-renpy-publisher_image.webp");
         --bg-renpy-publisher_image_extra:   url("../img/screen/wide/bg-renpy-publisher_image_extra.webp");
-        --bg-renpy-publisher_links:         url("../img/screen/wide/bg-renpy-publisher_links.webp");
+        --bg-renpy-publisher_link:          url("../img/screen/wide/bg-renpy-publisher_link.webp");
         --bg-renpy-status:                  url("../img/screen/wide/bg-renpy-status.webp");
         --bg-renpy-title_game:              url("../img/screen/wide/bg-renpy-title_game.webp");
         --bg-renpy-translator:              url("../img/screen/wide/bg-renpy-translator.webp");
         --bg-renpy-translator_image:        url("../img/screen/wide/bg-renpy-translator_image.webp");
         --bg-renpy-translator_image_extra:  url("../img/screen/wide/bg-renpy-translator_image_extra.webp");
-        --bg-renpy-translator_links:        url("../img/screen/wide/bg-renpy-translator_links.webp");
+        --bg-renpy-translator_link:         url("../img/screen/wide/bg-renpy-translator_link.webp");
         /** BG Serie */
         --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
         --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
@@ -469,7 +469,7 @@
         --bg-renpy-developer:               url("../img/screen/landscape/bg-renpy-developer.webp");
         --bg-renpy-developer_image:         url("../img/screen/landscape/bg-renpy-developer_image.webp");
         --bg-renpy-developer_image_extra:   url("../img/screen/landscape/bg-renpy-developer_image_extra.webp");
-        --bg-renpy-developer_links:         url("../img/screen/landscape/bg-renpy-developer_link.webp");
+        --bg-renpy-developer_link:          url("../img/screen/landscape/bg-renpy-developer_link.webp");
         --bg-renpy-game:                    url("../img/screen/landscape/bg-renpy-game.webp");
         --bg-renpy-game_engine:             url("../img/screen/landscape/bg-renpy-game_engine.webp");
         --bg-renpy-game_image:              url("../img/screen/landscape/bg-renpy-game_image.webp");
@@ -480,13 +480,13 @@
         --bg-renpy-publisher:               url("../img/screen/landscape/bg-renpy-publisher.webp");
         --bg-renpy-publisher_image:         url("../img/screen/landscape/bg-renpy-publisher_image.webp");
         --bg-renpy-publisher_image_extra:   url("../img/screen/landscape/bg-renpy-publisher_image_extra.webp");
-        --bg-renpy-publisher_links:         url("../img/screen/landscape/bg-renpy-publisher_links.webp");
+        --bg-renpy-publisher_link:          url("../img/screen/landscape/bg-renpy-publisher_link.webp");
         --bg-renpy-status:                  url("../img/screen/landscape/bg-renpy-status.webp");
         --bg-renpy-title_game:              url("../img/screen/landscape/bg-renpy-title_game.webp");
         --bg-renpy-translator:              url("../img/screen/landscape/bg-renpy-translator.webp");
         --bg-renpy-translator_image:        url("../img/screen/landscape/bg-renpy-translator_image.webp");
         --bg-renpy-translator_image_extra:  url("../img/screen/landscape/bg-renpy-translator_image_extra.webp");
-        --bg-renpy-translator_links:        url("../img/screen/landscape/bg-renpy-translator_links.webp");
+        --bg-renpy-translator_link:         url("../img/screen/landscape/bg-renpy-translator_link.webp");
         /** BG Serie */
         --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
         --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
@@ -624,7 +624,7 @@
         --bg-renpy-developer:               url("../img/screen/portrait/bg-renpy-developer.webp");
         --bg-renpy-developer_image:         url("../img/screen/portrait/bg-renpy-developer_image.webp");
         --bg-renpy-developer_image_extra:   url("../img/screen/portrait/bg-renpy-developer_image_extra.webp");
-        --bg-renpy-developer_links:         url("../img/screen/portrait/bg-renpy-developer_link.webp");
+        --bg-renpy-developer_link:          url("../img/screen/portrait/bg-renpy-developer_link.webp");
         --bg-renpy-game:                    url("../img/screen/portrait/bg-renpy-game.webp");
         --bg-renpy-game_engine:             url("../img/screen/portrait/bg-renpy-game_engine.webp");
         --bg-renpy-game_image:              url("../img/screen/portrait/bg-renpy-game_image.webp");
@@ -635,13 +635,13 @@
         --bg-renpy-publisher:               url("../img/screen/portrait/bg-renpy-publisher.webp");
         --bg-renpy-publisher_image:         url("../img/screen/portrait/bg-renpy-publisher_image.webp");
         --bg-renpy-publisher_image_extra:   url("../img/screen/portrait/bg-renpy-publisher_image_extra.webp");
-        --bg-renpy-publisher_links:         url("../img/screen/portrait/bg-renpy-publisher_links.webp");
+        --bg-renpy-publisher_link:          url("../img/screen/portrait/bg-renpy-publisher_link.webp");
         --bg-renpy-status:                  url("../img/screen/portrait/bg-renpy-status.webp");
         --bg-renpy-title_game:              url("../img/screen/portrait/bg-renpy-title_game.webp");
         --bg-renpy-translator:              url("../img/screen/portrait/bg-renpy-translator.webp");
         --bg-renpy-translator_image:        url("../img/screen/portrait/bg-renpy-translator_image.webp");
         --bg-renpy-translator_image_extra:  url("../img/screen/portrait/bg-renpy-translator_image_extra.webp");
-        --bg-renpy-translator_links:        url("../img/screen/portrait/bg-renpy-translator_links.webp");
+        --bg-renpy-translator_link:         url("../img/screen/portrait/bg-renpy-translator_link.webp");
         /** BG Serie */
         --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
         --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
@@ -779,7 +779,7 @@
         --bg-renpy-developer:               url("../img/screen/tall/bg-renpy-developer.webp");
         --bg-renpy-developer_image:         url("../img/screen/tall/bg-renpy-developer_image.webp");
         --bg-renpy-developer_image_extra:   url("../img/screen/tall/bg-renpy-developer_image_extra.webp");
-        --bg-renpy-developer_links:         url("../img/screen/tall/bg-renpy-developer_link.webp");
+        --bg-renpy-developer_link:          url("../img/screen/tall/bg-renpy-developer_link.webp");
         --bg-renpy-game:                    url("../img/screen/tall/bg-renpy-game.webp");
         --bg-renpy-game_engine:             url("../img/screen/tall/bg-renpy-game_engine.webp");
         --bg-renpy-game_image:              url("../img/screen/tall/bg-renpy-game_image.webp");
@@ -790,13 +790,13 @@
         --bg-renpy-publisher:               url("../img/screen/tall/bg-renpy-publisher.webp");
         --bg-renpy-publisher_image:         url("../img/screen/tall/bg-renpy-publisher_image.webp");
         --bg-renpy-publisher_image_extra:   url("../img/screen/tall/bg-renpy-publisher_image_extra.webp");
-        --bg-renpy-publisher_links:         url("../img/screen/tall/bg-renpy-publisher_links.webp");
+        --bg-renpy-publisher_link:          url("../img/screen/tall/bg-renpy-publisher_link.webp");
         --bg-renpy-status:                  url("../img/screen/tall/bg-renpy-status.webp");
         --bg-renpy-title_game:              url("../img/screen/tall/bg-renpy-title_game.webp");
         --bg-renpy-translator:              url("../img/screen/tall/bg-renpy-translator.webp");
         --bg-renpy-translator_image:        url("../img/screen/tall/bg-renpy-translator_image.webp");
         --bg-renpy-translator_image_extra:  url("../img/screen/tall/bg-renpy-translator_image_extra.webp");
-        --bg-renpy-translator_links:        url("../img/screen/tall/bg-renpy-translator_links.webp");
+        --bg-renpy-translator_link:         url("../img/screen/tall/bg-renpy-translator_link.webp");
         /** BG Serie */
         --bg-serie-company:             url("../img/screen/tall/bg-serie-company.webp");
         --bg-serie-genre:               url("../img/screen/tall/bg-serie-genre.webp");

@@ -1,0 +1,71 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.name.label_tag }}</label>
+        {{ form.name }}
+    </div>
+</div>
+
+{% if not media_file_table %}
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.img.label_tag }}</label>
+        {{ form.img }}
+    </div>
+</div>
+{% endif %}
+
+
+{% if media_file_table %}
+<div class="form__campos">
+    <div class="image-container">
+        <table class="bordered-table table">
+            <thead>
+                <tr>
+                    <th><h4>Imagen Actual</h4></th>
+                    <th><h4>Nueva Imagen</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="image-preview" rowspan="2">
+                        <div class="image-container-inner">
+                            {% if media_url is None %}
+                                <h4>Sin imagen actualmente</h4>
+                            {% else %}
+                                <img src="{{ media_url }}" alt="Imagen actual" class="image-preview" />
+                                <br>
+                                <a href="{{ media_url }}" target="_blank" rel="noopener noreferrer">Ver imagen</a>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form__input image-form">
+                            <label>{{ form.img.label_tag }}</label>
+                            {{ form.img }}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+<div class="form__checkbox">
+    <span class="checkbox__title">Opciones</span>
+    <div class="checkbox__category">
+        <div>
+            <label>{{ form.is_active.label_tag }}</label>
+            {{ form.is_active }}
+        </div>
+    </div>
+</div>
+{% endblock formulario %}
+
+{% block javascript %}
+
+{% endblock javascript %}

@@ -505,9 +505,9 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .bg-renpy-game {background-image: var(--bg-renpy-game)}
 .bg-renpy-game_image {background-image: var(--bg-renpy-game_image)}
 .bg-renpy-game_image_extra {background-image: var(--bg-renpy-game_image_extra)}
-.bg-renpy-developer_link {background-image: var(--bg-renpy-developer_links)}
-.bg-renpy-translator_links {background-image: var(--bg-renpy-translator_links)}
-.bg-renpy-publisher_links {background-image: var(--bg-renpy-publisher_links)}
+.bg-renpy-developer_link {background-image: var(--bg-renpy-developer_link)}
+.bg-renpy-translator_link {background-image: var(--bg-renpy-translator_link)}
+.bg-renpy-publisher_link {background-image: var(--bg-renpy-publisher_link)}
 .bg-renpy-developer_image {background-image: var(--bg-renpy-developer_image)}
 .bg-renpy-developer_image_extra {background-image: var(--bg-renpy-developer_image_extra)}
 .bg-renpy-translator_image {background-image: var(--bg-renpy-translator_image)}

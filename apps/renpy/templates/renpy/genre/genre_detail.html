@@ -1,0 +1,16 @@
+{% extends "base_detail.html" %}
+{% load static %}
+
+{% block detail %}
+
+<h1>{{ genre.name }}</h1>
+<p>Nombre: {{ genre.name }}</p>
+<p>Nombre Español: {{ genre.name_esp }}</p>
+<p>Explicito: {{ genre.explicit|yesno:"Sí,No" }}</p>
+<p>Descripción: {{ genre.description }}</p>
+<p>Número de juegos: {{ game_count }}</p>
+<a href="{% url 'renpy_app:games_by_genre' genre.id %}">
+    <i class="bi bi-eye">Ver</i>
+</a>
+
+{% endblock detail %}

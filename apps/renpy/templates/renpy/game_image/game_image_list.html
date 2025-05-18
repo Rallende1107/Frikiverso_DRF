@@ -1,0 +1,46 @@
+{% extends 'base_dataTables.html' %}{% load static %}
+
+{% block dateTableThead %}
+<th scope="col" class="table-th th-id">ID</th>
+<th scope="col" class="table-th th-name_short">Nombre Imágen</th>
+<th scope="col" class="table-th th-name_short">Persona</th>
+<th scope="col" class="table-th th-yes-no">URL</th>
+<th scope="col" class="table-th th-yes-no">Url Externa</th>
+<th scope="col" class="table-th th-yes-no">Activo</th>
+<th scope="col" class="table-th th-actions">Acciones</th>
+{% endblock dateTableThead %}
+
+{% block dataTableBody %}
+{% for image in images %}
+<tr>
+    <td class="td-id">{{ image.id }}</td>
+    <td>{{ image.name }}</td>
+    <td>{{ image.image_name }}</td>
+    <td class="td-yes-no">
+        {% if image.image_url_local %}
+        <a href="#" class="view-image" data-url="{{ image.image_url_local }}"> Ver</a>
+        {% endif %}
+    </td>
+    <td class="td-yes-no">
+        {% if image.image_url_external %}
+        <a href="#" class="view-image" data-url="{{ image.image_url_external }}"> Ver</a>
+        {% endif %}
+    </td>
+
+    <td class="td-yes-no">{{ image.is_active|yesno:"Sí,No" }}</td>
+    <td>
+        <select onchange="handleAction(this, '{{ image.id }}', '{{ image.name }}', '{{ key_map }}')">
+        <option value="">Acciones</option>
+        <option value="1">Ver</option>
+        <option value="2">Editar</option>
+        {% if not image.is_active %}
+        <option value="3">Activar</option>
+        {% else %}
+        <option value="4">Desactivar</option>
+        {% endif %}
+        <option value="99">Eliminar</option>
+        </select>
+    </td>
+</tr>
+{% endfor %}
+{% endblock dataTableBody %}

@@ -1,0 +1,37 @@
+{% extends 'base_DataTables.html' %}{% load static %}
+
+{% block dateTableThead %}
+<th scope="col" class="table-th th-id">ID</th>
+<th scope="col" class="table-th th-name">Nombre</th>
+<th scope="col" class="table-th th-yes-no">Juegos</th>
+<th scope="col" class="table-th th-yes-no">Activo</th>
+<th scope="col" class="table-th th-actions">Acciones</th>
+{% endblock dateTableThead %}
+
+{% block dataTableBody %}
+{% for develop in developers %}
+<tr>
+    <td>{{ develop.id }}</td>
+    <td>{{ develop.name }}</td>
+    <td>{{ develop.get_num_games }}
+        <a href="#">
+            <i class="bi bi-eye">Ver</i>
+        </a>
+    </td>
+    <td>{{ develop.is_active|yesno:"Sí,No" }}</td>
+    <td>
+        <select onchange="handleAction(this, '{{ develop.id }}', '{{ develop.name }}', '{{ key_map }}')">
+            <option value="">Acciones</option>
+            <option value="1">Ver</option>
+            <option value="2">Editar</option>
+            {% if not develop.is_active %}
+            <option value="3">Activar</option>
+            {% else %}
+            <option value="4">Desactivar</option>
+            {% endif %}
+            <option value="99">Eliminar</option>
+        </select>
+    </td>
+</tr>
+{% endfor %}
+{% endblock dataTableBody %}

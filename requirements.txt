@@ -8,4 +8,5 @@ psycopg-binary==3.2.7
 pillow==11.2.1
 djangorestframework==3.16.0
 django-import-export==4.3.7
+djangorestframework-datatables==0.7.2
 

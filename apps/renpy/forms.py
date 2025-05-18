@@ -75,6 +75,7 @@ class GenreForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Descripción del género'),
                 'id': 'description',
+                'rows':3,
             }
         )
     )
@@ -164,6 +165,7 @@ class GameEngineForm(forms.ModelForm):
             attrs={
                 'class': 'form-control',
                 'placeholder': _('Descripción del motor'),
+                'rows':3,
                 'id': 'description'
             }
         )
@@ -715,7 +717,7 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = Game
         fields = [
-            'title', 'version', 'release_date', 'synopsis', 'background', 'is_active'
+            'title', 'version', 'release_date', 'synopsis', 'background', 'is_active',
             # FK
             'status', 'engine', 'censored',
             # Many
@@ -890,9 +892,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Plataformas'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'platforms',
             }
         )
@@ -902,9 +904,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Desarrolladores'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'developers',
             }
         )
@@ -914,9 +916,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Editores'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'publishers',
             }
         )
@@ -926,9 +928,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Idiomas'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'languages',
             }
         )
@@ -938,9 +940,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Traductores'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'translators',
             }
         )
@@ -950,9 +952,9 @@ class GameForm(forms.ModelForm):
         queryset=None,
         required=False,
         label=_('Géneros'),
-        widget=forms.SelectMultiple(
+        widget=forms.CheckboxSelectMultiple(
             attrs={
-                'class': 'form-select',
+                'class': 'checkbox-multiple-wrapper',
                 'id': 'genres',
             }
         )
@@ -2211,3 +2213,22 @@ class TitleGameForm(forms.ModelForm):
 #                 raise forms.ValidationError(_('Ya existe un estado con el mismo ID, URL y estado.'))
 
 #         return cleaned_data
+class LoadGamesForm(forms.Form):
+    inicio = forms.IntegerField(label="Inicio", min_value=1)
+    fin = forms.IntegerField(label="Fin", min_value=1)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Obtener el último ID del modelo F95GameFetchStatus
+        ultimo_id = F95GameFetchStatus.objects.order_by('-f95_id').values_list('f95_id', flat=True).first() or 1
+        self.fields['inicio'].initial = ultimo_id
+
+    def clean(self):
+        cleaned_data = super().clean()
+        inicio = cleaned_data.get("inicio")
+        fin = cleaned_data.get("fin")
+
+        if inicio is not None and fin is not None and fin < inicio:
+            raise forms.ValidationError("El campo 'Fin' debe ser mayor o igual que 'Inicio'.")
+        return cleaned_data

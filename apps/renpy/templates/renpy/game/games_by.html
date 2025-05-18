@@ -1,0 +1,98 @@
+{% extends 'base_data_table.html' %}{% load static %}
+
+{% block contenidoDataTable %}
+<section class="section-hero-lista">
+    <h1 class="section-hero-lista-title">
+        <span>{{title}}</span>
+    </h1>
+</section>
+
+<section class="section-tbl-lista {{class}}">
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title  text-center">
+                <i class="fa-solid fa-list"></i>
+                    {{ title }}
+                </h3>
+            </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12 text-start">
+                        {% for button in buttons %}
+                            {% if button.show %}
+                                <a href="{{ button.url }}" class="{{ button.class }}">
+                                    <i class="{{ button.icon }}"></i> {{ button.label }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            {% for field_name in encabezados %}
+                                <th>{{ field_name }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for game in games %}
+                        <tr>
+                            <td>{{ game.id }}</td>
+                            <td>{{ game.title }}</td>
+                            <td>{{ game.developer_names }}</td>
+                            <td>{{ game.version }}</td>
+                            <td>{{ game.release_date }}</td>
+                            <td>{{ game.state_names }}</td>
+                            <td>{{ game.is_active|yesno:"Sí,No" }}</td>
+                            <td>
+                                <select onchange="handleAction(this, '{{ game.id }}', '{{ game.title }}', '{{ key_map }}')">
+                                    <option value="">Acciones</option>
+                                    <option value="1">Ver</option>
+                                    <option value="2">Editar</option>
+                                    {% if not game.is_active %}
+                                    <option value="3">Activar</option>
+                                    {% else %}
+                                    <option value="4">Desactivar</option>
+                                    {% endif %}
+                                    <option value="99">Eliminar</option>
+                                </select>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-12 text-start">
+                        {% for button in buttons %}
+                            {% if button.show %}
+                                <a href="{{ button.url }}" class="{{ button.class }}">
+                                    <i class="{{ button.icon }}"></i> {{ button.label }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <form id="action-form" method="post" action="{% url 'core_app:action' %}" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="id">
+        <input type="hidden" name="action" id="action">
+        <input type="hidden" name="model" id="model">
+        <input type="hidden" name="name" id="name">
+    </form>
+{% endblock contenidoDataTable %}
+
+{% block miniBloqueJS %}
+    <script src="{% static js_action %}"></script>
+
+    <script src="{% static js_script %}"></script>
+{% endblock miniBloqueJS %}

@@ -1,0 +1,27 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block formulario %}
+
+<div class="form__campos">
+    <div class="form__input">
+        <label>{{ form.inicio.label_tag }}</label>
+        {{ form.inicio }}
+    </div>
+    <div class="form__input">
+        <label>{{ form.fin.label_tag }}</label>
+        {{ form.fin }}
+    </div>
+
+</div>
+
+
+
+
+{% endblock formulario %}
+
+{% block javascript %}
+
+{% endblock javascript %}
+
+

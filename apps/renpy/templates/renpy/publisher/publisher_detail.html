@@ -1,0 +1,29 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+    <h1>{{ developer.name }}</h1>
+    <h2>{{ developer.id }}</h2>
+
+    <!-- Mostrar la imagen del desarrollador si existe -->
+    {% if developer.get_img_url %}
+        <img src="{{ developer.get_img_url }}" alt="{{ developer.name }}" style="width: 200px;">
+    {% else %}
+        <p>Sin imagen disponible</p>
+    {% endif %}
+
+    <!-- Mostrar el número de juegos desarrollados -->
+    <p>Juegos desarrollados: {{ objeto.get_num_games }}</p>
+    <a href="{% url 'renpy_app:games_by_developer' developer.id %}">
+        <i class="bi bi-eye">Ver</i>
+    </a>
+    <!-- Mostrar los enlaces relacionados -->
+    <h2>Enlaces del Desarrollador</h2>
+    <ul>
+        {% for link in links %}
+            <li><a href="{{ link.url }}" target="_blank">{{ link.name }}</a></li>
+        {% empty %}
+            <li>No hay enlaces disponibles.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock detail %}

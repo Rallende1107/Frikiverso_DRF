@@ -12,7 +12,8 @@ PersonImageUpdateView, PersonImageExtraUpdateView, PersonNicknameUpdateView, Qua
 from .views.detail_views import (CountryDetailView, FormatDetailView, ImageSizeDetailView, LanguageDetailView, PersonDetailView,
     PersonImageDetailView, PersonImageExtraDetailView, PersonNicknameDetailView, QualityDetailView, WebsiteDetailView,
 )
-from .views_action import ActionView
+# from .views_action import ActionView
+from .views.actions_views import ActionView
 
 app_name = 'common_app'
 

@@ -1,0 +1,37 @@
+{% extends 'base_DataTables.html' %}{% load static %} {% block dateTableThead %}
+<th scope="col" class="table-th th-id">ID</th>
+<th scope="col" class="table-th th-name">Nombre</th>
+<th scope="col" class="table-th th-yes-no">Link</th>
+<th scope="col" class="table-th th-yes-no">Activo</th>
+<th scope="col" class="table-th th-actions">Acciones</th>
+{% endblock dateTableThead %} {% block dataTableBody %} {% for developer_link in developer_links %}
+<tr>
+  <td>{{ developer_link.id }}</td>
+  <td>{{ developer_link.developer }}</td>
+  <td>
+    <a
+      href="{{ developer_link.url }}"
+      target="_blank"
+      class="dataTable-custom-link"
+    >
+      {{ developer_link.name }}
+    </a>
+  </td>
+  <td>{{ developer_link.is_active|yesno:"Sí,No" }}</td>
+  <td>
+    <select
+      onchange="handleAction(this, '{{ developer_link.id }}', '{{ developer_link.name }}', '{{ key_map }}')"
+    >
+      <option value="">Acciones</option>
+      <option value="1">Ver</option>
+      <option value="2">Editar</option>
+      {% if not developer_link.is_active %}
+      <option value="3">Activar</option>
+      {% else %}
+      <option value="4">Desactivar</option>
+      {% endif %}
+      <option value="99">Eliminar</option>
+    </select>
+  </td>
+</tr>
+{% endfor %} {% endblock dataTableBody %}

@@ -3,3 +3,6 @@ django-admin makemessages -l en
 Editar .po
 
 django-admin compilemessages
+
+
+https://pypi.org/project/djangorestframework-datatables/

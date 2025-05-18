@@ -1,15 +1,15 @@
 # Django imports
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.shortcuts import redirect, reverse
+from django.contrib.auth.views import (LoginView, LogoutView, PasswordChangeView)
+from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-# Local app imports
 
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, KeyMap
+# Local app imports - Constantes y mixins personalizados
+from core.utils.constants import (Templates, URLS, CSSBackground, JSConstants, KeyMap)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
+# Create your views here.
 ############################################################################################################################################    User Login
 class CustomLoginView(LoginView):
     template_name = Templates.Users.LOGIN
@@ -54,7 +54,6 @@ class ChangePasswordView(PermissionRequiredMessageMixin, PasswordChangeView):
     title = _('Cambiar Contraseña')
     success_url = reverse_lazy(URLS.Main.INDEX)
     permission_redirect_url = reverse_lazy(URLS.Users.LOGIN)
-    permission_message = _('debes iniciar sesión para cambiar tu contraseña.')
 
     def form_valid(self, form):
         messages.success(self.request, _('Contraseña Actualizada'))

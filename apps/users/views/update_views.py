@@ -1,33 +1,32 @@
 # Django imports
 from django.contrib import messages
-from django.views.generic import (CreateView, UpdateView, ListView, DetailView)
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-# Local app imports
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import UpdateView
+
+# Local app imports - Modelos y formularios
+from apps.users.forms import UserUpdateForm
 from apps.users.models import CustomUser
-from apps.users.forms import UserForm, StaffUserForm, SuperUserForm, UserUpdateForm
-# Local app imports
+
+# Local app imports - Utilidades y mixins personalizados
+from core.utils.constants import (Templates, URLS, CSSBackground, JSConstants, KeyMap)
+from core.utils.mixins import PermissionRequiredMessageMixin
 from core.utils.utils import delete_previous_media
-from core.utils.texts import WITHOUT_PERMISSION
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, KeyMap
 
-
-class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+# Create your views here.
+############################################################################################################################################    User Update
+class UserUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = CustomUser
     template_name = Templates.Users.UPT
     form_class = UserUpdateForm
-    title = 'Editar Perfil'
+    title = _('Editar Perfil')
+    permission_redirect_url = reverse_lazy(URLS.Main.INDEX)
 
     def test_func(self):
         user = self.request.user
         perfil_usuario = self.get_object()
         return user.is_authenticated and (user.is_superuser or user.is_staff or user == perfil_usuario)
-
-    def handle_no_permission(self):
-        messages.error(self.request, WITHOUT_PERMISSION)
-        return redirect(URLS.Main.INDEX)
 
     def get_success_url(self):
         # Obtener el pk del usuario actualizado
@@ -50,10 +49,10 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             try:
                 delete_previous_media(media_url)
             except Exception as e:
-                messages.error(self.request, f'Error al eliminar la imagen anterior: {e}')
+                messages.error(self.request, _('Error al eliminar la imagen anterior: %(error)s') % {'error': e})
 
         # Mensaje de éxito
-        messages.success(self.request, f'Información actualizada exitosamente!')
+        messages.success(self.request, _('¡Información actualizada exitosamente!'))
 
         # Redirigir a la vista detallada del usuario
         return redirect(self.get_success_url())

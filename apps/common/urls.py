@@ -1,24 +1,20 @@
 from django.urls import path, include
-from .views import HomeView
-
-from .views_action import ActionView
-from .views import (
-    CountryListView, CountryCreateView, CountryUpdateView, CountryDetailView,
-    FormatListView, FormatCreateView, FormatUpdateView, FormatDetailView,
-
-    ImageSizeListView, ImageSizeCreateView, ImageSizeUpdateView, ImageSizeDetailView,
-    LanguageListView, LanguageCreateView, LanguageUpdateView, LanguageDetailView,
-    PersonListView, PersonCreateView, PersonUpdateView, PersonDetailView,
-    PersonImageListView, PersonImageCreateView, PersonImageUpdateView, PersonImageDetailView,
-    PersonImageExtraListView, PersonImageExtraCreateView, PersonImageExtraUpdateView, PersonImageExtraDetailView,
-    PersonNicknameListView, PersonNicknameCreateView, PersonNicknameUpdateView, PersonNicknameDetailView,
-    QualityListView, QualityCreateView, QualityUpdateView, QualityDetailView,
-    WebsiteListView, WebsiteCreateView, WebsiteUpdateView, WebsiteDetailView,
+from .views.views import HomeView
+from .views.create_views import (CountryCreateView, FormatCreateView, ImageSizeCreateView, LanguageCreateView, PersonCreateView,
+    PersonImageCreateView, PersonImageExtraCreateView, PersonNicknameCreateView, QualityCreateView, WebsiteCreateView,
 )
+from .views.list_views import (CountryListView, FormatListView, ImageSizeListView, LanguageListView, PersonListView,
+    PersonImageListView, PersonImageExtraListView, PersonNicknameListView, QualityListView, WebsiteListView,
+)
+from .views.update_views import ( CountryUpdateView, FormatUpdateView, ImageSizeUpdateView, LanguageUpdateView, PersonUpdateView,
+PersonImageUpdateView, PersonImageExtraUpdateView, PersonNicknameUpdateView, QualityUpdateView, WebsiteUpdateView,
+)
+from .views.detail_views import (CountryDetailView, FormatDetailView, ImageSizeDetailView, LanguageDetailView, PersonDetailView,
+    PersonImageDetailView, PersonImageExtraDetailView, PersonNicknameDetailView, QualityDetailView, WebsiteDetailView,
+)
+from .views_action import ActionView
+
 app_name = 'common_app'
-
-
-
 
 urlpatterns = [
     path('home/', HomeView.as_view(), name='home'),
@@ -76,5 +72,4 @@ urlpatterns = [
 
     # apis url
     path('api/', include('apps.common.api.urls')),
-
 ]

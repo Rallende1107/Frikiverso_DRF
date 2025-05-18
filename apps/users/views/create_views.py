@@ -1,24 +1,26 @@
 # Django imports
 from django.contrib import messages
-from django.views.generic import (CreateView, UpdateView, ListView, DetailView)
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.shortcuts import redirect, reverse
+from django.shortcuts import reverse
 from django.urls import reverse_lazy
-# Local app imports
-from apps.users.models import CustomUser
-from apps.users.forms import UserForm, StaffUserForm, SuperUserForm
-# Local app imports
-from core.utils.utils import delete_previous_media
-from core.utils.texts import WITHOUT_PERMISSION
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, KeyMap
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView
 
+# Local app imports - Modelos y formularios
+from apps.users.models import CustomUser
+from apps.users.forms import (UserForm, StaffUserForm, SuperUserForm)
+
+# Local app imports - Utilidades y mixins personalizados
+from core.utils.constants import (Templates, URLS, CSSBackground, JSConstants, KeyMap)
+from core.utils.mixins import PermissionRequiredMessageMixin
+
+# Create your views here.
+############################################################################################################################################    User Login
 class UserCreateView(CreateView):
     model = CustomUser
     form_class = UserForm
     template_name = Templates.Users.ADD
     success_url = reverse_lazy(URLS.Users.LOGIN)
-    title = 'Registrate'
+    title = _('Registrate')
 
     def form_valid(self, form):
         messages.success(self.request, 'Te has Registrado Exitosamente!')
@@ -38,24 +40,20 @@ class UserCreateView(CreateView):
         context['login_url'] = reverse(URLS.Users.LOGIN)
         return context
 
-
 ############################################################################################################################################    User Staff Create
-class StaffUserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class StaffUserCreateView(PermissionRequiredMessageMixin, CreateView):
     model = CustomUser
     form_class = StaffUserForm
     template_name = Templates.Users.ADD
     success_url = reverse_lazy(URLS.Users.LST)
-    title = 'Añadir Usuario Staff'
+    title = _('Añadir Usuario Staff')
+    permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 
     def test_func(self):
-        return self.request.user.is_superuser
-
-    def handle_no_permission(self):
-        messages.error(self.request, 'No tienes los permisos para realizar esta acción!')
-        return redirect(URLS.Users.LST)
+        return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        messages.success(self.request, 'Usuario de Staff Registrado Exitosamente!')
+        messages.success(self.request, _('¡Usuario de Staff Registrado Exitosamente!'))
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -73,22 +71,19 @@ class StaffUserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return context
 
 ############################################################################################################################################    User Staff
-class SuperUserCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class SuperUserCreateView(PermissionRequiredMessageMixin, CreateView):
     model = CustomUser
     form_class = SuperUserForm
     template_name = Templates.Users.ADD
     success_url = reverse_lazy(URLS.Users.LST)
-    title = 'Añadir Super Usuario'
+    title = _('Añadir Super Usuario')
+    permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 
     def test_func(self):
         return self.request.user.is_superuser
 
-    def handle_no_permission(self):
-        messages.error(self.request, 'No tienes los permisos para realizar esta acción!')
-        return redirect(URLS.Users.LST)
-
     def form_valid(self, form):
-        messages.success(self.request, 'Super Usuario Registrado Exitosamente!')
+        messages.success(self.request, _('¡Super Usuario Registrado Exitosamente!'))
         return super().form_valid(form)
 
     def form_invalid(self, form):

@@ -1,24 +1,41 @@
-from django.contrib.auth.views import (PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
+# Vistas de Django para restablecimiento de contraseña
+from django.contrib.auth.views import (PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView, PasswordResetView,)
+
+# Sistema de mensajes de Django
 from django.contrib import messages
 
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.template.loader import render_to_string
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError
-from django.urls import reverse, reverse_lazy
-from django.views.decorators.csrf import csrf_protect
-from django.utils.decorators import method_decorator
+# Utilidades para autenticación y tokens
 from django.contrib.auth import get_user_model
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
-import logging
-from apps.users.forms import PasswordRecoveryForm
-logger = logging.getLogger(__name__)
+from django.contrib.auth.tokens import default_token_generator
+
+# Utilidades para codificación, URL y traducción
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
+
+# Decoradores y vistas
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
+
+# Utilidades de correo
+from django.core.mail import BadHeaderError, send_mail
+
+# Utilidades de templates, vistas y redirección
+from django.template.loader import render_to_string
+from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
+
+# Constantes del proyecto
+from core.utils.constants import (Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap,)
+
+# Función personalizada para notificar cambio de contraseña
 from core.utils.send_emails import notify_password_changed
 
+# Formularios de la app de usuarios
+from apps.users.forms import PasswordRecoveryForm
 
+# Create your views here.
+############################################################################################################################################    PasswordResetView
 class CustomPasswordResetView(PasswordResetView):
     template_name = Templates.PasswordRecover.FORGET_PASSWORD
     success_url = reverse_lazy(URLS.PasswordRecover.FORGET_PASSWORD_DONE)
@@ -78,6 +95,7 @@ class CustomPasswordResetView(PasswordResetView):
         context['cancel_url'] = self.cancel_url
         return context
 
+############################################################################################################################################    PasswordResetDoneView
 class CustomPasswordResetDoneView(PasswordResetDoneView):
     template_name = Templates.PasswordRecover.RESET_DONE
     cancel_url = reverse_lazy(URLS.Users.LOGIN)
@@ -90,8 +108,7 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
         context['cancel_url'] = self.cancel_url
         return context
 
-
-
+############################################################################################################################################    PasswordResetConfirmView
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = Templates.PasswordRecover.RESET_CONFIRM
     success_url = reverse_lazy(URLS.PasswordRecover.PASSWORD_RESET_COMPLETE)
@@ -123,6 +140,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
         context['title'] = self.title
         return context
 
+############################################################################################################################################    PasswordResetCompleteView
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = Templates.PasswordRecover.RESET_COMPLETE
     title = _('Contraseña Restablecida')

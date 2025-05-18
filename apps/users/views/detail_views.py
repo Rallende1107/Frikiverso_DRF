@@ -1,22 +1,22 @@
 # Django imports
-from django.views.generic import (DetailView)
 from django.urls import reverse_lazy
-# Local app imports
+from django.views.generic import DetailView
+
+# Local app imports - Modelos
 from apps.users.models import CustomUser
-# from .forms import UserForm, StaffUserForm, SuperUserForm, UserUpdateForm
-# Local app imports
-from core.utils.utils import delete_previous_media
-from core.utils.texts import WITHOUT_PERMISSION
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, KeyMap
+
+# Local app imports - Utilidades y mixins personalizados
+from core.utils.constants import (Templates, URLS, CSSBackground, JSConstants, KeyMap)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
+# Create your views here.
 ############################################################################################################################################    User Create
-
 class UserDetailView(PermissionRequiredMessageMixin, DetailView):
     model = CustomUser
     template_name = Templates.Users.DTL
     context_object_name = 'usuario'
     cancel_url = reverse_lazy(URLS.Users.LST)
+    permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 
     def test_func(self):
         user = self.request.user

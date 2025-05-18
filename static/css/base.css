@@ -201,17 +201,14 @@
     /* desktop → wide */
     :root {
         /** BG Homes **/
-        --bg-home-common:                   url("../img/screen/wide/bg-home-common.webp");
+        --bg-home-privacy:                  url("../img/screen/wide/bg-home-privacy.webp");
+        --bg-home-tems:                     url("../img/screen/wide/bg-home-tems.webp");
+        --bg-home-about:                    url("../img/screen/wide/bg-home-about.webp");
         --bg-home-contact:                  url("../img/screen/wide/bg-home-contact.webp");
+        --bg-home-common:                   url("../img/screen/wide/bg-home-common.webp");
         --bg-home-movie:                    url("../img/screen/wide/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/wide/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/wide/bg-home-otaku.webp");
-        --bg-home-otaku-anime:              url("../img/screen/wide/bg-home-otaku-anime.webp");
-        --bg-home-otaku-data:               url("../img/screen/wide/bg-home-otaku-data.webp");
-        --bg-home-otaku-imagen:             url("../img/screen/wide/bg-home-otaku-imagen.webp");
-        --bg-home-otaku-manga:              url("../img/screen/wide/bg-home-otaku-manga.webp");
-        --bg-home-otaku-person_character:   url("../img/screen/wide/bg-home-otaku-person_character.webp");
-        --bg-home-otaku-relation:           url("../img/screen/wide/bg-home-otaku-relation.webp");
         --bg-home-renpy:                    url("../img/screen/wide/bg-home-renpy.webp");
         --bg-home-serie:                    url("../img/screen/wide/bg-home-serie.webp");
         /** BG Users **/
@@ -353,8 +350,11 @@
     /* laptop → landscape*/
     :root {
         /** BG Homes **/
-        --bg-home-common:                   url("../img/screen/landscape/bg-home-common.webp");
+        --bg-home-privacy:                  url("../img/screen/landscape/bg-home-privacy.webp");
+        --bg-home-tems:                     url("../img/screen/landscape/bg-home-tems.webp");
+        --bg-home-about:                    url("../img/screen/landscape/bg-home-about.webp");
         --bg-home-contact:                  url("../img/screen/landscape/bg-home-contact.webp");
+        --bg-home-common:                   url("../img/screen/landscape/bg-home-common.webp");
         --bg-home-movie:                    url("../img/screen/landscape/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/landscape/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/landscape/bg-home-otaku.webp");
@@ -505,8 +505,11 @@
     /* tablet → portrait*/
     :root {
         /** BG Homes **/
-        --bg-home-common:                   url("../img/screen/portrait/bg-home-common.webp");
+        --bg-home-privacy:                  url("../img/screen/portrait/bg-home-privacy.webp");
+        --bg-home-tems:                     url("../img/screen/portrait/bg-home-tems.webp");
+        --bg-home-about:                    url("../img/screen/portrait/bg-home-about.webp");
         --bg-home-contact:                  url("../img/screen/portrait/bg-home-contact.webp");
+        --bg-home-common:                   url("../img/screen/portrait/bg-home-common.webp");
         --bg-home-movie:                    url("../img/screen/portrait/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/portrait/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/portrait/bg-home-otaku.webp");
@@ -657,8 +660,11 @@
     /* mobile → tall */
     :root {
         /** BG Homes **/
-        --bg-home-common:                   url("../img/screen/tall/bg-home-common.webp");
+        --bg-home-privacy:                  url("../img/screen/tall/bg-home-privacy.webp");
+        --bg-home-tems:                     url("../img/screen/tall/bg-home-tems.webp");
+        --bg-home-about:                    url("../img/screen/tall/bg-home-about.webp");
         --bg-home-contact:                  url("../img/screen/tall/bg-home-contact.webp");
+        --bg-home-common:                   url("../img/screen/tall/bg-home-common.webp");
         --bg-home-movie:                    url("../img/screen/tall/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/tall/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/tall/bg-home-otaku.webp");

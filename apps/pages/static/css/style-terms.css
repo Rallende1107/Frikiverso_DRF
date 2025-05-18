@@ -1,0 +1,78 @@
+@import url("base.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fuente);
+}
+
+.terms {
+  align-items: center;
+  color: var(--color-white);
+  height: 100vh;
+  width: 100%;
+  background: var(--bg-home-tems);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terms-container {
+    color: var(--color-white);
+    max-width: 99%;
+    max-height: 90vh; /* límite máximo de altura para que no crezca más que el 80% de la pantalla */
+    padding: 1rem;
+    line-height: 1.6;
+    background: var(--gradient-transparent-darker);
+    border-radius: var(--border07);
+    overflow-y: auto;
+    box-shadow: 5px 5px 20px 2px var(--color-white);
+}
+
+/* Ocultar scrollbar para Webkit (Chrome, Safari) */
+.terms-container::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Para Firefox, si quieres ocultarlo: */
+.terms-container {
+  scrollbar-width: none; /* Firefox */
+}
+
+.terms-container::-webkit-scrollbar-thumb {
+  background: transparent; /* Opcional, para que no se vea el "pulgar" del scrollbar */
+}
+
+.terms-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-cyan);
+}
+
+.terms-container section {
+    margin-bottom: 2rem;
+}
+
+.terms-container h2 {
+    color: #007acc;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 0.3rem;
+}
+
+.terms-container p {
+    font-size: 1rem;
+}
+
+.terms-container a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+.terms-container a:hover,
+.terms-container a:focus {
+    text-decoration: underline;
+}

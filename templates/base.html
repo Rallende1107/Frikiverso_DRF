@@ -39,6 +39,7 @@
 
     <!-- CSS Personalizado (Siempre al final para sobreescribir otros estilos) -->
     <link rel="stylesheet" href="{% static 'css/master-style-base.css'%}?=v1" />
+    <link rel="stylesheet" href="{% static 'css/master-style-footer.css'%}?=v1" />
 
     {% block head %} {% endblock head %}
     <title>{% block title %} {% endblock title %} </title>
@@ -53,6 +54,10 @@
         {% block contenido %}
         <!-- Contenido de otras Vistas -->
         {% endblock contenido %}
+    </main>
+
+    {% include 'footer.html' %}
+
         <!-- 1️⃣ jQuery (Siempre antes de Bootstrap y DataTables) -->
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 

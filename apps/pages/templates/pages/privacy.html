@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style-privacy.css'%}?v1" />
+{% endblock head %}
+
+{% block title %}Política de Privacidad{% endblock title %}
+
+{% block contenido %}
+<div class="privacy">
+    <div class="privacy-container">
+        <h1>Política de Privacidad</h1>
+
+        <section>
+            <h2>1. Información que recopilamos</h2>
+            <p>
+                Podemos recopilar información personal como nombre, dirección de correo electrónico o IP cuando interactúas
+                con ciertas partes del sitio, como formularios de contacto o comentarios.
+            </p>
+        </section>
+
+        <section>
+            <h2>2. Uso de la información</h2>
+            <p>
+                La información recopilada se utiliza únicamente para mejorar el servicio, procesar solicitudes o responder
+                a comunicaciones. No vendemos ni compartimos tus datos personales con terceros.
+            </p>
+        </section>
+
+        <section>
+            <h2>3. Cookies</h2>
+            <p>
+                Este sitio puede utilizar cookies para mejorar la experiencia del usuario. Puedes desactivar las cookies
+                desde la configuración de tu navegador.
+            </p>
+        </section>
+
+        <section>
+            <h2>4. Servicios de terceros</h2>
+            <p>
+                Podemos usar herramientas de terceros (como analíticas) que también podrían recolectar datos de forma anónima
+                sobre tu navegación.
+            </p>
+        </section>
+
+        <section>
+            <h2>5. Derechos del usuario</h2>
+            <p>
+                Puedes solicitar acceso, rectificación o eliminación de tus datos personales en cualquier momento escribiendo a
+                <a href="mailto:contacto@frikiverso.com">contacto@frikiverso.com</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>6. Cambios en esta política</h2>
+            <p>
+                Esta política puede actualizarse ocasionalmente. Te recomendamos revisarla periódicamente.
+            </p>
+        </section>
+    </div>
+</div>
+{% endblock %}
+

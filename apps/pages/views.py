@@ -54,3 +54,24 @@ class AboutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['title'] = self.title
         return context
+
+class TermsView(TemplateView):
+    template_name = Templates.Main.TERMS
+    title = _('Términos y condiciones')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        return context
+
+
+class PrivacyView(TemplateView):
+    template_name = Templates.Main.PRIVACY
+    title = _('Política de Privacidad')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        return context
+
+

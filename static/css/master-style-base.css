@@ -162,3 +162,124 @@ main {
     color: var(--color-white);
     outline: none;
 }
+
+.container-footer {
+    max-width: 1140px; /* igual que Bootstrap container */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;  /* igual que Bootstrap container */
+    padding-right: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-size: 14px;
+    position: relative;
+}
+
+.footer .footer-top {
+    padding: 15px 0;
+    background-color: var(--color-black);
+}
+
+.footer .footer-about .logo {
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.footer .footer-about .logo img {
+    max-height: 40px;
+    margin-right: 6px;
+}
+
+.footer .footer-about .logo span {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-white);
+}
+
+.footer .footer-about p {
+    font-size: 14px;
+}
+
+.footer .social-links a {
+    color: var(--color-white);
+    background-color: var(--color-dim-gray);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: 0.3s;
+    margin-bottom: 14px;
+}
+
+.footer .social-links a:hover {
+    color: var(--color-white);
+    background-color: var(--color-purple);
+}
+
+.footer h4 {
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer .footer-links {
+    margin-bottom: 3px;
+}
+
+.footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-links ul i {
+    margin-right: 4px;
+    font-size: 12px;
+    line-height: 0;
+    color: var(--color-purple);
+}
+
+.footer .footer-links ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+    padding-top: 0;
+}
+
+.footer .footer-links ul a {
+    color: color-mix(in srgb, var(--color-white), transparent 30%);
+    display: inline-block;
+    line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+    color: var(--color-purple);
+}
+
+.footer .footer-contact p {
+    margin-bottom: 5px;
+}
+
+.footer .copyright {
+    padding: 5px 0 15px 0;
+}
+
+.footer .copyright p {
+    margin-bottom: 0;
+}

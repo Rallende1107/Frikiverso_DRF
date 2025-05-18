@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style-terms.css'%}?=v1" />
+
+{% endblock head %} {% block title %} {{title}} {% endblock title %} {% block contenido %}
+<div class="terms">
+    <div class="terms-container">
+        <h1>Términos y condiciones</h1>
+
+        <section>
+            <h2>Uso adecuado del sitio</h2>
+            <p>
+                Los usuarios se comprometen a utilizar Frikiverso de manera responsable, respetando a otros usuarios y
+                evitando subir contenido ilegal, ofensivo o que infrinja derechos de terceros.
+            </p>
+        </section>
+
+        <section>
+            <h2>Contenido ilegal o inapropiado</h2>
+            <p>
+                Frikiverso no apoya, promueve ni tolera la distribución de contenido ilegal, incluyendo pero no limitado a:
+                <strong>pornografía infantil, representaciones sexuales de menores (incluyendo contenido ficticio como lolicon o shotacon), violencia extrema, discurso de odio, o cualquier material que vulnere la dignidad humana.</strong>
+            </p>
+            <p>
+                Aunque hacemos todo lo posible para moderar y prevenir la aparición de dicho contenido, no podemos garantizar su detección inmediata. Si un usuario sube material de esta naturaleza, será eliminado sin previo aviso y se tomarán las medidas legales correspondientes, incluyendo la notificación a las autoridades competentes.
+            </p>
+            <p>
+                Si detectas contenido inapropiado, te pedimos que lo reportes de inmediato a <a href="mailto:contacto@frikiverso.com">contacto@frikiverso.com</a>.
+            </p>
+        </section>
+
+        <section>
+            <h2>Política contra la piratería</h2>
+            <p>
+                Frikiverso no apoya ni promueve la piratería en ninguna forma. No facilitamos, compartimos ni permitimos
+                la distribución de contenido protegido por derechos de autor sin autorización. Todo contenido subido es
+                responsabilidad exclusiva del usuario que lo publica.
+            </p>
+        </section>
+
+        <section>
+            <h2>Contenido subido por usuarios</h2>
+            <p>
+                El contenido publicado en la plataforma es responsabilidad exclusiva de los usuarios que lo suben.
+                Frikiverso no se hace responsable por el material compartido ni garantiza que sea apropiado para todas las edades.
+            </p>
+        </section>
+
+        <section>
+            <h2>Responsabilidad por menores de edad</h2>
+            <p>
+                No nos hacemos responsables si menores de edad acceden a contenido inapropiado. Recomendamos a los padres
+                o tutores supervisar el uso que los menores hagan de este sitio.
+            </p>
+        </section>
+
+        <section>
+            <h2>Privacidad y protección de datos</h2>
+            <p>
+                Nos comprometemos a proteger tu privacidad y no compartimos tu información personal con terceros sin tu consentimiento.
+            </p>
+        </section>
+
+        <section>
+            <h2>Política de privacidad</h2>
+            <p>
+                Para más detalles sobre cómo recopilamos, usamos y protegemos tu información personal,
+                por favor revisa nuestra <a href="{% url 'pages_app:privacy' %}">Política de Privacidad</a>.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>Limitación de responsabilidad</h2>
+            <p>
+                Frikiverso no garantiza la disponibilidad continua del sitio y no se hace responsable por daños directos o indirectos
+                derivados del uso del servicio.
+            </p>
+        </section>
+
+
+
+
+
+        <section>
+            <h2>Contacto</h2>
+            <p>
+                Si tienes dudas o quieres reportar algún problema legal, puedes contactarnos en
+                <a href="mailto:contacto@frikiverso.com">contacto@frikiverso.com</a>.
+            </p>
+        </section>
+
+
+
+    </div>
+</div>
+{% endblock %}
+
+{% include 'footer.html' %}

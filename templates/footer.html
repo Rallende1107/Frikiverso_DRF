@@ -2,7 +2,7 @@
 {% load static i18n %}
 <footer id="footer" class="footer">
     <div class="footer-top">
-        <div class="container">
+        <div class="container-footer">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="#" class="logo d-flex align-items-center">
@@ -23,14 +23,14 @@
                     <ul>
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a href="#">
+                            <a  href="{% url 'pages_app:index' %}">
                                 {% trans "Inicio" %}
                             </a>
                         </li>
 
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a  href="#">
+                            <a  href="{% url 'pages_app:about' %}">
                                 {% trans "Sobre nosotros" %}
                             </a>
                         </li>
@@ -44,13 +44,14 @@
 
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a href="#">
+                            <a href="{% url 'pages_app:terms' %}">
                                 {% trans "Términos de servicio" %}
                             </a>
+
                         </li>
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a href="#">
+                            <a href="{% url 'pages_app:privacy' %}">
                                 {% trans "Política de privacidad" %}
                             </a>
                         </li>
@@ -125,7 +126,7 @@
     </div>
 
     <div class="copyright">
-        <div class="container text-center">
+        <div class="container-footer text-center">
             <p>
                 &copy;
                 <span>

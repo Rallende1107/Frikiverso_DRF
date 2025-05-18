@@ -10,6 +10,8 @@ class Templates:
         INDEX = 'pages/index.html'
         CONTACT = 'pages/contact.html'
         ABOUT = 'pages/about.html'
+        TERMS = 'pages/terms.html'
+        PRIVACY = 'pages/privacy.html'
 
     class emailBoddy:
         PASSWORD_RECOVERY = 'emails/body/password_recovery.txt'
@@ -649,6 +651,7 @@ class URLS:
     class Main:
         INDEX = 'pages_app:index'
         CONTAC = 'pages_app:contac'
+        TERMS = 'pages_app:terms'
 
     class PasswordRecover:
         FORGET_PASSWORD  = 'users_app:forget_password'

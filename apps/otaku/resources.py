@@ -1,7 +1,7 @@
 from core.resources import BaseFullResource
 from .models import (
     Role, Year, Genre, Theme, Demographic, Type, Rating, Season, Status, Source, RelationType, SeasonFull,
-    Producer, Licensor, Studio, Serialization, Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
+    Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
     Character, CharacterNickname, Person, PersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
     AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, PersonImage, PersonImageExtra, CharacterImage, CharacterImageExtra,
@@ -68,26 +68,6 @@ class RelationTypeResource(BaseFullResource):
 class SeasonFullResource(BaseFullResource):
     class Meta(BaseFullResource.Meta):
         model = SeasonFull
-
-########################################################################################################    Resource para Producer
-class ProducerResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
-        model = Producer
-
-########################################################################################################    Resource para Licensor
-class LicensorResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
-        model = Licensor
-
-########################################################################################################    Resource para Studio
-class StudioResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
-        model = Studio
-
-########################################################################################################    Resource para Serialization
-class SerializationResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
-        model = Serialization
 
 ########################################################################################################    Resource para Anime
 class AnimeResource(BaseFullResource):

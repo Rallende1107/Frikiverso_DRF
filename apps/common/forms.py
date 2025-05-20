@@ -1,9 +1,114 @@
 from django import forms
-from apps.common.models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
+from apps.common.models import Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
 from django.forms.widgets import DateInput
 from core.utils.validators import validate_file_extension, validate_url, ALLOWED_IMAGE_EXTENSIONS
 from django.utils.translation import gettext_lazy as _
+from core.utils.utils import normalize_text, to_title_text, to_upper_text, to_capitalized_sentence
+from django.utils.text import slugify
+
 # Create your forms here.
+
+########################################################################################################    Formulario para Company
+class CompanyForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = ['name', 'country', 'founded_year', 'disolved_year', 'is_active']
+
+    name = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=255,
+        label=_('Nombre'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name'
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el nombre.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
+    )
+
+    country = forms.ModelChoiceField(
+        queryset=None,
+        required=False,
+        label=_('País'),
+        empty_label=_('Seleccione un país'),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select',
+                'id': 'country',
+            }
+        ),
+    )
+
+    founded_year = forms.IntegerField(
+        required=False,
+        min_value=0,
+        label=_('Año Fundación'),
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Año de fundación'),
+                'type': 'number',
+                'id': 'founded_year',
+            }
+        ),
+        error_messages={
+            'min_value': _('El año de fundacion no puede ser menor a 0.'),
+            'invalid': _('Ingrese un número válido para el año de fundación.'),
+        },
+    )
+
+    disolved_year = forms.IntegerField(
+        required=False,
+        min_value=0,
+        label=_('Año Disolución'),
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Año de disolución'),
+                'type': 'number',
+                'id': 'disolved_year',
+            }
+        ),
+        error_messages={
+            'min_value': _('El año de disolución no puede ser menor a 0.'),
+            'invalid': _('Ingrese un número válido para el año de disolución.'),
+        },
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['country'].queryset = Country.objects.filter(is_active=True)
+
+    def clean_name(self):
+        return to_title_text(self.cleaned_data.get('name', ''))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        country = cleaned_data.get('country')
+        founded = cleaned_data.get('founded_year')
+        disolved = cleaned_data.get('disolved_year')
+
+        if founded and disolved and disolved < founded:
+            self.add_error('disolved_year', _('El año de disolución no puede ser menor al de fundación.'))
+
+        normalized_name = normalize_text(name) if name else ''
+        qs = Company.objects.exclude(pk=self.instance.pk)
+
+        for company in qs:
+            if company.country == country and normalized_name == normalize_text(company.name):
+                raise forms.ValidationError(_('Ya existe una compañía con el nombre "%(name)s" en el país seleccionado o es muy similar.') % {'name': name})
+
+        return cleaned_data
+
 ########################################################################################################    Formulario para Country
 class CountryForm(forms.ModelForm):
     class Meta:
@@ -20,7 +125,8 @@ class CountryForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Nombre del país (inglés)'),
                 'autocomplete': 'off',
-                'id': 'name'
+                'id': 'name',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -39,7 +145,8 @@ class CountryForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Nombre del país (español)'),
                 'autocomplete': 'off',
-                'id': 'name_esp'
+                'id': 'name_esp',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -58,13 +165,14 @@ class CountryForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Código de país (opcional)'),
                 'autocomplete': 'off',
-                'id': 'code'
+                'id': 'code',
+                'type': 'text',
             }
         )
     )
 
     numeric_code = forms.IntegerField(
-        required=False,
+        required=True,
         label=_('Código Numérico'),
         widget=forms.NumberInput(
             attrs={
@@ -89,16 +197,13 @@ class CountryForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip().title()
-        return name
+        return to_title_text(self.cleaned_data.get('name', ''))
 
     def clean_name_esp(self):
-        name_esp = self.cleaned_data.get('name_esp', '').strip().title()
-        return name_esp
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
 
     def clean_code(self):
-        code = self.cleaned_data.get('code', '').strip().upper()
-        return code
+        return to_upper_text(self.cleaned_data.get('code', ''))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -106,16 +211,16 @@ class CountryForm(forms.ModelForm):
         name_esp = cleaned_data.get('name_esp')
 
         # Validación cruzada para asegurar que no existan duplicados similares
-        normalized_name = ''.join(name.upper().split()) if name else ''
-        normalized_name_esp = ''.join(name_esp.upper().split()) if name_esp else ''
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
 
         qs = Country.objects.exclude(pk=self.instance.pk)
 
         for country in qs:
-            if normalized_name == ''.join(country.name.upper().split()):
+            if normalize_text(country.name) == normalized_name:
                 raise forms.ValidationError(_('Ya existe un país con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
-            if normalized_name_esp == ''.join(country.name_esp.upper().split()):
+            if normalize_text(country.name_esp) == normalized_name_esp:
                 raise forms.ValidationError(_('Ya existe un país con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
 
         return cleaned_data
@@ -160,6 +265,7 @@ class FormatForm(forms.ModelForm):
                 'id': 'description',
                 'rows': 3,
                 'autocomplete': 'off',
+                'type': 'text',
             }
         )
     )
@@ -243,21 +349,18 @@ class FormatForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip()
-        return ' '.join(part.upper() for part in name.split())
+        return to_upper_text(self.cleaned_data.get('name', ''))
 
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
 
-        # Normaliza el nombre eliminando espacios y convirtiendo a minúsculas
-        normalized_name = ''.join(name.upper().split()) if name else ''
+        normalized_name = normalize_text(name) if name else ''
 
-        # Verifica si un formato con el nombre normalizado ya existe, ignorando el caso actual
         if normalized_name:
             existing_formats = Format.objects.exclude(pk=self.instance.pk)
             for format_obj in existing_formats:
-                existing_normalized_name = ''.join(format_obj.name.upper().split())
+                existing_normalized_name = normalize_text(format_obj.name)
                 if normalized_name == existing_normalized_name:
                     raise forms.ValidationError(_('Ya existe un Formato con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
@@ -280,6 +383,7 @@ class ImageSizeForm(forms.ModelForm):
                 'placeholder': _('Nombre del tamaño (inglés)'),
                 'autocomplete': 'off',
                 'id': 'name',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -299,6 +403,7 @@ class ImageSizeForm(forms.ModelForm):
                 'placeholder': _('Nombre del tamaño (español)'),
                 'autocomplete': 'off',
                 'id': 'name_esp',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -321,30 +426,27 @@ class ImageSizeForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip().title()
-        return name
+        return to_title_text(self.cleaned_data.get('name', ''))
 
     def clean_name_esp(self):
-        name_esp = self.cleaned_data.get('name_esp', '').strip().title()
-        return name_esp
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
 
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
         name_esp = cleaned_data.get('name_esp')
 
-        normalized_name = ''.join(name.upper().split()) if name else ''
-        normalized_name_esp = ''.join(name_esp.upper().split()) if name_esp else ''
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
 
         qs = ImageSize.objects.exclude(pk=self.instance.pk)
 
         for size in qs:
-            if normalized_name == ''.join(size.name.upper().split()):
+            if normalize_text(size.name) == normalized_name:
                 raise forms.ValidationError(_('Ya existe un Tamaño de imagen con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
-            if normalized_name_esp == ''.join(size.name_esp.upper().split()):
+            if normalize_text(size.name_esp) == normalized_name_esp:
                 raise forms.ValidationError(_('Ya existe un Tamaño de imagen con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
-
 
         return cleaned_data
 
@@ -367,6 +469,7 @@ class LanguageForm(forms.ModelForm):
                 'type': 'text',
                 'required': 'required',
                 'autocomplete': 'off',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -427,12 +530,13 @@ class LanguageForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip()
-        return ' '.join(part.capitalize() for part in name.split())
+        return to_title_text(self.cleaned_data.get('name', ''))
 
     def clean_name_esp(self):
-        name_esp = self.cleaned_data.get('name_esp', '').strip()
-        return ' '.join(part.capitalize() for part in name_esp.split())
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
+
+    def clean_acronym(self):
+        return to_upper_text(self.cleaned_data.get('acronym', ''))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -440,25 +544,20 @@ class LanguageForm(forms.ModelForm):
         name_esp = cleaned_data.get('name_esp')
         acronym = cleaned_data.get('acronym')
 
-        # Normaliza los nombres e iniciales eliminando espacios y convirtiendo a minúsculas
-        normalized_name = ''.join(name.lower().split()) if name else ''
-        normalized_name_esp = ''.join(name_esp.lower().split()) if name_esp else ''
-        normalized_acronym = ''.join(acronym.lower().split()) if acronym else ''
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
+        normalized_acronym = normalize_text(acronym) if acronym else ''
 
         # Verifica si ya existe un idioma con el nombre, iniciales, o combinaciones similares
         existing_languages = Language.objects.exclude(pk=self.instance.pk)
         for language in existing_languages:
-            existing_normalized_name = ''.join(language.name.lower().split())
-            existing_normalized_name_esp = ''.join(language.name_esp.lower().split())
-            existing_normalized_acronym = ''.join(language.acronym.lower().split())
-
-            if normalized_name == existing_normalized_name:
+            if normalize_text(language.name) == normalized_name:
                 raise forms.ValidationError(_('Ya existe un idioma con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
-            if normalized_name_esp and normalized_name_esp == existing_normalized_name_esp:
+            if normalized_name_esp and normalize_text(language.name_esp) == normalized_name_esp:
                 raise forms.ValidationError(_('Ya existe un idioma con el nombre en español "%(name_esp)s" o es muy similar.') % {'name_esp': name_esp})
 
-            if normalized_acronym and normalized_acronym == existing_normalized_acronym:
+            if normalized_acronym and normalize_text(language.acronym) == normalized_acronym:
                 raise forms.ValidationError(_('Ya existe un idioma con el acrónimo "%(acronym)s" o es muy similar.') % {'acronym': acronym})
 
         return cleaned_data
@@ -480,6 +579,7 @@ class PersonForm(forms.ModelForm):
                 'placeholder': _('Nombre completo de la persona'),
                 'autocomplete': 'off',
                 'id': 'full_name',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -497,7 +597,8 @@ class PersonForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': _('Biografía de la persona (opcional)'),
                 'rows': 4,
-                'id': 'biography'
+                'id': 'biography',
+                'type': 'text',
             }
         )
     )
@@ -518,6 +619,7 @@ class PersonForm(forms.ModelForm):
     country = forms.ModelChoiceField(
         required=False,
         label=_('País'),
+        empty_label=_('Seleccione un país'),
         queryset=None,
         widget=forms.Select(
             attrs={
@@ -545,18 +647,17 @@ class PersonForm(forms.ModelForm):
         self.fields['country'].queryset = Country.objects.filter(is_active=True)
 
     def clean_full_name(self):
-        full_name = self.cleaned_data.get('full_name', '').strip()
-        return ' '.join(part.capitalize() for part in full_name.split())
+        return to_title_text(self.cleaned_data.get('full_name', ''))
 
     def clean(self):
         cleaned_data = super().clean()
         full_name = cleaned_data.get('full_name')
 
         if full_name:
-            normalized = ''.join(full_name.upper().split())
+            normalized = normalize_text(full_name)
             qs = Person.objects.exclude(pk=self.instance.pk)
             for person in qs:
-                existing = ''.join(person.full_name.upper().split())
+                existing = normalize_text(person.full_name)
                 if normalized == existing:
                     raise forms.ValidationError(_('Ya existe una persona con el nombre "%(full_name)s" o es muy similar.') % {'full_name': full_name})
 
@@ -572,6 +673,7 @@ class PersonImageForm(forms.ModelForm):
         queryset=None,
         required=True,
         label=_('Persona'),
+        empty_label=_('Seleccione una persona'),
         widget=forms.Select(
             attrs={
                 'class': 'form-select',
@@ -624,6 +726,7 @@ class PersonImageForm(forms.ModelForm):
                 'id': 'image_url',
                 'autocomplete': 'off',
                 'type': 'url',
+                'type': 'url',
             }
         ),
         error_messages={
@@ -648,6 +751,11 @@ class PersonImageForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['person'].queryset = Person.objects.filter(is_active=True)
         self.fields['size_image'].queryset = ImageSize.objects.filter(is_active=True)
+
+        if self.instance.pk:
+            # Deshabilitar los campos si es edición
+            self.fields['person'].disabled = True
+            self.fields['size_image'].disabled = True
 
     def clean_image(self):
         image = self.cleaned_data.get('image')
@@ -684,6 +792,7 @@ class PersonImageExtraForm(forms.ModelForm):
         queryset=None,
         required=True,
         label='Persona',
+        empty_label=_('Seleccione una persona'),
         widget=forms.Select(
             attrs={
                 'class': 'form-select',
@@ -727,6 +836,10 @@ class PersonImageExtraForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['person'].queryset = Person.objects.filter(is_active=True)
 
+        if self.instance.pk:
+            # Deshabilitar los campos si es edición
+            self.fields['person'].disabled = True
+
     def clean_image(self):
         image = self.cleaned_data.get('image')
         if image:
@@ -756,6 +869,7 @@ class PersonNicknameForm(forms.ModelForm):
         queryset=None,
         required=True,
         label='Persona',
+        empty_label=_('Seleccione una persona'),
         widget=forms.Select(
             attrs={
                 'class': 'form-select',
@@ -777,6 +891,7 @@ class PersonNicknameForm(forms.ModelForm):
                 'placeholder': _('Apodo de la Persona'),
                 'id': 'nickname',
                 'autocomplete': 'off',
+                'type': 'text',
             }
         ),
         error_messages={
@@ -812,11 +927,11 @@ class PersonNicknameForm(forms.ModelForm):
         person = cleaned_data.get('person')
 
         if nickname and person:
-            normalized_nickname = ''.join(nickname.upper().split())
+            normalized_nickname = normalize_text(nickname)
 
             existing_nicks = PersonNickname.objects.filter(person=person).exclude(pk=self.instance.pk)
             for existing in existing_nicks:
-                existing_normalized = ''.join(existing.nickname.upper().split())
+                existing_normalized = normalize_text(existing.nickname)
                 if normalized_nickname == existing_normalized:
                     raise forms.ValidationError(_('El apodo "%(nickname)s" ya está registrado para esta persona.') % {'nickname': nickname})
 
@@ -860,6 +975,7 @@ class QualityForm(forms.ModelForm):
                 'id': 'description',
                 'rows': 3,
                 'autocomplete': 'off',
+                'type': 'text',
             }
         )
     )
@@ -878,21 +994,19 @@ class QualityForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip()
-        return ' '.join(part.upper() for part in name.split())
+        return to_upper_text(self.cleaned_data.get('name', ''))
 
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get('name')
 
-        # Normaliza el nombre eliminando espacios y convirtiendo a minúsculas
-        normalized_name = ''.join(name.upper().split()) if name else ''
+        if name:
+            normalized_name = normalize_text(name)
 
-        # Verifica si una calidad con el nombre normalizado ya existe, ignorando el caso actual
-        if normalized_name:
             existing_qualities = Quality.objects.exclude(pk=self.instance.pk)
+
             for quality in existing_qualities:
-                existing_normalized_name = ''.join(quality.name.upper().split())
+                existing_normalized_name = normalize_text(quality.name)
                 if normalized_name == existing_normalized_name:
                     raise forms.ValidationError(_('Ya existe una calidad con el nombre "%(name)s" o es muy similar.') % {'name': name})
 
@@ -980,12 +1094,10 @@ class WebsiteForm(forms.ModelForm):
     )
 
     def clean_name(self):
-        name = self.cleaned_data.get('name', '').strip()
-        return ' '.join(part.capitalize() for part in name.split())
+        return to_title_text( self.cleaned_data.get('name', ''))
 
     def clean_acronym(self):
-        acronym = self.cleaned_data.get('acronym', '').strip().upper()
-        return acronym
+        return to_upper_text(self.cleaned_data.get('acronym', ''))
 
     def clean_url(self):
         url = self.cleaned_data.get('url', '').strip()
@@ -996,14 +1108,12 @@ class WebsiteForm(forms.ModelForm):
         name = cleaned_data.get('name')
         url = cleaned_data.get('url')
 
-        # Normaliza el nombre eliminando espacios y convirtiendo a minúsculas
-        normalized_name = ''.join(name.lower().split()) if name else ''
+        normalized_name = normalize_text(name) if name else ''
         normalized_url = url.lower().strip() if url else ''
 
-        # Verifica si ya existe una página de descarga con el nombre o URL similares
         existing_websites = Website.objects.exclude(pk=self.instance.pk)
         for website in existing_websites:
-            existing_normalized_name = ''.join(website.name.lower().split())
+            existing_normalized_name = normalize_text(website.name)
             existing_normalized_url = website.url.lower().strip()
 
             if normalized_name == existing_normalized_name:
@@ -1013,4 +1123,3 @@ class WebsiteForm(forms.ModelForm):
                 raise forms.ValidationError(_('Ya existe un sitio web con la URL "%(url)s" o es muy similar.') % {'url': url})
 
         return cleaned_data
-

@@ -4,7 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 # impot Modelos
 from .models import (
     Role, Year, Genre, Theme, Demographic, Type, Rating, Season, Status, Source, RelationType, SeasonFull,
-    Producer, Licensor, Studio, Serialization, Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
+    Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
     Character, CharacterNickname, Person, PersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
     AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, PersonImage, PersonImageExtra, CharacterImage, CharacterImageExtra,
@@ -15,7 +15,7 @@ from .models import (
 # impot Resource
 from .resources import (
     RoleResource, YearResource, GenreResource, ThemeResource, DemographicResource, TypeResource, RatingResource, SeasonResource, StatusResource, SourceResource, RelationTypeResource, SeasonFullResource,
-    ProducerResource, LicensorResource, StudioResource, SerializationResource, AnimeResource, MangaResource, TitleAnimeResource, TitleMangaResource, AnimeSongResource, MediaRelationResource,
+    AnimeResource, MangaResource, TitleAnimeResource, TitleMangaResource, AnimeSongResource, MediaRelationResource,
     CharacterResource, CharacterNicknameResource, PersonResource, PersonNicknameResource,
     AnimeCharacterResource, MangaCharacterResource, VoiceCharacterResource, AnimeStaffResource, AuthorMangaResource,
     AnimeImageResource, AnimeImageExtraResource, MangaImageResource, MangaImageExtraResource, PersonImageResource, PersonImageExtraResource, CharacterImageResource, CharacterImageExtraResource,
@@ -592,190 +592,6 @@ class SeasonFullAdmin(ImportExportModelAdmin):
             self.message_user(request, _('Se desactivaron %(count)d temporada(s) completa(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
             self.message_user(request, _('No se seleccionó ningún temporada completa para desactivar.'), messages.WARNING)
-
-########################################################################################################    Admin para Producer
-@admin.register(Producer)
-class ProducerAdmin(ImportExportModelAdmin):
-    resource_class = ProducerResource
-
-    list_display = ('name', 'initial', 'slug', 'is_active', 'created_at')
-    list_filter = ('is_active', 'initial')
-    search_fields = ('name', 'slug')
-    ordering = ('created_at', 'initial', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
-
-    actions = ['activar', 'desactivar']
-
-    fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('name',)
-        }),
-        (_('Estado'), {
-            'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug', 'initial')
-        }),
-        (_('Fechas'), {
-            'classes': ('collapse',),
-            'fields': ('created_at', 'updated_at')
-        }),
-    )
-
-    @admin.action(description=_('Activar productoras seleccionadas'))
-    def activar(self, request, queryset):
-        actualizados = queryset.update(is_active=True)
-        if actualizados:
-            self.message_user(request, _('Se activaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún productora para activar.'), messages.WARNING)
-
-    @admin.action(description=_('Desactivar productoras seleccionadas'))
-    def desactivar(self, request, queryset):
-        actualizados = queryset.update(is_active=False)
-        if actualizados:
-            self.message_user(request, _('Se desactivaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún productora para desactivar.'), messages.WARNING)
-
-########################################################################################################    Admin para Licensor
-@admin.register(Licensor)
-class LicensorAdmin(ImportExportModelAdmin):
-    resource_class = LicensorResource
-
-    list_display = ('name', 'initial', 'slug', 'is_active', 'created_at')
-    list_filter = ('is_active', 'initial')
-    search_fields = ('name', 'slug')
-    ordering = ('-created_at', 'initial', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
-
-    actions = ['activar', 'desactivar']
-
-    fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('name',)
-        }),
-        (_('Estado'), {
-            'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug', 'initial')
-        }),
-        (_('Fechas'), {
-            'classes': ('collapse',),
-            'fields': ('created_at', 'updated_at')
-        }),
-    )
-
-    @admin.action(description=_('Activar licenciantes seleccionados'))
-    def activar(self, request, queryset):
-        actualizados = queryset.update(is_active=True)
-        if actualizados:
-            self.message_user(request, _('Se activaron %(count)d licenciante(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún licenciante para activar.'), messages.WARNING)
-
-    @admin.action(description=_('Desactivar licenciantes seleccionados'))
-    def desactivar(self, request, queryset):
-        actualizados = queryset.update(is_active=False)
-        if actualizados:
-            self.message_user(request, _('Se desactivaron %(count)d licenciante(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún licenciante para desactivar.'), messages.WARNING)
-
-########################################################################################################    Admin para Studio
-@admin.register(Studio)
-class StudioAdmin(ImportExportModelAdmin):
-    resource_class = StudioResource
-
-    list_display = ('name', 'initial', 'slug', 'is_active', 'created_at')
-    list_filter = ('is_active', 'initial')
-    search_fields = ('name', 'slug')
-    ordering = ('-created_at', 'initial', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
-
-    actions = ['activar', 'desactivar']
-
-    fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('name',)
-        }),
-        (_('Estado'), {
-            'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug', 'initial')
-        }),
-        (_('Fechas'), {
-            'classes': ('collapse',),
-            'fields': ('created_at', 'updated_at')
-        }),
-    )
-
-    @admin.action(description=_('Activar estudios seleccionados'))
-    def activar(self, request, queryset):
-        actualizados = queryset.update(is_active=True)
-        if actualizados:
-            self.message_user(request, _('Se activaron %(count)d estudio(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún estudio para activar.'), messages.WARNING)
-
-    @admin.action(description=_('Desactivar estudios seleccionados'))
-    def desactivar(self, request, queryset):
-        actualizados = queryset.update(is_active=False)
-        if actualizados:
-            self.message_user(request, _('Se desactivaron %(count)d estudio(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún estudio para desactivar.'), messages.WARNING)
-
-########################################################################################################    Admin para Serialization
-@admin.register(Serialization)
-class SerializationAdmin(ImportExportModelAdmin):
-    resource_class = SerializationResource
-
-    list_display = ('name', 'initial', 'slug', 'is_active', 'created_at')
-    list_filter = ('is_active', 'initial')
-    search_fields = ('name', 'slug')
-    ordering = ('-created_at', 'initial', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
-
-    actions = ['activar', 'desactivar']
-
-    fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('name',)
-        }),
-        (_('Estado'), {
-            'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug', 'initial')
-        }),
-        (_('Fechas'), {
-            'classes': ('collapse',),
-            'fields': ('created_at', 'updated_at')
-        }),
-    )
-
-    @admin.action(description=_('Activar serializadoras seleccionadas'))
-    def activar(self, request, queryset):
-        actualizados = queryset.update(is_active=True)
-        if actualizados:
-            self.message_user(request, _('Se activaron %(count)d serializadora(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún serializadora para activar.'), messages.WARNING)
-
-    @admin.action(description=_('Desactivar serializadoras seleccionadas'))
-    def desactivar(self, request, queryset):
-        actualizados = queryset.update(is_active=False)
-        if actualizados:
-            self.message_user(request, _('Se desactivaron %(count)d serializadora(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ningún serializadora para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Anime
 @admin.register(Anime)

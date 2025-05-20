@@ -1,5 +1,5 @@
 # Imports estándar de Python
-import os, uuid
+import os
 from datetime import date
 # Imports de terceros (Django, PIL, etc.)
 from django.conf import settings
@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
 from core.utils.utils import obtener_inicial
-from core.models import BaseLog
+from core.models import BaseLog, YearField
 from .utils.uploads import person_image_path, person_image_extra_path
 
 # Create your models here.
@@ -77,6 +77,107 @@ class Country(models.Model):
     def get_absolute_url(self):
         """Return absolute url for Country."""
         return reverse('common_app:country_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    @property
+    def display_name(self):
+        if self.code:
+            return f"{self.name} ({self.code})"
+        return self.name
+
+    @property
+    def display_name_esp(self):
+        display_name = self.name_esp if self.name_esp else self.name
+        if self.code:
+            return f"{display_name} ({self.code})"
+        return display_name
+
+########################################################################################################    Modelo para Company
+class Company(models.Model):
+    """Model definition for Company."""
+    name = models.CharField(max_length=250, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
+    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
+    slug = models.SlugField(max_length=250, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    founded_year = YearField(blank=True, null=True, verbose_name=_('Año Fundación'))
+    disolved_year = YearField(blank=True, null=True, verbose_name=_('Año Disolución'))
+    country = models.ForeignKey(Country, blank=True,  null=True,  limit_choices_to={'is_active': True}, related_name='Companies_as_countries', on_delete=models.CASCADE, verbose_name=_('País'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for Company."""
+        verbose_name = _('Compañía')
+        verbose_name_plural = _('Compañías')
+        ordering = ['-created_at', 'initial', 'name',]
+        unique_together = (('name', 'country',),)
+
+    def __str__(self):
+        """Unicode representation of Company."""
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """Save method for Company."""
+        old = Company.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización de nombres
+        if self.name:
+            self.name = self.name.strip().title()
+        # Inicial automático si está vacío o el nombre cambió
+        if not self.initial or (old and self.name != old.name):
+            self.initial = obtener_inicial(self.name).upper()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.name != old.name):
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for Company."""
+        return reverse('common_app:company_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    def years_of_activity(self):
+        """
+        Retorna el rango de años de actividad de la compañía.
+        Formato: 'YYYY - YYYY' si tiene ambos años.
+        'YYYY - Presente' si solo tiene año de fundación.
+        'Desconocido - YYYY' si solo tiene año de disolución.
+        'Desconocido' si no tiene ninguno.
+        """
+        founded = self.founded_year
+        disolved = self.disolved_year
+
+        if founded and disolved:
+            return f"{founded} - {disolved}"
+        elif founded and not disolved:
+            return f"{founded} - {_('Presente')}"
+        elif not founded and disolved:
+            return f"{_('Desconocido')} - {disolved}"
+        else:
+            return _("Desconocido")
+
+    def get_num_animes_produced(self):
+        return self.animes_as_producers.count()
+
+    def get_num_animes_licensed(self):
+        return self.animes_as_licensors.count()
+
+    def get_num_animes_in_studio(self):
+        return self.animes_as_studios.count()
+
+    def get_num_mangas_serialized(self):
+        return self.mangas_as_serializations.count()
+
+    def get_num_movies_produced(self):
+        return self.movies_as_producers.count()
+
+    def get_num_movies_distributed(self):
+        return self.movies_as_distributors.count()
+
+    def get_num_series_produced(self):
+        return self.series_as_producers.count()
+
+    def get_num_series_distributed(self):
+        return self.series_as_distributors.count()
 
 ########################################################################################################    Modelo para Format
 class Format(models.Model):
@@ -160,6 +261,13 @@ class ImageSize(models.Model):
         """Return absolute url for ImageSize."""
         return reverse('common_app:image_size_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
+    # custom methods
+    @property
+    def display_name(self):
+        if self.name_esp:
+            return f"{self.name} ({self.name_esp})"
+        return self.name
+
 ########################################################################################################    Modelo para Language
 class Language(models.Model):
     """Model definition for Language."""
@@ -210,6 +318,20 @@ class Language(models.Model):
     def get_absolute_url(self):
         """Return absolute url for Language."""
         return reverse('common_app:language_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    @property
+    def display_name(self):
+        if self.acronym:
+            return f"{self.name} ({self.acronym})"
+        return self.name
+
+    @property
+    def display_name_esp(self):
+        display_name = self.name_esp if self.name_esp else self.name
+        if self.acronym:
+            return f"{display_name} ({self.acronym})"
+        return display_name
 
 ########################################################################################################    Modelo para Peson
 class Person(models.Model):
@@ -540,3 +662,22 @@ class Website(models.Model):
     def get_absolute_url(self):
         """Return absolute url for Website."""
         return reverse('common_app:website_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    @property
+    def display_name(self):
+        """
+        Retorna el nombre del sitio web combinado con su acrónimo, si existe.
+        Ej: 'MyWebsite (MW)' o 'AnotherWebsite'.
+        """
+        if self.acronym:
+            return f"{self.name} ({self.acronym})"
+        return self.name
+
+    @property
+    def display_link_text(self):
+        """
+        Retorna el texto a mostrar para el enlace.
+        Usa el acrónimo si existe, de lo contrario, el nombre.
+        """
+        return self.acronym if self.acronym else self.name
+

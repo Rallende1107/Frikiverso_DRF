@@ -317,6 +317,7 @@ option {
 .bg-users-user {background-image: var(--bg-users-user)}
 
 /** backgrounds Common **/
+.bg-common-company {background-image: var(--bg-common-company)}
 .bg-common-country {background-image: var(--bg-common-country)}
 .bg-common-format {background-image: var(--bg-common-format)}
 .bg-common-image_size {background-image: var(--bg-common-image_size)}
@@ -333,7 +334,8 @@ option {
 .bg-movie-type {background-image: var(--bg-movie-type)}
 .bg-movie-role {background-image: var(--bg-movie-role)}
 .bg-movie-rating {background-image: var(--bg-movie-rating)}
-.bg-movie-company {background-image: var(--bg-movie-company)}
+.bg-movie-producer {background-image: var(--bg-movie-producer)}
+.bg-movie-distributor {background-image: var(--bg-movie-distributor)}
 .bg-movie-movie {background-image: var(--bg-movie-movie)}
 .bg-movie-title_movie {background-image: var(--bg-movie-title_movie)}
 .bg-movie-movie_staff {background-image: var(--bg-movie-movie_staff)}
@@ -445,7 +447,8 @@ option {
 .bg-serie-type {background-image: var(--bg-serie-type)}
 .bg-serie-role {background-image: var(--bg-serie-role)}
 .bg-serie-rating {background-image: var(--bg-serie-rating)}
-.bg-serie-company {background-image: var(--bg-serie-company)}
+.bg-serie-producer {background-image: var(--bg-serie-producer)}
+.bg-serie-distributor {background-image: var(--bg-serie-distributor)}
 .bg-serie-serie {background-image: var(--bg-serie-serie)}
 .bg-serie-title_serie {background-image: var(--bg-serie-title_serie)}
 .bg-serie-serie_staff {background-image: var(--bg-serie-serie_staff)}

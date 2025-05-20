@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
-from apps.common.models import Language, ImageSize
+from apps.common.models import Language, ImageSize, Company
 from apps.music.models import Artist
 from core.models import BaseLog, YearField
 from core.utils.utils import obtener_inicial
@@ -631,178 +631,6 @@ class SeasonFull(models.Model):
     def get_num_mangas(self):
         return self.mangas_as_season_fulls.count()
 
-########################################################################################################    Modelo para Producer
-class Producer(models.Model):
-    """Model definition for Producer."""
-    name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for Producer."""
-        verbose_name = _('Productora')
-        verbose_name_plural = _('Productoras')
-        ordering = ['-created_at', 'initial', 'name',]
-        unique_together = (('name',),)
-
-    def __str__(self):
-        """Unicode representation of Producer."""
-        return self.name
-
-    def save(self, *args, **kwargs):
-        """Save method for Producer."""
-        old = Producer.objects.filter(pk=self.pk).first() if self.pk else None
-        # Normalización de nombres
-        if self.name:
-            self.name = self.name.strip().title()
-        # Inicial automático si está vacío o el nombre cambió
-        if not self.initial or (old and self.name != old.name):
-            self.initial = obtener_inicial(self.name).upper()
-        # Slug automático si está vacío o el nombre cambió
-        if not self.slug or (old and self.name != old.name):
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        """Return absolute url for Producer."""
-        return reverse('otaku_app:producer_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-    # custom methods
-    def get_num_animes(self):
-        return self.animes_as_producers.count()
-
-########################################################################################################    Modelo para Licensor
-class Licensor(models.Model):
-    """Model definition for Licensor."""
-    name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for Licensor."""
-        verbose_name = _('Licenciante')
-        verbose_name_plural = _('Licenciantes')
-        ordering = ['-created_at', 'initial', 'name',]
-        unique_together = (('name',),)
-
-    def __str__(self):
-        """Unicode representation of Licensor."""
-        return self.name
-
-    def save(self, *args, **kwargs):
-        """Save method for Licensor."""
-        old = Licensor.objects.filter(pk=self.pk).first() if self.pk else None
-        # Normalización de nombres
-        if self.name:
-            self.name = self.name.strip().title()
-        # Inicial automático si está vacío o el nombre cambió
-        if not self.initial or (old and self.name != old.name):
-            self.initial = obtener_inicial(self.name).upper()
-        # Slug automático si está vacío o el nombre cambió
-        if not self.slug or (old and self.name != old.name):
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        """Return absolute url for Licensor."""
-        return reverse('otaku_app:licensor_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-    # custom methods
-    def get_num_animes(self):
-        return self.animes_as_licensors.count()
-
-########################################################################################################    Modelo para Studio
-class Studio(models.Model):
-    """Model definition for Studio."""
-    name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for Studio."""
-        verbose_name = _('Estudio')
-        verbose_name_plural = _('Estudios')
-        ordering = ['-created_at', 'initial', 'name',]
-        unique_together = (('name',),)
-
-    def __str__(self):
-        """Unicode representation of Studio."""
-        return self.name
-
-    def save(self, *args, **kwargs):
-        """Save method for Studio."""
-        old = Studio.objects.filter(pk=self.pk).first() if self.pk else None
-        # Normalización de nombres
-        if self.name:
-            self.name = self.name.strip().title()
-        # Inicial automático si está vacío o el nombre cambió
-        if not self.initial or (old and self.name != old.name):
-            self.initial = obtener_inicial(self.name).upper()
-        # Slug automático si está vacío o el nombre cambió
-        if not self.slug or (old and self.name != old.name):
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        """Return absolute url for Studio."""
-        return reverse('otaku_app:studio_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-    # custom methods
-    def get_num_animes(self):
-        return self.animes_as_studios.count()
-
-########################################################################################################    Modelo para Serialization
-class Serialization(models.Model):
-    """Model definition for Serialization."""
-    name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for Serialization."""
-        verbose_name = _('Serializadora')
-        verbose_name_plural = _('Serializadoras')
-        ordering = ['-created_at', 'initial', 'name',]
-        unique_together = (('name',),)
-
-    def __str__(self):
-        """Unicode representation of Serialization."""
-        return self.name
-
-    def save(self, *args, **kwargs):
-        """Save method for Serialization."""
-        old = Serialization.objects.filter(pk=self.pk).first() if self.pk else None
-        # Normalización de nombres
-        if self.name:
-            self.name = self.name.strip().title()
-        # Inicial automático si está vacío o el nombre cambió
-        if not self.initial or (old and self.name != old.name):
-            self.initial = obtener_inicial(self.name).upper()
-        # Slug automático si está vacío o el nombre cambió
-        if not self.slug or (old and self.name != old.name):
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        """Return absolute url for Serialization."""
-        return reverse('otaku_app:serialization_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-    # custom methods
-    def get_num_mangas(self):
-        return self.mangas_as_serializations.count()
-
 ########################################################################################################    Modelo para Anime
 class Anime(models.Model):
     """Model definition for Anime."""
@@ -824,9 +652,9 @@ class Anime(models.Model):
     source = models.ForeignKey(Source, blank=True, null=True, limit_choices_to={'is_active': True}, related_name='animes_as_sources', on_delete=models.SET_NULL, verbose_name=_('Fuente'))
     rating = models.ForeignKey(Rating, blank=True, null=True, limit_choices_to={'is_active': True}, related_name='animes_as_ratings', on_delete=models.SET_NULL, verbose_name=_('Clasificación'))
     # Datos ManyToMany
-    producers = models.ManyToManyField(Producer, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_producers', verbose_name=_('Productoras'))
-    licensors = models.ManyToManyField(Licensor, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_licensors', verbose_name=_('Licenciantes'))
-    studios = models.ManyToManyField(Studio, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_studios', verbose_name=_('Estudios'))
+    producers = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_producers', verbose_name=_('Productoras'))
+    licensors = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_licensors', verbose_name=_('Licenciantes'))
+    studios = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_studios', verbose_name=_('Estudios'))
     genres = models.ManyToManyField(Genre, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_genre', verbose_name=_('Géneros'))
     themes = models.ManyToManyField(Theme, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_theme', verbose_name=_('Temas'))
     demographics = models.ManyToManyField(Demographic, blank=True, limit_choices_to={'is_active': True}, related_name='animes_as_demographic', verbose_name=_('Demografías'))
@@ -1119,7 +947,7 @@ class Manga(models.Model):
     source = models.ForeignKey(Source, blank=True, null=True, limit_choices_to={'is_active': True}, related_name='mangas_as_sources', on_delete=models.SET_NULL, verbose_name=_('Fuente'))
     rating = models.ForeignKey(Rating, blank=True, null=True, limit_choices_to={'is_active': True}, related_name='mangas_as_ratings', on_delete=models.SET_NULL, verbose_name=_('Clasificación'))
     # Datos ManyToMany
-    serializations = models.ManyToManyField(Serialization, blank=True, limit_choices_to={'is_active': True}, related_name='mangas_as_serializations', verbose_name=_('Serializadoras'))
+    serializations = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='mangas_as_serializations', verbose_name=_('Serializadoras'))
     genres = models.ManyToManyField(Genre, blank=True, limit_choices_to={'is_active': True}, related_name='mangas_as_genre', verbose_name=_('Géneros'))
     themes = models.ManyToManyField(Theme, blank=True, limit_choices_to={'is_active': True}, related_name='mangas_as_theme', verbose_name=_('Temas'))
     demographics = models.ManyToManyField(Demographic, blank=True, limit_choices_to={'is_active': True}, related_name='mangas_as_demographic', verbose_name=_('Demografías'))

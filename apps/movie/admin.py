@@ -2,9 +2,9 @@ from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
 # impot Modelos
-from .models import (Genre, Type, Role, Rating, Company, Movie, TitleMovie, MovieStaff, MovieCast, MovieImage, MovieImageExtra)
+from .models import (Genre, Type, Role, Rating, Movie, TitleMovie, MovieStaff, MovieCast, MovieImage, MovieImageExtra)
 # impot Resource
-from .resources import (GenreResource, TypeResource, RoleResource, RatingResource, CompanyResource, MovieResource, TitleMovieResource, MovieStaffResource, MovieCastResource, MovieImageResource, MovieImageExtraResource)
+from .resources import (GenreResource, TypeResource, RoleResource, RatingResource, MovieResource, TitleMovieResource, MovieStaffResource, MovieCastResource, MovieImageResource, MovieImageExtraResource)
 # impot Inline
 from apps.movie.utils.inline import (TitleMovieInline, MovieImageInline, MovieImageExtraInline, MovieStaffInline, MovieCastInline)
 # Register your models here.
@@ -194,52 +194,6 @@ class RatingAdmin(ImportExportModelAdmin):
             self.message_user(request, _('Se desactivaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
             self.message_user(request, _('No se seleccionó ninguna clasificación para activar.'), messages.WARNING)
-
-########################################################################################################    Admin para Company
-@admin.register(Company)
-class CompanyAdmin(ImportExportModelAdmin):
-    resource_class = CompanyResource
-
-    list_display = ('name', 'country', 'founded_year', 'is_active', 'slug', 'created_at')
-    list_filter = ('is_active', 'initial', 'country')
-    search_fields = ('name',)
-    ordering = ('initial', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
-
-    actions = ['activar', 'desactivar']
-
-    fieldsets = (
-        (_('Información básica'), {
-            'fields': ('name', 'country', 'founded_year')
-        }),
-        (_('Estado'), {
-            'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'fields': ('slug', 'initial'),
-            'classes': ('collapse',),
-        }),
-        (_('Fechas'), {
-            'fields': ('created_at', 'updated_at'),
-            'classes': ('collapse',),
-        }),
-    )
-
-    @admin.action(description=_('Activar compañías seleccionadas'))
-    def activar(self, request, queryset):
-        actualizados = queryset.update(is_active=True)
-        if actualizados:
-            self.message_user(request, _('Se activaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ninguna compañía para activar.'), messages.WARNING)
-
-    @admin.action(description=_('Desactivar compañías seleccionadas'))
-    def desactivar(self, request, queryset):
-        actualizados = queryset.update(is_active=False)
-        if actualizados:
-            self.message_user(request, _('Se desactivaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
-        else:
-            self.message_user(request, _('No se seleccionó ninguna compañía para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Movie
 @admin.register(Movie)

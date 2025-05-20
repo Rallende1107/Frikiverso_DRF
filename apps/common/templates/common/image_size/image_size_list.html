@@ -3,24 +3,22 @@
 {% block dateTableThead %}
 <th scope="col" class="table-th th-id">ID</th>
 <th scope="col" class="table-th th-name_short">Nombre</th>
-<th scope="col" class="table-th th-name_short">Nombre Español</th>
 <th scope="col" class="table-th th-yes-no">Activo</th>
 <th scope="col" class="table-th th-actions">Acciones</th>
 {% endblock dateTableThead %}
 
 {% block dataTableBody %}
-{% for imagesize in imagesizes %}
+{% for images_size in images_sizes %}
 <tr>
-    <td class="td-id">{{ imagesize.id }}</td>
-    <td>{{ imagesize.name }}</td>
-    <td>{{ imagesize.name_esp }}</td>
-    <td class="td-yes-no">{{ imagesize.is_active|yesno:"Sí,No" }}</td>
+    <td class="td-id">{{ images_size.id }}</td>
+    <td>{{ images_size.display_name }}</td>
+    <td class="td-yes-no">{{ images_size.is_active|yesno:"Sí,No" }}</td>
     <td>
-        <select onchange="handleAction(this, '{{ imagesize.id }}', '{{ imagesize.name }}', '{{ key_map }}')">
+        <select onchange="handleAction(this, '{{ images_size.id }}', '{{ images_size.name }}', '{{ key_map }}')">
             <option value="">Acciones</option>
             <option value="1">Ver</option>
             <option value="2">Editar</option>
-            {% if not imagesize.is_active %}
+            {% if not images_size.is_active %}
             <option value="3">Activar</option>
             {% else %}
             <option value="4">Desactivar</option>

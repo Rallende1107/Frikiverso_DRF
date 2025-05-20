@@ -4,6 +4,28 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from .validators import validate_url
 
+def normalize_text(text):
+    """Normaliza el texto: elimina espacios y lo convierte a mayúsculas."""
+    return ''.join(text.upper().split())
+
+def to_title_text(text: str) -> str:
+    """Aplica formato título (primera letra en mayúscula de cada palabra)."""
+    return ' '.join(text.strip().title().split())
+
+def to_upper_text(text: str) -> str:
+    """Convierte todo el texto a mayúsculas, limpiando espacios extra."""
+    return ' '.join(text.strip().upper().split())
+
+def to_capitalized_sentence(text: str) -> str:
+    """Capitaliza solo la primera palabra del texto, dejando el resto igual."""
+    return text.strip().capitalize()
+
+# to_title_text("  archivo de música mkv  ")  →  "Archivo De Música Mkv"
+# to_upper_text("  mKv   file ")  →  "MKV FILE"
+# to_capitalized_sentence("  nacion unida de EEUU ")  →  "Nacion unida de eeuu"
+
+
+
 def validate_year(value):
     if len(str(value)) != 4:
         raise ValidationError("El año debe tener 4 dígitos.")
@@ -113,3 +135,27 @@ def procesar_urls(url: str, tipo: int):
 
     else:
         raise ValueError("Tipo inválido. Use 1 para F95, 2 para Anime, o 3 para Manga.")
+
+def get_media_context(view, field_name='image', method_name='get_img_url'):
+    """
+    Retorna si hay media y su URL para ser usado en el contexto de una vista basada en clase.
+
+    Args:
+        view: Instancia de la CBV (ej: self).
+        field_name: Nombre del campo de archivo multimedia (por defecto 'image').
+        method_name: Método del modelo que devuelve la URL (por defecto 'get_img_url').
+
+    Returns:
+        Tuple (bool, str or None): (hay_media, url_media)
+    """
+    form = view.get_form()
+    media_url = None
+
+    if field_name in form.fields:
+        obj = view.get_object()
+        if obj and hasattr(obj, method_name):
+            method = getattr(obj, method_name)
+            if callable(method):
+                media_url = method()
+
+    return bool(media_url), media_url

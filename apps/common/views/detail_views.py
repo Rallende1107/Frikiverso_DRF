@@ -7,13 +7,41 @@ from django.utils.translation import gettext as _
 from django.views.generic import (DetailView)
 
 # Local app imports - Models
-from apps.common.models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
+from apps.common.models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
 
 # Project-level imports - Mixins and utilities
-from core.utils.constants import (CSSBackground, ImageCards, JSConstants, KeyMap, Templates, URLS,)
+from core.utils.constants import (CSSBackground, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
 # Create your views here.
+############################################################################################################################################    Company
+class CompanyDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Company
+    template_name = Templates.Common.Company.DETAIL
+    context_object_name = 'company'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La compañia que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Company.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Company, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.COMPANY
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Company.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
 ############################################################################################################################################    Country
 class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Country
@@ -21,7 +49,6 @@ class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'country'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -32,13 +59,10 @@ class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(Country, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Información adicional del contexto
         context['class'] = CSSBackground.Common.COUNTRY
         context['title'] = self.object.name
         context['objeto'] = self.object
@@ -53,7 +77,6 @@ class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'format'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -64,13 +87,10 @@ class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(Format, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Información adicional del contexto
         context['class'] = CSSBackground.Common.FORMAT
         context['title'] = self.object.name
         context['objeto'] = self.object
@@ -85,7 +105,6 @@ class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'imagesize'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -96,13 +115,10 @@ class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(ImageSize, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Información adicional del contexto
         context['class'] = CSSBackground.Common.IMAGE_SIZE
         context['title'] = self.object.name
         context['objeto'] = self.object
@@ -117,7 +133,6 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'language'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -128,10 +143,8 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(Language, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Common.LANGUAGE
@@ -145,10 +158,9 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
 class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Person
     template_name = Templates.Common.Person.DETAIL
-    context_object_name = 'persons'
+    context_object_name = 'person'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -161,7 +173,6 @@ class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
     def get_object(self):
         return get_object_or_404(Person, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Common.PERSON
@@ -178,7 +189,6 @@ class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'image'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -191,7 +201,6 @@ class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
     def get_object(self):
         return get_object_or_404(PersonImage, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Common.PERSON_IMAGE
@@ -208,7 +217,6 @@ class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'image'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -221,7 +229,6 @@ class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     def get_object(self):
         return get_object_or_404(PersonImageExtra, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
@@ -230,14 +237,14 @@ class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
         context['listURL'] = reverse_lazy(URLS.Common.PersonImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
-#######################################################################################################################################    PersonNickname
+
+############################################################################################################################################    PersonNickname
 class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PersonNickname
     template_name = Templates.Common.PersonNickname.DETAIL
     context_object_name = 'nickname'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -250,7 +257,6 @@ class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
     def get_object(self):
         return get_object_or_404(PersonNickname, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Common.PERSON_NICKNAME
@@ -267,7 +273,6 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
     context_object_name = 'quality'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -278,13 +283,10 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(Quality, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Información adicional del contexto
         context['class'] = CSSBackground.Common.QUALITY
         context['title'] = self.object.name
         context['objeto'] = self.object
@@ -296,10 +298,9 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
 class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Website
     template_name = Templates.Common.Website.DETAIL
-    context_object_name = 'quality'
+    context_object_name = 'website'
     permission_redirect_url = URLS.Home.COMMON
 
-    # 2. Funciones de acceso al objeto
     def get(self, request, *args, **kwargs):
         try:
             self.object = self.get_object()
@@ -310,18 +311,13 @@ class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
-        """Obtiene el álbum o lanza un Http404 si no se encuentra."""
         return get_object_or_404(Website, pk=self.kwargs['pk'])
 
-    # 3. Función de contexto
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Información adicional del contexto
         context['class'] = CSSBackground.Common.WEBSITE
         context['title'] = self.object.name
         context['objeto'] = self.object
         context['listURL'] = reverse_lazy(URLS.Common.Website.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
-
-

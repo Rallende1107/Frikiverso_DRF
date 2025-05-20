@@ -1,6 +1,12 @@
 from core.resources import BaseFullResource
-from .models import Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
+from .models import Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
 # Register your models here.
+
+########################################################################################################    Resource para Company
+class CompanyResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = Company
+
 ########################################################################################################    Resource para Country
 class CountryResource(BaseFullResource):
     class Meta(BaseFullResource.Meta):
@@ -50,3 +56,4 @@ class QualityResource(BaseFullResource):
 class WebsiteResource(BaseFullResource):
     class Meta(BaseFullResource.Meta):
         model = Website
+

@@ -1,5 +1,5 @@
 from core.resources import BaseFullResource
-from .models import Genre, Type, Role, Rating, Company, Movie, TitleMovie, MovieStaff, MovieCast, MovieImage, MovieImageExtra
+from .models import Genre, Type, Role, Rating, Movie, TitleMovie, MovieStaff, MovieCast, MovieImage, MovieImageExtra
 # Register your models here.
 ########################################################################################################    Resource para Genre
 class GenreResource(BaseFullResource):
@@ -20,11 +20,6 @@ class RoleResource(BaseFullResource):
 class RatingResource(BaseFullResource):
     class Meta(BaseFullResource.Meta):
         model = Rating
-
-########################################################################################################    Resource para Company
-class CompanyResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
-        model = Company
 
 ########################################################################################################    Resource para Movie
 class MovieResource(BaseFullResource):

@@ -5,16 +5,46 @@ from django.utils.translation import gettext as _
 from django.views.generic import (CreateView)
 
 # Local app imports - Models
-from apps.common.models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
+from apps.common.models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
 
 # Local app imports - Forms
-from apps.common.forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
+from apps.common.forms import (CompanyForm, CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
 # Project-level imports - Mixins and utilities
 from core.utils.constants import (CSSBackground, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
 # Create your views here.
+############################################################################################################################################    Company
+class CompanyCreateView(PermissionRequiredMessageMixin, CreateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = Templates.Common.Company.CREATE
+    success_url = reverse_lazy(URLS.Common.Company.LIST)
+    title = _('Añadir compañia')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡La compañia "%(name)s" fue creada exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.COMPANY
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
 ############################################################################################################################################    Country
 class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Country
@@ -241,7 +271,7 @@ class PersonNicknameCreateView(PermissionRequiredMessageMixin, CreateView):
         person = form.instance.person
         nickname = form.instance.nickname
         full_name = person.full_name
-        messages.success(self.request, _('¡El apodo "%(nickname)s" de la persona "%(full_name)s" fue creado exitosamente!')% {'nickname': nickname, 'full_name': full_name})
+        messages.success(self.request, _('¡El apodo "%(nickname)s" de "%(full_name)s" fue creado exitosamente!')% {'nickname': nickname, 'full_name': full_name})
         return super().form_valid(form)
 
     def form_invalid(self, form):

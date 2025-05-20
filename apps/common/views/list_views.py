@@ -4,13 +4,45 @@ from django.utils.translation import gettext as _
 from django.views.generic import (ListView)
 
 # Local app imports - Models
-from apps.common.models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
+from apps.common.models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
 
 # Project-level imports - Mixins and utilities
 from core.utils.constants import (CSSBackground, JSConstants, KeyMap, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
 # Create your views here.
+############################################################################################################################################    Company
+class CompanyListView(PermissionRequiredMessageMixin, ListView):
+    model = Company
+    template_name = Templates.Common.Company.LIST
+    context_object_name = 'companies'
+    title = _('Lista de compañias')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.COMPANY
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.COMPANY
+        context['key_map'] = KeyMap.Common.COMPANY
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Company.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
 ############################################################################################################################################    Country
 class CountryListView(PermissionRequiredMessageMixin, ListView):
     model = Country
@@ -21,19 +53,7 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        for country in context[self.context_object_name]:
-            # Combina el nombre y las iniciales en inglés
-            if country.code:
-                country.combined_name = f'{country.name} ({country.code})'
-            else:
-                country.combined_name = country.name
-
-            # Combina el nombre y las iniciales en español
-            if country.name_esp:
-                country.combined_name_esp = f'{country.name_esp} ({country.code})'
-            else:
-                country.combined_name_esp = country.name_esp
-
+        # for country in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.COUNTRY
         context['js_action'] = JSConstants.ACTIONS
@@ -129,19 +149,7 @@ class LanguageListView(PermissionRequiredMessageMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        for language in context[self.context_object_name]:
-            # Combina el nombre y las iniciales en inglés
-            if language.acronym:
-                language.combined_language = f'{language.name} ({language.acronym})'
-            else:
-                language.combined_language = language.name
-
-            # Combina el nombre y las iniciales en español
-            if language.name_esp:
-                language.combined_language_esp = f'{language.name_esp} ({language.acronym})'
-            else:
-                language.combined_language_esp = language.name_esp
-
+        # for language in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.LANGUAGE
         context['js_action'] = JSConstants.ACTIONS
@@ -336,20 +344,13 @@ class QualityListView(PermissionRequiredMessageMixin, ListView):
 class WebsiteListView(PermissionRequiredMessageMixin, ListView):
     model = Website
     template_name = Templates.Common.Website.LIST
-    context_object_name = 'websites'
+    context_object_name = 'web_sites'
     title = _('Lista de sitios webs')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        for website in context[self.context_object_name]:
-            if website.acronym:
-                website.display_name = f"{website.name} ({website.acronym})"
-                website.display_link = website.acronym
-            else:
-                website.display_name = website.name
-                website.display_link = website.name
-
+        # for website in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.WEBSITE
         context['js_action'] = JSConstants.ACTIONS

@@ -1,15 +1,15 @@
 from django.urls import path, include
 from .views.views import HomeView
-from .views.create_views import (CountryCreateView, FormatCreateView, ImageSizeCreateView, LanguageCreateView, PersonCreateView,
+from .views.create_views import (CompanyCreateView, CountryCreateView, FormatCreateView, ImageSizeCreateView, LanguageCreateView, PersonCreateView,
     PersonImageCreateView, PersonImageExtraCreateView, PersonNicknameCreateView, QualityCreateView, WebsiteCreateView,
 )
-from .views.list_views import (CountryListView, FormatListView, ImageSizeListView, LanguageListView, PersonListView,
+from .views.list_views import (CompanyListView, CountryListView, FormatListView, ImageSizeListView, LanguageListView, PersonListView,
     PersonImageListView, PersonImageExtraListView, PersonNicknameListView, QualityListView, WebsiteListView,
 )
-from .views.update_views import ( CountryUpdateView, FormatUpdateView, ImageSizeUpdateView, LanguageUpdateView, PersonUpdateView,
+from .views.update_views import (CompanyUpdateView, CountryUpdateView, FormatUpdateView, ImageSizeUpdateView, LanguageUpdateView, PersonUpdateView,
 PersonImageUpdateView, PersonImageExtraUpdateView, PersonNicknameUpdateView, QualityUpdateView, WebsiteUpdateView,
 )
-from .views.detail_views import (CountryDetailView, FormatDetailView, ImageSizeDetailView, LanguageDetailView, PersonDetailView,
+from .views.detail_views import (CompanyDetailView, CountryDetailView, FormatDetailView, ImageSizeDetailView, LanguageDetailView, PersonDetailView,
     PersonImageDetailView, PersonImageExtraDetailView, PersonNicknameDetailView, QualityDetailView, WebsiteDetailView,
 )
 # from .views_action import ActionView
@@ -20,6 +20,11 @@ app_name = 'common_app'
 urlpatterns = [
     path('home/', HomeView.as_view(), name='home'),
     path('action/', ActionView.as_view(), name='action'),
+
+    path('company/list/', CompanyListView.as_view(), name='company_list'),
+    path('company/create/', CompanyCreateView.as_view(), name='company_create'),
+    path('company/update/<int:pk>/', CompanyUpdateView.as_view(), name='company_update'),
+    path('company/<int:pk>/', CompanyDetailView.as_view(), name='company_detail'),
 
     path('country/list/', CountryListView.as_view(), name='country_list'),
     path('country/create/', CountryCreateView.as_view(), name='country_create'),

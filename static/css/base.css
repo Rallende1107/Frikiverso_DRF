@@ -214,6 +214,7 @@
         /** BG Users **/
         --bg-users-user:                url("../img/screen/wide/bg-users-user.webp");
         /** BG common **/
+        --bg-common-company:            url("../img/screen/wide/bg-common-company.webp");
         --bg-common-country:            url("../img/screen/wide/bg-common-country.webp");
         --bg-common-format:             url("../img/screen/wide/bg-common-format.webp");
         --bg-common-image_size:         url("../img/screen/wide/bg-common-image_size.webp");
@@ -225,7 +226,8 @@
         --bg-common-quality:            url("../img/screen/wide/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/wide/bg-common-website.webp");
         /** BG Movie **/
-        --bg-movie-company:             url("../img/screen/wide/bg-movie-company.webp");
+        --bg-movie-producer:            url("../img/screen/wide/bg-movie-producer.webp");
+        --bg-movie-distributor:         url("../img/screen/wide/bg-movie-distributor.webp");
         --bg-movie-genre:               url("../img/screen/wide/bg-movie-genre.webp");
         --bg-movie-movie:               url("../img/screen/wide/bg-movie-movie.webp");
         --bg-movie-movie_cast:          url("../img/screen/wide/bg-movie-movie_cast.webp");
@@ -333,17 +335,19 @@
         --bg-renpy-translator_image_extra:  url("../img/screen/wide/bg-renpy-translator_image_extra.webp");
         --bg-renpy-translator_link:         url("../img/screen/wide/bg-renpy-translator_link.webp");
         /** BG Serie */
-        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
-        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
-        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
-        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
-        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
-        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
-        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
-        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
-        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
-        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
-        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+        --bg-serie-distributor:         url("../img/screen/wide/bg-serie-distributor.webp");
+        --bg-serie-genre:               url("../img/screen/wide/bg-serie-genre.webp");
+        --bg-serie-producer:            url("../img/screen/wide/bg-serie-producer.webp");
+        --bg-serie-rating:              url("../img/screen/wide/bg-serie-rating.webp");
+        --bg-serie-role:                url("../img/screen/wide/bg-serie-role.webp");
+        --bg-serie-serie:               url("../img/screen/wide/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("../img/screen/wide/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("../img/screen/wide/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("../img/screen/wide/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("../img/screen/wide/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("../img/screen/wide/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("../img/screen/wide/bg-serie-type.webp");
+
     }
 }
 @media screen and (min-width: 1024px) and (max-width: 1439px) {
@@ -358,17 +362,12 @@
         --bg-home-movie:                    url("../img/screen/landscape/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/landscape/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/landscape/bg-home-otaku.webp");
-        --bg-home-otaku-anime:              url("../img/screen/landscape/bg-home-otaku-anime.webp");
-        --bg-home-otaku-data:               url("../img/screen/landscape/bg-home-otaku-data.webp");
-        --bg-home-otaku-imagen:             url("../img/screen/landscape/bg-home-otaku-imagen.webp");
-        --bg-home-otaku-manga:              url("../img/screen/landscape/bg-home-otaku-manga.webp");
-        --bg-home-otaku-person_character:   url("../img/screen/landscape/bg-home-otaku-person_character.webp");
-        --bg-home-otaku-relation:           url("../img/screen/landscape/bg-home-otaku-relation.webp");
         --bg-home-renpy:                    url("../img/screen/landscape/bg-home-renpy.webp");
         --bg-home-serie:                    url("../img/screen/landscape/bg-home-serie.webp");
         /** BG Users **/
         --bg-users-user:                url("../img/screen/landscape/bg-users-user.webp");
         /** BG common **/
+        --bg-common-company:            url("../img/screen/landscape/bg-common-company.webp");
         --bg-common-country:            url("../img/screen/landscape/bg-common-country.webp");
         --bg-common-format:             url("../img/screen/landscape/bg-common-format.webp");
         --bg-common-image_size:         url("../img/screen/landscape/bg-common-image_size.webp");
@@ -380,7 +379,8 @@
         --bg-common-quality:            url("../img/screen/landscape/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/landscape/bg-common-website.webp");
         /** BG Movie **/
-        --bg-movie-company:             url("../img/screen/landscape/bg-movie-company.webp");
+        --bg-movie-producer:            url("../img/screen/landscape/bg-movie-producer.webp");
+        --bg-movie-distributor:         url("../img/screen/landscape/bg-movie-distributor.webp");
         --bg-movie-genre:               url("../img/screen/landscape/bg-movie-genre.webp");
         --bg-movie-movie:               url("../img/screen/landscape/bg-movie-movie.webp");
         --bg-movie-movie_cast:          url("../img/screen/landscape/bg-movie-movie_cast.webp");
@@ -488,17 +488,19 @@
         --bg-renpy-translator_image_extra:  url("../img/screen/landscape/bg-renpy-translator_image_extra.webp");
         --bg-renpy-translator_link:         url("../img/screen/landscape/bg-renpy-translator_link.webp");
         /** BG Serie */
-        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
-        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
-        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
-        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
-        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
-        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
-        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
-        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
-        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
-        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
-        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+        --bg-serie-distributor:         url("../img/screen/landscape/bg-serie-distributor.webp");
+        --bg-serie-genre:               url("../img/screen/landscape/bg-serie-genre.webp");
+        --bg-serie-producer:            url("../img/screen/landscape/bg-serie-producer.webp");
+        --bg-serie-rating:              url("../img/screen/landscape/bg-serie-rating.webp");
+        --bg-serie-role:                url("../img/screen/landscape/bg-serie-role.webp");
+        --bg-serie-serie:               url("../img/screen/landscape/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("../img/screen/landscape/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("../img/screen/landscape/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("../img/screen/landscape/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("../img/screen/landscape/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("../img/screen/landscape/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("../img/screen/landscape/bg-serie-type.webp");
+
     }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -513,17 +515,12 @@
         --bg-home-movie:                    url("../img/screen/portrait/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/portrait/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/portrait/bg-home-otaku.webp");
-        --bg-home-otaku-anime:              url("../img/screen/portrait/bg-home-otaku-anime.webp");
-        --bg-home-otaku-data:               url("../img/screen/portrait/bg-home-otaku-data.webp");
-        --bg-home-otaku-imagen:             url("../img/screen/portrait/bg-home-otaku-imagen.webp");
-        --bg-home-otaku-manga:              url("../img/screen/portrait/bg-home-otaku-manga.webp");
-        --bg-home-otaku-person_character:   url("../img/screen/portrait/bg-home-otaku-person_character.webp");
-        --bg-home-otaku-relation:           url("../img/screen/portrait/bg-home-otaku-relation.webp");
         --bg-home-renpy:                    url("../img/screen/portrait/bg-home-renpy.webp");
         --bg-home-serie:                    url("../img/screen/portrait/bg-home-serie.webp");
         /** BG Users **/
         --bg-users-user:                url("../img/screen/portrait/bg-users-user.webp");
         /** BG common **/
+        --bg-common-company:            url("../img/screen/portrait/bg-common-company.webp");
         --bg-common-country:            url("../img/screen/portrait/bg-common-country.webp");
         --bg-common-format:             url("../img/screen/portrait/bg-common-format.webp");
         --bg-common-image_size:         url("../img/screen/portrait/bg-common-image_size.webp");
@@ -535,7 +532,8 @@
         --bg-common-quality:            url("../img/screen/portrait/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/portrait/bg-common-website.webp");
         /** BG Movie **/
-        --bg-movie-company:             url("../img/screen/portrait/bg-movie-company.webp");
+        --bg-movie-producer:            url("../img/screen/portrait/bg-movie-producer.webp");
+        --bg-movie-distributor:         url("../img/screen/portrait/bg-movie-distributor.webp");
         --bg-movie-genre:               url("../img/screen/portrait/bg-movie-genre.webp");
         --bg-movie-movie:               url("../img/screen/portrait/bg-movie-movie.webp");
         --bg-movie-movie_cast:          url("../img/screen/portrait/bg-movie-movie_cast.webp");
@@ -643,17 +641,19 @@
         --bg-renpy-translator_image_extra:  url("../img/screen/portrait/bg-renpy-translator_image_extra.webp");
         --bg-renpy-translator_link:         url("../img/screen/portrait/bg-renpy-translator_link.webp");
         /** BG Serie */
-        --bg-serie-company:             url("./img/screen/portrait/bg-serie-company.webp");
-        --bg-serie-genre:               url("./img/screen/portrait/bg-serie-genre.webp");
-        --bg-serie-rating:              url("./img/screen/portrait/bg-serie-rating.webp");
-        --bg-serie-role:                url("./img/screen/portrait/bg-serie-role.webp");
-        --bg-serie-serie:               url("./img/screen/portrait/bg-serie-serie.webp");
-        --bg-serie-serie_cast:          url("./img/screen/portrait/bg-serie-serie_cast.webp");
-        --bg-serie-serie_image:         url("./img/screen/portrait/bg-serie-serie_image.webp");
-        --bg-serie-serie_image_extra:   url("./img/screen/portrait/bg-serie-serie_image_extra.webp");
-        --bg-serie-serie_staff:         url("./img/screen/portrait/bg-serie-serie_staff.webp");
-        --bg-serie-title_serie:         url("./img/screen/portrait/bg-serie-title_serie.webp");
-        --bg-serie-type:                url("./img/screen/portrait/bg-serie-type.webp");
+        --bg-serie-distributor:         url("../img/screen/portrait/bg-serie-distributor.webp");
+        --bg-serie-genre:               url("../img/screen/portrait/bg-serie-genre.webp");
+        --bg-serie-producer:            url("../img/screen/portrait/bg-serie-producer.webp");
+        --bg-serie-rating:              url("../img/screen/portrait/bg-serie-rating.webp");
+        --bg-serie-role:                url("../img/screen/portrait/bg-serie-role.webp");
+        --bg-serie-serie:               url("../img/screen/portrait/bg-serie-serie.webp");
+        --bg-serie-serie_cast:          url("../img/screen/portrait/bg-serie-serie_cast.webp");
+        --bg-serie-serie_image:         url("../img/screen/portrait/bg-serie-serie_image.webp");
+        --bg-serie-serie_image_extra:   url("../img/screen/portrait/bg-serie-serie_image_extra.webp");
+        --bg-serie-serie_staff:         url("../img/screen/portrait/bg-serie-serie_staff.webp");
+        --bg-serie-title_serie:         url("../img/screen/portrait/bg-serie-title_serie.webp");
+        --bg-serie-type:                url("../img/screen/portrait/bg-serie-type.webp");
+
     }
 }
 @media screen and (max-width: 767px) {
@@ -668,17 +668,12 @@
         --bg-home-movie:                    url("../img/screen/tall/bg-home-movie.webp");
         --bg-home-music:                    url("../img/screen/tall/bg-home-music.webp");
         --bg-home-otaku:                    url("../img/screen/tall/bg-home-otaku.webp");
-        --bg-home-otaku-anime:              url("../img/screen/tall/bg-home-otaku-anime.webp");
-        --bg-home-otaku-data:               url("../img/screen/tall/bg-home-otaku-data.webp");
-        --bg-home-otaku-imagen:             url("../img/screen/tall/bg-home-otaku-imagen.webp");
-        --bg-home-otaku-manga:              url("../img/screen/tall/bg-home-otaku-manga.webp");
-        --bg-home-otaku-person_character:   url("../img/screen/tall/bg-home-otaku-person_character.webp");
-        --bg-home-otaku-relation:           url("../img/screen/tall/bg-home-otaku-relation.webp");
         --bg-home-renpy:                    url("../img/screen/tall/bg-home-renpy.webp");
         --bg-home-serie:                    url("../img/screen/tall/bg-home-serie.webp");
         /** BG Users **/
         --bg-users-user:                url("../img/screen/tall/bg-users-user.webp");
         /** BG common **/
+        --bg-common-company:            url("../img/screen/tall/bg-common-company.webp");
         --bg-common-country:            url("../img/screen/tall/bg-common-country.webp");
         --bg-common-format:             url("../img/screen/tall/bg-common-format.webp");
         --bg-common-image_size:         url("../img/screen/tall/bg-common-image_size.webp");
@@ -690,7 +685,8 @@
         --bg-common-quality:            url("../img/screen/tall/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/tall/bg-common-website.webp");
         /** BG Movie **/
-        --bg-movie-company:             url("../img/screen/tall/bg-movie-company.webp");
+        --bg-movie-producer:            url("../img/screen/tall/bg-movie-producer.webp");
+        --bg-movie-distributor:         url("../img/screen/tall/bg-movie-distributor.webp");
         --bg-movie-genre:               url("../img/screen/tall/bg-movie-genre.webp");
         --bg-movie-movie:               url("../img/screen/tall/bg-movie-movie.webp");
         --bg-movie-movie_cast:          url("../img/screen/tall/bg-movie-movie_cast.webp");
@@ -798,8 +794,9 @@
         --bg-renpy-translator_image_extra:  url("../img/screen/tall/bg-renpy-translator_image_extra.webp");
         --bg-renpy-translator_link:         url("../img/screen/tall/bg-renpy-translator_link.webp");
         /** BG Serie */
-        --bg-serie-company:             url("../img/screen/tall/bg-serie-company.webp");
+        --bg-serie-distributor:         url("../img/screen/tall/bg-serie-distributor.webp");
         --bg-serie-genre:               url("../img/screen/tall/bg-serie-genre.webp");
+        --bg-serie-producer:            url("../img/screen/tall/bg-serie-producer.webp");
         --bg-serie-rating:              url("../img/screen/tall/bg-serie-rating.webp");
         --bg-serie-role:                url("../img/screen/tall/bg-serie-role.webp");
         --bg-serie-serie:               url("../img/screen/tall/bg-serie-serie.webp");

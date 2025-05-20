@@ -10,13 +10,13 @@ from apps.users.models import CustomUser
 from core.utils.send_emails import notify_password_reset, notify_blocked_user, notify_activated_user, notify_deleted_user
 # Importando modelos Common
 from apps.common.models import (
-    Country, Format, ImageSize, Language, Person, PersonImage,
+    Company, Country, Format, ImageSize, Language, Person, PersonImage,
     PersonImageExtra, PersonNickname, Quality, Website
 )
 
 # Importando modelos Movie
 from apps.movie.models import (
-    Genre as GenreMovie, Type as TypeMovie, Role as RoleMovie, Rating as RatingMovie, Company as CompanyMovie,
+    Genre as GenreMovie, Type as TypeMovie, Role as RoleMovie, Rating as RatingMovie,
     Movie, TitleMovie, MovieStaff, MovieCast, MovieImage, MovieImageExtra
 )
 
@@ -31,7 +31,6 @@ from apps.music.models import (
 from apps.otaku.models import (
     Role as RoleOtaku, Year, Genre as GenreOtaku, Theme, Demographic,
     Type as TypeOtaku, Rating as RatingOtaku, Season, Status as StatusOtaku, Source, RelationType, SeasonFull,
-    Producer, Licensor, Studio, Serialization,
     Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
     Character, CharacterNickname, Person as OtakuPerson, PersonNickname as OtakuPersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
@@ -59,7 +58,7 @@ from apps.renpy.models import (
 # Importando modelos Serie
 from apps.serie.models import (
     Genre as GenreSerie, Type as TypeSerie, Role as RoleSerie,
-    Rating as RatingSerie, Company as CompanySerie,
+    Rating as RatingSerie,
     Serie, TitleSerie, SerieStaff, SerieCast, SerieImage, SerieImageExtra
 )
 
@@ -80,6 +79,14 @@ class ActionView(View):
                 'es_usuario': True,
             },
 ########################################################################################    COMMON
+            'Compañia': {
+                'model': Company,
+                'listas_url': 'common_app:company_list',
+                'update_url': 'common_app:company_update',
+                'detail_url': 'common_app:company_detail',
+                'es_usuario': False,
+            },
+
             'País': {
                 'model': Country,
                 'listas_url': 'common_app:country_list',
@@ -153,6 +160,91 @@ class ActionView(View):
                 'listas_url': 'common_app:website_list',
                 'update_url': 'common_app:website_update',
                 'detail_url': 'common_app:website_detail',
+                'es_usuario': False,
+            },
+# ########################################################################################    Movie
+            'Distribuidora cinematográfica': {
+                'model': Company,
+                'listas_url': 'movie_app:distributor_list',
+                'update_url': 'movie_app:distributor_update',
+                'detail_url': 'movie_app:distributor_detail',
+                'es_usuario': False,
+            },
+            'Género cinematográfico': {
+                'model': GenreMovie,
+                'listas_url': 'movie_app:genre_list',
+                'update_url': 'movie_app:genre_update',
+                'detail_url': 'movie_app:genre_detail',
+                'es_usuario': False,
+            },
+            'Película': {
+                'model': Movie,
+                'listas_url': 'movie_app:movie_list',
+                'update_url': 'movie_app:movie_update',
+                'detail_url': 'movie_app:movie_detail',
+                'es_usuario': False,
+            },
+            'Reparto cinematográfico': {
+                'model': MovieCast,
+                'listas_url': 'movie_app:movie_cast_list',
+                'update_url': 'movie_app:movie_cast_update',
+                'detail_url': 'movie_app:movie_cast_detail',
+                'es_usuario': False,
+            },
+            'Imagen de película': {
+                'model': MovieImage,
+                'listas_url': 'movie_app:movie_image_list',
+                'update_url': 'movie_app:movie_image_update',
+                'detail_url': 'movie_app:movie_image_detail',
+                'es_usuario': False,
+            },
+            'Imagen adicional de película': {
+                'model': MovieImageExtra,
+                'listas_url': 'movie_app:movie_image_extra_list',
+                'update_url': 'movie_app:movie_image_extra_update',
+                'detail_url': 'movie_app:movie_image_extra_detail',
+                'es_usuario': False,
+            },
+            'Personal cinematográfico': {
+                'model': MovieStaff,
+                'listas_url': 'movie_app:movie_staff_list',
+                'update_url': 'movie_app:movie_staff_update',
+                'detail_url': 'movie_app:movie_staff_detail',
+                'es_usuario': False,
+            },
+            'Productora cinematográfica': {
+                'model': Company,
+                'listas_url': 'movie_app:producer_list',
+                'update_url': 'movie_app:producer_update',
+                'detail_url': 'movie_app:producer_detail',
+                'es_usuario': False,
+            },
+            'Clasificación cinematográfica': {
+                'model': RatingMovie,
+                'listas_url': 'movie_app:rating_list',
+                'update_url': 'movie_app:rating_update',
+                'detail_url': 'movie_app:rating_detail',
+                'es_usuario': False,
+            },
+            'Rol cinematográfico': {
+                'model': RoleMovie,
+                'listas_url': 'movie_app:role_list',
+                'update_url': 'movie_app:role_update',
+                'detail_url': 'movie_app:role_detail',
+                'es_usuario': False,
+            },
+            'Título de película': {
+                'model': TitleMovie,
+                'listas_url': 'movie_app:title_movie_list',
+                'update_url': 'movie_app:title_movie_update',
+                'detail_url': 'movie_app:title_movie_detail',
+                'es_usuario': False,
+            },
+            'Tipo de película': {
+                'model': TypeMovie,
+                'listas_url': 'movie_app:type_list',
+                'update_url': 'movie_app:type_update',
+                'detail_url': 'movie_app:type_detail',
                 'es_usuario': False,
             },
 # ########################################################################################    Musica

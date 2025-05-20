@@ -47,6 +47,16 @@ class HomeView(TemplateView):
 
             _('Gestión General'): [
                 {
+                    'title': _('Compañias'),
+                    'img_url': ImageCards.Common.COMPANY,
+                    'go_url': None,
+                    'view_url': URLS.Common.Company.LIST,
+                    'add_url': URLS.Common.Company.CREATE,
+                    'text': _('Gestionar Compañias del sistema.'),
+                    'extra_buttons': [],
+                },
+
+                {
                     'title': _('Países'),
                     'img_url': ImageCards.Common.COUNTRY,
                     'go_url': None,

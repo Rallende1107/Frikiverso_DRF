@@ -13,8 +13,8 @@
 <tr>
     <td class="td-id">{{ language.id }}</td>
 
-    <td>{{ language.combined_language }} </td>
-    <td>{{ language.combined_language_esp }}</td>
+    <td>{{ language.display_name }} </td>
+    <td>{{ language.display_name_esp }}</td>
     <td class="td-yes-no">{{ language.is_active|yesno:"Sí,No" }}</td>
     <td>
         <select onchange="handleAction(this, '{{ language.id }}', '{{ language.name }}', '{{ key_map }}')">

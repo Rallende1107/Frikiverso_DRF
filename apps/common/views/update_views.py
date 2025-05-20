@@ -1,36 +1,66 @@
 # Django imports
 from django.contrib import messages
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.views.generic import (UpdateView,)
+from django.views.generic import (UpdateView)
 
 # Local app imports - Models
-from apps.common.models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
+from apps.common.models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
 
 # Local app imports - Forms
-from apps.common.forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
+from apps.common.forms import (CompanyForm, CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
 # Project-level imports - Mixins and utilities
 from core.utils.constants import (CSSBackground, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
-from core.utils.utils import delete_previous_media
+from core.utils.utils import get_media_context
 
 # Create your views here.
 ############################################################################################################################################    Country
-class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
-    model = Country
-    form_class = CountryForm
-    template_name = Templates.Common.Country.CREATE
-    success_url = reverse_lazy(URLS.Common.Country.LIST)
-    title = _('Editar País')
+class CompanyUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = Templates.Common.Company.UPDATE
+    success_url = reverse_lazy(URLS.Common.Company.LIST)
+    title = _('Editar compañia')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
+        name = form.instance.name
+        messages.success(self.request, _('¡La compañia "%(name)s" fue editada exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.COMPANY
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+############################################################################################################################################    Country
+class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Country
+    form_class = CountryForm
+    template_name = Templates.Common.Country.CREATE
+    success_url = reverse_lazy(URLS.Common.Country.LIST)
+    title = _('Editar país')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
         messages.success(self.request, _('¡El país "%(name)s" fue editado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
@@ -53,15 +83,15 @@ class FormatUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = FormatForm
     template_name = Templates.Common.Format.CREATE
     success_url = reverse_lazy(URLS.Common.Format.LIST)
-    title = _('Editar Formato')
+    title = _('Editar formato')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡El Formato "%(name)s" fue editado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El formato "%(name)s" fue editado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -83,15 +113,15 @@ class ImageSizeUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = ImageSizeForm
     template_name = Templates.Common.ImageSize.CREATE
     success_url = reverse_lazy(URLS.Common.ImageSize.LIST)
-    title = _('Editar Tamaño de Imágenes')
+    title = _('Editar tamaño de imagen')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡El Tamaño de Imágen "%(name)s" fue editado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El tamaño de imagen "%(name)s" fue editado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -113,14 +143,14 @@ class LanguageUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = LanguageForm
     template_name = Templates.Common.Language.CREATE
     success_url = reverse_lazy(URLS.Common.Language.LIST)
-    title = _( 'Editar Idioma')
+    title = _('Editar idioma')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
+        name = form.instance.name
         messages.success(self.request, _('¡El idioma "%(name)s" fue editado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
@@ -143,15 +173,15 @@ class PersonUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = PersonForm
     template_name = Templates.Common.Person.CREATE
     success_url = reverse_lazy(URLS.Common.Person.LIST)
-    title = _('Editar Persona')
+    title = _('Editar persona')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('full_name')
-        messages.success(self.request, _('¡La Persona "%(name)s" fue editado exitosamente!') % {'name': name})
+        name = form.instance.full_name
+        messages.success(self.request, _('¡La persona "%(name)s" fue editada exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -173,28 +203,16 @@ class PersonImageUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = PersonImageForm
     template_name = Templates.Common.PersonImage.CREATE
     success_url = reverse_lazy(URLS.Common.PersonImage.LIST)
-    title = _('Editar Imagen de persona')
+    title = _('Editar imagen de persona')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        old_instance = self.get_object()
-        old_image_url = old_instance.get_img_url() if old_instance and old_instance.image else None
-
-        self.object = form.save()
-
-        # Solo eliminar la imagen anterior si realmente se cambió
-        if form.has_changed() and 'image' in form.changed_data and old_image_url:
-            try:
-                delete_previous_media(old_image_url)
-            except Exception as e:
-                messages.error(self.request, _('Error al eliminar la imagen anterior: %(error)s') % {'error': e})
-
-        person_name = self.object.person.full_name
-        messages.success(self.request, _('¡La Imagen de la persona "%(name)s" fue actualizada exitosamente!') % {'name': person_name})
-        return redirect(self.get_success_url())
+        name = form.instance.person.full_name
+        messages.success(self.request, _('¡La imagen de "%(name)s" fue editada exitosamente!') % {'name': name})
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         for field, errors in form.errors.items():
@@ -207,17 +225,7 @@ class PersonImageUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['class'] = CSSBackground.Common.PERSON_IMAGE
         context['title'] = self.title
         context['cancel_url'] = self.success_url
-
-        form = self.get_form()
-        have_media_file = 'image' in form.fields
-        media_url = None
-        if have_media_file:
-            objeto = self.get_object()
-            if objeto and objeto.get_img_url():
-                media_url = objeto.get_img_url()
-
-        context['media_file_table'] = bool(media_url)
-        context['media_url'] = media_url
+        context['media_file_table'], context['media_url'] = get_media_context(self)
         return context
 
 ############################################################################################################################################    PersonImageExtra
@@ -233,21 +241,9 @@ class PersonImageExtraUpdateView(PermissionRequiredMessageMixin, UpdateView):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        old_instance = self.get_object()
-        old_image_url = old_instance.get_img_url() if old_instance and old_instance.image else None
-
-        self.object = form.save()
-
-        # Solo eliminar la imagen anterior si realmente se cambió
-        if form.has_changed() and 'image' in form.changed_data and old_image_url:
-            try:
-                delete_previous_media(old_image_url)
-            except Exception as e:
-                messages.error(self.request, _('Error al eliminar la imagen anterior: %(error)s') % {'error': e})
-
-        person_name = self.object.person.full_name
-        messages.success(self.request, _('¡La imagen adicional de la persona "%(name)s" fue actualizada exitosamente!') % {'name': person_name})
-        return redirect(self.get_success_url())
+        name = form.instance.person.full_name
+        messages.success(self.request, _('¡La imagen adicional de "%(name)s" fue editada exitosamente!') % {'name': name})
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         for field, errors in form.errors.items():
@@ -260,17 +256,7 @@ class PersonImageExtraUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
         context['title'] = self.title
         context['cancel_url'] = self.success_url
-
-        form = self.get_form()
-        have_media_file = 'image' in form.fields
-        media_url = None
-        if have_media_file:
-            objeto = self.get_object()
-            if objeto and objeto.get_img_url():
-                media_url = objeto.get_img_url()
-
-        context['media_file_table'] = bool(media_url)
-        context['media_url'] = media_url
+        context['media_file_table'], context['media_url'] = get_media_context(self)
         return context
 
 ############################################################################################################################################    PersonNickname
@@ -279,15 +265,17 @@ class PersonNicknameUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = PersonNicknameForm
     template_name = Templates.Common.PersonNickname.CREATE
     success_url = reverse_lazy(URLS.Common.PersonNickname.LIST)
-    title = _('Editar PersonNicknamea')
+    title = _('Editar apodo de persona')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('full_name')
-        messages.success(self.request, _('¡La PersonNicknamea "%(name)s" fue editado exitosamente!') % {'name': name})
+        person = form.instance.person
+        nickname = form.instance.nickname
+        full_name = person.full_name
+        messages.success(self.request, _('¡El apodo "%(nickname)s" de "%(full_name)s" fue editado exitosamente!')% {'nickname': nickname, 'full_name': full_name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -309,15 +297,15 @@ class QualityUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = QualityForm
     template_name = Templates.Common.Quality.CREATE
     success_url = reverse_lazy(URLS.Common.Quality.LIST)
-    title = _('Editar Calidad')
+    title = _('Editar calidad')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡La Calidad "%(name)s" fue editada exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡La calidad "%(name)s" fue editada exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -339,15 +327,15 @@ class WebsiteUpdateView(PermissionRequiredMessageMixin, UpdateView):
     form_class = WebsiteForm
     template_name = Templates.Common.Website.CREATE
     success_url = reverse_lazy(URLS.Common.Website.LIST)
-    title = _('Editar Sitio Web')
+    title = _('Editar sitio web')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡El Sitio Web "%(name)s" fue editado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El sitio web "%(name)s" fue editado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):

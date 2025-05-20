@@ -29,13 +29,6 @@ class RatingResource(resources.ModelResource):
         fields = ('id', 'acronym', 'name', 'name_esp', 'slug', 'is_active', 'created_at', 'updated_at')
         export_order = ('id', 'acronym', 'name', 'name_esp', 'slug', 'is_active', 'created_at', 'updated_at')
 
-########################################################################################################    Resource para Company
-class CompanyResource(resources.ModelResource):
-    class Meta:
-        model = Company
-        fields = ('id', 'name', 'slug', 'initial', 'country', 'founded_year', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'slug', 'initial', 'country', 'founded_year', 'is_active', 'created_at', 'updated_at')
-
 ########################################################################################################    Resource para Serie
 class SerieResource(resources.ModelResource):
     class Meta:

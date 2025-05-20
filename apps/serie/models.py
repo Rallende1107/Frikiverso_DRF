@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
-from apps.common.models import Country, Person, Language, ImageSize
+from apps.common.models import Country, Person, Language, ImageSize, Company
 from core.utils.utils import obtener_inicial
 from core.models import BaseLog, YearField
 from .utils.uploads import serie_image_extra_path, serie_image_path
@@ -221,55 +221,6 @@ class Rating(models.Model):
     def get_absolute_url(self):
         """Return absolute url for Rating."""
         return reverse('serie_app:rating_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-########################################################################################################    Modelo para Company
-class Company(models.Model):
-    """Model definition for Company."""
-    name = models.CharField(max_length=255, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=255, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
-    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    country = models.ForeignKey(Country, blank=True,  null=True,  limit_choices_to={'is_active': True}, related_name='series_as_countries', on_delete=models.CASCADE, verbose_name=_('País'))
-    founded_year = YearField(blank=True, null=True, verbose_name=_('Año Fundación'))
-    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-
-    class Meta:
-        """Meta definition for Company."""
-        verbose_name = _('Compañia')
-        verbose_name_plural = _('Compañias')
-        ordering = ['-created_at', 'initial', 'name',]
-        unique_together = (('name',),)
-
-    def __str__(self):
-        """Unicode representation of Company."""
-        return self.name
-
-    def save(self, *args, **kwargs):
-        """Save method for Company."""
-        # Obtener el objeto original si existe
-        old = Company.objects.filter(pk=self.pk).first() if self.pk else None
-        # Normalización de nombres
-        if self.name:
-            self.name = self.name.strip().title()
-        # Inicial automático si está vacío o el nombre cambió
-        if not self.initial or (old and self.name != old.name):
-            self.initial = obtener_inicial(self.name).upper()
-        # Slug automático si está vacío o el nombre cambió
-        if not self.slug or (old and self.name != old.name):
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        """Return absolute url for Company."""
-        return reverse('serie_app:company_detail', kwargs={'pk': self.pk, 'slug': self.slug})
-
-    # custom methods
-    def get_producer_series(self):
-        return self.series_as_producers.count()
-
-    def get_distributor_series(self):
-        return self.series_as_distributors.count()
 
 ########################################################################################################    Modelo para Serie
 class Serie(models.Model):

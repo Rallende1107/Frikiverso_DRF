@@ -10,19 +10,19 @@
 {% endblock dateTableThead %}
 
 {% block dataTableBody %}
-{% for co in country %}
+{% for country in countries %}
 <tr>
-    <td class="td-id">{{ co.id }}</td>
-    <td>{{ co.combined_name }}</td>
-    <td>{{ co.combined_name_esp }}</td>
-    <td class="td-id">{{ co.numeric_code }}</td>
-    <td class="td-yes-no">{{ co.is_active|yesno:"Sí,No" }}</td>
+    <td class="td-id">{{ country.id }}</td>
+    <td>{{ country.display_name }}</td>
+    <td>{{ country.display_name_esp }}</td>
+    <td class="td-id">{{ country.numeric_code }}</td>
+    <td class="td-yes-no">{{ country.is_active|yesno:"Sí,No" }}</td>
     <td>
-        <select onchange="handleAction(this, '{{ co.id }}', '{{ co.combined_name }}', '{{ key_map }}')">
+        <select onchange="handleAction(this, '{{ country.id }}', '{{ country.combined_name }}', '{{ key_map }}')">
             <option value="">Acciones</option>
             <option value="1">Ver</option>
             <option value="2">Editar</option>
-            {% if not co.is_active %}
+            {% if not country.is_active %}
             <option value="3">Activar</option>
             {% else %}
             <option value="4">Desactivar</option>

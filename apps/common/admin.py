@@ -4,15 +4,61 @@ from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
 
 # impot Modelos
-from .models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, Quality, Website)
+from .models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, Quality, Website)
 
 # impot Resource
-from .resources import (CountryResource, FormatResource, ImageSizeResource, LanguageResource, PersonResource, PersonImageResource, PersonImageExtraResource, QualityResource, WebsiteResource)
+from .resources import (CompanyResource, CountryResource, FormatResource, ImageSizeResource, LanguageResource, PersonResource, PersonImageResource, PersonImageExtraResource, QualityResource, WebsiteResource)
 
 # impot Inline
 from apps.common.utils.inline import (PersonNicknameInline, PersonImageInline, PersonImageExtraInline)
 
-# Register your models here.
+# Register your admin here.
+########################################################################################################    Admin para Company
+@admin.register(Company)
+class CompanyAdmin(ImportExportModelAdmin):
+    resource_class = CompanyResource
+
+    list_display = ('name', 'country', 'founded_year', 'disolved_year', 'is_active', 'slug', 'created_at')
+    list_filter = ('is_active', 'initial', 'country')
+    search_fields = ('name',)
+    ordering = ('initial', 'name')
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('name', 'country', 'founded_year', 'disolved_year')
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    @admin.action(description=_('Activar compañías seleccionadas'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna compañía para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar compañías seleccionadas'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna compañía para desactivar.'), messages.WARNING)
+
 ########################################################################################################    Admin para Country
 @admin.register(Country)
 class CountryAdmin(ImportExportModelAdmin):
@@ -425,3 +471,50 @@ class WebsiteAdmin(ImportExportModelAdmin):
             self.message_user(request, _('Se desactivaron %(count)d website(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
             self.message_user(request, _('No se seleccionó ningún website para desactivar.'), messages.WARNING)
+
+
+# @admin.register(Producer)
+# class ProducerAdmin(ImportExportModelAdmin):
+#     resource_class = ProducerResource
+
+#     list_display = ('name', 'initial', 'slug', 'is_active', 'created_at')
+#     list_filter = ('is_active', 'initial')
+#     search_fields = ('name', 'slug')
+#     ordering = ('created_at', 'initial', 'name')
+#     readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
+
+#     actions = ['activar', 'desactivar']
+
+#     fieldsets = (
+#         (_('Información Básica'), {
+#             'fields': ('name',)
+#         }),
+#         (_('Estado'), {
+#             'fields': ('is_active',)
+#         }),
+#         (_('Valores generados automáticamente'), {
+#             'classes': ('collapse',),
+#             'fields': ('slug', 'initial')
+#         }),
+#         (_('Fechas'), {
+#             'classes': ('collapse',),
+#             'fields': ('created_at', 'updated_at')
+#         }),
+#     )
+
+#     @admin.action(description=_('Activar productoras seleccionadas'))
+#     def activar(self, request, queryset):
+#         actualizados = queryset.update(is_active=True)
+#         if actualizados:
+#             self.message_user(request, _('Se activaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
+#         else:
+#             self.message_user(request, _('No se seleccionó ningún productora para activar.'), messages.WARNING)
+
+#     @admin.action(description=_('Desactivar productoras seleccionadas'))
+#     def desactivar(self, request, queryset):
+#         actualizados = queryset.update(is_active=False)
+#         if actualizados:
+#             self.message_user(request, _('Se desactivaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
+#         else:
+#             self.message_user(request, _('No se seleccionó ningún productora para desactivar.'), messages.WARNING)
+

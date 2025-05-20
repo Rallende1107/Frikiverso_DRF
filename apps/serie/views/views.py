@@ -1,19 +1,9 @@
 # Django imports
-from django.contrib import messages
-from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView
-from django.shortcuts import redirect, get_object_or_404
-from django.http import Http404
-from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-
-# Local app imports - models and forms
-# from .models import ()
-# from .forms import ()
+from django.views.generic import TemplateView
 
 # Project-level imports - mixins and utilities
-from core.utils.mixins import PermissionRequiredMessageMixin
-from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, ImageCards, KeyMap
-from core.utils.utils import delete_previous_media
+from core.utils.constants import Templates, URLS, CSSBackground, ImageCards
 
 # Create your views here.
 ############################################################################################################################################    HomeView
@@ -32,8 +22,8 @@ class HomeView(TemplateView):
                     'title': 'Géneros de Series',
                     'img_url': ImageCards.Serie.GENRE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.Genre.LIST,
+                    'add_url': URLS.Serie.Genre.CREATE,
                     'text': 'Gestiona los géneros disponibles para las series.',
                     'extra_buttons': [],
                 },
@@ -42,8 +32,8 @@ class HomeView(TemplateView):
                     'title': 'Tipos de Series',
                     'img_url': ImageCards.Serie.TYPE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.Type.LIST,
+                    'add_url': URLS.Serie.Type.CREATE,
                     'text': 'Define los diferentes tipos o formatos de series (animación, drama, documental, etc.).',
                     'extra_buttons': [],
                 },
@@ -52,19 +42,9 @@ class HomeView(TemplateView):
                     'title': 'Clasificaciones de Series',
                     'img_url': ImageCards.Serie.RATING,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.Rating.LIST,
+                    'add_url': URLS.Serie.Rating.CREATE,
                     'text': 'Gestiona las clasificaciones o ratings de contenido para las series.',
-                    'extra_buttons': [],
-                },
-
-                {
-                    'title': 'Compañías de Series',
-                    'img_url': ImageCards.Serie.COMPANY,
-                    'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
-                    'text': 'Administra las compañías productoras o distribuidoras de las series.',
                     'extra_buttons': [],
                 },
             ],
@@ -74,8 +54,8 @@ class HomeView(TemplateView):
                     'title': 'Series',
                     'img_url': ImageCards.Serie.SERIE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.Serie.LIST,
+                    'add_url': URLS.Serie.Serie.CREATE,
                     'text': 'Gestiona las series registradas en el sistema.',
                     'extra_buttons': [],
                 },
@@ -83,8 +63,8 @@ class HomeView(TemplateView):
                     'title': 'Títulos de Series',
                     'img_url': ImageCards.Serie.TITLE_SERIE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.TitleSerie.LIST,
+                    'add_url': URLS.Serie.TitleSerie.CREATE,
                     'text': 'Gestiona los distintos títulos o traducciones de las series.',
                     'extra_buttons': [],
                 },
@@ -96,8 +76,8 @@ class HomeView(TemplateView):
                     'title': 'Roles de Series',
                     'img_url': ImageCards.Serie.ROLE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.Role.LIST,
+                    'add_url': URLS.Serie.Role.CREATE,
                     'text': 'Define los roles del personal y reparto (director, guionista, actor, etc.).',
                     'extra_buttons': [],
                 },
@@ -106,8 +86,8 @@ class HomeView(TemplateView):
                     'title': 'Personal de Series',
                     'img_url': ImageCards.Serie.SERIE_STAFF,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.SerieStaff.LIST,
+                    'add_url': URLS.Serie.SerieStaff.CREATE,
                     'text': 'Gestiona el personal que trabaja en la producción de las series.',
                     'extra_buttons': [],
                 },
@@ -116,20 +96,40 @@ class HomeView(TemplateView):
                     'title': 'Reparto de Series',
                     'img_url': ImageCards.Serie.SERIE_CAST,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.SerieCast.LIST,
+                    'add_url': URLS.Serie.SerieCast.CREATE,
                     'text': 'Gestiona el reparto de actores y sus personajes en las series.',
                     'extra_buttons': [],
                 },
             ],
+            'Organizaciones' :[
+                {
+                    'title': 'Productoras',
+                    'img_url': ImageCards.Serie.PRODUCER,
+                    'go_url': None,
+                    'view_url': URLS.Serie.Producer.LIST,
+                    'add_url': URLS.Serie.Producer.CREATE,
+                    'text': 'Gestiona las compañías con rol de producción cinematográfica.',
+                    'extra_buttons': [],
+                },
 
+                {
+                    'title': 'Distribuidoras',
+                    'img_url': ImageCards.Serie.DISTRIBUTOR,
+                    'go_url': None,
+                    'view_url': URLS.Serie.Distributor.LIST,
+                    'add_url': URLS.Serie.Distributor.CREATE,
+                    'text': 'Gestiona las compañías con rol de distribución cinematográfica.',
+                    'extra_buttons': [],
+                },
+            ],
             'Multimedia': [
                 {
                     'title': 'Imágenes de Series',
                     'img_url': ImageCards.Serie.SERIE_IMAGE,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.SerieImage.LIST,
+                    'add_url': URLS.Serie.SerieImage.CREATE,
                     'text': 'Gestiona las imágenes oficiales y portadas de las series.',
                     'extra_buttons': [],
                 },
@@ -138,8 +138,8 @@ class HomeView(TemplateView):
                     'title': 'Imágenes Extra de Series',
                     'img_url': ImageCards.Serie.SERIE_IMAGE_EXTRA,
                     'go_url': None,
-                    'view_url': None,
-                    'add_url': None,
+                    'view_url': URLS.Serie.SerieImageExtra.LIST,
+                    'add_url': URLS.Serie.SerieImageExtra.CREATE,
                     'text': 'Administra imágenes adicionales o promocionales relacionadas con las series.',
                     'extra_buttons': [],
                 },
@@ -155,5 +155,9 @@ class HomeView(TemplateView):
                 filtered_sections[section] = filtered_items
 
         context['card_sections'] = filtered_sections
-
+        context['labels'] = {
+            'go': _('Ir'),
+            'view_all': _('Todos'),
+            'add': _('Añadir'),
+        }
         return context

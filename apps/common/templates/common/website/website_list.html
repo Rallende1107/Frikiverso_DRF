@@ -3,33 +3,32 @@
 {% block dateTableThead %}
 <th scope="col" class="table-th th-id">ID</th>
 <th scope="col" class="table-th th-name">Nombre</th>
-<th scope="col" class="table-th th-yes-no">Link</th>
+<th scope="col" class="table-th th-name">Link</th>
 <th scope="col" class="table-th th-yes-no">Activo</th>
 <th scope="col" class="table-th th-actions">Acciones</th>
 {% endblock dateTableThead %}
 
 {% block dataTableBody %}
-{% for website in websites %}
+{% for web_site in web_sites %}
 <tr>
-    <td class="td-id">{{ website.id }}</td>
+    <td class="td-id">{{ web_site.id }}</td>
     <td>
-        <a href="{{ website.url }}" target="_blank" class="dataTable-custom-link">
-            {{ website.display_name }}
+        <a href="{{ web_site.url }}" target="_blank" class="dataTable-custom-link">
+            {{ web_site.display_name }}
         </a>
     </td>
     <td>
-        <a href="{{ website.url }}" target="_blank" class="dataTable-custom-link">
-            {{ website.display_link }}
-        </a>
+        <a href="{{ web_site.url }}" target="_blank" class="dataTable-custom-link">
+            {{ web_site.display_link_text }}
         </a>
     </td>
-    <td class="td-yes-no"{{ website.is_active|yesno:"Sí,No" }}</td>
+    <td class="td-yes-no">{{ web_site.is_active|yesno:"Sí,No" }} </td>
     <td>
-        <select onchange="handleAction(this, '{{ website.id }}', '{{ website.name }}', '{{ key_map }}')">
+        <select onchange="handleAction(this, '{{ web_site.id }}', '{{ web_site.name }}', '{{ key_map }}')">
             <option value="">Acciones</option>
             <option value="1">Ver</option>
             <option value="2">Editar</option>
-            {% if not website.is_active %}
+            {% if not web_site.is_active %}
             <option value="3">Activar</option>
             {% else %}
             <option value="4">Desactivar</option>

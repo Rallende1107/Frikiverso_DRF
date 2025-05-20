@@ -43,6 +43,11 @@ class Templates:
         CHANGE_PASS = 'users/user/user_password_change.html'
 
     class Common:
+        class Company:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
         class Country:
             LIST = 'common/country/country_list.html'
             CREATE = 'common/country/country_form.html'
@@ -94,14 +99,17 @@ class Templates:
             UPDATE = 'common/website/website_form.html'
             DETAIL = 'common/website/website_detail.html'
 
-
-
     class Movie:
-        class Company:
-            LIST = 'movie/company/company_list.html'
-            CREATE = 'movie/company/company_form.html'
-            UPDATE = 'movie/company/company_form.html'
-            DETAIL = 'movie/company/company_detail.html'
+        class Producer:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+        class Distributor:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
         class Genre:
             LIST = 'movie/genre/genre_list.html'
             CREATE = 'movie/genre/genre_form.html'
@@ -227,6 +235,27 @@ class Templates:
             DETAIL = 'music/song/song_detail.html'
 
     class Otaku:
+        class Licensor:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+        class Producer:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+        class Serialization:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+        class Studio:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+
         class Anime:
             LIST = 'otaku/anime/anime_list.html'
             CREATE = 'otaku/anime/anime_form.html'
@@ -292,11 +321,6 @@ class Templates:
             CREATE = 'otaku/genre/genre_form.html'
             UPDATE = 'otaku/genre/genre_form.html'
             DETAIL = 'otaku/genre/genre_detail.html'
-        class Licensor:
-            LIST = 'otaku/licensor/licensor_list.html'
-            CREATE = 'otaku/licensor/licensor_form.html'
-            UPDATE = 'otaku/licensor/licensor_form.html'
-            DETAIL = 'otaku/licensor/licensor_detail.html'
         class Manga:
             LIST = 'otaku/manga/manga_list.html'
             CREATE = 'otaku/manga/manga_form.html'
@@ -342,11 +366,6 @@ class Templates:
             CREATE = 'otaku/person_nickname/person_nickname_form.html'
             UPDATE = 'otaku/person_nickname/person_nickname_form.html'
             DETAIL = 'otaku/person_nickname/person_nickname_detail.html'
-        class Producer:
-            LIST = 'otaku/producer/producer_list.html'
-            CREATE = 'otaku/producer/producer_form.html'
-            UPDATE = 'otaku/producer/producer_form.html'
-            DETAIL = 'otaku/producer/producer_detail.html'
         class Rating:
             LIST = 'otaku/rating/rating_list.html'
             CREATE = 'otaku/rating/rating_form.html'
@@ -372,11 +391,6 @@ class Templates:
             CREATE = 'otaku/season_full/season_full_form.html'
             UPDATE = 'otaku/season_full/season_full_form.html'
             DETAIL = 'otaku/season_full/season_full_detail.html'
-        class Serialization:
-            LIST = 'otaku/serialization/serialization_list.html'
-            CREATE = 'otaku/serialization/serialization_form.html'
-            UPDATE = 'otaku/serialization/serialization_form.html'
-            DETAIL = 'otaku/serialization/serialization_detail.html'
         class Source:
             LIST = 'otaku/source/source_list.html'
             CREATE = 'otaku/source/source_form.html'
@@ -387,11 +401,6 @@ class Templates:
             CREATE = 'otaku/status/status_form.html'
             UPDATE = 'otaku/status/status_form.html'
             DETAIL = 'otaku/status/status_detail.html'
-        class Studio:
-            LIST = 'otaku/studio/studio_list.html'
-            CREATE = 'otaku/studio/studio_form.html'
-            UPDATE = 'otaku/studio/studio_form.html'
-            DETAIL = 'otaku/studio/studio_detail.html'
         class Theme:
             LIST = 'otaku/theme/theme_list.html'
             CREATE = 'otaku/theme/theme_form.html'
@@ -593,11 +602,16 @@ class Templates:
             DETAIL = 'renpy/game_data/game_data_detail.html'
 
     class Serie:
-        class Company:
-            LIST = 'serie/company/company_list.html'
-            CREATE = 'serie/company/company_form.html'
-            UPDATE = 'serie/company/company_form.html'
-            DETAIL = 'serie/company/company_detail.html'
+        class Producer:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
+        class Distributor:
+            LIST = 'common/company/company_list.html'
+            CREATE = 'common/company/company_form.html'
+            UPDATE = 'common/company/company_form.html'
+            DETAIL = 'common/company/company_detail.html'
         class Genre:
             LIST = 'serie/genre/genre_list.html'
             CREATE = 'serie/genre/genre_form.html'
@@ -676,217 +690,227 @@ class URLS:
         MUSIC =     'music_app:home'
         OTAKU =     'otaku_app:home'
         RENPY =     'renpy_app:home'
-        SERIE =     'serie_app :home'
+        SERIE =     'serie_app:home'
         USERS =     'users_app:home'
 
     class Users:
         LOGIN =     'users_app:login'
         LIST =       'users_app:users_list'
         CREATE =       'users_app:users_create'
-        UPDATE =       'users_app:users_UPDATE'
+        UPDATE =       'users_app:users_update'
         DETAIL =       'users_app:users_detail'
         CREATE_SUPER = 'users_app:superuser_create'
         CREATE_STAFF = 'users_app:staffuser_create'
 
     class Common:
+        class Company:
+            LIST = 'common_app:company_list'
+            CREATE = 'common_app:company_create'
+            UPDATE = 'common_app:company_update'
+            DETAIL = 'common_app:company_detail'
         class Country:
             LIST = 'common_app:country_list'
             CREATE = 'common_app:country_create'
-            UPDATE = 'common_app:country_UPDATE'
+            UPDATE = 'common_app:country_update'
             DETAIL = 'common_app:country_detail'
-
         class Format:
             LIST = 'common_app:format_list'
             CREATE = 'common_app:format_create'
-            UPDATE = 'common_app:format_UPDATE'
+            UPDATE = 'common_app:format_update'
             DETAIL = 'common_app:format_detail'
 
         class ImageSize:
             LIST = 'common_app:image_size_list'
             CREATE = 'common_app:image_size_create'
-            UPDATE = 'common_app:image_size_UPDATE'
+            UPDATE = 'common_app:image_size_update'
             DETAIL = 'common_app:image_size_detail'
 
         class Language:
             LIST = 'common_app:language_list'
             CREATE = 'common_app:language_create'
-            UPDATE = 'common_app:language_UPDATE'
+            UPDATE = 'common_app:language_update'
             DETAIL = 'common_app:language_detail'
 
         class Person:
             LIST = 'common_app:person_list'
             CREATE = 'common_app:person_create'
-            UPDATE = 'common_app:person_UPDATE'
+            UPDATE = 'common_app:person_update'
             DETAIL = 'common_app:person_detail'
 
         class PersonImage:
             LIST = 'common_app:person_image_list'
             CREATE = 'common_app:person_image_create'
-            UPDATE = 'common_app:person_image_UPDATE'
+            UPDATE = 'common_app:person_image_update'
             DETAIL = 'common_app:person_image_detail'
 
         class PersonImageExtra:
             LIST = 'common_app:person_image_extra_list'
             CREATE = 'common_app:person_image_extra_create'
-            UPDATE = 'common_app:person_image_extra_UPDATE'
+            UPDATE = 'common_app:person_image_extra_update'
             DETAIL = 'common_app:person_image_extra_detail'
 
         class PersonNickname:
             LIST = 'common_app:person_nickname_list'
             CREATE = 'common_app:person_nickname_create'
-            UPDATE = 'common_app:person_nickname_UPDATE'
+            UPDATE = 'common_app:person_nickname_update'
             DETAIL = 'common_app:person_nickname_detail'
 
         class Quality:
             LIST = 'common_app:quality_list'
             CREATE = 'common_app:quality_create'
-            UPDATE = 'common_app:quality_UPDATE'
+            UPDATE = 'common_app:quality_update'
             DETAIL = 'common_app:quality_detail'
 
         class Website:
             LIST = 'common_app:website_list'
             CREATE = 'common_app:website_create'
-            UPDATE = 'common_app:website_UPDATE'
+            UPDATE = 'common_app:website_update'
             DETAIL = 'common_app:website_detail'
 
     class Movie:
-        class Company:
-            LIST = 'movie_app:company_list'
-            CREATE = 'movie_app:company_create'
-            UPDATE = 'movie_app:company_UPDATE'
-            DETAIL = 'movie_app:company_detail'
+        class Producer:
+            LIST = 'movie_app:producer_list'
+            CREATE = 'movie_app:producer_create'
+            UPDATE = 'movie_app:producer_update'
+            DETAIL = 'movie_app:producer_detail'
+
+        class Distributor:
+            LIST = 'movie_app:distributor_list'
+            CREATE = 'movie_app:distributor_create'
+            UPDATE = 'movie_app:distributor_update'
+            DETAIL = 'movie_app:distributor_detail'
 
         class Genre:
             LIST = 'movie_app:genre_list'
             CREATE = 'movie_app:genre_create'
-            UPDATE = 'movie_app:genre_UPDATE'
+            UPDATE = 'movie_app:genre_update'
             DETAIL = 'movie_app:genre_detail'
 
         class Movie:
             LIST = 'movie_app:movie_list'
             CREATE = 'movie_app:movie_create'
-            UPDATE = 'movie_app:movie_UPDATE'
+            UPDATE = 'movie_app:movie_update'
             DETAIL = 'movie_app:movie_detail'
 
         class MovieCast:
             LIST = 'movie_app:movie_cast_list'
             CREATE = 'movie_app:movie_cast_create'
-            UPDATE = 'movie_app:movie_cast_UPDATE'
+            UPDATE = 'movie_app:movie_cast_update'
             DETAIL = 'movie_app:movie_cast_detail'
 
         class MovieImage:
             LIST = 'movie_app:movie_image_list'
             CREATE = 'movie_app:movie_image_create'
-            UPDATE = 'movie_app:movie_image_UPDATE'
+            UPDATE = 'movie_app:movie_image_update'
             DETAIL = 'movie_app:movie_image_detail'
 
         class MovieImageExtra:
             LIST = 'movie_app:movie_image_extra_list'
             CREATE = 'movie_app:movie_image_extra_create'
-            UPDATE = 'movie_app:movie_image_extra_UPDATE'
+            UPDATE = 'movie_app:movie_image_extra_update'
             DETAIL = 'movie_app:movie_image_extra_detail'
 
         class MovieStaff:
-            LIST = 'movie_app:movie_image_staff_list'
-            CREATE = 'movie_app:movie_image_staff_create'
-            UPDATE = 'movie_app:movie_image_staff_UPDATE'
-            DETAIL = 'movie_app:movie_image_staff_detail'
+            LIST = 'movie_app:movie_staff_list'
+            CREATE = 'movie_app:movie_staff_create'
+            UPDATE = 'movie_app:movie_staff_update'
+            DETAIL = 'movie_app:movie_staff_detail'
 
         class Rating:
             LIST = 'movie_app:rating_list'
             CREATE = 'movie_app:rating_create'
-            UPDATE = 'movie_app:rating_UPDATE'
+            UPDATE = 'movie_app:rating_update'
             DETAIL = 'movie_app:rating_detail'
 
         class Role:
             LIST = 'movie_app:role_list'
             CREATE = 'movie_app:role_create'
-            UPDATE = 'movie_app:role_UPDATE'
+            UPDATE = 'movie_app:role_update'
             DETAIL = 'movie_app:role_detail'
 
         class TitleMovie:
             LIST = 'movie_app:title_movie_list'
             CREATE = 'movie_app:title_movie_create'
-            UPDATE = 'movie_app:title_movie_UPDATE'
+            UPDATE = 'movie_app:title_movie_update'
             DETAIL = 'movie_app:title_movie_detail'
 
         class Type:
             LIST = 'movie_app:type_list'
             CREATE = 'movie_app:type_create'
-            UPDATE = 'movie_app:type_UPDATE'
+            UPDATE = 'movie_app:type_update'
             DETAIL = 'movie_app:type_detail'
 
     class Music:
         class Album:
             LIST = 'music_app:album_list'
             CREATE = 'music_app:album_create'
-            UPDATE = 'music_app:album_UPDATE'
+            UPDATE = 'music_app:album_update'
             DETAIL = 'music_app:album_detail'
 
         class AlbumImage:
             LIST = 'music_app:album_image_list'
             CREATE = 'music_app:album_image_create'
-            UPDATE = 'music_app:album_image_UPDATE'
+            UPDATE = 'music_app:album_image_update'
             DETAIL = 'music_app:album_image_detail'
 
         class AlbumImageExtra:
             LIST = 'music_app:album_image_extra_list'
             CREATE = 'music_app:album_image_extra_create'
-            UPDATE = 'music_app:album_image_extra_UPDATE'
+            UPDATE = 'music_app:album_image_extra_update'
             DETAIL = 'music_app:album_image_extra_detail'
 
         class AlbumType:
             LIST = 'music_app:album_type_list'
             CREATE = 'music_app:album_type_create'
-            UPDATE = 'music_app:album_type_UPDATE'
+            UPDATE = 'music_app:album_type_update'
             DETAIL = 'music_app:album_type_detail'
 
         class Artist:
             LIST = 'music_app:artist_list'
             CREATE = 'music_app:artist_create'
-            UPDATE = 'music_app:artist_UPDATE'
+            UPDATE = 'music_app:artist_update'
             DETAIL = 'music_app:artist_detail'
 
         class ArtistImage:
             LIST = 'music_app:artist_image_list'
             CREATE = 'music_app:artist_image_create'
-            UPDATE = 'music_app:artist_image_UPDATE'
+            UPDATE = 'music_app:artist_image_update'
             DETAIL = 'music_app:artist_image_detail'
 
         class ArtistImageExtra:
             LIST = 'music_app:artist_image_extra_list'
             CREATE = 'music_app:artist_image_extra_create'
-            UPDATE = 'music_app:artist_image_extra_UPDATE'
+            UPDATE = 'music_app:artist_image_extra_update'
             DETAIL = 'music_app:artist_image_extra_detail'
 
         class ArtistMember:
             LIST = 'music_app:artist_member_list'
             CREATE = 'music_app:artist_member_create'
-            UPDATE = 'music_app:artist_member_UPDATE'
+            UPDATE = 'music_app:artist_member_update'
             DETAIL = 'music_app:artist_member_detail'
 
         class ArtistType:
             LIST = 'music_app:artist_type_list'
             CREATE = 'music_app:artist_type_create'
-            UPDATE = 'music_app:artist_type_UPDATE'
+            UPDATE = 'music_app:artist_type_update'
             DETAIL = 'music_app:artist_type_detail'
 
         class Genre:
             LIST = 'music_app:genre_list'
             CREATE = 'music_app:genre_create'
-            UPDATE = 'music_app:genre_UPDATE'
+            UPDATE = 'music_app:genre_update'
             DETAIL = 'music_app:genre_detail'
 
         class Role:
             LIST = 'music_app:role_list'
             CREATE = 'music_app:role_create'
-            UPDATE = 'music_app:role_UPDATE'
+            UPDATE = 'music_app:role_update'
             DETAIL = 'music_app:role_detail'
 
         class Song:
             LIST = 'music_app:song_list'
             CREATE = 'music_app:song_create'
-            UPDATE = 'music_app:song_UPDATE'
+            UPDATE = 'music_app:song_update'
             DETAIL = 'music_app:song_detail'
 
     class Otaku:
@@ -899,235 +923,235 @@ class URLS:
         class Anime:
             LIST = 'otaku_app:anime_list'
             CREATE = 'otaku_app:anime_create'
-            UPDATE = 'otaku_app:anime_UPDATE'
+            UPDATE = 'otaku_app:anime_update'
             DETAIL = 'otaku_app:anime_detail'
 
         class AnimeCharacter:
             LIST = 'otaku_app:anime_character_list'
             CREATE = 'otaku_app:anime_character_create'
-            UPDATE = 'otaku_app:anime_character_UPDATE'
+            UPDATE = 'otaku_app:anime_character_update'
             DETAIL = 'otaku_app:anime_character_detail'
 
         class AnimeImage:
             LIST = 'otaku_app:anime_image_list'
             CREATE = 'otaku_app:anime_image_create'
-            UPDATE = 'otaku_app:anime_image_UPDATE'
+            UPDATE = 'otaku_app:anime_image_update'
             DETAIL = 'otaku_app:anime_image_detail'
 
         class AnimeImageExtra:
             LIST = 'otaku_app:anime_image_extra_list'
             CREATE = 'otaku_app:anime_image_extra_create'
-            UPDATE = 'otaku_app:anime_image_extra_UPDATE'
+            UPDATE = 'otaku_app:anime_image_extra_update'
             DETAIL = 'otaku_app:anime_image_extra_detail'
 
         class AnimeSong:
             LIST = 'otaku_app:anime_image_song_list'
             CREATE = 'otaku_app:anime_image_song_create'
-            UPDATE = 'otaku_app:anime_image_song_UPDATE'
+            UPDATE = 'otaku_app:anime_image_song_update'
             DETAIL = 'otaku_app:anime_image_song_detail'
 
         class AnimeStaff:
             LIST = 'otaku_app:anime_staff_list'
             CREATE = 'otaku_app:anime_staff_create'
-            UPDATE = 'otaku_app:anime_staff_UPDATE'
+            UPDATE = 'otaku_app:anime_staff_update'
             DETAIL = 'otaku_app:anime_staff_detail'
 
         class AuthorManga:
             LIST = 'otaku_app:author_manga_list'
             CREATE = 'otaku_app:author_manga_create'
-            UPDATE = 'otaku_app:author_manga_UPDATE'
+            UPDATE = 'otaku_app:author_manga_update'
             DETAIL = 'otaku_app:author_manga_detail'
 
         class Character:
             LIST = 'otaku_app:character_list'
             CREATE = 'otaku_app:character_create'
-            UPDATE = 'otaku_app:character_UPDATE'
+            UPDATE = 'otaku_app:character_update'
             DETAIL = 'otaku_app:character_detail'
 
         class CharacterImage:
             LIST = 'otaku_app:character_image_list'
             CREATE = 'otaku_app:character_image_create'
-            UPDATE = 'otaku_app:character_image_UPDATE'
+            UPDATE = 'otaku_app:character_image_update'
             DETAIL = 'otaku_app:character_image_detail'
 
         class CharacterImageExtra:
             LIST = 'otaku_app:character_image_extra_list'
             CREATE = 'otaku_app:character_image_extra_create'
-            UPDATE = 'otaku_app:character_image_extra_UPDATE'
+            UPDATE = 'otaku_app:character_image_extra_update'
             DETAIL = 'otaku_app:character_image_extra_detail'
 
         class CharacterNickname:
             LIST = 'otaku_app:character_nickname_list'
             CREATE = 'otaku_app:character_nickname_create'
-            UPDATE = 'otaku_app:character_nickname_UPDATE'
+            UPDATE = 'otaku_app:character_nickname_update'
             DETAIL = 'otaku_app:character_nickname_detail'
 
         class Demographic:
             LIST = 'otaku_app:demographic_list'
             CREATE = 'otaku_app:demographic_create'
-            UPDATE = 'otaku_app:demographic_UPDATE'
+            UPDATE = 'otaku_app:demographic_update'
             DETAIL = 'otaku_app:demographic_detail'
 
         class Genre:
             LIST = 'otaku_app:genre_list'
             CREATE = 'otaku_app:genre_create'
-            UPDATE = 'otaku_app:genre_UPDATE'
+            UPDATE = 'otaku_app:genre_update'
             DETAIL = 'otaku_app:genre_detail'
 
         class Licensor:
             LIST = 'otaku_app:licensor_list'
             CREATE = 'otaku_app:licensor_create'
-            UPDATE = 'otaku_app:licensor_UPDATE'
+            UPDATE = 'otaku_app:licensor_update'
             DETAIL = 'otaku_app:licensor_detail'
 
         class Manga:
             LIST = 'otaku_app:manga_list'
             CREATE = 'otaku_app:manga_create'
-            UPDATE = 'otaku_app:manga_UPDATE'
+            UPDATE = 'otaku_app:manga_update'
             DETAIL = 'otaku_app:manga_detail'
 
         class MangaCharacter:
             LIST = 'otaku_app:manga_character_list'
             CREATE = 'otaku_app:manga_character_create'
-            UPDATE = 'otaku_app:manga_character_UPDATE'
+            UPDATE = 'otaku_app:manga_character_update'
             DETAIL = 'otaku_app:manga_character_detail'
 
         class MangaImage:
             LIST = 'otaku_app:manga_image_list'
             CREATE = 'otaku_app:manga_image_create'
-            UPDATE = 'otaku_app:manga_image_UPDATE'
+            UPDATE = 'otaku_app:manga_image_update'
             DETAIL = 'otaku_app:manga_image_detail'
 
         class MangaImageExtra:
             LIST = 'otaku_app:manga_image_extra_list'
             CREATE = 'otaku_app:manga_image_extra_create'
-            UPDATE = 'otaku_app:manga_image_extra_UPDATE'
+            UPDATE = 'otaku_app:manga_image_extra_update'
             DETAIL = 'otaku_app:manga_image_extra_detail'
 
         class MediaRelation:
             LIST = 'otaku_app:media_relation_list'
             CREATE = 'otaku_app:media_relation_create'
-            UPDATE = 'otaku_app:media_relation_UPDATE'
+            UPDATE = 'otaku_app:media_relation_update'
             DETAIL = 'otaku_app:media_relation_detail'
 
         class Person:
             LIST = 'otaku_app:person_list'
             CREATE = 'otaku_app:person_create'
-            UPDATE = 'otaku_app:person_UPDATE'
+            UPDATE = 'otaku_app:person_update'
             DETAIL = 'otaku_app:person_detail'
 
         class PersonImage:
             LIST = 'otaku_app:person_image_list'
             CREATE = 'otaku_app:person_image_create'
-            UPDATE = 'otaku_app:person_image_UPDATE'
+            UPDATE = 'otaku_app:person_image_update'
             DETAIL = 'otaku_app:person_image_detail'
 
         class PersonImageExtra:
             LIST = 'otaku_app:person_image_extra_list'
             CREATE = 'otaku_app:person_image_extra_create'
-            UPDATE = 'otaku_app:person_image_extra_UPDATE'
+            UPDATE = 'otaku_app:person_image_extra_update'
             DETAIL = 'otaku_app:person_image_extra_detail'
 
         class PersonNickname:
             LIST = 'otaku_app:person_nickname_list'
             CREATE = 'otaku_app:person_nickname_create'
-            UPDATE = 'otaku_app:person_nickname_UPDATE'
+            UPDATE = 'otaku_app:person_nickname_update'
             DETAIL = 'otaku_app:person_nickname_detail'
 
         class Producer:
             LIST = 'otaku_app:producer_list'
             CREATE = 'otaku_app:producer_create'
-            UPDATE = 'otaku_app:producer_UPDATE'
+            UPDATE = 'otaku_app:producer_update'
             DETAIL = 'otaku_app:producer_detail'
 
         class Rating:
             LIST = 'otaku_app:rating_list'
             CREATE = 'otaku_app:rating_create'
-            UPDATE = 'otaku_app:rating_UPDATE'
+            UPDATE = 'otaku_app:rating_update'
             DETAIL = 'otaku_app:rating_detail'
 
         class RelationType:
             LIST = 'otaku_app:relation_type_list'
             CREATE = 'otaku_app:relation_type_create'
-            UPDATE = 'otaku_app:relation_type_UPDATE'
+            UPDATE = 'otaku_app:relation_type_update'
             DETAIL = 'otaku_app:relation_type_detail'
 
         class Role:
             LIST = 'otaku_app:role_list'
             CREATE = 'otaku_app:role_create'
-            UPDATE = 'otaku_app:role_UPDATE'
+            UPDATE = 'otaku_app:role_update'
             DETAIL = 'otaku_app:role_detail'
 
         class Season:
             LIST = 'otaku_app:season_list'
             CREATE = 'otaku_app:season_create'
-            UPDATE = 'otaku_app:season_UPDATE'
+            UPDATE = 'otaku_app:season_update'
             DETAIL = 'otaku_app:season_detail'
 
         class SeasonFull:
             LIST = 'otaku_app:season_full_list'
             CREATE = 'otaku_app:season_full_create'
-            UPDATE = 'otaku_app:season_full_UPDATE'
+            UPDATE = 'otaku_app:season_full_update'
             DETAIL = 'otaku_app:season_full_detail'
 
         class Serialization:
             LIST = 'otaku_app:serialization_list'
             CREATE = 'otaku_app:serialization_create'
-            UPDATE = 'otaku_app:serialization_UPDATE'
+            UPDATE = 'otaku_app:serialization_update'
             DETAIL = 'otaku_app:serialization_detail'
 
         class Source:
             LIST = 'otaku_app:source_list'
             CREATE = 'otaku_app:source_create'
-            UPDATE = 'otaku_app:source_UPDATE'
+            UPDATE = 'otaku_app:source_update'
             DETAIL = 'otaku_app:source_detail'
 
         class Status:
             LIST = 'otaku_app:status_list'
             CREATE = 'otaku_app:status_create'
-            UPDATE = 'otaku_app:status_UPDATE'
+            UPDATE = 'otaku_app:status_update'
             DETAIL = 'otaku_app:status_detail'
 
         class Studio:
             LIST = 'otaku_app:studio_list'
             CREATE = 'otaku_app:studio_create'
-            UPDATE = 'otaku_app:studio_UPDATE'
+            UPDATE = 'otaku_app:studio_update'
             DETAIL = 'otaku_app:studio_detail'
 
         class Theme:
             LIST = 'otaku_app:theme_list'
             CREATE = 'otaku_app:theme_create'
-            UPDATE = 'otaku_app:theme_UPDATE'
+            UPDATE = 'otaku_app:theme_update'
             DETAIL = 'otaku_app:theme_detail'
 
         class TitleAnime:
             LIST = 'otaku_app:title_anime_list'
             CREATE = 'otaku_app:title_anime_create'
-            UPDATE = 'otaku_app:title_anime_UPDATE'
+            UPDATE = 'otaku_app:title_anime_update'
             DETAIL = 'otaku_app:title_anime_detail'
 
         class TitleManga:
             LIST = 'otaku_app:title_manga_list'
             CREATE = 'otaku_app:title_manga_create'
-            UPDATE = 'otaku_app:title_manga_UPDATE'
+            UPDATE = 'otaku_app:title_manga_update'
             DETAIL = 'otaku_app:title_manga_detail'
 
         class Type:
             LIST = 'otaku_app:type_list'
             CREATE = 'otaku_app:type_create'
-            UPDATE = 'otaku_app:type_UPDATE'
+            UPDATE = 'otaku_app:type_update'
             DETAIL = 'otaku_app:type_detail'
 
         class VoiceCharacter:
             LIST = 'otaku_app:voice_character_list'
             CREATE = 'otaku_app:voice_character_create'
-            UPDATE = 'otaku_app:voice_character_UPDATE'
+            UPDATE = 'otaku_app:voice_character_update'
             DETAIL = 'otaku_app:voice_character_detail'
 
         class Year:
             LIST = 'otaku_app:year_list'
             CREATE = 'otaku_app:year_create'
-            UPDATE = 'otaku_app:year_UPDATE'
+            UPDATE = 'otaku_app:year_update'
             DETAIL = 'otaku_app:year_detail'
 
         class Temp_Characters:
@@ -1176,208 +1200,213 @@ class URLS:
         class Censorship:
             LIST = 'renpy_app:censorship_list'
             CREATE = 'renpy_app:censorship_create'
-            UPDATE = 'renpy_app:censorship_UPDATE'
+            UPDATE = 'renpy_app:censorship_update'
             DETAIL = 'renpy_app:censorship_detail'
 
         class Developer:
             LIST = 'renpy_app:developer_list'
             CREATE = 'renpy_app:developer_create'
-            UPDATE = 'renpy_app:developer_UPDATE'
+            UPDATE = 'renpy_app:developer_update'
             DETAIL = 'renpy_app:developer_detail'
 
         class DeveloperImage:
             LIST = 'renpy_app:developer_image_list'
             CREATE = 'renpy_app:developer_image_create'
-            UPDATE = 'renpy_app:developer_image_UPDATE'
+            UPDATE = 'renpy_app:developer_image_update'
             DETAIL = 'renpy_app:developer_image_detail'
 
         class DeveloperImageExtra:
             LIST = 'renpy_app:developer_image_extra_list'
             CREATE = 'renpy_app:developer_image_extra_create'
-            UPDATE = 'renpy_app:developer_image_extra_UPDATE'
+            UPDATE = 'renpy_app:developer_image_extra_update'
             DETAIL = 'renpy_app:developer_image_extra_detail'
 
         class DeveloperLink:
             LIST = 'renpy_app:developer_link_list'
             CREATE = 'renpy_app:developer_link_create'
-            UPDATE = 'renpy_app:developer_link_UPDATE'
+            UPDATE = 'renpy_app:developer_link_update'
             DETAIL = 'renpy_app:developer_link_detail'
 
         class Game:
             LIST = 'renpy_app:game_list'
             CREATE = 'renpy_app:game_create'
-            UPDATE = 'renpy_app:game_UPDATE'
+            UPDATE = 'renpy_app:game_update'
             DETAIL = 'renpy_app:game_detail'
             LOAD = 'renpy_app:game_load'
 
         class GameEngine:
             LIST = 'renpy_app:game_engine_list'
             CREATE = 'renpy_app:game_engine_create'
-            UPDATE = 'renpy_app:game_engine_UPDATE'
+            UPDATE = 'renpy_app:game_engine_update'
             DETAIL = 'renpy_app:game_engine_detail'
 
         class GameImage:
             LIST = 'renpy_app:game_image_list'
             CREATE = 'renpy_app:game_image_create'
-            UPDATE = 'renpy_app:game_image_UPDATE'
+            UPDATE = 'renpy_app:game_image_update'
             DETAIL = 'renpy_app:game_image_detail'
 
         class GameImageExtra:
             LIST = 'renpy_app:game_image_extra_list'
             CREATE = 'renpy_app:game_image_extra_create'
-            UPDATE = 'renpy_app:game_image_extra_UPDATE'
+            UPDATE = 'renpy_app:game_image_extra_update'
             DETAIL = 'renpy_app:game_image_extra_detail'
 
         class Genre:
             LIST = 'renpy_app:genre_list'
             CREATE = 'renpy_app:genre_create'
-            UPDATE = 'renpy_app:genre_UPDATE'
+            UPDATE = 'renpy_app:genre_update'
             DETAIL = 'renpy_app:genre_detail'
 
         class Platform:
             LIST = 'renpy_app:platform_list'
             CREATE = 'renpy_app:platform_create'
-            UPDATE = 'renpy_app:platform_UPDATE'
+            UPDATE = 'renpy_app:platform_update'
             DETAIL = 'renpy_app:platform_detail'
 
         class Prefix:
             LIST = 'renpy_app:prefix_list'
             CREATE = 'renpy_app:prefix_create'
-            UPDATE = 'renpy_app:prefix_UPDATE'
+            UPDATE = 'renpy_app:prefix_update'
             DETAIL = 'renpy_app:prefix_detail'
 
         class Publisher:
             LIST = 'renpy_app:publisher_list'
             CREATE = 'renpy_app:publisher_create'
-            UPDATE = 'renpy_app:publisher_UPDATE'
+            UPDATE = 'renpy_app:publisher_update'
             DETAIL = 'renpy_app:publisher_detail'
 
         class PublisherImage:
             LIST = 'renpy_app:publisher_image_list'
             CREATE = 'renpy_app:publisher_image_create'
-            UPDATE = 'renpy_app:publisher_image_UPDATE'
+            UPDATE = 'renpy_app:publisher_image_update'
             DETAIL = 'renpy_app:publisher_image_detail'
 
         class PublisherImageExtra:
             LIST = 'renpy_app:publisher_image_extra_list'
             CREATE = 'renpy_app:publisher_image_extra_create'
-            UPDATE = 'renpy_app:publisher_image_extra_UPDATE'
+            UPDATE = 'renpy_app:publisher_image_extra_update'
             DETAIL = 'renpy_app:publisher_image_extra_detail'
 
         class PublisherLink:
             LIST = 'renpy_app:publisher_link_list'
             CREATE = 'renpy_app:publisher_link_create'
-            UPDATE = 'renpy_app:publisher_link_UPDATE'
+            UPDATE = 'renpy_app:publisher_link_update'
             DETAIL = 'renpy_app:publisher_link_detail'
 
         class Status:
             LIST = 'renpy_app:status_list'
             CREATE = 'renpy_app:status_create'
-            UPDATE = 'renpy_app:status_UPDATE'
+            UPDATE = 'renpy_app:status_update'
             DETAIL = 'renpy_app:status_detail'
 
         class TitleGame:
             LIST = 'renpy_app:title_game_list'
             CREATE = 'renpy_app:title_game_create'
-            UPDATE = 'renpy_app:title_game_UPDATE'
+            UPDATE = 'renpy_app:title_game_update'
             DETAIL = 'renpy_app:title_game_detail'
 
         class Translator:
             LIST = 'renpy_app:translator_list'
             CREATE = 'renpy_app:translator_create'
-            UPDATE = 'renpy_app:translator_UPDATE'
+            UPDATE = 'renpy_app:translator_update'
             DETAIL = 'renpy_app:translator_detail'
 
         class TranslatorImage:
             LIST = 'renpy_app:translator_image_list'
             CREATE = 'renpy_app:translator_image_create'
-            UPDATE = 'renpy_app:translator_image_UPDATE'
+            UPDATE = 'renpy_app:translator_image_update'
             DETAIL = 'renpy_app:translator_image_detail'
 
         class TranslatorImageExtra:
             LIST = 'renpy_app:translator_image_extra_list'
             CREATE = 'renpy_app:translator_image_extra_create'
-            UPDATE = 'renpy_app:translator_image_extra_UPDATE'
+            UPDATE = 'renpy_app:translator_image_extra_update'
             DETAIL = 'renpy_app:translator_image_extra_detail'
 
         class TranslatorLink:
             LIST = 'renpy_app:translator_link_list'
             CREATE = 'renpy_app:translator_link_create'
-            UPDATE = 'renpy_app:translator_link_UPDATE'
+            UPDATE = 'renpy_app:translator_link_update'
             DETAIL = 'renpy_app:translator_link_detail'
 
         class F95GameFetchStatus:
             LIST = 'renpy_app:game_data_list'
             CREATE = 'renpy_app:game_data_create'
-            UPDATE = 'renpy_app:game_data_UPDATE'
+            UPDATE = 'renpy_app:game_data_update'
             DETAIL = 'renpy_app:game_data_detail'
 
     class Serie:
-        class Company:
-            LIST = 'serie_app :company_list'
-            CREATE = 'serie_app :company_create'
-            UPDATE = 'serie_app :company_UPDATE'
-            DETAIL = 'serie_app :company_detail'
+        class Producer:
+            LIST = 'serie_app:producer_list'
+            CREATE = 'serie_app:producer_create'
+            UPDATE = 'serie_app:producer_update'
+            DETAIL = 'serie_app:producer_detail'
 
+        class Distributor:
+            LIST = 'serie_app:distributor_list'
+            CREATE = 'serie_app:distributor_create'
+            UPDATE = 'serie_app:distributor_update'
+            DETAIL = 'serie_app:distributor_detail'
         class Genre:
-            LIST = 'serie_app :genre_list'
-            CREATE = 'serie_app :genre_create'
-            UPDATE = 'serie_app :genre_UPDATE'
-            DETAIL = 'serie_app :genre_detail'
+            LIST = 'serie_app:genre_list'
+            CREATE = 'serie_app:genre_create'
+            UPDATE = 'serie_app:genre_update'
+            DETAIL = 'serie_app:genre_detail'
 
         class Rating:
-            LIST = 'serie_app :rating_list'
-            CREATE = 'serie_app :rating_create'
-            UPDATE = 'serie_app :rating_UPDATE'
-            DETAIL = 'serie_app :rating_detail'
+            LIST = 'serie_app:rating_list'
+            CREATE = 'serie_app:rating_create'
+            UPDATE = 'serie_app:rating_update'
+            DETAIL = 'serie_app:rating_detail'
 
         class Role:
-            LIST = 'serie_app :role_list'
-            CREATE = 'serie_app :role_create'
-            UPDATE = 'serie_app :role_UPDATE'
-            DETAIL = 'serie_app :role_detail'
+            LIST = 'serie_app:role_list'
+            CREATE = 'serie_app:role_create'
+            UPDATE = 'serie_app:role_update'
+            DETAIL = 'serie_app:role_detail'
 
         class Serie:
-            LIST = 'serie_app :serie_list'
-            CREATE = 'serie_app :serie_create'
-            UPDATE = 'serie_app :serie_UPDATE'
-            DETAIL = 'serie_app :serie_detail'
+            LIST = 'serie_app:serie_list'
+            CREATE = 'serie_app:serie_create'
+            UPDATE = 'serie_app:serie_update'
+            DETAIL = 'serie_app:serie_detail'
 
         class SerieCast:
-            LIST = 'serie_app :serie_cast_list'
-            CREATE = 'serie_app :serie_cast_create'
-            UPDATE = 'serie_app :serie_cast_UPDATE'
-            DETAIL = 'serie_app :serie_cast_detail'
+            LIST = 'serie_app:serie_cast_list'
+            CREATE = 'serie_app:serie_cast_create'
+            UPDATE = 'serie_app:serie_cast_update'
+            DETAIL = 'serie_app:serie_cast_detail'
 
         class SerieImage:
-            LIST = 'serie_app :serie_image_list'
-            CREATE = 'serie_app :serie_image_create'
-            UPDATE = 'serie_app :serie_image_UPDATE'
-            DETAIL = 'serie_app :serie_image_detail'
+            LIST = 'serie_app:serie_image_list'
+            CREATE = 'serie_app:serie_image_create'
+            UPDATE = 'serie_app:serie_image_update'
+            DETAIL = 'serie_app:serie_image_detail'
 
         class SerieImageExtra:
-            LIST = 'serie_app :serie_image_extra_list'
-            CREATE = 'serie_app :serie_image_extra_create'
-            UPDATE = 'serie_app :serie_image_extra_UPDATE'
-            DETAIL = 'serie_app :serie_image_extra_detail'
+            LIST = 'serie_app:serie_image_extra_list'
+            CREATE = 'serie_app:serie_image_extra_create'
+            UPDATE = 'serie_app:serie_image_extra_update'
+            DETAIL = 'serie_app:serie_image_extra_detail'
 
         class SerieStaff:
-            LIST = 'serie_app :serie_staff_list'
-            CREATE = 'serie_app :serie_staff_create'
-            UPDATE = 'serie_app :serie_staff_UPDATE'
-            DETAIL = 'serie_app :serie_staff_detail'
+            LIST = 'serie_app:serie_staff_list'
+            CREATE = 'serie_app:serie_staff_create'
+            UPDATE = 'serie_app:serie_staff_update'
+            DETAIL = 'serie_app:serie_staff_detail'
 
         class TitleSerie:
-            LIST = 'serie_app :title_serie_list'
-            CREATE = 'serie_app :title_serie_create'
-            UPDATE = 'serie_app :title_serie_UPDATE'
-            DETAIL = 'serie_app :title_serie_detail'
+            LIST = 'serie_app:title_serie_list'
+            CREATE = 'serie_app:title_serie_create'
+            UPDATE = 'serie_app:title_serie_update'
+            DETAIL = 'serie_app:title_serie_detail'
 
         class Type:
-            LIST = 'serie_app :type_list'
-            CREATE = 'serie_app :type_create'
-            UPDATE = 'serie_app :type_UPDATE'
-            DETAIL = 'serie_app :type_detail'
+            LIST = 'serie_app:type_list'
+            CREATE = 'serie_app:type_create'
+            UPDATE = 'serie_app:type_update'
+            DETAIL = 'serie_app:type_detail'
 
 ####################################################    CSSBackground
 class CSSBackground:
@@ -1399,6 +1428,7 @@ class CSSBackground:
         USER = 'bg-users-user'
 
     class Common:
+        COMPANY =               'bg-common-company'
         COUNTRY =               'bg-common-country'
         FORMAT =                'bg-common-format'
         IMAGE_SIZE =            'bg-common-image_size'
@@ -1415,7 +1445,8 @@ class CSSBackground:
         TYPE =              'bg-movie-type'
         ROLE =              'bg-movie-role'
         RATING =            'bg-movie-rating'
-        COMPANY =           'bg-movie-company'
+        PRODUCER =          'bg-movie-producer'
+        DISTRIBUTOR =       'bg-movie-distributor'
         MOVIE =             'bg-movie-movie'
         TITLE_MOVIE =       'bg-movie-title_movie'
         MOVIE_STAFF =       'bg-movie-movie_staff'
@@ -1527,7 +1558,8 @@ class CSSBackground:
         TYPE =              'bg-serie-type'
         ROLE =              'bg-serie-role'
         RATING =            'bg-serie-rating'
-        COMPANY =           'bg-serie-company'
+        PRODUCER =          'bg-serie-producer'
+        DISTRIBUTOR =       'bg-serie-distributor'
         SERIE =             'bg-serie-serie'
         TITLE_SERIE =       'bg-serie-title_serie'
         SERIE_STAFF =       'bg-serie-serie_staff'
@@ -1543,6 +1575,7 @@ class JSConstants:
         USER = 'js/DataTables/config/users/users_config.js'
 
     class Common:
+        COMPANY =               'js/DataTables/config/common/company_config.js'
         COUNTRY =               'js/DataTables/config/common/country_config.js'
         FORMAT =                'js/DataTables/config/common/format_config.js'
         IMAGE_SIZE =            'js/DataTables/config/common/image_size_config.js'
@@ -1555,7 +1588,8 @@ class JSConstants:
         WEBSITE =               'js/DataTables/config/common/website_config.js'
 
     class Movie:
-        COMPANY =           'js/DataTables/config/movie/movie_company.js'
+        PRODUCER =          'js/DataTables/config/movie/movie_producer.js'
+        DISTRIBUTOR =       'js/DataTables/config/movie/movie_distributor.js'
         GENRE =             'js/DataTables/config/movie/movie_genre.js'
         MOVIE =             'js/DataTables/config/movie/movie_movie.js'
         MOVIE_CAST =        'js/DataTables/config/movie/movie_movie_cast.js'
@@ -1667,7 +1701,8 @@ class JSConstants:
         TRANSLATOR_LINK =           'js/DataTables/config/renpy/renpy_translator_links.js'
 
     class Serie:
-        COMPANY =           'js/DataTables/config/serie/serie_company.js'
+        PRODUCER =          'js/DataTables/config/serie/serie_producer.js'
+        DISTRIBUTOR =       'js/DataTables/config/serie/serie_distributor.js'
         GENRE =             'js/DataTables/config/serie/serie_genre.js'
         RATING =            'js/DataTables/config/serie/serie_rating.js'
         ROLE =              'js/DataTables/config/serie/serie_role.js'
@@ -1684,6 +1719,7 @@ class ImageCards:
     class Users:
         USER = 'img/screen/wide/bg-users-user.webp'
     class Common:
+        COMPANY =            'img/screen/wide/bg-common-company.webp'
         COUNTRY =            'img/screen/wide/bg-common-country.webp'
         FORMAT =             'img/screen/wide/bg-common-format.webp'
         IMAGE_SIZE =         'img/screen/wide/bg-common-image_size.webp'
@@ -1696,7 +1732,8 @@ class ImageCards:
         WEBSITE =            'img/screen/wide/bg-common-website.webp'
 
     class Movie:
-        COMPANY =           'img/screen/wide/bg-movie-company.webp'
+        PRODUCER =          'img/screen/wide/bg-movie-producer.webp'
+        DISTRIBUTOR =       'img/screen/wide/bg-movie-distributor.webp'
         GENRE =             'img/screen/wide/bg-movie-genre.webp'
         MOVIE =             'img/screen/wide/bg-movie-movie.webp'
         MOVIE_CAST =        'img/screen/wide/bg-movie-movie_cast.webp'
@@ -1808,7 +1845,8 @@ class ImageCards:
         TRANSLATOR_LINK =           'img/screen/wide/bg-renpy-translator_link.webp'
 
     class Serie:
-        COMPANY =           'img/screen/wide/bg-serie-company.webp'
+        PRODUCER =          'img/screen/wide/bg-serie-producer.webp'
+        DISTRIBUTOR =       'img/screen/wide/bg-serie-distributor.webp'
         GENRE =             'img/screen/wide/bg-serie-genre.webp'
         RATING =            'img/screen/wide/bg-serie-rating.webp'
         ROLE =              'img/screen/wide/bg-serie-role.webp'
@@ -1826,6 +1864,7 @@ class KeyMap:
         USER = 'Usuario'
 
     class Common:
+        COMPANY =               'Compañia'
         COUNTRY =               'País'
         FORMAT =                'Formato'
         IMAGE_SIZE =            'Tamaño imagen'
@@ -1838,13 +1877,14 @@ class KeyMap:
         WEBSITE =               'Sitio Web'
 
     class Movie:
-        COMPANY =           'Compañía cinematográfica'
+        DISTRIBUTOR =       'Distribuidora cinematográfica'
         GENRE =             'Género cinematográfico'
         MOVIE =             'Película'
         MOVIE_CAST =        'Reparto cinematográfico'
         MOVIE_IMAGE =       'Imagen de película'
         MOVIE_IMAGE_EXTRA = 'Imagen adicional de película'
         MOVIE_STAFF =       'Personal cinematográfico'
+        PRODUCER =          'Productora cinematográfica'
         RATING =            'Clasificación cinematográfica'
         ROLE =              'Rol cinematográfico'
         TITLE_MOVIE =       'Título de película'
@@ -1951,7 +1991,8 @@ class KeyMap:
         DATA_GAME =                 'datos del juego'
 
     class Serie:
-        COMPANY =           'Compañía de producción televisiva'
+        PRODUCER =          'Productora televisiva'
+        DISTRIBUTOR =       'Distribuidora televisiva'
         GENRE =             'Género televisivo'
         RATING =            'Clasificación televisiva'
         ROLE =              'Rol televisivo'

@@ -57,9 +57,8 @@ new DataTable("#example", {
     columnDefs: [
         { target: 0, visible: true, searchable: false, responsivePriority: 99 }, // id
         { target: 1, visible: true, searchable: true, responsivePriority: 0, }, // nombre
-        { target: 2, visible: true, searchable: true, responsivePriority: 13, }, // nombre Esp
-        { target: 3, visible: true, searchable: false, responsivePriority: 7, }, // Activo
-        { target: 4, visible: true, searchable: false, responsivePriority: 0, }, // Acciones
+        { target: 2, visible: true, searchable: false, responsivePriority: 7, }, // Activo
+        { target: 3, visible: true, searchable: false, responsivePriority: 0, }, // Acciones
 
     ],
 });

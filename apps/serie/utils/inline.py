@@ -17,14 +17,14 @@ class SerieImageInline(admin.TabularInline):
     extra = 1
     fields = ('size_image', 'image', 'image_url', 'is_active')
     autocomplete_fields = ('size_image',)
-    readonly_fields = ('name', 'slug', 'created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at')
     show_change_link = True
 
 class SerieImageExtraInline(admin.TabularInline):
     model = SerieImageExtra
     extra = 1
     fields = ('image', 'is_active')
-    readonly_fields = ('name', 'slug', 'created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at')
     show_change_link = True
 
 class SerieStaffInline(admin.TabularInline):

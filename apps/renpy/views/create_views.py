@@ -29,8 +29,8 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 class CensorshipCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Censorship
     form_class = CensorshipForm
-    template_name = Templates.Renpy.Censorship.ADD
-    success_url = reverse_lazy(URLS.Renpy.Censorship.LST)
+    template_name = Templates.Renpy.Censorship.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Censorship.LIST)
     title = _('Añadir Censura')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -59,8 +59,8 @@ class CensorshipCreateView(PermissionRequiredMessageMixin, CreateView):
 class DeveloperCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Developer
     form_class = DeveloperForm
-    template_name = Templates.Renpy.Developer.ADD
-    success_url = reverse_lazy(URLS.Renpy.Developer.LST)
+    template_name = Templates.Renpy.Developer.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Developer.LIST)
     title = _('Añadir Desarrollador')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -89,8 +89,8 @@ class DeveloperCreateView(PermissionRequiredMessageMixin, CreateView):
 class DeveloperImageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = DeveloperImage
     form_class = DeveloperImageForm
-    template_name = Templates.Renpy.DeveloperImage.ADD
-    success_url = reverse_lazy(URLS.Renpy.DeveloperImage.LST)
+    template_name = Templates.Renpy.DeveloperImage.CREATE
+    success_url = reverse_lazy(URLS.Renpy.DeveloperImage.LIST)
     title = _('Añadir imagen de desarrollador')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -118,8 +118,8 @@ class DeveloperImageCreateView(PermissionRequiredMessageMixin, CreateView):
 class DeveloperImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
     model = DeveloperImageExtra
     form_class = DeveloperImageExtraForm
-    template_name = Templates.Renpy.DeveloperImageExtra.ADD
-    success_url = reverse_lazy(URLS.Renpy.DeveloperImageExtra.LST)
+    template_name = Templates.Renpy.DeveloperImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Renpy.DeveloperImageExtra.LIST)
     title = _('Añadir imagen adicional desarrollador')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -147,8 +147,8 @@ class DeveloperImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
 class DeveloperLinkCreateView(PermissionRequiredMessageMixin, CreateView):
     model = DeveloperLink
     form_class = DeveloperLinkForm
-    template_name = Templates.Renpy.DeveloperLink.ADD
-    success_url = reverse_lazy(URLS.Renpy.DeveloperLink.LST)
+    template_name = Templates.Renpy.DeveloperLink.CREATE
+    success_url = reverse_lazy(URLS.Renpy.DeveloperLink.LIST)
     title = _('Añadir enlace de desarrollador')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -176,8 +176,8 @@ class DeveloperLinkCreateView(PermissionRequiredMessageMixin, CreateView):
 class GameCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Game
     form_class = GameForm
-    template_name = Templates.Renpy.Game.ADD
-    success_url = reverse_lazy(URLS.Renpy.Game.LST)
+    template_name = Templates.Renpy.Game.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Game.LIST)
     title = _('Añadir Juego')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -205,8 +205,8 @@ class GameCreateView(PermissionRequiredMessageMixin, CreateView):
 class GameEngineCreateView(PermissionRequiredMessageMixin, CreateView):
     model = GameEngine
     form_class = GameEngineForm
-    template_name = Templates.Renpy.GameEngine.ADD
-    success_url = reverse_lazy(URLS.Renpy.GameEngine.LST)
+    template_name = Templates.Renpy.GameEngine.CREATE
+    success_url = reverse_lazy(URLS.Renpy.GameEngine.LIST)
     title = _('Añadir motor de desarrollo')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -234,8 +234,8 @@ class GameEngineCreateView(PermissionRequiredMessageMixin, CreateView):
 class GameImageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = GameImage
     form_class = GameImageForm
-    template_name = Templates.Renpy.GameImage.ADD
-    success_url = reverse_lazy(URLS.Renpy.GameImage.LST)
+    template_name = Templates.Renpy.GameImage.CREATE
+    success_url = reverse_lazy(URLS.Renpy.GameImage.LIST)
     title = _('Añadir imagen de juego')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -263,8 +263,8 @@ class GameImageCreateView(PermissionRequiredMessageMixin, CreateView):
 class GameImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
     model = GameImageExtra
     form_class = GameImageExtraForm
-    template_name = Templates.Renpy.GameImageExtra.ADD
-    success_url = reverse_lazy(URLS.Renpy.GameImageExtra.LST)
+    template_name = Templates.Renpy.GameImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Renpy.GameImageExtra.LIST)
     title = _('Añadir imagen adicional juego')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -292,8 +292,8 @@ class GameImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
 class GenreCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Genre
     form_class = GenreForm
-    template_name = Templates.Renpy.Genre.ADD
-    success_url = reverse_lazy(URLS.Renpy.Genre.LST)
+    template_name = Templates.Renpy.Genre.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Genre.LIST)
     title = _('Añadir Género')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -321,8 +321,8 @@ class GenreCreateView(PermissionRequiredMessageMixin, CreateView):
 class PlatformCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Platform
     form_class = PlatformForm
-    template_name = Templates.Renpy.Platform.ADD
-    success_url = reverse_lazy(URLS.Renpy.Platform.LST)
+    template_name = Templates.Renpy.Platform.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Platform.LIST)
     title = _('Añadir Plataforma')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -350,8 +350,8 @@ class PlatformCreateView(PermissionRequiredMessageMixin, CreateView):
 class PrefixCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Prefix
     form_class = PrefixForm
-    template_name = Templates.Renpy.Prefix.ADD
-    success_url = reverse_lazy(URLS.Renpy.Prefix.LST)
+    template_name = Templates.Renpy.Prefix.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Prefix.LIST)
     title = _('Añadir prefijo')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -379,8 +379,8 @@ class PrefixCreateView(PermissionRequiredMessageMixin, CreateView):
 class PublisherCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Publisher
     form_class = PublisherForm
-    template_name = Templates.Renpy.Publisher.ADD
-    success_url = reverse_lazy(URLS.Renpy.Publisher.LST)
+    template_name = Templates.Renpy.Publisher.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Publisher.LIST)
     title = _('Añadir Editor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -408,8 +408,8 @@ class PublisherCreateView(PermissionRequiredMessageMixin, CreateView):
 class PublisherImageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PublisherImage
     form_class = PublisherImageForm
-    template_name = Templates.Renpy.PublisherImage.ADD
-    success_url = reverse_lazy(URLS.Renpy.PublisherImage.LST)
+    template_name = Templates.Renpy.PublisherImage.CREATE
+    success_url = reverse_lazy(URLS.Renpy.PublisherImage.LIST)
     title = _('Añadir imagen de editor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -437,8 +437,8 @@ class PublisherImageCreateView(PermissionRequiredMessageMixin, CreateView):
 class PublisherImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PublisherImageExtra
     form_class = PublisherImageExtraForm
-    template_name = Templates.Renpy.PublisherImageExtra.ADD
-    success_url = reverse_lazy(URLS.Renpy.PublisherImageExtra.LST)
+    template_name = Templates.Renpy.PublisherImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Renpy.PublisherImageExtra.LIST)
     title = _('Añadir imagen adicional editor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -466,8 +466,8 @@ class PublisherImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
 class PublisherLinkCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PublisherLink
     form_class = PublisherLinkForm
-    template_name = Templates.Renpy.PublisherLink.ADD
-    success_url = reverse_lazy(URLS.Renpy.PublisherLink.LST)
+    template_name = Templates.Renpy.PublisherLink.CREATE
+    success_url = reverse_lazy(URLS.Renpy.PublisherLink.LIST)
     title = _('Añadir enlace de editor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -495,8 +495,8 @@ class PublisherLinkCreateView(PermissionRequiredMessageMixin, CreateView):
 class StatusCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Status
     form_class = StatusForm
-    template_name = Templates.Renpy.Status.ADD
-    success_url = reverse_lazy(URLS.Renpy.Status.LST)
+    template_name = Templates.Renpy.Status.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Status.LIST)
     title = _('Añadir Estado')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -524,8 +524,8 @@ class StatusCreateView(PermissionRequiredMessageMixin, CreateView):
 class TranslatorCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Translator
     form_class = TranslatorForm
-    template_name = Templates.Renpy.Translator.ADD
-    success_url = reverse_lazy(URLS.Renpy.Translator.LST)
+    template_name = Templates.Renpy.Translator.CREATE
+    success_url = reverse_lazy(URLS.Renpy.Translator.LIST)
     title = _('Añadir Traductor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -553,8 +553,8 @@ class TranslatorCreateView(PermissionRequiredMessageMixin, CreateView):
 class TranslatorImageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = TranslatorImage
     form_class = TranslatorImageForm
-    template_name = Templates.Renpy.TranslatorImage.ADD
-    success_url = reverse_lazy(URLS.Renpy.TranslatorImage.LST)
+    template_name = Templates.Renpy.TranslatorImage.CREATE
+    success_url = reverse_lazy(URLS.Renpy.TranslatorImage.LIST)
     title = _('Añadir imagen de traductor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -582,8 +582,8 @@ class TranslatorImageCreateView(PermissionRequiredMessageMixin, CreateView):
 class TranslatorImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
     model = TranslatorImageExtra
     form_class = TranslatorImageExtraForm
-    template_name = Templates.Renpy.TranslatorImageExtra.ADD
-    success_url = reverse_lazy(URLS.Renpy.TranslatorImageExtra.LST)
+    template_name = Templates.Renpy.TranslatorImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Renpy.TranslatorImageExtra.LIST)
     title = _('Añadir imagen adicional traductor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -611,8 +611,8 @@ class TranslatorImageExtraCreateView(PermissionRequiredMessageMixin, CreateView)
 class TranslatorLinkCreateView(PermissionRequiredMessageMixin, CreateView):
     model = TranslatorLink
     form_class = TranslatorLinkForm
-    template_name = Templates.Renpy.TranslatorLink.ADD
-    success_url = reverse_lazy(URLS.Renpy.TranslatorLink.LST)
+    template_name = Templates.Renpy.TranslatorLink.CREATE
+    success_url = reverse_lazy(URLS.Renpy.TranslatorLink.LIST)
     title = _('Añadir enlace de traductor')
     permission_redirect_url = URLS.Home.RENPY
 
@@ -640,8 +640,8 @@ class TranslatorLinkCreateView(PermissionRequiredMessageMixin, CreateView):
 class TitleGameCreateView(PermissionRequiredMessageMixin, CreateView):
     model = TitleGame
     form_class = TitleGameForm
-    template_name = Templates.Renpy.TitleGame.ADD
-    success_url = reverse_lazy(URLS.Renpy.TitleGame.LST)
+    template_name = Templates.Renpy.TitleGame.CREATE
+    success_url = reverse_lazy(URLS.Renpy.TitleGame.LIST)
     title = _('Añadir Título de Juego')
     permission_redirect_url = URLS.Home.RENPY
 

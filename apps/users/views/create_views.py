@@ -18,7 +18,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 class UserCreateView(CreateView):
     model = CustomUser
     form_class = UserForm
-    template_name = Templates.Users.ADD
+    template_name = Templates.Users.CREATE
     success_url = reverse_lazy(URLS.Users.LOGIN)
     title = _('Registrate')
 
@@ -44,8 +44,8 @@ class UserCreateView(CreateView):
 class StaffUserCreateView(PermissionRequiredMessageMixin, CreateView):
     model = CustomUser
     form_class = StaffUserForm
-    template_name = Templates.Users.ADD
-    success_url = reverse_lazy(URLS.Users.LST)
+    template_name = Templates.Users.CREATE
+    success_url = reverse_lazy(URLS.Users.LIST)
     title = _('Añadir Usuario Staff')
     permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 
@@ -74,8 +74,8 @@ class StaffUserCreateView(PermissionRequiredMessageMixin, CreateView):
 class SuperUserCreateView(PermissionRequiredMessageMixin, CreateView):
     model = CustomUser
     form_class = SuperUserForm
-    template_name = Templates.Users.ADD
-    success_url = reverse_lazy(URLS.Users.LST)
+    template_name = Templates.Users.CREATE
+    success_url = reverse_lazy(URLS.Users.LIST)
     title = _('Añadir Super Usuario')
     permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 

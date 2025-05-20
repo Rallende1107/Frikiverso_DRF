@@ -1,3 +1,6 @@
+import os
+from django.db import models
+
 from django.shortcuts import get_object_or_404, redirect, reverse
 from django.views.generic import View
 from django.contrib import messages
@@ -30,14 +33,14 @@ from apps.otaku.models import (
     Type as TypeOtaku, Rating as RatingOtaku, Season, Status as StatusOtaku, Source, RelationType, SeasonFull,
     Producer, Licensor, Studio, Serialization,
     Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
-    Character, CharacterNickname, OtakuPerson, OtakuPersonNickname,
+    Character, CharacterNickname, Person as OtakuPerson, PersonNickname as OtakuPersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
     AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra,
-    OtakuPersonImage, OtakuPersonImageExtra, CharacterImage, CharacterImageExtra,
+    PersonImage as OtakuPersonImage, PersonImageExtra as OtakuPersonImageExtra, CharacterImage, CharacterImageExtra,
     DataAnime, DataAnimeCharacters, DataAnimePictures, DataAnimeStaff,
     DataManga, DataMangaCharacters, DataMangaPictures,
-    DataCharacter, DataCharacterPictures, DataOtakuPerson, DataOtakuPersonPictures,
-    DataImageURL, Temp_OtakuPersons, Temp_Characters
+    DataCharacter, DataCharacterPictures, DataPerson, DataPersonPictures,
+    DataImageURL, Temp_Persons, Temp_Characters
 )
 
 # Importando modelos Renpy
@@ -656,6 +659,16 @@ class ActionView(View):
 ##                 'detail_url': 'otaku_app:manga_detail',
 #                  'es_usuario': False,
 ##             },
+
+            'Imagen adicional del editor': {
+                'model': PublisherImageExtra,
+                'listas_url': 'renpy_app:publisher_image_extra_list',
+                'update_url': 'renpy_app:publisher_image_extra_update',
+                'detail_url': 'renpy_app:publisher_image_extra_detail',
+                'es_usuario': False,
+            },
+
+
 ########################################################################################    Peliculas
         }
         try:
@@ -729,12 +742,13 @@ class ActionView(View):
                     notify_password_reset(instance, new_password)
                     messages.success(request, _('La contraseña de %(modelo)s %(name)s ha sido reiniciada.') % {'modelo': modelo, 'name': name})
 
-                # elif action == "99":  # Eliminar
-                #     instance.delete()
-                #     messages.success(request, _('El %(modelo)s %(name)s ha sido eliminado.') % {'modelo': modelo, 'name': name})
-
-
                 elif action == "99":  # Eliminar
+                    for field in instance._meta.get_fields():
+                        if isinstance(field, models.ImageField):
+                            file_field = getattr(instance, field.name)
+                            if file_field and file_field.name and os.path.isfile(file_field.path):
+                                os.remove(file_field.path)
+
                     if model_data.get('es_usuario'):
                         instance.delete()
                         notify_deleted_user(instance)

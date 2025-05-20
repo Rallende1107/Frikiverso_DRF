@@ -12,7 +12,7 @@ from apps.common.models import Language, ImageSize
 from apps.music.models import Artist
 from core.models import BaseLog, YearField
 from core.utils.utils import obtener_inicial
-from .utils.uploads import anime_image_path, anime_image_extra_path, manga_image_path, manga_image_extra_path, character_image_path, character_image_extra_path, otaku_person_image_path, otaku_person_image_extra_path
+from .utils.uploads import anime_image_path, anime_image_extra_path, manga_image_path, manga_image_extra_path, character_image_path, character_image_extra_path, person_image_path, person_image_extra_path
 
 # Create your models here.
 ########################################################################################################    Log
@@ -1569,9 +1569,9 @@ class CharacterNickname(models.Model):
         """Return absolute url for CharacterNickname."""
         return reverse('common_app:nickname_character_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
-########################################################################################################    Modelo para OtakuPerson
-class OtakuPerson(models.Model):
-    """Model definition for OtakuPerson."""
+########################################################################################################    Modelo para Person
+class Person(models.Model):
+    """Model definition for Person."""
     full_name = models.CharField(max_length=20000, unique=False, null=False, blank=False, verbose_name=_('Nombre Completo'))
     name_kanji = models.CharField(max_length=20000, unique=False, null=True, blank=True, verbose_name=_('Nombre Kanji'))
     biography = models.TextField(blank=True, verbose_name=_('Biografía'))
@@ -1591,20 +1591,20 @@ class OtakuPerson(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for OtakuPerson."""
+        """Meta definition for Person."""
         verbose_name = _(' Persona')
         verbose_name_plural = _('Personas')
         ordering = ['-created_at', 'initial','full_name',]
         unique_together = (('mal_id', 'initial', 'full_name', 'url',),)
 
     def __str__(self):
-        """Unicode representation of OtakuPerson."""
+        """Unicode representation of Person."""
         return self.full_name
 
     def save(self, *args, **kwargs):
-        """Save method for OtakuPerson."""
+        """Save method for Person."""
         # Obtener el objeto original si existe
-        old = OtakuPerson.objects.filter(pk=self.pk).first() if self.pk else None
+        old = Person.objects.filter(pk=self.pk).first() if self.pk else None
         # Normalización de nombres
         if self.full_name:
             self.full_name = self.full_name.strip()
@@ -1613,7 +1613,7 @@ class OtakuPerson(models.Model):
             base_id = f"P{self.mal_id}"
             suffix = ''
             i = 1
-            while OtakuPerson.objects.filter(p_mal_id=base_id + suffix).exclude(pk=self.pk).exists():
+            while Person.objects.filter(p_mal_id=base_id + suffix).exclude(pk=self.pk).exists():
                 suffix = f"_{i}"
                 i += 1
             self.p_mal_id = base_id + suffix
@@ -1627,7 +1627,7 @@ class OtakuPerson(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for OtakuPerson."""
+        """Return absolute url for Person."""
         return reverse('otaku_app:person_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
     # TODO: Define custom methods here
@@ -1663,10 +1663,10 @@ class OtakuPerson(models.Model):
         # Limpieza y retorno
         return [u for u in cover_urls if u] + extra_urls
 
-########################################################################################################    Modelo para OtakuPersonNickname
-class OtakuPersonNickname(models.Model):
-    """Model definition for OtakuPersonNickname."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_as_nicknames', on_delete=models.CASCADE, verbose_name=_('Persona'))
+########################################################################################################    Modelo para PersonNickname
+class PersonNickname(models.Model):
+    """Model definition for PersonNickname."""
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_as_nicknames', on_delete=models.CASCADE, verbose_name=_('Persona'))
     nickname = models.CharField(max_length=100, unique=False, null=False, blank=False, verbose_name=_('Apodo'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
     slug = models.SlugField(max_length=100, unique=False, null=False, blank=True, editable=False, verbose_name=_('Apodo Slug'))
@@ -1675,20 +1675,20 @@ class OtakuPersonNickname(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for OtakuPersonNickname."""
+        """Meta definition for PersonNickname."""
         verbose_name = _('Apodo Persona')
         verbose_name_plural = _('Apodos Persona')
         ordering = ['initial','nickname',]
         unique_together = (('person', 'initial', 'nickname',),)
 
     def __str__(self):
-        """Unicode representation of OtakuPersonNickname."""
+        """Unicode representation of PersonNickname."""
         return f"{self.person.full_name} AKA ({self.nickname})"
 
     def save(self, *args, **kwargs):
-        """Save method for OtakuPersonNickname."""
+        """Save method for PersonNickname."""
         # Obtener el objeto original si existe
-        old = OtakuPersonNickname.objects.filter(pk=self.pk).first() if self.pk else None
+        old = PersonNickname.objects.filter(pk=self.pk).first() if self.pk else None
         # Normalización del nickname
         if self.nickname:
             self.nickname = self.nickname.strip()
@@ -1701,7 +1701,7 @@ class OtakuPersonNickname(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for OtakuPersonNickname."""
+        """Return absolute url for PersonNickname."""
         return reverse('common_app:nickname_otaku_person_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
     # TODO: Define custom methods here
@@ -1832,7 +1832,7 @@ class MangaCharacter(models.Model):
 ########################################################################################################    Modelo para VoiceCharacter
 class VoiceCharacter(models.Model):
     """Model definition for VoiceCharacter."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='person_voice_roles', on_delete=models.CASCADE, verbose_name=_('Persona'))
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='person_voice_roles', on_delete=models.CASCADE, verbose_name=_('Persona'))
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='voice_characters', on_delete=models.CASCADE, verbose_name=_('Anime'))
     character = models.ForeignKey(Character, blank=False, null=False, limit_choices_to={'is_active': True,}, related_name='character_voice_roles', on_delete=models.CASCADE, verbose_name=_('Personaje'))
     language = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='languages_voice_roles', on_delete=models.CASCADE, verbose_name=_('Idioma'))
@@ -1869,7 +1869,7 @@ class VoiceCharacter(models.Model):
 ########################################################################################################    Modelo para AnimeStaff
 class AnimeStaff(models.Model):
     """Model definition for AnimeStaff."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='anime_staff_positions', on_delete=models.CASCADE, verbose_name=_('Persona'))
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='anime_staff_positions', on_delete=models.CASCADE, verbose_name=_('Persona'))
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='staff_members', on_delete=models.CASCADE, verbose_name=_('Anime'))
     position = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_staff': True,}, related_name='anime_person_role_staff', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
@@ -1904,7 +1904,7 @@ class AnimeStaff(models.Model):
 ########################################################################################################    Modelo para AuthorManga
 class AuthorManga(models.Model):
     """Model definition for AuthorManga."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='manga_author_roles', on_delete=models.CASCADE, verbose_name=_('Persona'))
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='manga_author_roles', on_delete=models.CASCADE, verbose_name=_('Persona'))
     manga = models.ForeignKey(Manga, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='authors', on_delete=models.CASCADE, verbose_name=_('Manga'))
     position = models.ForeignKey(Role, blank=False, null=False, limit_choices_to={'is_active': True, 'role_manga': True,}, related_name='manga_person_role_manga', on_delete=models.CASCADE, verbose_name=_('Rol'))
     # mal ids
@@ -1983,8 +1983,6 @@ class AnimeImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='animes_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=anime_image_path, verbose_name=_('Imagen'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -1993,35 +1991,29 @@ class AnimeImage(models.Model):
         """Meta definition for AnimeImage."""
         verbose_name = _('Imagen Anime')
         verbose_name_plural = _('Imágenes Animes')
-        ordering = ['anime', 'size_image', 'name',]
-        unique_together = (('anime', 'size_image', 'name',),)
+        ordering = ['anime', 'size_image',]
+        unique_together = (('anime', 'size_image',),)
 
     def __str__(self):
         """Unicode representation of AnimeImage."""
-        return self.name if self.anime else _('Imagen sin Anime')
+        if self.anime and self.anime.title:
+            return _('Imagen de %(name)s') % {'name': self.anime.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for AnimeImage."""
-        old = AnimeImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = AnimeImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for AnimeImage."""
-        return reverse('otaku_app:anime_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('otaku_app:anime_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
@@ -2030,20 +2022,16 @@ class AnimeImage(models.Model):
         return None
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2055,7 +2043,7 @@ class AnimeImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2064,7 +2052,7 @@ class AnimeImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para AnimeImageExtra
@@ -2072,8 +2060,6 @@ class AnimeImageExtra(models.Model):
     """Model definition for AnimeImageExtra."""
     anime = models.ForeignKey(Anime, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='animes_as_extra_images', on_delete=models.CASCADE, verbose_name=_('Anime'))
     image = models.ImageField(blank=False, null=False, upload_to=anime_image_extra_path, verbose_name=_('Imagen Extra Anime'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -2082,35 +2068,27 @@ class AnimeImageExtra(models.Model):
         """Meta definition for AnimeImageExtra."""
         verbose_name = _('Imagen Extra Anime')
         verbose_name_plural = _('Imágenes Extra Anime')
-        ordering = ['anime', 'name',]
-        unique_together = (('anime', 'name',),)
+        ordering = ['anime',]
 
     def __str__(self):
         """Unicode representation of AnimeImageExtra."""
-        return self.name if self.anime else _('Imagen sin Anime')
+        if self.anime and self.anime.title:
+            return _('Imagen de %(name)s') % {'name': self.anime.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for AnimeImageExtra."""
-        old = AnimeImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = AnimeImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for AnimeImageExtra."""
-        return reverse('otaku_app:anime_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('otaku_app:anime_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
@@ -2119,20 +2097,16 @@ class AnimeImageExtra(models.Model):
         return None
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2144,7 +2118,7 @@ class AnimeImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2153,7 +2127,7 @@ class AnimeImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para MangaImage
@@ -2163,8 +2137,6 @@ class MangaImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='mangas_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=manga_image_path, verbose_name=_('Imagen'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -2173,35 +2145,29 @@ class MangaImage(models.Model):
         """Meta definition for MangaImage."""
         verbose_name = _('Imagen Manga')
         verbose_name_plural = _('Imágenes Mangas')
-        ordering = ['manga', 'size_image', 'name',]
-        unique_together = (('manga', 'size_image', 'name',),)
+        ordering = ['manga', 'size_image',]
+        unique_together = (('manga', 'size_image',),)
 
     def __str__(self):
         """Unicode representation of MangaImage."""
-        return self.name if self.manga else _('Imagen sin Manga')
+        if self.manga and self.manga.title:
+            return _('Imagen de %(name)s') % {'name': self.manga.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for MangaImage."""
-        old = MangaImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = MangaImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for MangaImage."""
-        return reverse('otaku_app:manga_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('otaku_app:manga_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
@@ -2210,20 +2176,16 @@ class MangaImage(models.Model):
         return None
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2235,7 +2197,7 @@ class MangaImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2244,7 +2206,7 @@ class MangaImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para MangaImageExtra
@@ -2252,8 +2214,6 @@ class MangaImageExtra(models.Model):
     """Model definition for MangaImageExtra."""
     manga = models.ForeignKey(Manga, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='mangas_as_extra_images', on_delete=models.CASCADE, verbose_name=_('Manga'))
     image = models.ImageField(blank=False, null=False, upload_to=manga_image_extra_path, verbose_name=_('Imagen Extra Manga'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -2262,34 +2222,27 @@ class MangaImageExtra(models.Model):
         """Meta definition for MangaImageExtra."""
         verbose_name = _('Imagen Extra Manga')
         verbose_name_plural = _('Imágenes Extra Manga')
-        ordering = ['manga', 'name',]
-        unique_together = (('manga', 'name',),)
+        ordering = ['manga',]
 
     def __str__(self):
         """Unicode representation of MangaImageExtra."""
-        return self.name if self.manga else _('Imagen sin Manga')
+        if self.manga and self.manga.title:
+            return _('Imagen de %(name)s') % {'name': self.manga.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for MangaImageExtra."""
-        old = MangaImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = MangaImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('otaku_app:manga_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('otaku_app:manga_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
@@ -2298,20 +2251,16 @@ class MangaImageExtra(models.Model):
         return None
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2323,7 +2272,7 @@ class MangaImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2332,77 +2281,64 @@ class MangaImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
-########################################################################################################    Modelo para OtakuPersonImage
-class OtakuPersonImage(models.Model):
-    """Model definition for OtakuPersonImage."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_as_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
-    size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
-    image = models.ImageField(blank=False, null=False, upload_to=otaku_person_image_path, verbose_name=_('Imagen'))
+########################################################################################################    Modelo para PersonImage
+class PersonImage(models.Model):
+    """Model definition for PersonImage."""
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='persons_as_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
+    size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_images_as_sizes', on_delete=models.PROTECT, verbose_name=_('Tamaño'))
+    image = models.ImageField(blank=False, null=False, upload_to=person_image_path, verbose_name=_('Imagen Persona'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for OtakuPersonImage."""
+        """Meta definition for PersonImage."""
         verbose_name = _('Imagen Persona')
         verbose_name_plural = _('Imágenes Personas')
-        ordering = ['person', 'size_image', 'name',]
-        unique_together = (('person', 'size_image', 'name',),)
+        ordering = ['person', 'size_image',]
 
     def __str__(self):
-        """Unicode representation of OtakuPersonImage."""
-        return self.name if self.person else _('Imagen sin Persona')
+        """Unicode representation of PersonImage."""
+        if self.person and self.person.full_name:
+            return _('Imagen de %(name)s') % {'name': self.person.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
-        """Save method for OtakuPersonImage."""
-        old = OtakuPersonImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        """Save method for PersonImage."""
+        if self.pk:
+            old = PersonImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for OtakuPersonImage."""
-        return reverse('otaku_app:otaku_person_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        """Return absolute url for PersonImage."""
+        return reverse('common_app:person_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.person:
             return self.person.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2414,7 +2350,7 @@ class OtakuPersonImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2423,75 +2359,62 @@ class OtakuPersonImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
-########################################################################################################    Modelo para OtakuPersonImageExtra
-class OtakuPersonImageExtra(models.Model):
-    """Model definition for OtakuPersonImageExtra."""
-    person = models.ForeignKey(OtakuPerson, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_as_extra_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
-    image = models.ImageField(blank=False, null=False, upload_to=otaku_person_image_extra_path, verbose_name=_('Imagen Extra Persona'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
+########################################################################################################    Modelo para PersonImageExtra
+class PersonImageExtra(models.Model):
+    """Model definition for PersonImageExtra."""
+    person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='otaku_persons_as_exta_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
+    image = models.ImageField(blank=False, null=False, upload_to=person_image_extra_path, verbose_name=_('Imagen Extra Persona'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for OtakuPersonImageExtra."""
-        verbose_name = _('Imagen Extra Persona')
-        verbose_name_plural = _('Imágenes Extra Personas')
-        ordering = ['person', 'name',]
-        unique_together = (('person', 'name',),)
+        """Meta definition for PersonImageExtra."""
+        verbose_name = _('Imagen extra persona')
+        verbose_name_plural = _('Imágenes extras de personas')
+        ordering = ['person',]
 
     def __str__(self):
-        """Unicode representation of OtakuPersonImageExtra."""
-        return self.name if self.person else _('Imagen sin Persona')
+        """Unicode representation of PersonImageExtra."""
+        if self.person and self.person.full_name:
+            return _('Imagen de %(name)s') % {'name': self.person.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
-        """Save method for OtakuPersonImageExtra."""
-        old = OtakuPersonImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        """Save method for PersonImageExtra."""
+        if self.pk:
+            old = PersonImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for OtakuPersonImageExtra."""
-        return reverse('otaku_app:otaku_person_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        """Return absolute url for PersonImageExtra."""
+        return reverse('otaku_app:person_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.person:
             return self.person.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2503,7 +2426,7 @@ class OtakuPersonImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2512,7 +2435,7 @@ class OtakuPersonImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para CharacterImage
@@ -2522,8 +2445,6 @@ class CharacterImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='characters_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=character_image_path, verbose_name=_('Imagen'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -2532,57 +2453,46 @@ class CharacterImage(models.Model):
         """Meta definition for CharacterImage."""
         verbose_name = _('Imagen Personaje')
         verbose_name_plural = _('Imágenes Personajes')
-        ordering = ['character', 'size_image', 'name',]
-        unique_together = (('character', 'size_image', 'name',),)
+        ordering = ['character', 'size_image',]
 
     def __str__(self):
         """Unicode representation of CharacterImage."""
-        return self.name if self.Character else _('Imagen sin Personaje')
+        if self.character and self.character.full_name:
+            return _('Imagen de %(name)s') % {'name': self.character.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for CharacterImage."""
-        old = CharacterImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = CharacterImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for CharacterImage."""
-        return reverse('otaku_app:character_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('otaku_app:character_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.character:
             return self.character.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2594,7 +2504,7 @@ class CharacterImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2603,7 +2513,7 @@ class CharacterImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para CharacterImageExtra
@@ -2611,8 +2521,6 @@ class CharacterImageExtra(models.Model):
     """Model definition for CharacterImageExtra."""
     character = models.ForeignKey(Character, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='characters_as_extra_images', on_delete=models.CASCADE, verbose_name=_('Personaje'))
     image = models.ImageField(blank=False, null=False, upload_to=character_image_extra_path, verbose_name=_('Imagen Extra Personaje'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -2621,57 +2529,48 @@ class CharacterImageExtra(models.Model):
         """Meta definition for CharacterImageExtra."""
         verbose_name = _('Imagen Extra Personaje')
         verbose_name_plural = _('Imágenes Extra Personajes')
-        ordering = ['character', 'name',]
-        unique_together = (('character', 'name',),)
+        ordering = ['character',]
+        unique_together = (('character',),)
 
     def __str__(self):
         """Unicode representation of  CharacterImageExtra."""
-        return self.name if self.character else _('Imagen sin Personaje')
+        if self.character and self.character.full_name:
+            return _('Imagen de %(name)s') % {'name': self.character.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for CharacterImageExtra."""
-        old = CharacterImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = CharacterImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
+
 
     def get_absolute_url(self):
         """Return absolute url for CharacterImageExtra."""
-        return reverse('otaku_app:character_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('common_app:character_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.character:
             return self.character.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -2683,7 +2582,7 @@ class CharacterImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -2692,7 +2591,7 @@ class CharacterImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para MALAnime
@@ -2902,9 +2801,9 @@ class DataCharacterPictures(models.Model):
         """Unicode representation of MALCharacterPictures."""
         return f"{self.mal_id} - {self.status}"
 
-########################################################################################################    Modelo para MALOtakuPerson
-class DataOtakuPerson(models.Model):
-    """Model definition for MALOtakuPerson."""
+########################################################################################################    Modelo para MALPerson
+class DataPerson(models.Model):
+    """Model definition for MALPerson."""
     url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
     mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
     status = models.BooleanField(default=False, verbose_name=_('Estado'))
@@ -2914,7 +2813,7 @@ class DataOtakuPerson(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for MALOtakuPerson."""
+        """Meta definition for MALPerson."""
         verbose_name = _('Dato de persona (MAL)')
         verbose_name_plural = _('Datos de personas (MAL)')
         ordering = ['-created_at', 'mal_id',]
@@ -2922,12 +2821,12 @@ class DataOtakuPerson(models.Model):
         db_table = 'fetch_otaku_person'
 
     def __str__(self):
-        """Unicode representation of MALOtakuPerson."""
+        """Unicode representation of MALPerson."""
         return f"{self.mal_id} - {self.status}"
 
-########################################################################################################    Modelo para MALOtakuPersonPictures
-class DataOtakuPersonPictures(models.Model):
-    """Model definition for MALOtakuPersonPictures."""
+########################################################################################################    Modelo para MALPersonPictures
+class DataPersonPictures(models.Model):
+    """Model definition for MALPersonPictures."""
     url = models.URLField(max_length=20000, blank=True, null=True, verbose_name=_('URL'))
     mal_id = models.IntegerField(verbose_name=_('ID MyAnimeList'))
     status = models.BooleanField(default=False, verbose_name=_('Estado'))
@@ -2937,7 +2836,7 @@ class DataOtakuPersonPictures(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for MALOtakuPersonPictures."""
+        """Meta definition for MALPersonPictures."""
         verbose_name = _('Dato de imagen de persona (MAL)')
         verbose_name_plural = _('Datos de imágenes de personas (MAL)')
         ordering = ['-created_at', 'mal_id',]
@@ -2945,7 +2844,7 @@ class DataOtakuPersonPictures(models.Model):
         db_table = 'fetch_otaku_person_pictures'
 
     def __str__(self):
-        """Unicode representation of MALOtakuPersonPictures."""
+        """Unicode representation of MALPersonPictures."""
         return f"{self.mal_id} - {self.status}"
 
 ########################################################################################################    Modelo para MALImageURL
@@ -2969,14 +2868,14 @@ class DataImageURL(models.Model):
         """Unicode representation of MALImageURL."""
         return f"{self.url} - {self.status}"
 
-########################################################################################################    Modelo para Temp_OtakuPersons
-class Temp_OtakuPersons(models.Model):
-    """Model definition for TempOtakuPersons."""
+########################################################################################################    Modelo para Temp_Persons
+class Temp_Persons(models.Model):
+    """Model definition for TempPersons."""
     mal_id_person = models.IntegerField()  # Ya no es único
     lenguaje = models.CharField(max_length=100, blank=True, default="")
 
     class Meta:
-        """Meta definition for TempOtakuPersons."""
+        """Meta definition for TempPersons."""
         verbose_name = _('Temp. Otaku Persona')
         verbose_name_plural = _('Temp. Otaku Personas')
         unique_together = (('mal_id_person', 'lenguaje',),)

@@ -7,16 +7,16 @@ from django.views.generic import (ListView)
 from apps.common.models import (Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,)
 
 # Project-level imports - Mixins and utilities
-from core.utils.constants import (CSSBackground, ImageCards, JSConstants, KeyMap, Templates, URLS,)
+from core.utils.constants import (CSSBackground, JSConstants, KeyMap, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
 # Create your views here.
 ############################################################################################################################################    Country
 class CountryListView(PermissionRequiredMessageMixin, ListView):
     model = Country
-    template_name = Templates.Common.Country.LST
-    context_object_name = 'country'
-    title = _('Lista de Países')
+    template_name = Templates.Common.Country.LIST
+    context_object_name = 'countries'
+    title = _('Lista de países')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
@@ -47,7 +47,7 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Country.ADD),
+                'url': reverse_lazy(URLS.Common.Country.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -58,13 +58,14 @@ class CountryListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Format
 class FormatListView(PermissionRequiredMessageMixin, ListView):
     model = Format
-    template_name = Templates.Common.Format.LST
+    template_name = Templates.Common.Format.LIST
     context_object_name = 'formats'
-    title = _('Lista de Formatos')
+    title = _('Lista de formatos')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # for xxx in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.FORMAT
         context['js_action'] = JSConstants.ACTIONS
@@ -78,7 +79,7 @@ class FormatListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Format.ADD),
+                'url': reverse_lazy(URLS.Common.Format.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -89,13 +90,14 @@ class FormatListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    ImageSize
 class ImageSizeListView(PermissionRequiredMessageMixin, ListView):
     model = ImageSize
-    template_name = Templates.Common.ImageSize.LST
-    context_object_name = 'imagesizes'
-    title = _('Lista de Tamaños de Imágenes')
+    template_name = Templates.Common.ImageSize.LIST
+    context_object_name = 'images_sizes'
+    title = _('Lista de tamaños de imágenes')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # for xxx in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.IMAGE_SIZE
         context['js_action'] = JSConstants.ACTIONS
@@ -109,7 +111,7 @@ class ImageSizeListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.ImageSize.ADD),
+                'url': reverse_lazy(URLS.Common.ImageSize.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -120,9 +122,9 @@ class ImageSizeListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Language
 class LanguageListView(PermissionRequiredMessageMixin, ListView):
     model = Language
-    template_name = Templates.Common.Language.LST
+    template_name = Templates.Common.Language.LIST
     context_object_name = 'languages'
-    title = _('Lista de Idiomas')
+    title = _('Lista de idiomas')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
@@ -153,7 +155,7 @@ class LanguageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Language.ADD),
+                'url': reverse_lazy(URLS.Common.Language.CREATE),
                 'label': 'Añadir',
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -164,13 +166,14 @@ class LanguageListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Person
 class PersonListView(PermissionRequiredMessageMixin, ListView):
     model = Person
-    template_name = Templates.Common.Person.LST
+    template_name = Templates.Common.Person.LIST
     context_object_name = 'persons'
-    title = _('Lista de Personas')
+    title = _('Lista de personas')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # for xxx in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.PERSON
         context['js_action'] = JSConstants.ACTIONS
@@ -184,7 +187,7 @@ class PersonListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Person.ADD),
+                'url': reverse_lazy(URLS.Common.Person.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -195,21 +198,16 @@ class PersonListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    PersonImage
 class PersonImageListView(PermissionRequiredMessageMixin, ListView):
     model = PersonImage
-    template_name = Templates.Common.PersonImage.LST
+    template_name = Templates.Common.PersonImage.LIST
     context_object_name = 'images'
     title = _('Lista de imágenes de personas')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         for img in context[self.context_object_name]:
-            # Si la relación 'anime' es un ForeignKey, accedemos directamente a la propiedad 'anime'
             img.person_name = img.get_object_name()
-            # Obtener el nombre y la extensión de la imagen
-            img.image_name = img.get_object_name()
-
-            # Obtener la URL de la imagen si está disponible
+            img.image_name = img.get_image_name()
             img.image_url_local = img.get_img_url()
             img.image_url_external = img.image_url if img.image_url else None
 
@@ -226,7 +224,7 @@ class PersonImageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.PersonImage.ADD),
+                'url': reverse_lazy(URLS.Common.PersonImage.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -237,21 +235,16 @@ class PersonImageListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    PersonImageExtra
 class PersonImageExtraListView(PermissionRequiredMessageMixin, ListView):
     model = PersonImageExtra
-    template_name = Templates.Common.PersonImageExtra.LST
+    template_name = Templates.Common.PersonImageExtra.LIST
     context_object_name = 'images'
-    title = _('Lista de imagenes adicionales de personas')
+    title = _('Lista de imágenes adicionales de personas')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         for img in context[self.context_object_name]:
-            # Si la relación 'anime' es un ForeignKey, accedemos directamente a la propiedad 'anime'
             img.person_name = img.get_object_name()
-            # Obtener el nombre y la extensión de la imagen
-            img.image_name = img.get_object_name()
-
-            # Obtener la URL de la imagen si está disponible
+            img.image_name = img.get_image_name()
             img.image_url_local = img.get_img_url()
 
         context['title'] = self.title
@@ -267,7 +260,7 @@ class PersonImageExtraListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.PersonImageExtra.ADD),
+                'url': reverse_lazy(URLS.Common.PersonImageExtra.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -278,13 +271,14 @@ class PersonImageExtraListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    PersonNickname
 class PersonNicknameListView(PermissionRequiredMessageMixin, ListView):
     model = PersonNickname
-    template_name = Templates.Common.PersonNickname.LST
+    template_name = Templates.Common.PersonNickname.LIST
     context_object_name = 'nicknames'
-    title = _('Lista de Apodos de personas')
+    title = _('Lista de apodos de personas')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # for xxx in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.PERSON_NICKNAME
         context['js_action'] = JSConstants.ACTIONS
@@ -298,7 +292,7 @@ class PersonNicknameListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.PersonNickname.ADD),
+                'url': reverse_lazy(URLS.Common.PersonNickname.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -309,13 +303,14 @@ class PersonNicknameListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Quality
 class QualityListView(PermissionRequiredMessageMixin, ListView):
     model = Quality
-    template_name = Templates.Common.Quality.LST
-    context_object_name = 'qualitys'
-    title = _('Lista de Calidades')
+    template_name = Templates.Common.Quality.LIST
+    context_object_name = 'qualities'
+    title = _('Lista de calidades')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # for ccc in context[self.context_object_name]:
         context['title'] = self.title
         context['class'] = CSSBackground.Common.QUALITY
         context['js_action'] = JSConstants.ACTIONS
@@ -329,7 +324,7 @@ class QualityListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Quality.ADD),
+                'url': reverse_lazy(URLS.Common.Quality.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -340,30 +335,26 @@ class QualityListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Website
 class WebsiteListView(PermissionRequiredMessageMixin, ListView):
     model = Website
-    template_name = Templates.Common.Website.LST
+    template_name = Templates.Common.Website.LIST
     context_object_name = 'websites'
-    title = _('Lista de Sitios Web\'s')
+    title = _('Lista de sitios webs')
     permission_redirect_url = URLS.Home.COMMON
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         for website in context[self.context_object_name]:
-            # Combina el nombre y el acrónimo
             if website.acronym:
                 website.display_name = f"{website.name} ({website.acronym})"
-                website.display_link = website.acronym  # Solo el acrónimo
+                website.display_link = website.acronym
             else:
                 website.display_name = website.name
-                website.display_link = website.name  # Solo el nombre
-
+                website.display_link = website.name
 
         context['title'] = self.title
         context['class'] = CSSBackground.Common.WEBSITE
         context['js_action'] = JSConstants.ACTIONS
         context['js_script'] = JSConstants.Common.WEBSITE
         context['key_map'] = KeyMap.Common.WEBSITE
-        # print('🔑 Key Map:', context['key_map'])  # Debug por consola
-
         context['buttons'] = [
             {
                 'url': reverse_lazy(URLS.Home.COMMON),
@@ -372,11 +363,10 @@ class WebsiteListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Common.Website.ADD),
+                'url': reverse_lazy(URLS.Common.Website.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
             },
         ]
         return context
-

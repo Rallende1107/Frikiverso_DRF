@@ -50,7 +50,7 @@ class GameByDeveloperListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Developer.LST),
+                'url': reverse_lazy(URLS.Renpy.Developer.LIST),
                 'label': _('Desarrolladores'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -89,7 +89,7 @@ class GameByStatusListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Status.LST),
+                'url': reverse_lazy(URLS.Renpy.Status.LIST),
                 'label': _('Estados'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -128,7 +128,7 @@ class GameByPlatformListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Platform.LST),
+                'url': reverse_lazy(URLS.Renpy.Platform.LIST),
                 'label': _('Plataformas'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -168,7 +168,7 @@ class GameByEngineListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.GameEngine.LST),
+                'url': reverse_lazy(URLS.Renpy.GameEngine.LIST),
                 'label': _('Motores de Desarrollo'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -208,7 +208,7 @@ class GameByGenreListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Genre.LST),
+                'url': reverse_lazy(URLS.Renpy.Genre.LIST),
                 'label': _('Géneros'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -248,7 +248,7 @@ class GameByTranslatorListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Translator.LST),
+                'url': reverse_lazy(URLS.Renpy.Translator.LIST),
                 'label': _('Traductores'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',
@@ -287,7 +287,7 @@ class GameByPublisherListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Publisher.LST),
+                'url': reverse_lazy(URLS.Renpy.Publisher.LIST),
                 'label': _('Editores'),
                 'class': 'btn btn-success btn-lg',
                 'icon': 'bi bi-list-ul',

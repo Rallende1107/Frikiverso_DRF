@@ -487,8 +487,6 @@ class MovieImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='movies_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=movie_image_path, verbose_name=_('Imagen Película'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -497,57 +495,47 @@ class MovieImage(models.Model):
         """Meta definition for MovieImage."""
         verbose_name = _('Imagen Película')
         verbose_name_plural = _('Imágenes Películas')
-        ordering = ['movie', 'size_image', 'name',]
-        unique_together = (('movie', 'size_image', 'name',),)
+        ordering = ['movie', 'size_image',]
+        unique_together = (('movie', 'size_image',),)
 
     def __str__(self):
         """Unicode representation of MovieImage."""
-        return self.name if self.movie else _('Imagen sin Película')
+        if self.movie and self.movie.title:
+            return _('Imagen de %(name)s') % {'name': self.movie.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for MovieImage."""
-        old = MovieImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = MovieImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for MovieImage."""
-        return reverse('movie_app:movie_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('movie_app:movie_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.movie:
             return self.movie.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -559,7 +547,7 @@ class MovieImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -568,7 +556,7 @@ class MovieImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para MovieImageExtra
@@ -576,8 +564,6 @@ class MovieImageExtra(models.Model):
     """Model definition for MovieImageExtra."""
     movie = models.ForeignKey(Movie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='movies_as_exta_images', on_delete=models.CASCADE, verbose_name=_('Película'))
     image = models.ImageField(blank=False, null=False, upload_to=movie_image_extra_path, verbose_name=_('Imagen Extra Película'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -586,58 +572,46 @@ class MovieImageExtra(models.Model):
         """Meta definition for MovieImageExtra."""
         verbose_name = _('Imagen Extra Película')
         verbose_name_plural = _('Imágenes Extra Películas')
-        ordering = ['movie', 'name',]
-        unique_together = (('movie', 'name',),)
-
+        ordering = ['movie',]
 
     def __str__(self):
         """Unicode representation of MovieImageExtra."""
-        return self.name if self.movie else _('Imagen sin Película')
+        if self.movie and self.movie.title:
+            return _('Imagen de %(name)s') % {'name': self.movie.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for MovieImageExtra."""
-        old = MovieImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = MovieImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for MovieImageExtra."""
-        return reverse('movie_app:movie_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('movie_app:movie_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.movie:
             return self.movie.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -649,7 +623,7 @@ class MovieImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -658,6 +632,6 @@ class MovieImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 

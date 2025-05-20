@@ -27,8 +27,8 @@ def notify_password_reset(user, nueva_contrasena):
     enviar_correo_personalizado(
         user=user,
         context=context,
-        subject_template=Templates.emailSubject.RESET_PASSWORD,
-        body_template=Templates.emailBoddy.RESET_PASSWORD
+        subject_template=Templates.EmailSubject.RESET_PASSWORD,
+        body_template=Templates.EmailBoddy.RESET_PASSWORD
     )
 
 def notify_blocked_user(user):
@@ -36,8 +36,8 @@ def notify_blocked_user(user):
     enviar_correo_personalizado(
         user=user,
         context=context,
-        subject_template=Templates.emailSubject.USER_BLOCKED,
-        body_template=Templates.emailBoddy.USER_BLOCKED
+        subject_template=Templates.EmailSubject.USER_BLOCKED,
+        body_template=Templates.EmailBoddy.USER_BLOCKED
     )
 
 
@@ -46,8 +46,8 @@ def notify_activated_user(user):
     enviar_correo_personalizado(
         user=user,
         context=context,
-        subject_template=Templates.emailSubject.USER_ACTIVATED,
-        body_template=Templates.emailBoddy.USER_ACTIVATED
+        subject_template=Templates.EmailSubject.USER_ACTIVATED,
+        body_template=Templates.EmailBoddy.USER_ACTIVATED
     )
 
 
@@ -56,8 +56,8 @@ def notify_deleted_user(user):
     enviar_correo_personalizado(
         user=user,
         context=context,
-        subject_template=Templates.emailSubject.DELETED_USER,
-        body_template=Templates.emailBoddy.DELETED_USER,
+        subject_template=Templates.EmailSubject.DELETED_USER,
+        body_template=Templates.EmailBoddy.DELETED_USER,
     )
 
 
@@ -70,8 +70,8 @@ def notify_password_changed(user):
     enviar_correo_personalizado(
         user=user,
         context=context,
-        subject_template=Templates.emailSubject.PASSWORD_CHANGED,
-        body_template=Templates.emailBoddy.PASSWORD_CHANGED,
+        subject_template=Templates.EmailSubject.PASSWORD_CHANGED,
+        body_template=Templates.EmailBoddy.PASSWORD_CHANGED,
     )
 
 
@@ -84,8 +84,8 @@ def send_contact_email(nombre, fono, correo, asunto, mensaje):
         'mensaje': mensaje,
     }
 
-    subject = render_to_string(Templates.emailSubject.CONTACT, context).strip()
-    body = render_to_string(Templates.emailBoddy.CONTACT, context)
+    subject = render_to_string(Templates.EmailSubject.CONTACT, context).strip()
+    body = render_to_string(Templates.EmailBoddy.CONTACT, context)
 
 
     send_mail(

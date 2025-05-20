@@ -19,7 +19,7 @@ class CustomLoginView(LoginView):
         context = super().get_context_data(**kwargs)
         context['class'] = CSSBackground.Users.USER
         context['title'] =self.title
-        context['register_url'] = reverse(URLS.Users.ADD)
+        context['register_url'] = reverse(URLS.Users.CREATE)
         context['recover_url'] = reverse(URLS.PasswordRecover.FORGET_PASSWORD)
         return context
 
@@ -67,7 +67,7 @@ class ChangePasswordView(PermissionRequiredMessageMixin, PasswordChangeView):
 
     def get_cancel_url(self):
         user = self.request.user
-        return reverse_lazy(URLS.Users.DTL, kwargs={'pk': user.pk})
+        return reverse_lazy(URLS.Users.DETAIL, kwargs={'pk': user.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

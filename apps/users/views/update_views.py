@@ -18,7 +18,7 @@ from core.utils.utils import delete_previous_media
 ############################################################################################################################################    User Update
 class UserUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = CustomUser
-    template_name = Templates.Users.UPT
+    template_name = Templates.Users.UPDATE
     form_class = UserUpdateForm
     title = _('Editar Perfil')
     permission_redirect_url = reverse_lazy(URLS.Main.INDEX)
@@ -31,7 +31,7 @@ class UserUpdateView(PermissionRequiredMessageMixin, UpdateView):
     def get_success_url(self):
         # Obtener el pk del usuario actualizado
         pk = self.object.pk
-        return reverse_lazy(URLS.Users.DTL, kwargs={'pk': pk})
+        return reverse_lazy(URLS.Users.DETAIL, kwargs={'pk': pk})
 
     def get_username(self):
         return self.object.username

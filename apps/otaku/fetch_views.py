@@ -29,7 +29,7 @@ from core.utils.constants import Templates, URLS, CSSBackground, JSConstants, Im
 class AnimesLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'otaku/anime/anime_load.html'
     title = 'Cargar Animes desde MAL'
-    cancel_url = reverse_lazy(URLS.Otaku.Anime.LST)
+    cancel_url = reverse_lazy(URLS.Otaku.Anime.LIST)
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -83,7 +83,7 @@ class AnimesLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             print("Redis no disponible, ejecutando la función directamente.")
             procesar_lotes(lotes, ANIME)
 
-        return redirect(URLS.Otaku.Anime.LST)
+        return redirect(URLS.Otaku.Anime.LIST)
 
 
 
@@ -91,7 +91,7 @@ class AnimesLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
 class MangaLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'otaku/manga/manga_load.html'
     title = 'Cargar Mangas desde MAL'
-    cancel_url = reverse_lazy(URLS.Otaku.Manga.LST)
+    cancel_url = reverse_lazy(URLS.Otaku.Manga.LIST)
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -145,13 +145,13 @@ class MangaLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             print("Redis no disponible, ejecutando la función directamente.")
             procesar_lotes(lotes, MANGA)
 
-        return redirect(URLS.Otaku.Manga.LST)
+        return redirect(URLS.Otaku.Manga.LIST)
 
 
 class CharacterLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'otaku/anime/anime_load.html'
     title = 'Cargar personajes desde MAL'
-    cancel_url = reverse_lazy(URLS.Otaku.Character.LST)
+    cancel_url = reverse_lazy(URLS.Otaku.Character.LIST)
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -205,13 +205,13 @@ class CharacterLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             print("Redis no disponible, ejecutando la función directamente.")
             procesar_lotes(lotes, PERSONAJE)
 
-        return redirect(URLS.Otaku.Character.LST)
+        return redirect(URLS.Otaku.Character.LIST)
 
 
 class PersonLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'otaku/anime/anime_load.html'
     title = 'Cargar personas desde MAL'
-    cancel_url = reverse_lazy(URLS.Otaku.Person.LST)
+    cancel_url = reverse_lazy(URLS.Otaku.Person.LIST)
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -266,6 +266,6 @@ class PersonLoadView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             print("Redis no disponible, ejecutando la función directamente.")
             procesar_lotes(lotes, PERSONA)
 
-        return redirect(URLS.Otaku.Person.LST)
+        return redirect(URLS.Otaku.Person.LIST)
 
 

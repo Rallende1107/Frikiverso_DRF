@@ -37,7 +37,7 @@ class GenreAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'parent', 'description')
         }),
         (_('Estado'), {
@@ -53,21 +53,21 @@ class GenreAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar géneros seleccionados')
+    @admin.action(description=_('Activar géneros seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar géneros seleccionados')
+    @admin.action(description=_('Desactivar géneros seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para GameEngine
 @admin.register(GameEngine)
@@ -83,7 +83,7 @@ class GameEngineAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'description')
         }),
         (_('Estado'), {
@@ -99,21 +99,21 @@ class GameEngineAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar motores de desarrollo seleccionados')
+    @admin.action(description=_('Activar motores de desarrollo seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} motor(es) de desarrollo activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d motor(es) de desarrollo.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún motor de desarrollo para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún motor de desarrollo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar motores de desarrollo seleccionados')
+    @admin.action(description=_('Desactivar motores de desarrollo seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} motor(es) de desarrollo desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d motor(es) de desarrollo.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún motor de desarrollo para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún motor de desarrollo para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Censorship
 @admin.register(Censorship)
@@ -129,7 +129,7 @@ class CensorshipAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'description')
         }),
         (_('Estado'), {
@@ -145,21 +145,21 @@ class CensorshipAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar censuras seleccionadas')
+    @admin.action(description=_('Activar censuras seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} censura(s) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d censura(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna censura para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún censura para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar censuras seleccionadas')
+    @admin.action(description=_('Desactivar censuras seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} censura(s) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d censura(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna censura para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún censura para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Prefix
 @admin.register(Prefix)
@@ -175,7 +175,7 @@ class PrefixAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'description')
         }),
         (_('Estado'), {
@@ -191,21 +191,21 @@ class PrefixAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar prefijos seleccionados')
+    @admin.action(description=_('Activar prefijos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} prefijo(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d prefijo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún prefijo para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún prefijo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar prefijos seleccionados')
+    @admin.action(description=_('Desactivar prefijos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} prefijo(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d prefijo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún prefijo para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún prefijo para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Status
 @admin.register(Status)
@@ -221,7 +221,7 @@ class StatusAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'description')
         }),
         (_('Estado'), {
@@ -237,21 +237,21 @@ class StatusAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar estados seleccionados')
+    @admin.action(description=_('Activar estados seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} estado(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún estado para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún estado para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar estados seleccionados')
+    @admin.action(description=_('Desactivar estados seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} estado(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún estado para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún estado para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Platform
 @admin.register(Platform)
@@ -267,7 +267,7 @@ class PlatformAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'description')
         }),
         (_('Estado'), {
@@ -283,21 +283,21 @@ class PlatformAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar plataformas seleccionadas')
+    @admin.action(description=_('Activar plataformas seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} plataforma(s) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d plataforma(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna plataforma para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún plataforma para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar plataformas seleccionadas')
+    @admin.action(description=_('Desactivar plataformas seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} plataforma(s) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d plataforma(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna plataforma para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún plataforma para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Developer
 @admin.register(Developer)
@@ -315,7 +315,7 @@ class DeveloperAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name',)
         }),
         (_('Estado'), {
@@ -331,21 +331,21 @@ class DeveloperAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar desarrolladores seleccionados')
+    @admin.action(description=_('Activar desarrolladores seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} desarrollador(es) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d desarrollador(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún desarrollador para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún desarrollador para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar desarrolladores seleccionados')
+    @admin.action(description=_('Desactivar desarrolladores seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} desarrollador(es) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d desarrollador(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún desarrollador para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún desarrollador para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Translator
 @admin.register(Translator)
@@ -363,7 +363,7 @@ class TranslatorAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name',)
         }),
         (_('Estado'), {
@@ -379,21 +379,21 @@ class TranslatorAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar traductores seleccionados')
+    @admin.action(description=_('Activar traductores seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} traductor(es) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d traductor(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún traductor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún traductor para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar traductores seleccionados')
+    @admin.action(description=_('Desactivar traductores seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} traductor(es) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d traductor(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún traductor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún traductor para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Publisher
 @admin.register(Publisher)
@@ -411,7 +411,7 @@ class PublisherAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('name',)
         }),
         (_('Estado'), {
@@ -427,21 +427,21 @@ class PublisherAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar editores seleccionados')
+    @admin.action(description=_('Activar editores seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} editor(es) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d editor(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún editor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún editor para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar editores seleccionados')
+    @admin.action(description=_('Desactivar editores seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} editor(es) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d editor(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún editor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún editor para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Game
 @admin.register(Game)
@@ -459,7 +459,7 @@ class GameAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('title', 'version', 'synopsis', 'background', 'release_date')
         }),
         (_('Relaciones'), {
@@ -484,21 +484,21 @@ class GameAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar juegos seleccionados')
+    @admin.action(description=_('Activar juegos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} juego(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d juego(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún juego para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún juego para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar juegos seleccionados')
+    @admin.action(description=_('Desactivar juegos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} juego(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d juego(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún juego para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún juego para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para DeveloperLink
 @admin.register(DeveloperLink)
@@ -514,7 +514,7 @@ class DeveloperLinkAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('developer', 'name', 'url')
         }),
         (_('Estado'), {
@@ -530,21 +530,21 @@ class DeveloperLinkAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar enlaces de desarrollador seleccionados')
+    @admin.action(description=_('Activar enlaces de desarrollador seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de desarrollador activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d enlace(s) de desarrollador.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de desarrollador para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de desarrollador para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar enlaces de desarrollador seleccionados')
+    @admin.action(description=_('Desactivar enlaces de desarrollador seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de desarrollador desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d enlace(s) de desarrollador.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de desarrollador para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de desarrollador para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TranslatorLink
 @admin.register(TranslatorLink)
@@ -560,7 +560,7 @@ class TranslatorLinkAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('translator', 'name', 'url')
         }),
         (_('Estado'), {
@@ -576,21 +576,21 @@ class TranslatorLinkAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar enlaces de traductor seleccionados')
+    @admin.action(description=_('Activar enlaces de traductor seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de traductor activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d enlace(s) de traductor.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de traductor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de traductor para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar enlaces de traductor seleccionados')
+    @admin.action(description=_('Desactivar enlaces de traductor seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de traductor desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d enlace(s) de traductor.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de traductor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de traductor para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para PublisherLink
 @admin.register(PublisherLink)
@@ -606,7 +606,7 @@ class PublisherLinkAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('publisher', 'name', 'url')
         }),
         (_('Estado'), {
@@ -622,45 +622,41 @@ class PublisherLinkAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar enlaces de editor seleccionados')
+    @admin.action(description=_('Activar enlaces de editor seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de editor activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d enlace(s) de editor.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de editor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de editor para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar enlaces de editor seleccionados')
+    @admin.action(description=_('Desactivar enlaces de editor seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} enlace(s) de editor desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d enlace(s) de editor.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún enlace de editor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún enlace de editor para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para GameImage
 @admin.register(GameImage)
 class GameImageAdmin(ImportExportModelAdmin):
     resource_class = GameImageResource
 
-    list_display = ('game', 'size_image', 'name', 'is_active', 'created_at')
+    list_display = ('game', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'game', 'size_image')
-    search_fields = ('game__name', 'name', 'slug')
-    ordering = ('game', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    search_fields = ('game__title',)
+    ordering = ('game', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('game', 'size_image', 'image', 'image_url', 'name')
+        (_('Información básica'), {
+            'fields': ('game', 'size_image', 'image', 'image_url',)
         }),
         (_('Estado'), {
             'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug',)
         }),
         (_('Fechas'), {
             'classes': ('collapse',),
@@ -668,45 +664,41 @@ class GameImageAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes de juegos seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de juego activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de juego para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de juegos seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de juego desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de juego para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para GameImageExtra
 @admin.register(GameImageExtra)
 class GameImageExtraAdmin(ImportExportModelAdmin):
     resource_class = GameImageExtraResource
 
-    list_display = ('game', 'name', 'is_active', 'created_at')
+    list_display = ('game', 'is_active', 'created_at')
     list_filter = ('is_active', 'game')
-    search_fields = ('game__name', 'name', 'slug')
-    ordering = ('game', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    search_fields = ('game__title',)
+    ordering = ('game',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
-            'fields': ('game', 'image', 'name')
+        (_('Información básica'), {
+            'fields': ('game', 'image',)
         }),
         (_('Estado'), {
             'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug',)
         }),
         (_('Fechas'), {
             'classes': ('collapse',),
@@ -714,45 +706,41 @@ class GameImageExtraAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de juegos seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de juego activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de juego para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de juegos seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de juego desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de juego para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para DeveloperImage
 @admin.register(DeveloperImage)
 class DeveloperImageAdmin(ImportExportModelAdmin):
     resource_class = DeveloperImageResource
 
-    list_display = ('developer', 'size_image', 'name', 'is_active', 'created_at')
+    list_display = ('developer', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'developer', 'size_image')
-    search_fields = ('developer__name', 'name', 'slug')
-    ordering = ('developer', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    search_fields = ('developer__name',)
+    ordering = ('developer', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('developer', 'size_image', 'image', 'image_url', 'name')
         }),
         (_('Estado'), {
             'fields': ('is_active',)
-        }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('slug',)
         }),
         (_('Fechas'), {
             'classes': ('collapse',),
@@ -760,21 +748,21 @@ class DeveloperImageAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes de desarrolladores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de desarrollador activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de desarrollador para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de desarrolladores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de desarrollador desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de desarrollador para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para DeveloperImageExtra
 @admin.register(DeveloperImageExtra)
@@ -790,7 +778,7 @@ class DeveloperImageExtraAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('developer', 'image', 'name')
         }),
         (_('Estado'), {
@@ -806,21 +794,21 @@ class DeveloperImageExtraAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de desarrolladores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de desarrollador activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de desarrollador para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de desarrolladores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de desarrollador desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de desarrollador para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TranslatorImage
 @admin.register(TranslatorImage)
@@ -836,7 +824,7 @@ class TranslatorImageAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('translator', 'size_image', 'image', 'image_url', 'name')
         }),
         (_('Estado'), {
@@ -852,21 +840,21 @@ class TranslatorImageAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes de traductores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de traductor activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de traductor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de traductores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de traductor desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de traductor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TranslatorImageExtra
 @admin.register(TranslatorImageExtra)
@@ -882,7 +870,7 @@ class TranslatorImageExtraAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('translator', 'image', 'name')
         }),
         (_('Estado'), {
@@ -898,21 +886,21 @@ class TranslatorImageExtraAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de traductores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de traductor activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de traductor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de traductores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de traductor desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de traductor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para PublisherImage
 @admin.register(PublisherImage)
@@ -928,7 +916,7 @@ class PublisherImageAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('publisher', 'size_image', 'image', 'image_url', 'name')
         }),
         (_('Estado'), {
@@ -944,21 +932,21 @@ class PublisherImageAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes de editores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de editor activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de editor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de editores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de editor desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de editor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para PublisherImageExtra
 @admin.register(PublisherImageExtra)
@@ -974,7 +962,7 @@ class PublisherImageExtraAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (_('Información Básica'), {
+        (_('Información básica'), {
             'fields': ('publisher', 'image', 'name')
         }),
         (_('Estado'), {
@@ -990,21 +978,21 @@ class PublisherImageExtraAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de editores seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de editor activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de editor para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de editores seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de editor desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es) extra.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de editor para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen extra para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TitleGame
 @admin.register(TitleGame)
@@ -1036,7 +1024,7 @@ class TitleGameAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar títulos seleccionados')
+    @admin.action(description=_('Activar títulos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
@@ -1044,7 +1032,7 @@ class TitleGameAdmin(ImportExportModelAdmin):
         else:
             self.message_user(request, "No se seleccionó ningún título para activar.", messages.WARNING)
 
-    @admin.action(description='Desactivar títulos seleccionados')
+    @admin.action(description=_('Desactivar títulos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
@@ -1075,7 +1063,7 @@ class F95GameFetchStatusAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar estados de obtención seleccionados')
+    @admin.action(description=_('Activar estados de obtención seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(status=True)
         if actualizados:
@@ -1083,7 +1071,7 @@ class F95GameFetchStatusAdmin(ImportExportModelAdmin):
         else:
             self.message_user(request, "No se seleccionó ningún estado para activar.", messages.WARNING)
 
-    @admin.action(description='Desactivar estados de obtención seleccionados')
+    @admin.action(description=_('Desactivar estados de obtención seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(status=False)
         if actualizados:

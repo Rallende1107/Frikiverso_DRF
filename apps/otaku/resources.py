@@ -1,370 +1,269 @@
-from import_export import resources
+from core.resources import BaseFullResource
 from .models import (
     Role, Year, Genre, Theme, Demographic, Type, Rating, Season, Status, Source, RelationType, SeasonFull,
     Producer, Licensor, Studio, Serialization, Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
-    Character, CharacterNickname, OtakuPerson, OtakuPersonNickname,
+    Character, CharacterNickname, Person, PersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
-    AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, OtakuPersonImage, OtakuPersonImageExtra, CharacterImage, CharacterImageExtra,
+    AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, PersonImage, PersonImageExtra, CharacterImage, CharacterImageExtra,
     DataAnime, DataAnimeCharacters, DataAnimePictures, DataAnimeStaff, DataManga, DataMangaCharacters, DataMangaPictures, DataCharacter,
-    DataCharacterPictures, DataOtakuPerson, DataOtakuPersonPictures, DataImageURL, Temp_OtakuPersons, Temp_Characters
+    DataCharacterPictures, DataPerson, DataPersonPictures, DataImageURL, Temp_Persons, Temp_Characters
     )
 # Register your models here.
 ########################################################################################################    Resource para Role
-class RoleResource(resources.ModelResource):
-    class Meta:
+class RoleResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Role
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'role_staff', 'role_chara', 'role_manga', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'role_staff', 'role_chara', 'role_manga', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Year
-class YearResource(resources.ModelResource):
-    class Meta:
+class YearResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Year
-        fields = ('id', 'year', 'slug', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'year', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Genre
-class GenreResource(resources.ModelResource):
-    class Meta:
+class GenreResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Genre
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'explicit', 'parent', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'explicit', 'parent', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Theme
-class ThemeResource(resources.ModelResource):
-    class Meta:
+class ThemeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Theme
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'explicit', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'explicit', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Demographic
-class DemographicResource(resources.ModelResource):
-    class Meta:
+class DemographicResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Demographic
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'explicit', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'explicit', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Type
-class TypeResource(resources.ModelResource):
-    class Meta:
+class TypeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Type
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Rating
-class RatingResource(resources.ModelResource):
-    class Meta:
+class RatingResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Rating
-        fields = ('id', 'acronym', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'acronym', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Season
-class SeasonResource(resources.ModelResource):
-    class Meta:
+class SeasonResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Season
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'initial', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Status
-class StatusResource(resources.ModelResource):
-    class Meta:
+class StatusResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Status
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Source
-class SourceResource(resources.ModelResource):
-    class Meta:
+class SourceResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Source
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para RelationType
-class RelationTypeResource(resources.ModelResource):
-    class Meta:
+class RelationTypeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = RelationType
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para SeasonFull
-class SeasonFullResource(resources.ModelResource):
-    class Meta:
+class SeasonFullResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = SeasonFull
-        fields = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'name_esp', 'slug', 'description', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Producer
-class ProducerResource(resources.ModelResource):
-    class Meta:
+class ProducerResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Producer
-        fields = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Licensor
-class LicensorResource(resources.ModelResource):
-    class Meta:
+class LicensorResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Licensor
-        fields = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Studio
-class StudioResource(resources.ModelResource):
-    class Meta:
+class StudioResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Studio
-        fields = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Serialization
-class SerializationResource(resources.ModelResource):
-    class Meta:
+class SerializationResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Serialization
-        fields = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'name', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Anime
-class AnimeResource(resources.ModelResource):
-    class Meta:
+class AnimeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Anime
-        fields = ('id', 'title', 'title_eng', 'title_jap', 'episodes', 'from_date', 'to_date', 'synopsis', 'slug', 'initial',
-                  'anime_type', 'status', 'season', 'season_full', 'year', 'source', 'rating', 'url', 'mal_id', 'p_mal_id',
-                  'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'title', 'title_eng', 'title_jap', 'episodes', 'from_date', 'to_date', 'synopsis', 'slug', 'initial',
-                        'anime_type', 'status', 'season', 'season_full', 'year', 'source', 'rating', 'url', 'mal_id', 'p_mal_id',
-                        'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Manga
-class MangaResource(resources.ModelResource):
-    class Meta:
+class MangaResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Manga
-        fields = ('id', 'title', 'title_eng', 'title_jap', 'chapters', 'volumes', 'synopsis', 'slug', 'initial',
-                  'manga_type', 'year', 'status', 'season', 'season_full', 'source', 'rating', 'url', 'mal_id', 'p_mal_id',
-                  'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'title', 'title_eng', 'title_jap', 'chapters', 'volumes', 'synopsis', 'slug', 'initial',
-                        'manga_type', 'year', 'status', 'season', 'season_full', 'source', 'rating', 'url', 'mal_id', 'p_mal_id',
-                        'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para TitleAnime
-class TitleAnimeResource(resources.ModelResource):
-    class Meta:
+class TitleAnimeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = TitleAnime
-        fields = ('id', 'anime', 'title_lang', 'title', 'slug', 'initial', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'anime', 'title_lang', 'title', 'slug', 'initial', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para TitleManga
-class TitleMangaResource(resources.ModelResource):
-    class Meta:
+class TitleMangaResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = TitleManga
-        fields = ('id', 'manga', 'title_lang', 'title', 'slug', 'initial', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'manga', 'title_lang', 'title', 'slug', 'initial', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para Character
-class CharacterResource(resources.ModelResource):
-    class Meta:
+class CharacterResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Character
-        fields = ('id', 'full_name', 'name_kanji', 'biography', 'slug', 'initial', 'url', 'mal_id', 'p_mal_id', 'is_active', 'created_at', 'updated_at')
-
 ########################################################################################################    Resource para CharacterNickname
-class CharacterNicknameResource(resources.ModelResource):
-    class Meta:
+class CharacterNicknameResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = CharacterNickname
-        fields = ('id', 'character', 'nickname', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-
-########################################################################################################    Resource para OtakuPerson
-class OtakuPersonResource(resources.ModelResource):
-    class Meta:
-        model = OtakuPerson
-        fields = ('id', 'full_name', 'name_kanji', 'biography', 'slug', 'initial', 'birth_date', 'voice_actor', 'author', 'staff', 'url', 'mal_id', 'p_mal_id', 'is_active', 'created_at', 'updated_at')
-
-########################################################################################################    Resource para OtakuPersonNickname
-class OtakuPersonNicknameResource(resources.ModelResource):
-    class Meta:
-        model = OtakuPersonNickname
-        fields = ('id', 'person', 'nickname', 'initial', 'slug', 'is_active', 'created_at', 'updated_at')
-
+########################################################################################################    Resource para Person
+class PersonResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = Person
+########################################################################################################    Resource para PersonNickname
+class PersonNicknameResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = PersonNickname
 ########################################################################################################    Resource para AnimeSong
-class AnimeSongResource(resources.ModelResource):
-    class Meta:
+class AnimeSongResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AnimeSong
-        fields = ('id', 'anime', 'song_type', 'song_id', 'title', 'artist', 'title_kanji', 'title_eng', 'slug', 'song_title', 'cls_title', 'cls_song_title', 'cls_title_kanji', 'cls_title_eng', 'revisado', 'is_active', 'created_at', 'updated_at')
-
 ########################################################################################################    Resource para AnimeCharacter
-class AnimeCharacterResource(resources.ModelResource):
-    class Meta:
+class AnimeCharacterResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AnimeCharacter
-        fields = ('id', 'character', 'anime', 'role', 'character_mal_id', 'anime_mal_id', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'character', 'anime', 'role', 'character_mal_id', 'anime_mal_id', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para MangaCharacter
-class MangaCharacterResource(resources.ModelResource):
-    class Meta:
+class MangaCharacterResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = MangaCharacter
-        fields = ('id', 'character', 'manga', 'role', 'character_mal_id', 'manga_mal_id', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'character', 'manga', 'role', 'character_mal_id', 'manga_mal_id', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para VoiceCharacter
-class VoiceCharacterResource(resources.ModelResource):
-    class Meta:
+class VoiceCharacterResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = VoiceCharacter
-        fields = ('id', 'person', 'anime', 'character', 'language', 'person_mal_id', 'anime_mal_id', 'character_mal_id', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'person', 'anime', 'character', 'language', 'person_mal_id', 'anime_mal_id', 'character_mal_id', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para AnimeStaff
-class AnimeStaffResource(resources.ModelResource):
-    class Meta:
+class AnimeStaffResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AnimeStaff
-        fields = ('id', 'person', 'anime', 'character', 'position', 'person_mal_id', 'anime_mal_id', 'character_mal_id', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'person', 'anime', 'character', 'position', 'person_mal_id', 'anime_mal_id', 'character_mal_id', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para AuthorManga
-class AuthorMangaResource(resources.ModelResource):
-    class Meta:
+class AuthorMangaResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AuthorManga
-        fields = ('id', 'person', 'manga', 'position', 'person_mal_id', 'manga_mal_id', 'is_active', 'created_at', 'updated_at')
-        export_order = ('id', 'person', 'manga', 'position', 'person_mal_id', 'manga_mal_id', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para MediaRelation
-class MediaRelationResource(resources.ModelResource):
-    class Meta:
+class MediaRelationResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = MediaRelation
-        fields = (
-            'id', 'relation_type', 'from_entry_mal_id', 'from_entry_mal_id_p', 'from_entry_type',
-            'to_entry_mal_id', 'to_entry_mal_id_p', 'to_entry_type',
-            'is_active', 'created_at', 'updated_at'
-        )
-        export_order = (
-            'id', 'relation_type', 'from_entry_mal_id', 'from_entry_mal_id_p', 'from_entry_type',
-            'to_entry_mal_id', 'to_entry_mal_id_p', 'to_entry_type',
-            'is_active', 'created_at', 'updated_at'
-        )
 
 ########################################################################################################    Resource para AnimeImage
-class AnimeImageResource(resources.ModelResource):
-    class Meta:
+class AnimeImageResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AnimeImage
-        fields = ('id', 'anime', 'size_image', 'image', 'image_url', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para AnimeImageExtra
-class AnimeImageExtraResource(resources.ModelResource):
-    class Meta:
+class AnimeImageExtraResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = AnimeImageExtra
-        fields = ('id', 'anime', 'image', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para MangaImage
-class MangaImageResource(resources.ModelResource):
-    class Meta:
+class MangaImageResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = MangaImage
-        fields = ('id', 'manga', 'size_image', 'image', 'image_url', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para MangaImageExtra
-class MangaImageExtraResource(resources.ModelResource):
-    class Meta:
+class MangaImageExtraResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = MangaImageExtra
-        fields = ('id', 'manga', 'image', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
 
-########################################################################################################    Resource para OtakuPersonImage
-class OtakuPersonImageResource(resources.ModelResource):
-    class Meta:
-        model = OtakuPersonImage
-        fields = ('id', 'person', 'size_image', 'image', 'image_url', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
+########################################################################################################    Resource para PersonImage
+class PersonImageResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = PersonImage
 
-########################################################################################################    Resource para OtakuPersonImageExtra
-class OtakuPersonImageExtraResource(resources.ModelResource):
-    class Meta:
-        model = OtakuPersonImageExtra
-        fields = ('id', 'person', 'image', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
+########################################################################################################    Resource para PersonImageExtra
+class PersonImageExtraResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = PersonImageExtra
 
 ########################################################################################################    Resource para CharacterImage
-class CharacterImageResource(resources.ModelResource):
-    class Meta:
+class CharacterImageResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = CharacterImage
-        fields = ('id', 'character', 'size_image', 'image', 'image_url', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
-
 ########################################################################################################    Resource para CharacterImageExtra
-class CharacterImageExtraResource(resources.ModelResource):
-    class Meta:
+class CharacterImageExtraResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = CharacterImageExtra
-        fields = ('id', 'character', 'image', 'name', 'slug', 'is_active', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataAnime
-class DataAnimeResource(resources.ModelResource):
-    class Meta:
+class DataAnimeResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataAnime
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataAnimeCharacters
-class DataAnimeCharactersResource(resources.ModelResource):
-    class Meta:
+class DataAnimeCharactersResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataAnimeCharacters
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataAnimePictures
-class DataAnimePicturesResource(resources.ModelResource):
-    class Meta:
+class DataAnimePicturesResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataAnimePictures
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataAnimeStaff
-class DataAnimeStaffResource(resources.ModelResource):
-    class Meta:
+class DataAnimeStaffResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataAnimeStaff
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataManga
-class DataMangaResource(resources.ModelResource):
-    class Meta:
+class DataMangaResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataManga
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataMangaCharacters
-class DataMangaCharactersResource(resources.ModelResource):
-    class Meta:
+class DataMangaCharactersResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataMangaCharacters
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataMangaPictures
-class DataMangaPicturesResource(resources.ModelResource):
-    class Meta:
+class DataMangaPicturesResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataMangaPictures
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataCharacter
-class DataCharacterResource(resources.ModelResource):
-    class Meta:
+class DataCharacterResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataCharacter
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
 ########################################################################################################    Resource para DataCharacterPictures
-class DataCharacterPicturesResource(resources.ModelResource):
-    class Meta:
+class DataCharacterPicturesResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataCharacterPictures
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
-########################################################################################################    Resource para DataOtakuPerson
-class DataOtakuPersonResource(resources.ModelResource):
-    class Meta:
-        model = DataOtakuPerson
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
+########################################################################################################    Resource para DataPerson
+class DataPersonResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = DataPerson
 
-########################################################################################################    Resource para DataOtakuPersonPictures
-class DataOtakuPersonPicturesResource(resources.ModelResource):
-    class Meta:
-        model = DataOtakuPersonPictures
-        fields = ('id', 'mal_id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
+########################################################################################################    Resource para DataPersonPictures
+class DataPersonPicturesResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = DataPersonPictures
 
 ########################################################################################################    Resource para DataImageURL
-class DataImageURLResource(resources.ModelResource):
-    class Meta:
+class DataImageURLResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = DataImageURL
-        fields = ('id', 'url', 'status', 'data', 'processed', 'created_at', 'updated_at')
 
-########################################################################################################    Resource para Temp_OtakuPersons
-class Temp_OtakuPersonsResource(resources.ModelResource):
-    class Meta:
-        model = Temp_OtakuPersons
-        fields = ('id', 'mal_id_person', 'lenguaje')
+########################################################################################################    Resource para Temp_Persons
+class Temp_PersonsResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
+        model = Temp_Persons
 
 ########################################################################################################    Resource para Temp_Characters
-class Temp_CharactersResource(resources.ModelResource):
-    class Meta:
+class Temp_CharactersResource(BaseFullResource):
+    class Meta(BaseFullResource.Meta):
         model = Temp_Characters
-        fields = ('id', 'mal_id_character')

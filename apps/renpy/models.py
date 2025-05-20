@@ -511,8 +511,6 @@ class GameImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='games_images_as_sizes', on_delete=models.PROTECT, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=game_image_path, verbose_name=_('Imagen'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -521,8 +519,8 @@ class GameImage(models.Model):
         """Meta definition for GameImage."""
         verbose_name = _('Imagen Juego')
         verbose_name_plural = _('Imágenes Juegos')
-        ordering = ['game', 'size_image', 'name',]
-        unique_together = (('game', 'size_image', 'name',),)
+        ordering = ['game', 'size_image',]
+        unique_together = (('game', 'size_image',),)
 
     def __str__(self):
         """Unicode representation of GameImage."""

@@ -13,9 +13,9 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 ############################################################################################################################################    User Create
 class UserDetailView(PermissionRequiredMessageMixin, DetailView):
     model = CustomUser
-    template_name = Templates.Users.DTL
+    template_name = Templates.Users.DETAIL
     context_object_name = 'usuario'
-    cancel_url = reverse_lazy(URLS.Users.LST)
+    cancel_url = reverse_lazy(URLS.Users.LIST)
     permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
 
     def test_func(self):
@@ -36,7 +36,7 @@ class UserDetailView(PermissionRequiredMessageMixin, DetailView):
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
 
         if self.request.user.is_superuser:
-            context['listURL'] = reverse_lazy(URLS.Users.LST)
+            context['listURL'] = reverse_lazy(URLS.Users.LIST)
             context['cancel_url'] =self.cancel_url
 
         return context

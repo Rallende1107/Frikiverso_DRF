@@ -14,7 +14,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 ############################################################################################################################################    User List
 class UserListView(PermissionRequiredMessageMixin, ListView):
     model = CustomUser
-    template_name = Templates.Users.LST
+    template_name = Templates.Users.LIST
     context_object_name = 'usuarios'
     title = _('Lista de Usuarios')
     permission_redirect_url = reverse_lazy(URLS.Home.COMMON)
@@ -57,19 +57,19 @@ class UserListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Users.ADD),
+                'url': reverse_lazy(URLS.Users.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-person-add',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
             },
             {
-                'url': reverse_lazy(URLS.Users.ADD_SUPER),
+                'url': reverse_lazy(URLS.Users.CREATE_SUPER),
                 'label': _('Añadir Super Usuario'),
                 'icon': 'bi bi-person-add',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
             },
             {
-                'url': reverse_lazy(URLS.Users.ADD_STAFF),
+                'url': reverse_lazy(URLS.Users.CREATE_STAFF),
                 'label': _('Añadir Usuario al Equipo'),
                 'icon': 'bi bi-person-add',
                 'show': self.request.user.is_superuser or self.request.user.is_staff

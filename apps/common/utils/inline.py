@@ -13,13 +13,11 @@ class PersonNicknameInline(admin.TabularInline):  # Puedes usar StackedInline si
 class PersonImageInline(admin.TabularInline):
     model = PersonImage
     extra = 1
-    fields = ('size_image', 'image', 'image_url', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('size_image', 'image', 'image_url', 'is_active')
     show_change_link = True
 
 class PersonImageExtraInline(admin.TabularInline):
     model = PersonImageExtra
     extra = 1
-    fields = ('image', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('image', 'is_active')
     show_change_link = True

@@ -22,7 +22,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 # ############################################################################################################################################
 class CensorshipDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Censorship
-    template_name = Templates.Renpy.Censorship.DTL
+    template_name = Templates.Renpy.Censorship.DETAIL
     context_object_name = 'censorship'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -31,7 +31,7 @@ class CensorshipDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La censura que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Censorship.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Censorship.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -42,13 +42,13 @@ class CensorshipDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.CENSORSHIP
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Censorship.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Censorship.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class DeveloperDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Developer
-    template_name = Templates.Renpy.Developer.DTL
+    template_name = Templates.Renpy.Developer.DETAIL
     context_object_name = 'developer'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -57,7 +57,7 @@ class DeveloperDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El desarrollador que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Developer.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Developer.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -68,13 +68,13 @@ class DeveloperDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.DEVELOPER
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Developer.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Developer.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class DeveloperImageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = DeveloperImage
-    template_name = Templates.Renpy.DeveloperImage.DTL
+    template_name = Templates.Renpy.DeveloperImage.DETAIL
     context_object_name = 'developer_image'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -83,7 +83,7 @@ class DeveloperImageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen del desarrollador no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.DeveloperImage.LST))
+            return redirect(reverse_lazy(URLS.Renpy.DeveloperImage.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -94,13 +94,13 @@ class DeveloperImageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.DEVELOPER_IMAGE
         context['title'] = f"Imagen de {self.object.developer.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperImage.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperImage.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class DeveloperImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     model = DeveloperImageExtra
-    template_name = Templates.Renpy.DeveloperImageExtra.DTL
+    template_name = Templates.Renpy.DeveloperImageExtra.DETAIL
     context_object_name = 'developer_image_extra'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -109,7 +109,7 @@ class DeveloperImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen adicional del desarrollador no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.DeveloperImageExtra.LST))
+            return redirect(reverse_lazy(URLS.Renpy.DeveloperImageExtra.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -120,13 +120,13 @@ class DeveloperImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.DEVELOPER_IMAGE_EXTRA
         context['title'] = f"Imagen adicional de {self.object.developer.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperImageExtra.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class DeveloperLinkDetailView(PermissionRequiredMessageMixin, DetailView):
     model = DeveloperLink
-    template_name = Templates.Renpy.DeveloperLink.DTL
+    template_name = Templates.Renpy.DeveloperLink.DETAIL
     context_object_name = 'developer_link'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -135,7 +135,7 @@ class DeveloperLinkDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El enlace del desarrollador no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.DeveloperLink.LST))
+            return redirect(reverse_lazy(URLS.Renpy.DeveloperLink.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -146,13 +146,13 @@ class DeveloperLinkDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.DEVELOPER_LINK
         context['title'] = f"Enlace de {self.object.developer.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperLink.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.DeveloperLink.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class GameDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Game
-    template_name = Templates.Renpy.Game.DTL
+    template_name = Templates.Renpy.Game.DETAIL
     context_object_name = 'game'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -161,7 +161,7 @@ class GameDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El juego que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Game.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Game.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -172,13 +172,13 @@ class GameDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.GAME
         context['title'] = self.object.title
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Game.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Game.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class GameEngineDetailView(PermissionRequiredMessageMixin, DetailView):
     model = GameEngine
-    template_name = Templates.Renpy.GameEngine.DTL
+    template_name = Templates.Renpy.GameEngine.DETAIL
     context_object_name = 'game_engine'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -187,7 +187,7 @@ class GameEngineDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El motor de desarrollo que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.GameEngine.LST))
+            return redirect(reverse_lazy(URLS.Renpy.GameEngine.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -198,13 +198,13 @@ class GameEngineDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.GAME_ENGINE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.GameEngine.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.GameEngine.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class GameImageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = GameImage
-    template_name = Templates.Renpy.GameImage.DTL
+    template_name = Templates.Renpy.GameImage.DETAIL
     context_object_name = 'game_image'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -213,7 +213,7 @@ class GameImageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen del juego no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.GameImage.LST))
+            return redirect(reverse_lazy(URLS.Renpy.GameImage.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -224,13 +224,13 @@ class GameImageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.GAME_IMAGE
         context['title'] = f"Imagen de {self.object.game.title}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.GameImage.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.GameImage.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class GameImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     model = GameImageExtra
-    template_name = Templates.Renpy.GameImageExtra.DTL
+    template_name = Templates.Renpy.GameImageExtra.DETAIL
     context_object_name = 'game_image_extra'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -239,7 +239,7 @@ class GameImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen adicional del juego no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.GameImageExtra.LST))
+            return redirect(reverse_lazy(URLS.Renpy.GameImageExtra.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -250,14 +250,14 @@ class GameImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.GAME_IMAGE_EXTRA
         context['title'] = f"Imagen adicional de {self.object.game.title}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.GameImageExtra.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.GameImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class GenreDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Genre
-    template_name = Templates.Renpy.Genre.DTL
+    template_name = Templates.Renpy.Genre.DETAIL
     context_object_name = 'genre'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -266,7 +266,7 @@ class GenreDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El género no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Genre.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Genre.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -277,13 +277,13 @@ class GenreDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.GENRE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Genre.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Genre.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class PlatformDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Platform
-    template_name = Templates.Renpy.Platform.DTL
+    template_name = Templates.Renpy.Platform.DETAIL
     context_object_name = 'platform'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -292,7 +292,7 @@ class PlatformDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La plataforma no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Platform.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Platform.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -303,14 +303,14 @@ class PlatformDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PLATFORM
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Platform.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Platform.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class PrefixDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Prefix
-    template_name = Templates.Renpy.Prefix.DTL
+    template_name = Templates.Renpy.Prefix.DETAIL
     context_object_name = 'prefix'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -319,7 +319,7 @@ class PrefixDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El prefijo no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Prefix.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Prefix.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -330,13 +330,13 @@ class PrefixDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PREFIX
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Prefix.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Prefix.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class PublisherDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Publisher
-    template_name = Templates.Renpy.Publisher.DTL
+    template_name = Templates.Renpy.Publisher.DETAIL
     context_object_name = 'publisher'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -345,7 +345,7 @@ class PublisherDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El editor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Publisher.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Publisher.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -356,14 +356,14 @@ class PublisherDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PUBLISHER
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Publisher.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Publisher.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class PublisherImageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PublisherImage
-    template_name = Templates.Renpy.PublisherImage.DTL
+    template_name = Templates.Renpy.PublisherImage.DETAIL
     context_object_name = 'publisher_image'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -372,7 +372,7 @@ class PublisherImageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen del editor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.PublisherImage.LST))
+            return redirect(reverse_lazy(URLS.Renpy.PublisherImage.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -383,13 +383,13 @@ class PublisherImageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PUBLISHER_IMAGE
         context['title'] = f"Imagen de {self.object.publisher.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherImage.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherImage.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class PublisherImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PublisherImageExtra
-    template_name = Templates.Renpy.PublisherImageExtra.DTL
+    template_name = Templates.Renpy.PublisherImageExtra.DETAIL
     context_object_name = 'publisher_image_extra'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -398,7 +398,7 @@ class PublisherImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen adicional del editor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.PublisherImageExtra.LST))
+            return redirect(reverse_lazy(URLS.Renpy.PublisherImageExtra.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -409,13 +409,13 @@ class PublisherImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PUBLISHER_IMAGE_EXTRA
         context['title'] = f"Imagen adicional de {self.object.publisher.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherImageExtra.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class PublisherLinkDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PublisherLink
-    template_name = Templates.Renpy.PublisherLink.DTL
+    template_name = Templates.Renpy.PublisherLink.DETAIL
     context_object_name = 'publisher_link'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -424,7 +424,7 @@ class PublisherLinkDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El enlace del editor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.PublisherLink.LST))
+            return redirect(reverse_lazy(URLS.Renpy.PublisherLink.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_object(self):
@@ -435,13 +435,13 @@ class PublisherLinkDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.PUBLISHER_LINK
         context['title'] = f"Enlace de {self.object.publisher.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherLink.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.PublisherLink.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 class StatusDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Status
-    template_name = Templates.Renpy.Status.DTL
+    template_name = Templates.Renpy.Status.DETAIL
     context_object_name = 'status'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -450,7 +450,7 @@ class StatusDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('El estado no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Status.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Status.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -458,14 +458,14 @@ class StatusDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.STATUS
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Status.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Status.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class TranslatorDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Translator
-    template_name = Templates.Renpy.Translator.DTL
+    template_name = Templates.Renpy.Translator.DETAIL
     context_object_name = 'translator'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -474,7 +474,7 @@ class TranslatorDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('El traductor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.Translator.LST))
+            return redirect(reverse_lazy(URLS.Renpy.Translator.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -482,14 +482,14 @@ class TranslatorDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.TRANSLATOR
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.Translator.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.Translator.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class TranslatorImageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = TranslatorImage
-    template_name = Templates.Renpy.TranslatorImage.DTL
+    template_name = Templates.Renpy.TranslatorImage.DETAIL
     context_object_name = 'translator_image'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -498,7 +498,7 @@ class TranslatorImageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('La imagen del traductor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.TranslatorImage.LST))
+            return redirect(reverse_lazy(URLS.Renpy.TranslatorImage.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -506,14 +506,14 @@ class TranslatorImageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.TRANSLATOR_IMAGE
         context['title'] = f"Imagen de {self.object.translator.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorImage.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorImage.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class TranslatorImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     model = TranslatorImageExtra
-    template_name = Templates.Renpy.TranslatorImageExtra.DTL
+    template_name = Templates.Renpy.TranslatorImageExtra.DETAIL
     context_object_name = 'translator_image_extra'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -522,7 +522,7 @@ class TranslatorImageExtraDetailView(PermissionRequiredMessageMixin, DetailView)
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('La imagen adicional del traductor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.TranslatorImageExtra.LST))
+            return redirect(reverse_lazy(URLS.Renpy.TranslatorImageExtra.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -530,14 +530,14 @@ class TranslatorImageExtraDetailView(PermissionRequiredMessageMixin, DetailView)
         context['class'] = CSSBackground.Renpy.TRANSLATOR_IMAGE_EXTRA
         context['title'] = f"Imagen adicional de {self.object.translator.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorImageExtra.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class TranslatorLinkDetailView(PermissionRequiredMessageMixin, DetailView):
     model = TranslatorLink
-    template_name = Templates.Renpy.TranslatorLink.DTL
+    template_name = Templates.Renpy.TranslatorLink.DETAIL
     context_object_name = 'translator_link'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -546,7 +546,7 @@ class TranslatorLinkDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('El enlace del traductor no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.TranslatorLink.LST))
+            return redirect(reverse_lazy(URLS.Renpy.TranslatorLink.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -554,14 +554,14 @@ class TranslatorLinkDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.TRANSLATOR_LINK
         context['title'] = f"Enlace de {self.object.translator.name}"
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorLink.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.TranslatorLink.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 
 
 class TitleGameDetailView(PermissionRequiredMessageMixin, DetailView):
     model = TitleGame
-    template_name = Templates.Renpy.TitleGame.DTL
+    template_name = Templates.Renpy.TitleGame.DETAIL
     context_object_name = 'title_game'
     permission_redirect_url = URLS.Home.RENPY
 
@@ -570,7 +570,7 @@ class TitleGameDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(request, _('El título de juego no se encontró.'))
-            return redirect(reverse_lazy(URLS.Renpy.TitleGame.LST))
+            return redirect(reverse_lazy(URLS.Renpy.TitleGame.LIST))
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -578,7 +578,7 @@ class TitleGameDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Renpy.TITLE_GAME
         context['title'] = self.object.title
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Renpy.TitleGame.LST)
+        context['listURL'] = reverse_lazy(URLS.Renpy.TitleGame.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.RENPY)
         return context
 

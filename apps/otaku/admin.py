@@ -5,28 +5,28 @@ from import_export.admin import ImportExportModelAdmin
 from .models import (
     Role, Year, Genre, Theme, Demographic, Type, Rating, Season, Status, Source, RelationType, SeasonFull,
     Producer, Licensor, Studio, Serialization, Anime, Manga, TitleAnime, TitleManga, AnimeSong, MediaRelation,
-    Character, CharacterNickname, OtakuPerson, OtakuPersonNickname,
+    Character, CharacterNickname, Person, PersonNickname,
     AnimeCharacter, MangaCharacter, VoiceCharacter, AnimeStaff, AuthorManga,
-    AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, OtakuPersonImage, OtakuPersonImageExtra, CharacterImage, CharacterImageExtra,
+    AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra, PersonImage, PersonImageExtra, CharacterImage, CharacterImageExtra,
     DataAnime, DataAnimeCharacters, DataAnimePictures, DataAnimeStaff, DataManga, DataMangaCharacters, DataMangaPictures, DataCharacter,
-    DataCharacterPictures, DataOtakuPerson, DataOtakuPersonPictures, DataImageURL,
-    Temp_OtakuPersons, Temp_Characters
+    DataCharacterPictures, DataPerson, DataPersonPictures, DataImageURL,
+    Temp_Persons, Temp_Characters
     )
 # impot Resource
 from .resources import (
     RoleResource, YearResource, GenreResource, ThemeResource, DemographicResource, TypeResource, RatingResource, SeasonResource, StatusResource, SourceResource, RelationTypeResource, SeasonFullResource,
     ProducerResource, LicensorResource, StudioResource, SerializationResource, AnimeResource, MangaResource, TitleAnimeResource, TitleMangaResource, AnimeSongResource, MediaRelationResource,
-    CharacterResource, CharacterNicknameResource, OtakuPersonResource, OtakuPersonNicknameResource,
+    CharacterResource, CharacterNicknameResource, PersonResource, PersonNicknameResource,
     AnimeCharacterResource, MangaCharacterResource, VoiceCharacterResource, AnimeStaffResource, AuthorMangaResource,
-    AnimeImageResource, AnimeImageExtraResource, MangaImageResource, MangaImageExtraResource, OtakuPersonImageResource, OtakuPersonImageExtraResource, CharacterImageResource, CharacterImageExtraResource,
+    AnimeImageResource, AnimeImageExtraResource, MangaImageResource, MangaImageExtraResource, PersonImageResource, PersonImageExtraResource, CharacterImageResource, CharacterImageExtraResource,
     DataAnimeResource, DataAnimeCharactersResource, DataAnimePicturesResource, DataAnimeStaffResource, DataMangaResource, DataMangaCharactersResource, DataMangaPicturesResource, DataCharacterResource,
-    DataCharacterPicturesResource, DataOtakuPersonResource, DataOtakuPersonPicturesResource, DataImageURLResource,
-    Temp_OtakuPersonsResource, Temp_CharactersResource
+    DataCharacterPicturesResource, DataPersonResource, DataPersonPicturesResource, DataImageURLResource,
+    Temp_PersonsResource, Temp_CharactersResource
     )
 # impot Inline
 from apps.otaku.utils.inline import (
-    TitleAnimeInline, TitleMangaInline, CharacterNicknameInline, OtakuPersonNicknameInline, AnimeImageInline, AnimeImageExtraInline, MangaImageInline, MangaImageExtraInline,
-    OtakuPersonImageInline, OtakuPersonImageExtraInline, CharacterImageInline, CharacterImageExtraInline
+    TitleAnimeInline, TitleMangaInline, CharacterNicknameInline, PersonNicknameInline, AnimeImageInline, AnimeImageExtraInline, MangaImageInline, MangaImageExtraInline,
+    PersonImageInline, PersonImageExtraInline, CharacterImageInline, CharacterImageExtraInline
     )
 # Register your models here.
 ########################################################################################################    Admin para Role
@@ -62,21 +62,21 @@ class RoleAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar roles seleccionados')
+    @admin.action(description=_('Activar roles seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} rol(es) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d rol(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún rol para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún rol para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar roles seleccionados')
+    @admin.action(description=_('Desactivar roles seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} rol(es) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d rol(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún rol para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún rol para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Year
 @admin.register(Year)
@@ -108,21 +108,21 @@ class YearAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar años seleccionados')
+    @admin.action(description=_('Activar años seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} año(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d año(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún año para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún año para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar años seleccionados')
+    @admin.action(description=_('Desactivar años seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} año(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d año(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún año para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún año para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Genre
 @admin.register(Genre)
@@ -157,21 +157,21 @@ class GenreAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar géneros seleccionados')
+    @admin.action(description=_('Activar géneros seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar géneros seleccionados')
+    @admin.action(description=_('Desactivar géneros seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Theme
 @admin.register(Theme)
@@ -206,21 +206,21 @@ class ThemeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar temas seleccionados')
+    @admin.action(description=_('Activar temas seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} tema(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d tema(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún tema para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún tema para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar temas seleccionados')
+    @admin.action(description=_('Desactivar temas seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} tema(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d tema(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún tema para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún tema para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Demographic
 @admin.register(Demographic)
@@ -255,15 +255,21 @@ class DemographicAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar demografías seleccionadas')
+    @admin.action(description=_('Activar demografías seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} demografía(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d demografía(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún demografía para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar demografías seleccionadas')
+    @admin.action(description=_('Desactivar demografías seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} demografía(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d demografía(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún demografía para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Type
 @admin.register(Type)
@@ -295,15 +301,21 @@ class TypeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar tipos seleccionados')
+    @admin.action(description=_('Activar tipos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} tipo(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar tipos seleccionados')
+    @admin.action(description=_('Desactivar tipos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} tipo(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Rating
 @admin.register(Rating)
@@ -335,15 +347,21 @@ class RatingAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar clasificaciones seleccionadas')
+    @admin.action(description=_('Activar clasificaciones seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} clasificación(es) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún clasificación para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar clasificaciones seleccionadas')
+    @admin.action(description=_('Desactivar clasificaciones seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} clasificación(es) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún clasificación para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Season
 @admin.register(Season)
@@ -375,15 +393,21 @@ class SeasonAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar temporadas seleccionadas')
+    @admin.action(description=_('Activar temporadas seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} temporada(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d temporada(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún temporada para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar temporadas seleccionadas')
+    @admin.action(description=_('Desactivar temporadas seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} temporada(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d temporada(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún temporada para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Status
 @admin.register(Status)
@@ -415,15 +439,21 @@ class StatusAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar estados seleccionados')
+    @admin.action(description=_('Activar estados seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} estado(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estado para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar estados seleccionados')
+    @admin.action(description=_('Desactivar estados seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} estado(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estado para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Source
 @admin.register(Source)
@@ -455,15 +485,21 @@ class SourceAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar fuentes seleccionadas')
+    @admin.action(description=_('Activar fuentes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} fuente(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d fuente(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún fuente para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar fuentes seleccionadas')
+    @admin.action(description=_('Desactivar fuentes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} fuente(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d fuente(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún fuente para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para RelationType
 @admin.register(RelationType)
@@ -495,15 +531,21 @@ class RelationTypeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar tipos de relación seleccionados')
+    @admin.action(description=_('Activar tipos de relación seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} tipo(s) de relación activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d tipo(s) de relación.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo de relación para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar tipos de relación seleccionados')
+    @admin.action(description=_('Desactivar tipos de relación seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} tipo(s) de relación desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d tipo(s) de relación.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo de relación para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para SeasonFull
 @admin.register(SeasonFull)
@@ -535,15 +577,21 @@ class SeasonFullAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar temporadas completas seleccionadas')
+    @admin.action(description=_('Activar temporadas completas seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} temporada(s) completa(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d temporada(s) completa(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún temporada completa para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar temporadas completas seleccionadas')
+    @admin.action(description=_('Desactivar temporadas completas seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} temporada(s) completa(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d temporada(s) completa(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún temporada completa para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Producer
 @admin.register(Producer)
@@ -575,15 +623,21 @@ class ProducerAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar productoras seleccionadas')
+    @admin.action(description=_('Activar productoras seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} productora(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún productora para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar productoras seleccionadas')
+    @admin.action(description=_('Desactivar productoras seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} productora(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d productora(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún productora para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Licensor
 @admin.register(Licensor)
@@ -615,15 +669,21 @@ class LicensorAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar licenciantes seleccionados')
+    @admin.action(description=_('Activar licenciantes seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} licenciante(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d licenciante(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún licenciante para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar licenciantes seleccionados')
+    @admin.action(description=_('Desactivar licenciantes seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} licenciante(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d licenciante(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún licenciante para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Studio
 @admin.register(Studio)
@@ -655,15 +715,21 @@ class StudioAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar estudios seleccionados')
+    @admin.action(description=_('Activar estudios seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} estudio(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d estudio(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estudio para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar estudios seleccionados')
+    @admin.action(description=_('Desactivar estudios seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} estudio(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d estudio(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estudio para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Serialization
 @admin.register(Serialization)
@@ -695,15 +761,21 @@ class SerializationAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar serializadoras seleccionadas')
+    @admin.action(description=_('Activar serializadoras seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} serializadora(s) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d serializadora(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún serializadora para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar serializadoras seleccionadas')
+    @admin.action(description=_('Desactivar serializadoras seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} serializadora(s) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d serializadora(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún serializadora para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Anime
 @admin.register(Anime)
@@ -747,15 +819,21 @@ class AnimeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar animes seleccionados')
+    @admin.action(description=_('Activar animes seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} anime(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d anime(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún anime para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar animes seleccionados')
+    @admin.action(description=_('Desactivar animes seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} anime(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d anime(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún anime para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Manga
 @admin.register(Manga)
@@ -799,15 +877,21 @@ class MangaAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar mangas seleccionados')
+    @admin.action(description=_('Activar mangas seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} manga(s) activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d manga(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún manga para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar mangas seleccionados')
+    @admin.action(description=_('Desactivar mangas seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} manga(s) desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d manga(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún manga para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TitleAnime
 @admin.register(TitleAnime)
@@ -839,15 +923,21 @@ class TitleAnimeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar títulos de anime seleccionados')
+    @admin.action(description=_('Activar títulos de anime seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} título(s) de anime activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d título(s) de anime.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún título de anime para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar títulos de anime seleccionados')
+    @admin.action(description=_('Desactivar títulos de anime seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} título(s) de anime desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d título(s) de anime.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún título de anime para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TitleManga
 @admin.register(TitleManga)
@@ -879,15 +969,21 @@ class TitleMangaAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar títulos de manga seleccionados')
+    @admin.action(description=_('Activar títulos de manga seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} título(s) de manga activado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d título(s) de manga.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún título de manga para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar títulos de manga seleccionados')
+    @admin.action(description=_('Desactivar títulos de manga seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} título(s) de manga desactivado(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d título(s) de manga.') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún título de manga para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Character
 @admin.register(Character)
@@ -924,21 +1020,21 @@ class CharacterAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar personajes seleccionados')
+    @admin.action(description=_('Activar personajes seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar personajes seleccionados')
+    @admin.action(description=_('Desactivar personajes seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para CharacterNickname
 @admin.register(CharacterNickname)
@@ -970,28 +1066,28 @@ class CharacterNicknameAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar apodos seleccionados')
+    @admin.action(description=_('Activar apodos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} apodo(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d apodo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún apodo para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún apodo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar apodos seleccionados')
+    @admin.action(description=_('Desactivar apodos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} apodo(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d apodo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún apodo para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún apodo para desactivar.'), messages.WARNING)
 
-########################################################################################################    Admin para OtakuPerson
-@admin.register(OtakuPerson)
-class OtakuPersonAdmin(ImportExportModelAdmin):
-    resource_class = OtakuPersonResource  # Si usas django-import-export
+########################################################################################################    Admin para Person
+@admin.register(Person)
+class PersonAdmin(ImportExportModelAdmin):
+    resource_class = PersonResource  # Si usas django-import-export
 
-    list_display = ('full_name', 'mal_id', 'p_mal_id', 'is_active', 'created_at')
+    list_display = ('full_name', 'mal_id', 'is_active', 'created_at')
     list_filter = ('is_active',)
     search_fields = ('full_name', 'name_kanji', 'mal_id')
     ordering = ('-created_at', 'initial', 'full_name')
@@ -1019,28 +1115,28 @@ class OtakuPersonAdmin(ImportExportModelAdmin):
         }),
     )
 
-    inlines = [OtakuPersonNicknameInline, OtakuPersonImageInline, OtakuPersonImageExtraInline,]
+    inlines = [PersonNicknameInline, PersonImageInline, PersonImageExtraInline,]
 
-    @admin.action(description='Activar personas seleccionadas')
+    @admin.action(description=_('Activar personas seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} persona(s) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d persona(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna persona para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún persona para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar personas seleccionadas')
+    @admin.action(description=_('Desactivar personas seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} persona(s) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d persona(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna persona para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún persona para desactivar.'), messages.WARNING)
 
-########################################################################################################    Admin para OtakuPersonNickname
-@admin.register(OtakuPersonNickname)
-class OtakuPersonNicknameAdmin(ImportExportModelAdmin):
-    resource_class = OtakuPersonNicknameResource  # Si usas django-import-export
+########################################################################################################    Admin para PersonNickname
+@admin.register(PersonNickname)
+class PersonNicknameAdmin(ImportExportModelAdmin):
+    resource_class = PersonNicknameResource  # Si usas django-import-export
 
     list_display = ('person', 'nickname', 'initial', 'is_active', 'created_at')
     list_filter = ('is_active', 'initial', 'person')
@@ -1067,26 +1163,26 @@ class OtakuPersonNicknameAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar apodos seleccionados')
+    @admin.action(description=_('Activar apodos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} apodo(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d apodo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún apodo para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún apodo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar apodos seleccionados')
+    @admin.action(description=_('Desactivar apodos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} apodo(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d apodo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún apodo para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún apodo para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AnimeSong
 @admin.register(AnimeSong)
 class AnimeSongAdmin(ImportExportModelAdmin):
-    resource_class = AnimeSongResource  # Si estás utilizando django-import-export
+    resource_class = AnimeSongResource
 
     list_display = ('anime', 'song_type', 'song_id', 'title', 'is_active', 'created_at')
     list_filter = ('is_active', 'song_type', 'anime')
@@ -1116,26 +1212,27 @@ class AnimeSongAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar canciones seleccionadas')
+    @admin.action(description=_('Activar canciones seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} canción(es) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d canción(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna canción para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún canción para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar canciones seleccionadas')
+    @admin.action(description=_('Desactivar canciones seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
+        actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} canción(es) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d canción(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna canción para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún canción para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AnimeCharacter
 @admin.register(AnimeCharacter)
 class AnimeCharacterAdmin(ImportExportModelAdmin):
-    resource_class = AnimeCharacterResource  # Si estás utilizando django-import-export
+    resource_class = AnimeCharacterResource
 
     list_display = ('character', 'anime', 'role', 'character_mal_id', 'anime_mal_id', 'is_active', 'created_at')
     list_filter = ('is_active', 'anime', 'role')
@@ -1161,26 +1258,26 @@ class AnimeCharacterAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar personajes en anime seleccionados')
+    @admin.action(description=_('Activar personajes seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje en anime para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar personajes en anime seleccionados')
+    @admin.action(description=_('Desactivar personajes seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje en anime para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MangaCharacter
 @admin.register(MangaCharacter)
 class MangaCharacterAdmin(ImportExportModelAdmin):
-    resource_class = MangaCharacterResource  # Si estás utilizando django-import-export
+    resource_class = MangaCharacterResource
 
     list_display = ('character', 'manga', 'role', 'character_mal_id', 'manga_mal_id', 'is_active', 'created_at')
     list_filter = ('is_active', 'manga', 'role')
@@ -1206,26 +1303,26 @@ class MangaCharacterAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar personajes en manga seleccionados')
+    @admin.action(description=_('Activar personajes seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje en manga para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar personajes en manga seleccionados')
+    @admin.action(description=_('Desactivar personajes seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d personaje(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje en manga para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún personaje para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para VoiceCharacter
 @admin.register(VoiceCharacter)
 class VoiceCharacterAdmin(ImportExportModelAdmin):
-    resource_class = VoiceCharacterResource  # Si estás utilizando django-import-export
+    resource_class = VoiceCharacterResource
 
     list_display = ('person', 'anime', 'character', 'language', 'person_mal_id', 'anime_mal_id', 'character_mal_id', 'is_active', 'created_at')
     list_filter = ('is_active', 'anime', 'language', 'person')
@@ -1251,26 +1348,26 @@ class VoiceCharacterAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar actores de voz seleccionados')
+    @admin.action(description=_('Activar actores de voz seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} actor(es) de voz activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d actor(es) de voz.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún actor de voz para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún actor de voz para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar actores de voz seleccionados')
+    @admin.action(description=_('Desactivar actores de voz seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} actor(es) de voz desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d actor(es) de voz.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún actor de voz para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún actor de voz para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AnimeStaff
 @admin.register(AnimeStaff)
 class AnimeStaffAdmin(ImportExportModelAdmin):
-    resource_class = AnimeStaffResource  # Si estás utilizando django-import-export
+    resource_class = AnimeStaffResource
 
     list_display = ('person', 'anime', 'position', 'person_mal_id', 'anime_mal_id', 'is_active', 'created_at')
     list_filter = ('is_active', 'anime', 'position', 'person')
@@ -1296,26 +1393,26 @@ class AnimeStaffAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar staff de anime seleccionados')
+    @admin.action(description=_('Activar staff de anime seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} miembro(s) de staff activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d miembro(s) de personal.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún miembro de staff para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún miembro de personal para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar staff de anime seleccionados')
+    @admin.action(description=_('Desactivar staff de anime seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} miembro(s) de staff desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d miembro(s) de personal.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún miembro de staff para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún miembro de personal para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AuthorManga
 @admin.register(AuthorManga)
 class AuthorMangaAdmin(ImportExportModelAdmin):
-    resource_class = AuthorMangaResource  # Si estás utilizando django-import-export
+    resource_class = AuthorMangaResource
 
     list_display = ('person', 'manga', 'position', 'person_mal_id', 'manga_mal_id', 'is_active', 'created_at')
     list_filter = ('is_active', 'manga', 'position', 'person')
@@ -1341,21 +1438,21 @@ class AuthorMangaAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Activar autores de manga seleccionados')
+    @admin.action(description=_('Activar autores de manga seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} autor(es) de manga activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d autor(es) de manga.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún autor de manga para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún autor de manga para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar autores de manga seleccionados')
+    @admin.action(description=_('Desactivar autores de manga seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} autor(es) de manga desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d autor(es) de manga.') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún autor de manga para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún autor de manga para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MediaRelation
 @admin.register(MediaRelation)
@@ -1369,7 +1466,7 @@ class MediaRelationAdmin(ImportExportModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
     fieldsets = (
-        ('Relación de Media', {
+        (_('Relación de Media'), {
             'fields': (
                 'relation_type',
                 ('from_entry_type', 'from_entry_mal_id', 'from_entry_mal_id_p',),
@@ -1384,35 +1481,34 @@ class MediaRelationAdmin(ImportExportModelAdmin):
             'fields': ('created_at', 'updated_at')
         }),
     )
+    actions = ['activar', 'desactivar']
 
-    @admin.action(description='✅ Activar relaciones seleccionadas')
+    @admin.action(description=_('✅ Activar relaciones seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} relación(es) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d relación(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "⚠️ No se activó ninguna relación.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún relación para activar.'), messages.WARNING)
 
-    @admin.action(description='❌ Desactivar relaciones seleccionadas')
+    @admin.action(description=_('❌ Desactivar relaciones seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"❌ {actualizados} relación(es) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d relación(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "⚠️ No se desactivó ninguna relación.", messages.WARNING)
-
-    actions = ['activar', 'desactivar']
+            self.message_user(request, _('No se seleccionó ningún relación para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AnimeImage
 @admin.register(AnimeImage)
 class AnimeImageAdmin(ImportExportModelAdmin):
-    resource_class = AnimeImageResource  # Si estás utilizando django-import-export
+    resource_class = AnimeImageResource
 
-    list_display = ('anime', 'size_image', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('anime', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'anime', 'size_image')
-    search_fields = ('anime__title', 'name', 'slug', 'image_url')
-    ordering = ('anime', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('anime__title', 'image_url')
+    ordering = ('anime', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1423,42 +1519,38 @@ class AnimeImageAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes de anime seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de anime activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de anime para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de anime seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de anime desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de anime para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para AnimeImageExtra
 @admin.register(AnimeImageExtra)
 class AnimeImageExtraAdmin(ImportExportModelAdmin):
-    resource_class = AnimeImageExtraResource  # Si estás utilizando django-import-export
+    resource_class = AnimeImageExtraResource
 
-    list_display = ('anime', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('anime', 'is_active', 'created_at')
     list_filter = ('is_active', 'anime')
-    search_fields = ('anime__title', 'name', 'slug')
-    ordering = ('anime', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('anime__title',)
+    ordering = ('anime',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1469,42 +1561,38 @@ class AnimeImageExtraAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de anime seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de anime activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de anime para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de anime seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de anime desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de anime para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MangaImage
 @admin.register(MangaImage)
 class MangaImageAdmin(ImportExportModelAdmin):
-    resource_class = MangaImageResource  # Si estás utilizando django-import-export
+    resource_class = MangaImageResource
 
-    list_display = ('manga', 'size_image', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('manga', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'manga', 'size_image')
-    search_fields = ('manga__title', 'name', 'slug', 'image_url')
-    ordering = ('manga', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('manga__title', 'image_url')
+    ordering = ('manga', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1515,42 +1603,38 @@ class MangaImageAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes de manga seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de manga activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de manga para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de manga seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de manga desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de manga para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MangaImageExtra
 @admin.register(MangaImageExtra)
 class MangaImageExtraAdmin(ImportExportModelAdmin):
-    resource_class = MangaImageExtraResource  # Si estás utilizando django-import-export
+    resource_class = MangaImageExtraResource
 
-    list_display = ('manga', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('manga', 'is_active', 'created_at')
     list_filter = ('is_active', 'manga')
-    search_fields = ('manga__title', 'name', 'slug')
-    ordering = ('manga', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('manga__title',)
+    ordering = ('manga',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1561,42 +1645,38 @@ class MangaImageExtraAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de manga seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de manga activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de manga para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de manga seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de manga desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de manga para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
-########################################################################################################    Admin para OtakuPersonImage
-@admin.register(OtakuPersonImage)
-class OtakuPersonImageAdmin(ImportExportModelAdmin):
-    resource_class = OtakuPersonImageResource  # Si estás utilizando django-import-export
+########################################################################################################    Admin para PersonImage
+@admin.register(PersonImage)
+class PersonImageAdmin(ImportExportModelAdmin):
+    resource_class = PersonImageResource
 
-    list_display = ('person', 'size_image', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('person', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'person', 'size_image')
-    search_fields = ('person__name', 'name', 'slug', 'image_url')
-    ordering = ('person', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('person__full_name', 'image_url')
+    ordering = ('person', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1607,42 +1687,38 @@ class OtakuPersonImageAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes de persona seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de persona activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de persona para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de persona seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de persona desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de persona para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
-########################################################################################################    Admin para OtakuPersonImageExtra
-@admin.register(OtakuPersonImageExtra)
-class OtakuPersonImageExtraAdmin(ImportExportModelAdmin):
-    resource_class = OtakuPersonImageExtraResource  # Si estás utilizando django-import-export
-
-    list_display = ('person', 'name', 'slug', 'is_active', 'created_at')
+########################################################################################################    Admin para PersonImageExtra
+@admin.register(PersonImageExtra)
+class PersonImageExtraAdmin(ImportExportModelAdmin):
+    resource_class = PersonImageExtraResource
+# 'name', 'slug',
+    list_display = ('person', 'is_active', 'created_at')
     list_filter = ('is_active', 'person')
-    search_fields = ('person__name', 'name', 'slug')
-    ordering = ('person', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('person__full_name',)
+    ordering = ('person',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1653,42 +1729,38 @@ class OtakuPersonImageExtraAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de persona seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de persona activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de persona para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de persona seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de persona desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de persona para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para CharacterImage
 @admin.register(CharacterImage)
 class CharacterImageAdmin(ImportExportModelAdmin):
-    resource_class = CharacterImageResource  # Si estás utilizando django-import-export
+    resource_class = CharacterImageResource
 
-    list_display = ('character', 'size_image', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('character', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'character', 'size_image')
-    search_fields = ('character__name', 'name', 'slug', 'image_url')
-    ordering = ('character', 'size_image', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('character__full_name', 'image_url')
+    ordering = ('character', 'size_image',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1699,42 +1771,38 @@ class CharacterImageAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes de personaje seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de personaje activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de personaje para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes de personaje seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de personaje desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de personaje para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para CharacterImageExtra
 @admin.register(CharacterImageExtra)
 class CharacterImageExtraAdmin(ImportExportModelAdmin):
     resource_class = CharacterImageExtraResource
 
-    list_display = ('character', 'name', 'slug', 'is_active', 'created_at')
+    list_display = ('character', 'is_active', 'created_at')
     list_filter = ('is_active', 'character')
-    search_fields = ('character__name', 'name', 'slug')
-    ordering = ('character', 'name')
-    readonly_fields = ('created_at', 'updated_at', 'slug', 'name')
+    search_fields = ('character__full_name',)
+    ordering = ('character',)
+    readonly_fields = ('created_at', 'updated_at',)
 
     actions = ['activar', 'desactivar']
 
@@ -1745,31 +1813,27 @@ class CharacterImageExtraAdmin(ImportExportModelAdmin):
         (_('Estado'), {
             'fields': ('is_active',)
         }),
-        (_('Valores generados automáticamente'), {
-            'classes': ('collapse',),
-            'fields': ('name', 'slug',)
-        }),
         (_('Fechas'), {
             'classes': ('collapse',),
             'fields': ('created_at', 'updated_at')
         }),
     )
 
-    @admin.action(description='Activar imágenes extra de personaje seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de personaje activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de personaje para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes extra de personaje seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) extra de personaje desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen extra de personaje para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataAnime
 @admin.register(DataAnime)
@@ -1797,21 +1861,21 @@ class DataAnimeAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
-    def marcar_como_procesado(self, request, queryset):
-        actualizados = queryset.update(processed=True)
+    @admin.action(description=_('Activar imágenes seleccionadas'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} anime(s) marcado(s) como procesados.", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún anime para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
-    def marcar_como_no_procesado(self, request, queryset):
-        actualizados = queryset.update(processed=False)
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} anime(s) marcado(s) como no procesados.", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún anime para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataAnimeCharacters
 @admin.register(DataAnimeCharacters)
@@ -1839,21 +1903,21 @@ class DataAnimeCharactersAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) de anime(s) marcado(s) como procesados.", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de anime para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) de anime(s) marcado(s) como no procesados.", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de anime para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataAnimePictures
 @admin.register(DataAnimePictures)
@@ -1881,21 +1945,21 @@ class DataAnimePicturesAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de anime marcada(s) como procesadas.", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de anime para marcar como procesada.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de anime marcada(s) como no procesadas.", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de anime para marcar como no procesada.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataAnimeStaff
 @admin.register(DataAnimeStaff)
@@ -1923,21 +1987,21 @@ class DataAnimeStaffAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} staff(s) de anime(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún staff de anime para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} staff(s) de anime(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún staff de anime para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataManga
 @admin.register(DataManga)
@@ -1965,21 +2029,21 @@ class DataMangaAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} manga(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún manga para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} manga(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún manga para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataMangaCharacters
 @admin.register(DataMangaCharacters)
@@ -2007,21 +2071,21 @@ class DataMangaCharactersAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personajes de manga(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de manga para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personajes de manga(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de manga para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataMangaPictures
 @admin.register(DataMangaPictures)
@@ -2049,21 +2113,21 @@ class DataMangaPicturesAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imágenes de manga(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de manga para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imágenes de manga(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de manga para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataCharacter
 @admin.register(DataCharacter)
@@ -2091,21 +2155,21 @@ class DataCharacterAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) de manga(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de manga para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} personaje(s) de manga(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún personaje de manga para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataCharacterPictures
 @admin.register(DataCharacterPictures)
@@ -2133,26 +2197,26 @@ class DataCharacterPicturesAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de personaje(s) de manga(s) marcado(s) como procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de personaje de manga para marcar como procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} imagen(es) de personaje(s) de manga(s) marcado(s) como no procesado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna imagen de personaje de manga para marcar como no procesado.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
-########################################################################################################    Admin para DataOtakuPerson
-@admin.register(DataOtakuPerson)
-class DataOtakuPersonAdmin(admin.ModelAdmin):
-    resource_class = DataOtakuPersonResource
+########################################################################################################    Admin para DataPerson
+@admin.register(DataPerson)
+class DataPersonAdmin(admin.ModelAdmin):
+    resource_class = DataPersonResource
 
     list_display = ('mal_id', 'url', 'status', 'processed', 'created_at', 'updated_at')
     list_filter = ('status', 'processed')
@@ -2175,27 +2239,26 @@ class DataOtakuPersonAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
-        self._notificar(request, actualizados, 'persona(s)')
+        if actualizados:
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
-        self._notificar(request, actualizados, 'persona(s)', procesado=False)
-
-    def _notificar(self, request, total, objeto, procesado=True):
-        if total:
-            estado = "procesado(s)" if procesado else "no procesado(s)"
-            self.message_user(request, f"✅ {total} {objeto} marcado(s) como {estado}.", messages.SUCCESS)
+        if actualizados:
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, f"⚠️ No se seleccionó ninguna {objeto} para actualizar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
-########################################################################################################    Admin para DataOtakuPersonPictures
-@admin.register(DataOtakuPersonPictures)
-class DataOtakuPersonPicturesAdmin(admin.ModelAdmin):
-    resource_class = DataOtakuPersonPicturesResource
+########################################################################################################    Admin para DataPersonPictures
+@admin.register(DataPersonPictures)
+class DataPersonPicturesAdmin(admin.ModelAdmin):
+    resource_class = DataPersonPicturesResource
 
     list_display = ('mal_id', 'url', 'status', 'processed', 'created_at', 'updated_at')
     list_filter = ('status', 'processed')
@@ -2218,22 +2281,21 @@ class DataOtakuPersonPicturesAdmin(admin.ModelAdmin):
         }),
     )
 
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
-        self._notificar(request, actualizados, 'imagen(es) de persona')
+        if actualizados:
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
-        self._notificar(request, actualizados, 'imagen(es) de persona', procesado=False)
-
-    def _notificar(self, request, total, objeto, procesado=True):
-        if total:
-            estado = "procesado(s)" if procesado else "no procesado(s)"
-            self.message_user(request, f"✅ {total} {objeto} marcado(s) como {estado}.", messages.SUCCESS)
+        if actualizados:
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, f"⚠️ No se seleccionó ninguna {objeto} para actualizar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
 ########################################################################################################    Admin para DataImageURL
 @admin.register(DataImageURL)
@@ -2261,28 +2323,26 @@ class DataImageURLAdmin(admin.ModelAdmin):
         }),
     )
 
-
-    @admin.action(description='Marcar como procesado')
+    @admin.action(description=_('Marcar como procesado'))
     def marcar_como_procesado(self, request, queryset):
         actualizados = queryset.update(processed=True)
-        self._notificar(request, actualizados, 'URL(s) de imagen')
+        if actualizados:
+            self.message_user(request, _('Se marcaron como procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como procesado.'), messages.WARNING)
 
-    @admin.action(description='Marcar como no procesado')
+    @admin.action(description=_('Marcar como no procesado'))
     def marcar_como_no_procesado(self, request, queryset):
         actualizados = queryset.update(processed=False)
-        self._notificar(request, actualizados, 'URL(s) de imagen', procesado=False)
-
-    def _notificar(self, request, total, objeto, procesado=True):
-        if total:
-            estado = "procesado(s)" if procesado else "no procesado(s)"
-            self.message_user(request, f"✅ {total} {objeto} marcado(s) como {estado}.", messages.SUCCESS)
+        if actualizados:
+            self.message_user(request, _('Se marcaron como no procesado(s) %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, f"⚠️ No se seleccionó ninguna {objeto} para actualizar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún egistro para marcar como no procesado.'), messages.WARNING)
 
-########################################################################################################    Admin para Temp_OtakuPersons
-@admin.register(Temp_OtakuPersons)
-class TempOtakuPersonsAdmin(ImportExportModelAdmin):
-    resource_class = Temp_OtakuPersonsResource
+########################################################################################################    Admin para Temp_Persons
+@admin.register(Temp_Persons)
+class TempPersonsAdmin(ImportExportModelAdmin):
+    resource_class = Temp_PersonsResource
 
     list_display = ('mal_id_person', 'lenguaje')
     list_filter = ('lenguaje',)
@@ -2297,7 +2357,7 @@ class TempOtakuPersonsAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='🧹 Eliminar duplicados')
+    @admin.action(description=_('🧹 Eliminar duplicados'))
     def eliminar_duplicados(self, request, queryset):
         vistos = set()
         eliminados = 0
@@ -2330,7 +2390,7 @@ class TempCharactersAdmin(ImportExportModelAdmin):
         }),
     )
 
-    @admin.action(description='🗑️ Eliminar personajes seleccionados')
+    @admin.action(description=_('🗑️ Eliminar personajes seleccionados'))
     def eliminar_seleccionados(self, request, queryset):
         cantidad = queryset.count()
         queryset.delete()

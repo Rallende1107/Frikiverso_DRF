@@ -9,20 +9,19 @@ from django.utils.translation import gettext_lazy as _
 from PIL import Image as PILImage
 # Imports locales del proyecto
 from apps.common.models import Country, Person, Language, ImageSize
-from core.models import BaseLog, YearField
 from core.utils.utils import obtener_inicial
+from core.models import BaseLog, YearField
 from .utils.uploads import serie_image_extra_path, serie_image_path
 
 # Create your models here.
-
 ########################################################################################################    Log
 class SerieLog(BaseLog):
     """Model definition for SerieLog."""
 
     class Meta:
-        """Meta definition for SerieLog."""
+        """Definición de meta datos para SerieLog."""
         verbose_name = _('Log Serie')
-        verbose_name_plural = _('Logs Serie')
+        verbose_name_plural = _('Logs Series')
         ordering = ['-timestamp']
         unique_together = (('level', 'process', 'timestamp',),)
         db_table = 'log_Serie'
@@ -30,7 +29,7 @@ class SerieLog(BaseLog):
 ########################################################################################################    Modelo para Genre
 class Genre(models.Model):
     """Model definition for Genre."""
-    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, related_name='childrens', verbose_name=_('Padre'))
+    parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'is_active': True}, related_name='childrens', on_delete=models.CASCADE, verbose_name=_('Padre'))
     name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
     name_esp = models.CharField(max_length=50, unique=True, null=True, blank=True, verbose_name=_('Nombre Español'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
@@ -80,7 +79,7 @@ class Genre(models.Model):
 ########################################################################################################    Modelo para Type
 class Type(models.Model):
     """Model definition for Type."""
-    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE, related_name='childrens', verbose_name=_('Padre'))
+    parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'is_active': True}, related_name='childrens', on_delete=models.CASCADE, verbose_name=_('Padre'))
     name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
     name_esp = models.CharField(max_length=50, unique=True, null=True, blank=True, verbose_name=_('Nombre Español'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
@@ -89,7 +88,6 @@ class Type(models.Model):
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
-    delete = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
         """Meta definition for Type."""
@@ -127,7 +125,7 @@ class Type(models.Model):
     def get_num_series(self):
         return self.series_as_types.count()
 
-########################################################################################################    Modelo para SerieRole
+########################################################################################################    Modelo para Role
 class Role(models.Model):
     """Model definition for Role."""
     name = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
@@ -143,8 +141,8 @@ class Role(models.Model):
 
     class Meta:
         """Meta definition for Role."""
-        verbose_name = _('Ros Película')
-        verbose_name_plural = _('Roles Películas')
+        verbose_name = _('Rol Serie')
+        verbose_name_plural = _('Roles Series')
         ordering = ['-created_at', 'name',]
         unique_together = (('name', 'name_esp', 'role_staff', 'role_cast',),)
 
@@ -173,6 +171,7 @@ class Role(models.Model):
         """Return absolute url for Role."""
         return reverse('serie_app:role_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
+
     # custom methods
     def get_num_serie_staff(self):
         return self.persons_as_serie_staff_roles.count()
@@ -184,9 +183,9 @@ class Role(models.Model):
 class Rating(models.Model):
     """Model definition for Rating."""
     acronym = models.CharField(max_length=15, unique=True, null=False, blank=False, verbose_name=_('Acrónimo'))
-    name = models.CharField(max_length=100, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    name_esp = models.CharField(max_length=100, unique=True, null=True, blank=True, verbose_name=_('Nombre Español'))
-    slug = models.SlugField(max_length=100, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    name = models.CharField(max_length=60, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
+    name_esp = models.CharField(max_length=60, unique=True, null=True, blank=True, verbose_name=_('Nombre Español'))
+    slug = models.SlugField(max_length=60, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -223,17 +222,13 @@ class Rating(models.Model):
         """Return absolute url for Rating."""
         return reverse('serie_app:rating_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
-    # custom methods
-    def get_num_series(self):
-        return self.series_as_ratings.count()
-
 ########################################################################################################    Modelo para Company
 class Company(models.Model):
     """Model definition for Company."""
     name = models.CharField(max_length=255, unique=True, null=False, blank=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=255,  unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    slug = models.SlugField(max_length=255, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True, related_name='seriess_as_countries', verbose_name=_('País'))
+    country = models.ForeignKey(Country, blank=True,  null=True,  limit_choices_to={'is_active': True}, related_name='series_as_countries', on_delete=models.CASCADE, verbose_name=_('País'))
     founded_year = YearField(blank=True, null=True, verbose_name=_('Año Fundación'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
@@ -281,15 +276,14 @@ class Serie(models.Model):
     """Model definition for Serie."""
     title = models.CharField(max_length=255, null=False, blank=False, verbose_name=_('Título Original'))
     title_secundary = models.CharField(max_length=255,null=True, blank=True, verbose_name=_('Título Secundario'))
-    release_year = YearField(null=True, blank=True, verbose_name=_('Año Lanzamiento'))
-    ending_year = YearField(null=True, blank=True, verbose_name=_('Año Termino'))
-    episodes = models.PositiveIntegerField(null=True, blank=True, verbose_name=_('Episodios'))
+    release_year = YearField(blank=True, null=True, verbose_name=_('Año Lanzamiento'))
+    duration_minutes = models.PositiveIntegerField(null=False, blank=True, default=0, verbose_name=_('Duración Minutos'))
     synopsis = models.TextField(blank=True, verbose_name=_('Sinopsis'))
     serie_types = models.ForeignKey(Type, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_types', on_delete=models.CASCADE, verbose_name=_('Tipo Serie'))
     serie_rating = models.ForeignKey(Rating, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_ratings', on_delete=models.CASCADE, verbose_name=_('Clasificación Serie'))
     genres = models.ManyToManyField(Genre, blank=True, limit_choices_to={'is_active': True}, related_name='series_as_genre', verbose_name=_('Géneros'))
     producers = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='series_as_producers', verbose_name=_('Productoras'))
-    distributors = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='series_as_distributors',  verbose_name=_('Distribuidoras'))
+    distributors = models.ManyToManyField(Company, blank=True, limit_choices_to={'is_active': True}, related_name='series_as_distributors', verbose_name=_('Distribuidoras'))
     initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
     slug = models.SlugField(max_length=255, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
@@ -305,9 +299,7 @@ class Serie(models.Model):
 
     def __str__(self):
         """Unicode representation of Serie."""
-        if self.release_year and self.ending_year:
-            return (f'{self.title} ({self.release_year} - {self.ending_year})')
-        if self.release_year and not self.ending_year:
+        if self.release_year:
             return (f'{self.title} ({self.release_year})')
         return self.title
 
@@ -317,7 +309,7 @@ class Serie(models.Model):
         # Normalización de nombres
         if self.title:
             self.title = self.title.strip().title()
-        # if self.title_secundary:
+        if self.title_secundary:
             self.title_secundary = self.title_secundary.strip().title()
         # Inicial automático si está vacío o el nombre cambió
         if not self.initial or (old and self.title != old.title):
@@ -350,9 +342,9 @@ class Serie(models.Model):
     def get_credit_series(self):
         return self.series_as_staffs.count()
 
-########################################################################################################    Modelo para Title
+########################################################################################################    Modelo para TitleSerie
 class TitleSerie(models.Model):
-    """Model definition for Title."""
+    """Model definition for TitleSerie."""
     serie = models.ForeignKey(Serie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_title', on_delete=models.CASCADE, verbose_name=_('Serie'))
     title_lang = models.ForeignKey(Language, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='titles_series_as_languages', on_delete=models.CASCADE, verbose_name=_('Idioma'))
     title = models.CharField(max_length=255, unique=False, null=False, blank=False, verbose_name=_('Título'))
@@ -363,18 +355,19 @@ class TitleSerie(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
 
     class Meta:
-        """Meta definition for Title."""
+        """Meta definition for TitleSerie."""
         verbose_name = _('Título')
         verbose_name_plural = _('Títulos')
-        ordering = ['title_lang', 'initial', 'title',]
+        ordering = ['serie', 'title_lang', 'initial', 'title',]
         unique_together = (('title_lang', 'title', 'serie',),)
 
     def __str__(self):
-        """Unicode representation of Title."""
+        """Unicode representation of TitleSerie."""
         return f'{self.serie.title} - {self.title_lang.name} - {self.title}'
 
     def save(self, *args, **kwargs):
-        """Save method for Title."""
+        """Save method for TitleSerie."""
+        # Obtener el objeto original si existe
         old = TitleSerie.objects.filter(pk=self.pk).first() if self.pk else None
 
         if self.title:
@@ -389,7 +382,7 @@ class TitleSerie(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        """Return absolute url for Title."""
+        """Return absolute url for TitleSerie."""
         return reverse('serie_app:title_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
     # custom methods
@@ -410,8 +403,8 @@ class SerieStaff(models.Model):
 
     class Meta:
         """Meta definition for SerieStaff."""
-        verbose_name = _('Personal Película')
-        verbose_name_plural = _('Personal Películas')
+        verbose_name = _('Personal Serie')
+        verbose_name_plural = _('Personal Series')
         ordering = ['serie', 'role', 'person',]
         unique_together = (('serie', 'role', 'person',),)
 
@@ -479,7 +472,7 @@ class SerieCast(models.Model):
 
     def get_absolute_url(self):
         """Return absolute url for SerieCast."""
-        return reverse('serie_app:serie_cast_detail', kwargs={'pk': self.pk})
+        return reverse('serie_app:serie_cast_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
     # custom methods
     def get_object_name(self):
@@ -491,11 +484,9 @@ class SerieCast(models.Model):
 class SerieImage(models.Model):
     """Model definition for SerieImage."""
     serie = models.ForeignKey(Serie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_images', on_delete=models.CASCADE, verbose_name=_('Serie'))
+    size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=serie_image_path, verbose_name=_('Imagen Serie'))
-    size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_images_as_sizes', on_delete=models.PROTECT, verbose_name=_('Tamaño'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -504,57 +495,47 @@ class SerieImage(models.Model):
         """Meta definition for SerieImage."""
         verbose_name = _('Imagen Serie')
         verbose_name_plural = _('Imágenes Series')
-        ordering = ['serie', 'size_image', 'name',]
-        unique_together = (('serie', 'size_image', 'name',),)
+        ordering = ['serie', 'size_image',]
+        unique_together = (('serie', 'size_image',),)
 
     def __str__(self):
         """Unicode representation of SerieImage."""
-        return self.name if self.serie else _('Imagen sin Serie')
+        if self.serie and self.serie.title:
+            return _('Imagen de %(name)s') % {'name': self.serie.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for SerieImage."""
-        old = SerieImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = SerieImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for SerieImage."""
-        return reverse('serie_app:serie_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('serie_app:serie_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.serie:
             return self.serie.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -566,7 +547,7 @@ class SerieImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -575,16 +556,14 @@ class SerieImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para SerieImageExtra
 class SerieImageExtra(models.Model):
     """Model definition for SerieImageExtra."""
-    serie = models.ForeignKey(Serie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_images_exta', on_delete=models.CASCADE, verbose_name=_('Serie'))
+    serie = models.ForeignKey(Serie, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='series_as_exta_images', on_delete=models.CASCADE, verbose_name=_('Serie'))
     image = models.ImageField(blank=False, null=False, upload_to=serie_image_extra_path, verbose_name=_('Imagen Extra Serie'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -593,53 +572,46 @@ class SerieImageExtra(models.Model):
         """Meta definition for SerieImageExtra."""
         verbose_name = _('Imagen Extra Serie')
         verbose_name_plural = _('Imágenes Extra Series')
-        ordering = ['serie', 'name',]
-        unique_together = (('serie', 'name',),)
+        ordering = ['serie',]
 
-    def __str__(self, *args, **kwargs):
+    def __str__(self):
         """Unicode representation of SerieImageExtra."""
-        old = SerieImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.serie and self.serie.title:
+            return _('Imagen de %(name)s') % {'name': self.serie.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
+
+    def save(self, *args, **kwargs):
+        """Save method for SerieImageExtra."""
+        if self.pk:
+            old = SerieImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for SerieImageExtra."""
-        return reverse('serie_app:serie_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('serie_app:serie_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.serie:
             return self.serie.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -651,7 +623,7 @@ class SerieImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -660,5 +632,6 @@ class SerieImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
+

@@ -154,8 +154,11 @@ class ImageSize(models.Model):
         # Slug automático si está vacío o el nombre cambió
         if not self.slug or (old and self.name != old.name):
             self.slug = slugify(self.name)
-
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for ImageSize."""
+        return reverse('common_app:image_size_detail', kwargs={'pk': self.pk, 'slug': self.slug})
 
 ########################################################################################################    Modelo para Language
 class Language(models.Model):
@@ -270,8 +273,6 @@ class PersonImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='persons_images_as_sizes', on_delete=models.PROTECT, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=person_image_path, verbose_name=_('Imagen Persona'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=False, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=False, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -280,40 +281,28 @@ class PersonImage(models.Model):
         """Meta definition for PersonImage."""
         verbose_name = _('Imagen Persona')
         verbose_name_plural = _('Imágenes Personas')
-        ordering = ['person', 'size_image', 'name',]
-        unique_together = (('person', 'size_image', 'name',),)
+        ordering = ['person', 'size_image',]
 
     def __str__(self):
         """Unicode representation of PersonImage."""
-        return self.name if self.person else _('Imagen sin Persona')
+        if self.person and self.person.full_name:
+            return _('Imagen de %(name)s') % {'name': self.person.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Guardar para que image.name esté definido
-
-        if not self.image or not hasattr(self.image, 'name'):
-            # No hay imagen o nombre, nada que actualizar
-            return
-
-        filename = os.path.basename(self.image.name)
-        updated_fields = []
-
-        if self.name != filename:
-            self.name = filename
-            updated_fields.append('name')
-
-        name_without_ext = os.path.splitext(filename)[0]
-        new_slug = slugify(name_without_ext)
-
-        if self.slug != new_slug:
-            self.slug = new_slug
-            updated_fields.append('slug')
-
-        if updated_fields:
-            super().save(update_fields=updated_fields)
+        """Save method for PersonImage."""
+        if self.pk:
+            old = PersonImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for PersonImage."""
-        return reverse('common_app:person_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('common_app:person_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
@@ -322,20 +311,16 @@ class PersonImage(models.Model):
         return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -347,7 +332,7 @@ class PersonImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -356,7 +341,7 @@ class PersonImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para PersonImageExtra
@@ -364,8 +349,6 @@ class PersonImageExtra(models.Model):
     """Model definition for PersonImageExtra."""
     person = models.ForeignKey(Person, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='persons_as_exta_images', on_delete=models.CASCADE, verbose_name=_('Persona'))
     image = models.ImageField(blank=False, null=False, upload_to=person_image_extra_path, verbose_name=_('Imagen Extra Persona'))
-    name = models.CharField(max_length=150, unique=False, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=False, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -374,63 +357,46 @@ class PersonImageExtra(models.Model):
         """Meta definition for PersonImageExtra."""
         verbose_name = _('Imagen extra persona')
         verbose_name_plural = _('Imágenes extras de personas')
-        ordering = ['person', 'name',]
-        unique_together = (('person', 'name',),)
+        ordering = ['person',]
 
     def __str__(self):
         """Unicode representation of PersonImageExtra."""
-        return self.name if self.person else _('Imagen sin Persona')
+        if self.person and self.person.full_name:
+            return _('Imagen de %(name)s') % {'name': self.person.full_name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Guardar para que image.name esté definido
-
-        if not self.image or not hasattr(self.image, 'name'):
-            # No hay imagen o nombre, nada que actualizar
-            return
-
-        filename = os.path.basename(self.image.name)
-        updated_fields = []
-
-        if self.name != filename:
-            self.name = filename
-            updated_fields.append('name')
-
-        name_without_ext = os.path.splitext(filename)[0]
-        new_slug = slugify(name_without_ext)
-
-        if self.slug != new_slug:
-            self.slug = new_slug
-            updated_fields.append('slug')
-
-        if updated_fields:
-            super().save(update_fields=updated_fields)
-
+        """Save method for PersonImageExtra."""
+        if self.pk:
+            old = PersonImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for PersonImageExtra."""
-        return reverse('common_app:person_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('common_app:person_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.person:
             return self.person.full_name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -442,7 +408,7 @@ class PersonImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -451,7 +417,7 @@ class PersonImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para PersonNickname

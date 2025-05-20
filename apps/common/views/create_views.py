@@ -11,7 +11,7 @@ from apps.common.models import (Country, Format, ImageSize, Language, Person, Pe
 from apps.common.forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
 # Project-level imports - Mixins and utilities
-from core.utils.constants import (CSSBackground, ImageCards, JSConstants, KeyMap, Templates, URLS,)
+from core.utils.constants import (CSSBackground, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 
 # Create your views here.
@@ -19,16 +19,16 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Country
     form_class = CountryForm
-    template_name = Templates.Common.Country.ADD
-    success_url = reverse_lazy(URLS.Common.Country.LST)
-    title = _('Añadir País')
+    template_name = Templates.Common.Country.CREATE
+    success_url = reverse_lazy(URLS.Common.Country.LIST)
+    title = _('Añadir país')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
+        name = form.instance.name
         messages.success(self.request, _('¡El país "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
@@ -49,17 +49,17 @@ class CountryCreateView(PermissionRequiredMessageMixin, CreateView):
 class FormatCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Format
     form_class = FormatForm
-    template_name = Templates.Common.Format.ADD
-    success_url = reverse_lazy(URLS.Common.Format.LST)
-    title = _('Añadir Formato')
+    template_name = Templates.Common.Format.CREATE
+    success_url = reverse_lazy(URLS.Common.Format.LIST)
+    title = _('Añadir formato')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡El Formato "%(name)s" fue creado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El formato "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -79,17 +79,17 @@ class FormatCreateView(PermissionRequiredMessageMixin, CreateView):
 class ImageSizeCreateView(PermissionRequiredMessageMixin, CreateView):
     model = ImageSize
     form_class = ImageSizeForm
-    template_name = Templates.Common.ImageSize.ADD
-    success_url = reverse_lazy(URLS.Common.ImageSize.LST)
-    title = _('Añadir Tamaño de Imágenes')
+    template_name = Templates.Common.ImageSize.CREATE
+    success_url = reverse_lazy(URLS.Common.ImageSize.LIST)
+    title = _('Añadir tamaño de imagen')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('¡El Tamaño de Imágen "%(name)s" fue creado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El tamaño de imagen "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -109,16 +109,16 @@ class ImageSizeCreateView(PermissionRequiredMessageMixin, CreateView):
 class LanguageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Language
     form_class = LanguageForm
-    template_name = Templates.Common.Language.ADD
-    success_url = reverse_lazy(URLS.Common.Language.LST)
-    title = _('Añadir Idioma')
+    template_name = Templates.Common.Language.CREATE
+    success_url = reverse_lazy(URLS.Common.Language.LIST)
+    title = _('Añadir idioma')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
+        name = form.instance.name
         messages.success(self.request, _('¡El idioma "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
@@ -139,17 +139,17 @@ class LanguageCreateView(PermissionRequiredMessageMixin, CreateView):
 class PersonCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Person
     form_class = PersonForm
-    template_name = Templates.Common.Person.ADD
-    success_url = reverse_lazy(URLS.Common.Person.LST)
-    title = _('Añadir Persona')
+    template_name = Templates.Common.Person.CREATE
+    success_url = reverse_lazy(URLS.Common.Person.LIST)
+    title = _('Añadir persona')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('full_name')
-        messages.success(self.request, _('¡La Persona "%(name)s" fue creada exitosamente!') % {'name': name})
+        name = form.instance.full_name
+        messages.success(self.request, _('¡La persona "%(name)s" fue creada exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -169,8 +169,8 @@ class PersonCreateView(PermissionRequiredMessageMixin, CreateView):
 class PersonImageCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PersonImage
     form_class = PersonImageForm
-    template_name = Templates.Common.PersonImage.ADD
-    success_url = reverse_lazy(URLS.Common.PersonImage.LST)
+    template_name = Templates.Common.PersonImage.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonImage.LIST)
     title = _('Añadir imagen de persona')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -178,8 +178,8 @@ class PersonImageCreateView(PermissionRequiredMessageMixin, CreateView):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        person_name = form.instance.person.full_name
-        messages.success(self.request, _('¡La Imagen de la persona "%(name)s" fue creada exitosamente!') % {'name': person_name})
+        name = form.instance.person.full_name
+        messages.success(self.request, _('¡La imagen de la persona "%(name)s" fue creada exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -199,8 +199,8 @@ class PersonImageCreateView(PermissionRequiredMessageMixin, CreateView):
 class PersonImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PersonImageExtra
     form_class = PersonImageExtraForm
-    template_name = Templates.Common.PersonImageExtra.ADD
-    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+    template_name = Templates.Common.PersonImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LIST)
     title = _('Añadir imagen adicional de persona')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -208,8 +208,8 @@ class PersonImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        person_name = form.instance.person.full_name
-        messages.success(self.request, _('¡La Imagen adicional de la persona "%(name)s" fue creada exitosamente!') % {'name': person_name})
+        name = form.instance.person.full_name
+        messages.success(self.request, _('¡La imagen adicional de la persona "%(name)s" fue creada exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -229,17 +229,19 @@ class PersonImageExtraCreateView(PermissionRequiredMessageMixin, CreateView):
 class PersonNicknameCreateView(PermissionRequiredMessageMixin, CreateView):
     model = PersonNickname
     form_class = PersonNicknameForm
-    template_name = Templates.Common.PersonNickname.ADD
-    success_url = reverse_lazy(URLS.Common.PersonNickname.LST)
-    title = _('Añadir PersonNicknamea')
+    template_name = Templates.Common.PersonNickname.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonNickname.LIST)
+    title = _('Añadir apodo de persona')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('full_name')
-        messages.success(self.request, _('¡La PersonNicknamea "%(name)s" fue creada exitosamente!') % {'name': name})
+        person = form.instance.person
+        nickname = form.instance.nickname
+        full_name = person.full_name
+        messages.success(self.request, _('¡El apodo "%(nickname)s" de la persona "%(full_name)s" fue creado exitosamente!')% {'nickname': nickname, 'full_name': full_name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -255,21 +257,22 @@ class PersonNicknameCreateView(PermissionRequiredMessageMixin, CreateView):
         context['cancel_url'] = self.success_url
         return context
 
+
 ############################################################################################################################################    Quality
 class QualityCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Quality
     form_class = QualityForm
-    template_name = Templates.Common.Quality.ADD
-    success_url = reverse_lazy(URLS.Common.Quality.LST)
-    title = _('Añadir Calidad')
+    template_name = Templates.Common.Quality.CREATE
+    success_url = reverse_lazy(URLS.Common.Quality.LIST)
+    title = _('Añadir calidad')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('La Calidad "%(name)s" fue creada exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡La calidad "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -289,17 +292,17 @@ class QualityCreateView(PermissionRequiredMessageMixin, CreateView):
 class WebsiteCreateView(PermissionRequiredMessageMixin, CreateView):
     model = Website
     form_class = WebsiteForm
-    template_name = Templates.Common.Website.ADD
-    success_url = reverse_lazy(URLS.Common.Website.LST)
-    title = _('Añadir Sitio Web')
+    template_name = Templates.Common.Website.CREATE
+    success_url = reverse_lazy(URLS.Common.Website.LIST)
+    title = _('Añadir sitio web')
     permission_redirect_url = URLS.Home.COMMON
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
 
     def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        messages.success(self.request, _('El Sitio Web "%(name)s" fue creado exitosamente!') % {'name': name})
+        name = form.instance.name
+        messages.success(self.request, _('¡El sitio web "%(name)s" fue creado exitosamente!') % {'name': name})
         return super().form_valid(form)
 
     def form_invalid(self, form):

@@ -21,7 +21,7 @@ class IndexView(TemplateView):
 class ContactView(FormView):
     template_name = Templates.Main.CONTACT
     form_class = ContactoForm
-    success_url = reverse_lazy(URLS.Main.CONTAC)  # Cambia esto según tu config
+    success_url = reverse_lazy(URLS.Main.CONTACT)  # Cambia esto según tu config
     title = _('Contáctanos')
 
     def get_context_data(self, **kwargs):

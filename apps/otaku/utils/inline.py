@@ -1,9 +1,8 @@
 from django.contrib import admin
 # impot Modelos
-from apps.otaku.models import (TitleManga, TitleAnime, CharacterNickname, OtakuPersonNickname,
+from apps.otaku.models import (TitleManga, TitleAnime, CharacterNickname, PersonNickname,
     AnimeImage, AnimeImageExtra, MangaImage, MangaImageExtra,
-    OtakuPersonImage, OtakuPersonImageExtra, CharacterImage, CharacterImageExtra,
-                               )
+    PersonImage, PersonImageExtra, CharacterImage, CharacterImageExtra,)
 # impot Resource
 ########################################################################################################    Inline Person
 class TitleMangaInline(admin.TabularInline):
@@ -29,65 +28,65 @@ class CharacterNicknameInline(admin.TabularInline):
     readonly_fields = ('slug', 'initial', 'created_at', 'updated_at')
     show_change_link = True
 
-class OtakuPersonNicknameInline(admin.TabularInline):
-    model = OtakuPersonNickname
-    extra = 1  # Muestra 1 formulario vacío por defecto
-    fields = ('nickname', 'is_active')  # Campos que se mostrarán en el inline
-    readonly_fields = ('slug', 'initial')  # Campos solo lectura
-    show_change_link = True  # Permite ver el detalle del apodo
+class PersonNicknameInline(admin.TabularInline):
+    model = PersonNickname
+    extra = 1
+    fields = ('nickname', 'is_active')
+    readonly_fields = ('slug', 'initial')
+    show_change_link = True
 
 class AnimeImageInline(admin.TabularInline):
     model = AnimeImage
-    extra = 1  # Número de formularios vacíos que se mostrarán por defecto.
-    fk_name = 'anime'  # Nombre del campo de relación
-    fields = ('size_image', 'image', 'image_url', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    extra = 1
+    fk_name = 'anime'
+    fields = ('size_image', 'image', 'image_url', 'is_active')
+    show_change_link = True
 
 class AnimeImageExtraInline(admin.TabularInline):
     model = AnimeImageExtra
     extra = 1
     fk_name = 'anime'
-    fields = ('image', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('image', 'is_active')
+    show_change_link = True
 
 class MangaImageInline(admin.TabularInline):
     model = MangaImage
     extra = 1
     fk_name = 'manga'
-    fields = ('size_image', 'image', 'image_url', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('size_image', 'image', 'image_url', 'is_active')
+    show_change_link = True
 
 class MangaImageExtraInline(admin.TabularInline):
     model = MangaImageExtra
     extra = 1
     fk_name = 'manga'
-    fields = ('image', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('image', 'is_active')
+    show_change_link = True
 
-class OtakuPersonImageInline(admin.TabularInline):
-    model = OtakuPersonImage
+class PersonImageInline(admin.TabularInline):
+    model = PersonImage
     extra = 1
     fk_name = 'person'
-    fields = ('size_image', 'image', 'image_url', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('size_image', 'image', 'image_url', 'is_active')
+    show_change_link = True
 
-class OtakuPersonImageExtraInline(admin.TabularInline):
-    model = OtakuPersonImageExtra
+class PersonImageExtraInline(admin.TabularInline):
+    model = PersonImageExtra
     extra = 1
     fk_name = 'person'
-    fields = ('image', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('image', 'is_active')
+    show_change_link = True
 
 class CharacterImageInline(admin.TabularInline):
     model = CharacterImage
     extra = 1
     fk_name = 'character'
-    fields = ('size_image', 'image', 'image_url', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('size_image', 'image', 'image_url', 'is_active')
+    show_change_link = True
 
 class CharacterImageExtraInline(admin.TabularInline):
     model = CharacterImageExtra
     extra = 1
     fk_name = 'character'
-    fields = ('image', 'name', 'slug', 'is_active')
-    readonly_fields = ('name', 'slug')
+    fields = ('image', 'is_active')
+    show_change_link = True

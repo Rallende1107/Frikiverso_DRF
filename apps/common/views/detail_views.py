@@ -17,7 +17,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 ############################################################################################################################################    Country
 class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Country
-    template_name = Templates.Common.Country.DTL
+    template_name = Templates.Common.Country.DETAIL
     context_object_name = 'country'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -27,7 +27,7 @@ class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El País que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Country.LST))
+            return redirect(reverse_lazy(URLS.Common.Country.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -42,14 +42,14 @@ class CountryDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.COUNTRY
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Country.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Country.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    Format
 class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Format
-    template_name = Templates.Common.Format.DTL
+    template_name = Templates.Common.Format.DETAIL
     context_object_name = 'format'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -59,7 +59,7 @@ class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El formato que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Format.LST))
+            return redirect(reverse_lazy(URLS.Common.Format.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -74,14 +74,14 @@ class FormatDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.FORMAT
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Format.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Format.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    ImageSize
 class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
     model = ImageSize
-    template_name = Templates.Common.ImageSize.DTL
+    template_name = Templates.Common.ImageSize.DETAIL
     context_object_name = 'imagesize'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -91,7 +91,7 @@ class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El Tamaño de imagen que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.ImageSize.LST))
+            return redirect(reverse_lazy(URLS.Common.ImageSize.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -106,14 +106,14 @@ class ImageSizeDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.IMAGE_SIZE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.ImageSize.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.ImageSize.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    Language
 class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Language
-    template_name = Templates.Common.Language.DTL
+    template_name = Templates.Common.Language.DETAIL
     context_object_name = 'language'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -123,7 +123,7 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El Idioma que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Country.LST))
+            return redirect(reverse_lazy(URLS.Common.Country.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -137,14 +137,14 @@ class LanguageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.LANGUAGE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Language.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Language.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    Person
 class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Person
-    template_name = Templates.Common.Person.DTL
+    template_name = Templates.Common.Person.DETAIL
     context_object_name = 'persons'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -154,7 +154,7 @@ class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La Persona que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Person.LST))
+            return redirect(reverse_lazy(URLS.Common.Person.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -167,14 +167,14 @@ class PersonDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.PERSON
         context['title'] = self.object.full_name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Person.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Person.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    PersonImage
 class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PersonImage
-    template_name = Templates.Common.PersonImage.DTL
+    template_name = Templates.Common.PersonImage.DETAIL
     context_object_name = 'image'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -184,7 +184,7 @@ class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.PersonImage.LST))
+            return redirect(reverse_lazy(URLS.Common.PersonImage.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -197,14 +197,14 @@ class PersonImageDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.PERSON_IMAGE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.PersonImage.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.PersonImage.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    PersonImageExtra
 class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PersonImageExtra
-    template_name = Templates.Common.PersonImageExtra.DTL
+    template_name = Templates.Common.PersonImageExtra.DETAIL
     context_object_name = 'image'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -214,7 +214,7 @@ class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La imagen adicional que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.PersonImageExtra.LST))
+            return redirect(reverse_lazy(URLS.Common.PersonImageExtra.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -227,13 +227,13 @@ class PersonImageExtraDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.PERSON_IMAGE_EXTRA
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.PersonImageExtra.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 #######################################################################################################################################    PersonNickname
 class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
     model = PersonNickname
-    template_name = Templates.Common.PersonNickname.DTL
+    template_name = Templates.Common.PersonNickname.DETAIL
     context_object_name = 'nickname'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -243,7 +243,7 @@ class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El Apodo de persona que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.PersonNickname.LST))
+            return redirect(reverse_lazy(URLS.Common.PersonNickname.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -256,14 +256,14 @@ class PersonNicknameDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.PERSON_NICKNAME
         context['title'] = self.object.nickname
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.PersonNickname.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.PersonNickname.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    Quality
 class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Quality
-    template_name = Templates.Common.Quality.DTL
+    template_name = Templates.Common.Quality.DETAIL
     context_object_name = 'quality'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -273,7 +273,7 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('La Calidad que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Quality.LST))
+            return redirect(reverse_lazy(URLS.Common.Quality.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -288,14 +288,14 @@ class QualityDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.QUALITY
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Quality.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Quality.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 
 ############################################################################################################################################    Website
 class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
     model = Website
-    template_name = Templates.Common.Website.DTL
+    template_name = Templates.Common.Website.DETAIL
     context_object_name = 'quality'
     permission_redirect_url = URLS.Home.COMMON
 
@@ -305,7 +305,7 @@ class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
             self.object = self.get_object()
         except Http404:
             messages.error(self.request, _('El Sitio Web que buscas no se encontró.'))
-            return redirect(reverse_lazy(URLS.Common.Website.LST))
+            return redirect(reverse_lazy(URLS.Common.Website.LIST))
 
         return super().get(request, *args, **kwargs)
 
@@ -320,7 +320,7 @@ class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
         context['class'] = CSSBackground.Common.WEBSITE
         context['title'] = self.object.name
         context['objeto'] = self.object
-        context['listURL'] = reverse_lazy(URLS.Common.Website.LST)
+        context['listURL'] = reverse_lazy(URLS.Common.Website.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
 

@@ -19,7 +19,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 ############################################################################################################################################    Censorship
 class CensorshipListView(PermissionRequiredMessageMixin, ListView):
     model = Censorship
-    template_name = Templates.Renpy.Censorship.LST
+    template_name = Templates.Renpy.Censorship.LIST
     context_object_name = 'censorships'
     title = _('Lista de Censuras')
     permission_redirect_url = URLS.Home.RENPY
@@ -39,7 +39,7 @@ class CensorshipListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Censorship.ADD),
+                'url': reverse_lazy(URLS.Renpy.Censorship.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -49,7 +49,7 @@ class CensorshipListView(PermissionRequiredMessageMixin, ListView):
 
 class DeveloperListView(PermissionRequiredMessageMixin, ListView):
     model = Developer
-    template_name = Templates.Renpy.Developer.LST
+    template_name = Templates.Renpy.Developer.LIST
     context_object_name = 'developers'
     title = _('Lista de Desarolladores')
     permission_redirect_url = URLS.Home.RENPY
@@ -69,19 +69,19 @@ class DeveloperListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Developer.ADD),
+                'url': reverse_lazy(URLS.Renpy.Developer.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
             },
             {
-                'url': reverse_lazy(URLS.Renpy.DeveloperLink.LST),
+                'url': reverse_lazy(URLS.Renpy.DeveloperLink.LIST),
                 'label': _('Enlaces'),
                 'icon': 'bi bi-plus-circle',
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.DeveloperLink.ADD),
+                'url': reverse_lazy(URLS.Renpy.DeveloperLink.CREATE),
                 'label': _('Anadir Enlace'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -93,7 +93,7 @@ class DeveloperListView(PermissionRequiredMessageMixin, ListView):
 ############################################################################################################################################    Censorship
 class DeveloperImageListView(PermissionRequiredMessageMixin, ListView):
     model = DeveloperImage
-    template_name = Templates.Renpy.DeveloperImage.LST
+    template_name = Templates.Renpy.DeveloperImage.LIST
     context_object_name = 'developer_images'
     title = _('Lista de Imágenes de Desarrolladores')
     permission_redirect_url = URLS.Home.RENPY
@@ -113,7 +113,7 @@ class DeveloperImageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.DeveloperImage.ADD),
+                'url': reverse_lazy(URLS.Renpy.DeveloperImage.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -123,7 +123,7 @@ class DeveloperImageListView(PermissionRequiredMessageMixin, ListView):
 
 class DeveloperImageExtraListView(PermissionRequiredMessageMixin, ListView):
     model = DeveloperImageExtra
-    template_name = Templates.Renpy.DeveloperImageExtra.LST
+    template_name = Templates.Renpy.DeveloperImageExtra.LIST
     context_object_name = 'developer_images_extra'
     title = _('Lista de Imágenes Extra de Desarrolladores')
     permission_redirect_url = URLS.Home.RENPY
@@ -143,7 +143,7 @@ class DeveloperImageExtraListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.DeveloperImageExtra.ADD),
+                'url': reverse_lazy(URLS.Renpy.DeveloperImageExtra.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -153,7 +153,7 @@ class DeveloperImageExtraListView(PermissionRequiredMessageMixin, ListView):
 
 class DeveloperLinkListView(PermissionRequiredMessageMixin, ListView):
     model = DeveloperLink
-    template_name = Templates.Renpy.DeveloperLink.LST
+    template_name = Templates.Renpy.DeveloperLink.LIST
     context_object_name = 'developer_links'
     title = _('Lista de Enlaces de Desarrolladores')
     permission_redirect_url = URLS.Home.RENPY
@@ -173,7 +173,7 @@ class DeveloperLinkListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.DeveloperLink.ADD),
+                'url': reverse_lazy(URLS.Renpy.DeveloperLink.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -183,7 +183,7 @@ class DeveloperLinkListView(PermissionRequiredMessageMixin, ListView):
 
 class GameListView(PermissionRequiredMessageMixin, ListView):
     model = Game
-    template_name = Templates.Renpy.Game.LST
+    template_name = Templates.Renpy.Game.LIST
     context_object_name = 'games'
     title = _('Lista de Juegos')
     permission_redirect_url = URLS.Home.RENPY
@@ -203,7 +203,7 @@ class GameListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Game.ADD),
+                'url': reverse_lazy(URLS.Renpy.Game.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -219,7 +219,7 @@ class GameListView(PermissionRequiredMessageMixin, ListView):
 
 class GameEngineListView(PermissionRequiredMessageMixin, ListView):
     model = GameEngine
-    template_name = Templates.Renpy.GameEngine.LST
+    template_name = Templates.Renpy.GameEngine.LIST
     context_object_name = 'game_engines'
     title = _('Lista de Motores de Desarrollo')
     permission_redirect_url = URLS.Home.RENPY
@@ -239,7 +239,7 @@ class GameEngineListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.GameEngine.ADD),
+                'url': reverse_lazy(URLS.Renpy.GameEngine.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -249,7 +249,7 @@ class GameEngineListView(PermissionRequiredMessageMixin, ListView):
 
 class GameImageListView(PermissionRequiredMessageMixin, ListView):
     model = GameImage
-    template_name = Templates.Renpy.GameImage.LST
+    template_name = Templates.Renpy.GameImage.LIST
     context_object_name = 'game_images'
     title = _('Lista de Imágenes de Juegos')
     permission_redirect_url = URLS.Home.RENPY
@@ -269,7 +269,7 @@ class GameImageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.GameImage.ADD),
+                'url': reverse_lazy(URLS.Renpy.GameImage.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -279,7 +279,7 @@ class GameImageListView(PermissionRequiredMessageMixin, ListView):
 
 class GameImageExtraListView(PermissionRequiredMessageMixin, ListView):
     model = GameImageExtra
-    template_name = Templates.Renpy.GameImageExtra.LST
+    template_name = Templates.Renpy.GameImageExtra.LIST
     context_object_name = 'game_extra_images'
     title = _('Lista de Imágenes Extra de Juegos')
     permission_redirect_url = URLS.Home.RENPY
@@ -299,7 +299,7 @@ class GameImageExtraListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.GameImageExtra.ADD),
+                'url': reverse_lazy(URLS.Renpy.GameImageExtra.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -310,7 +310,7 @@ class GameImageExtraListView(PermissionRequiredMessageMixin, ListView):
 
 class GenreListView(PermissionRequiredMessageMixin, ListView):
     model = Genre
-    template_name = Templates.Renpy.Genre.LST
+    template_name = Templates.Renpy.Genre.LIST
     context_object_name = 'genres'
     title = _('Lista de Géneros')
     permission_redirect_url = URLS.Home.RENPY
@@ -330,7 +330,7 @@ class GenreListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Genre.ADD),
+                'url': reverse_lazy(URLS.Renpy.Genre.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -340,7 +340,7 @@ class GenreListView(PermissionRequiredMessageMixin, ListView):
 
 class PlatformListView(PermissionRequiredMessageMixin, ListView):
     model = Platform
-    template_name = Templates.Renpy.Platform.LST
+    template_name = Templates.Renpy.Platform.LIST
     context_object_name = 'platforms'
     title = _('Lista de Plataformas')
     permission_redirect_url = URLS.Home.RENPY
@@ -360,7 +360,7 @@ class PlatformListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Platform.ADD),
+                'url': reverse_lazy(URLS.Renpy.Platform.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -370,7 +370,7 @@ class PlatformListView(PermissionRequiredMessageMixin, ListView):
 
 class PrefixListView(PermissionRequiredMessageMixin, ListView):
     model = Prefix
-    template_name = Templates.Renpy.Prefix.LST
+    template_name = Templates.Renpy.Prefix.LIST
     context_object_name = 'prefixes'
     title = _('Lista de Prefijos')
     permission_redirect_url = URLS.Home.RENPY
@@ -390,7 +390,7 @@ class PrefixListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Prefix.ADD),
+                'url': reverse_lazy(URLS.Renpy.Prefix.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -400,7 +400,7 @@ class PrefixListView(PermissionRequiredMessageMixin, ListView):
 
 class PublisherListView(PermissionRequiredMessageMixin, ListView):
     model = Publisher
-    template_name = Templates.Renpy.Publisher.LST
+    template_name = Templates.Renpy.Publisher.LIST
     context_object_name = 'publishers'
     title = _('Lista de Editores')
     permission_redirect_url = URLS.Home.RENPY
@@ -420,7 +420,7 @@ class PublisherListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Publisher.ADD),
+                'url': reverse_lazy(URLS.Renpy.Publisher.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -430,7 +430,7 @@ class PublisherListView(PermissionRequiredMessageMixin, ListView):
 
 class PublisherImageListView(PermissionRequiredMessageMixin, ListView):
     model = PublisherImage
-    template_name = Templates.Renpy.PublisherImage.LST
+    template_name = Templates.Renpy.PublisherImage.LIST
     context_object_name = 'publisher_images'
     title = _('Lista de Imágenes de Editores')
     permission_redirect_url = URLS.Home.RENPY
@@ -450,7 +450,7 @@ class PublisherImageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.PublisherImage.ADD),
+                'url': reverse_lazy(URLS.Renpy.PublisherImage.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -461,7 +461,7 @@ class PublisherImageListView(PermissionRequiredMessageMixin, ListView):
 
 class PublisherImageExtraListView(PermissionRequiredMessageMixin, ListView):
     model = PublisherImageExtra
-    template_name = Templates.Renpy.PublisherImageExtra.LST
+    template_name = Templates.Renpy.PublisherImageExtra.LIST
     context_object_name = 'publisher_image_extras'
     title = _('Lista de Imágenes Extra de Editores')
     permission_redirect_url = URLS.Home.RENPY
@@ -481,7 +481,7 @@ class PublisherImageExtraListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.PublisherImageExtra.ADD),
+                'url': reverse_lazy(URLS.Renpy.PublisherImageExtra.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -491,7 +491,7 @@ class PublisherImageExtraListView(PermissionRequiredMessageMixin, ListView):
 
 class PublisherLinkListView(PermissionRequiredMessageMixin, ListView):
     model = PublisherLink
-    template_name = Templates.Renpy.PublisherLink.LST
+    template_name = Templates.Renpy.PublisherLink.LIST
     context_object_name = 'publisher_links'
     title = _('Lista de Enlaces de Editores')
     permission_redirect_url = URLS.Home.RENPY
@@ -511,7 +511,7 @@ class PublisherLinkListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.PublisherLink.ADD),
+                'url': reverse_lazy(URLS.Renpy.PublisherLink.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -521,7 +521,7 @@ class PublisherLinkListView(PermissionRequiredMessageMixin, ListView):
 
 class StatusListView(PermissionRequiredMessageMixin, ListView):
     model = Status
-    template_name = Templates.Renpy.Status.LST
+    template_name = Templates.Renpy.Status.LIST
     context_object_name = 'statuses'
     title = _('Lista de Estados')
     permission_redirect_url = URLS.Home.RENPY
@@ -541,7 +541,7 @@ class StatusListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Status.ADD),
+                'url': reverse_lazy(URLS.Renpy.Status.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -551,7 +551,7 @@ class StatusListView(PermissionRequiredMessageMixin, ListView):
 
 class TranslatorListView(PermissionRequiredMessageMixin, ListView):
     model = Translator
-    template_name = Templates.Renpy.Translator.LST
+    template_name = Templates.Renpy.Translator.LIST
     context_object_name = 'translators'
     title = _('Lista de Traductores')
     permission_redirect_url = URLS.Home.RENPY
@@ -571,7 +571,7 @@ class TranslatorListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.Translator.ADD),
+                'url': reverse_lazy(URLS.Renpy.Translator.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -582,7 +582,7 @@ class TranslatorListView(PermissionRequiredMessageMixin, ListView):
 
 class TranslatorImageListView(PermissionRequiredMessageMixin, ListView):
     model = TranslatorImage
-    template_name = Templates.Renpy.TranslatorImage.LST
+    template_name = Templates.Renpy.TranslatorImage.LIST
     context_object_name = 'translator_images'
     title = _('Lista de Imágenes de Traductores')
     permission_redirect_url = URLS.Home.RENPY
@@ -602,7 +602,7 @@ class TranslatorImageListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.TranslatorImage.ADD),
+                'url': reverse_lazy(URLS.Renpy.TranslatorImage.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -612,7 +612,7 @@ class TranslatorImageListView(PermissionRequiredMessageMixin, ListView):
 
 class TranslatorImageExtraListView(PermissionRequiredMessageMixin, ListView):
     model = TranslatorImageExtra
-    template_name = Templates.Renpy.TranslatorImageExtra.LST
+    template_name = Templates.Renpy.TranslatorImageExtra.LIST
     context_object_name = 'translator_image_extras'
     title = _('Lista de Imágenes Extra de Traductores')
     permission_redirect_url = URLS.Home.RENPY
@@ -632,7 +632,7 @@ class TranslatorImageExtraListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.TranslatorImageExtra.ADD),
+                'url': reverse_lazy(URLS.Renpy.TranslatorImageExtra.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -642,7 +642,7 @@ class TranslatorImageExtraListView(PermissionRequiredMessageMixin, ListView):
 
 class TranslatorLinkListView(PermissionRequiredMessageMixin, ListView):
     model = TranslatorLink
-    template_name = Templates.Renpy.TranslatorLink.LST
+    template_name = Templates.Renpy.TranslatorLink.LIST
     context_object_name = 'translator_links'
     title = _('Lista de Enlaces de Traductores')
     permission_redirect_url = URLS.Home.RENPY
@@ -662,7 +662,7 @@ class TranslatorLinkListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.TranslatorLink.ADD),
+                'url': reverse_lazy(URLS.Renpy.TranslatorLink.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff
@@ -673,7 +673,7 @@ class TranslatorLinkListView(PermissionRequiredMessageMixin, ListView):
 
 class TitleGameListView(PermissionRequiredMessageMixin, ListView):
     model = TitleGame
-    template_name = Templates.Renpy.TitleGame.LST
+    template_name = Templates.Renpy.TitleGame.LIST
     context_object_name = 'title_games'
     title = _('Lista de Títulos de Juegos')
     permission_redirect_url = URLS.Home.RENPY
@@ -693,7 +693,7 @@ class TitleGameListView(PermissionRequiredMessageMixin, ListView):
                 'show': True
             },
             {
-                'url': reverse_lazy(URLS.Renpy.TitleGame.ADD),
+                'url': reverse_lazy(URLS.Renpy.TitleGame.CREATE),
                 'label': _('Añadir'),
                 'icon': 'bi bi-plus-circle',
                 'show': self.request.user.is_superuser or self.request.user.is_staff

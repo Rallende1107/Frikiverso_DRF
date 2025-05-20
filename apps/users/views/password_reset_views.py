@@ -42,8 +42,8 @@ class CustomPasswordResetView(PasswordResetView):
     cancel_url = reverse_lazy(URLS.Users.LOGIN)
     form_class = PasswordRecoveryForm
     title = _('Recuperar Contraseña')
-    email_template_name = Templates.emailBoddy.PASSWORD_RECOVERY
-    subject_template_name = Templates.emailSubject.PASSWORD_RECOVERY
+    email_template_name = Templates.EmailBoddy.PASSWORD_RECOVERY
+    subject_template_name = Templates.EmailSubject.PASSWORD_RECOVERY
 
     @method_decorator(csrf_protect)
     def dispatch(self, *args, **kwargs):

@@ -411,8 +411,6 @@ class AlbumImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='albums_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=album_image_path, verbose_name=_('Imagen Álbum'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -421,57 +419,46 @@ class AlbumImage(models.Model):
         """Meta definition for AlbumImage."""
         verbose_name = _('Imagen Álbum')
         verbose_name_plural = _('Imágenes Álbumes')
-        ordering = ['album', 'size_image', 'name',]
-        unique_together = (('album', 'size_image', 'name',),)
+        ordering = ['album', 'size_image',]
 
     def __str__(self):
         """Unicode representation of AlbumImage."""
-        return self.name if self.album else _('Imagen sin Álbum')
+        if self.album and self.album.title:
+            return _('Imagen de %(name)s') % {'name': self.album.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for AlbumImage."""
-        old = AlbumImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = AlbumImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for AlbumImage."""
-        return reverse('album_app:album_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('album_app:album_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.album:
             return self.album.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -483,7 +470,7 @@ class AlbumImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -492,7 +479,7 @@ class AlbumImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para AlbumImageExtra
@@ -500,8 +487,6 @@ class AlbumImageExtra(models.Model):
     """Model definition for AlbumImageExtra."""
     album = models.ForeignKey(Album, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='albums_as_images_extra', on_delete=models.CASCADE, verbose_name=_('Álbum'))
     image = models.ImageField(blank=False, null=False, upload_to=album_image_extra_path, verbose_name=_('Imagen Extra Álbum'))
-    name = models.CharField(max_length=150, unique=True, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -510,57 +495,46 @@ class AlbumImageExtra(models.Model):
         """Meta definition for AlbumImageExtra."""
         verbose_name = _('Imagen Extra Álbum')
         verbose_name_plural = _('Imágenes Extra Álbumes')
-        ordering = ['album', 'name',]
-        unique_together = (('album', 'name',),)
+        ordering = ['album',]
 
     def __str__(self):
         """Unicode representation of AlbumImageExtra."""
-        return self.name if self.album else _('Imagen sin Álbum')
+        if self.album and self.album.title:
+            return _('Imagen de %(name)s') % {'name': self.album.title}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for AlbumImageExtra."""
-        old = AlbumImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = AlbumImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for AlbumImageExtra."""
-        return reverse('music_app:album_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('music_app:album_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.album:
             return self.album.title
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -572,7 +546,7 @@ class AlbumImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -581,7 +555,7 @@ class AlbumImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 #######################################################################################################    Modelo para ArtistImage
@@ -591,8 +565,6 @@ class ArtistImage(models.Model):
     size_image = models.ForeignKey(ImageSize, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='artists_images_as_sizes', on_delete=models.CASCADE, verbose_name=_('Tamaño'))
     image = models.ImageField(blank=False, null=False, upload_to=artist_image_path, verbose_name=_('Imagen Artista'))
     image_url = models.URLField(max_length=2000, blank=True, null=True, verbose_name=_('URL'))
-    name = models.CharField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, blank=False, null=False, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -601,57 +573,46 @@ class ArtistImage(models.Model):
         """Meta definition for ArtistImage."""
         verbose_name = _('Imagen Artista')
         verbose_name_plural = _('Imágenes Artistas')
-        ordering = ['artist', 'size_image', 'name',]
-        unique_together = (('artist', 'size_image', 'name',),)
+        ordering = ['artist', 'size_image',]
 
     def __str__(self):
         """Unicode representation of ArtistImage."""
-        return self.name if self.artist else _('Imagen sin Artista')
+        if self.artist and self.artist.name:
+            return _('Imagen de %(name)s') % {'name': self.artist.name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for ArtistImage."""
-        old = ArtistImage.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = ArtistImage.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for ArtistImage."""
-        return reverse('music_app:artist_image_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('music_app:artist_image_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.artist:
             return self.artist.name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -663,7 +624,7 @@ class ArtistImage(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -672,7 +633,7 @@ class ArtistImage(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)
 
 ########################################################################################################    Modelo para ArtistImageExtra
@@ -680,8 +641,6 @@ class ArtistImageExtra(models.Model):
     """Model definition for ArtistImageExtra."""
     artist = models.ForeignKey(Artist, blank=False, null=False, limit_choices_to={'is_active': True}, related_name='artists_as_images_extra', on_delete=models.CASCADE, verbose_name=_('Artista'))
     image = models.ImageField(blank=False, null=False, upload_to=artist_image_extra_path, verbose_name=_('Imagen Extra Artista'))
-    name = models.CharField(max_length=150, unique=True, null=False, blank=False, editable=False, verbose_name=_('Nombre'))
-    slug = models.SlugField(max_length=150, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
     is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
@@ -690,57 +649,46 @@ class ArtistImageExtra(models.Model):
         """Meta definition for ArtistImageExtra."""
         verbose_name = _('Imagen Extra Artista')
         verbose_name_plural = _('Imágenes Extra Artista')
-        ordering = ['artist', 'name',]
-        unique_together = (('artist', 'name',),)
+        ordering = ['artist',]
 
     def __str__(self):
         """Unicode representation of ArtistImageExtra."""
-        return self.name if self.artist else _('Imagen sin Artista')
+        if self.artist and self.artist.name:
+            return _('Imagen de %(name)s') % {'name': self.artist.name}
+        elif self.image:
+            return os.path.basename(self.image.name)
+        return _('Imagen sin asignar')
 
     def save(self, *args, **kwargs):
         """Save method for ArtistImageExtra."""
-        old = ArtistImageExtra.objects.filter(pk=self.pk).first() if self.pk else None
-        # Guardar inicialmente si no hay pk para obtener path de imagen
-        if not self.pk:
-            temp_image = self.image
-            self.image = None
-            super().save(*args, **kwargs)
-            self.image = temp_image
-        # Actualizar nombre si no existe o si cambió el archivo
-        if self.image:
-            filename = os.path.basename(self.image.name)
-            if not self.name or (old and old.image.name != self.image.name):
-                self.name = filename
-        # Regenerar slug si no existe o si cambió el nombre
-        if not self.slug or (old and old.name != self.name):
-            self.slug = slugify(self.name) or str(uuid.uuid4())
+        if self.pk:
+            old = ArtistImageExtra.objects.filter(pk=self.pk).first()
+            if old and old.image and self.image and old.image.name != self.image.name:
+                if os.path.isfile(old.image.path):
+                    os.remove(old.image.path)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         """Return absolute url for ArtistImageExtra."""
-        return reverse('music_app:artist_image_extra_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+        return reverse('music_app:artist_image_extra_detail', kwargs={'pk': self.pk})
 
     # custom methods
     def get_object_name(self):
         if self.artist:
             return self.artist.name
-        return None
+        return _('No Asignado')
 
     def get_img_url(self):
-        if self.image:
-            return settings.MEDIA_URL + str(self.image)
-        return None
+        return self.image.url if self.image else None
 
     def get_image_name(self):
-        if self.name:
-            base_name = os.path.splitext(os.path.basename(self.name))[0]
-            return base_name
+        if self.image:
+            return os.path.splitext(os.path.basename(self.image.name))[0]
         return None
 
     def get_image_extension(self):
-        if self.name:
-            ext = os.path.splitext(self.name)[1]
-            return ext.lower()
+        if self.image:
+            return os.path.splitext(self.image.name)[1].lower()
         return None
 
     @property
@@ -752,7 +700,7 @@ class ArtistImageExtra(models.Model):
                     return f"{size:.2f} {unit}"
                 size /= 1024.0
             return f"{size:.2f} TB"
-        return "Tamaño desconocido"
+        return _('Tamaño desconocido')
 
     @property
     def image_dimensions(self):
@@ -761,5 +709,5 @@ class ArtistImageExtra(models.Model):
                 with PILImage.open(self.image) as img:
                     return img.size
             except Exception as e:
-                print(f"Error al abrir la imagen: {e}")
+                print(_('Error al abrir la imagen: %(error)s') % {'error': e})
         return (0, 0)

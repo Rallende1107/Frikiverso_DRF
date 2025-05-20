@@ -22,35 +22,37 @@ class GenreAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información Básica', {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'parent', 'description')
         }),
-        ('Estado', {
-            'fields': ('is_active', 'explicit')
+        (_('Estado'), {
+            'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar géneros seleccionados')
+    @admin.action(description=_('Activar géneros seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar géneros seleccionados')
+    @admin.action(description=_('Desactivar géneros seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} género(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún género para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún género para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Type
 @admin.register(Type)
@@ -66,35 +68,37 @@ class TypeAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información Básica', {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'parent', 'description')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar tipos seleccionados')
+    @admin.action(description=_('Activar tipos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} tipo(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún tipo para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún tipo para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar tipos seleccionados')
+    @admin.action(description=_('Desactivar tipos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} tipo(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún tipo para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún tipo para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Role
 @admin.register(Role)
@@ -110,38 +114,40 @@ class RoleAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información Básica', {
+        (_('Información básica'), {
             'fields': ('name', 'name_esp', 'description')
         }),
-        ('Clasificación de rol', {
+        (_('Clasificación de rol'), {
             'fields': ('role_staff', 'role_cast')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar roles seleccionados')
+    @admin.action(description=_('Activar roles seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} rol(es) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d rol(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún rol para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún rol para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar roles seleccionados')
+    @admin.action(description=_('Desactivar roles seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} rol(es) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d rol(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún rol para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún rol para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Rating
 @admin.register(Rating)
@@ -157,35 +163,37 @@ class RatingAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información Básica', {
+        (_('Información básica'), {
             'fields': ('acronym', 'name', 'name_esp')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug',)
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug',),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar clasificaciones seleccionadas')
+    @admin.action(description=_('Activar clasificaciones seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} clasificación(es) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna clasificación para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna clasificación para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar clasificaciones seleccionadas')
+    @admin.action(description=_('Desactivar clasificaciones seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} clasificación(es) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna clasificación para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna clasificación para activar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Company
 @admin.register(Company)
@@ -201,35 +209,37 @@ class CompanyAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información Básica', {
+        (_('Información básica'), {
             'fields': ('name', 'country', 'founded_year')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar compañías seleccionadas')
+    @admin.action(description=_('Activar compañías seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} compañía(s) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna compañía para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna compañía para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar compañías seleccionadas')
+    @admin.action(description=_('Desactivar compañías seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} compañía(s) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d compañía(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna compañía para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna compañía para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para Movie
 @admin.register(Movie)
@@ -247,7 +257,7 @@ class MovieAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información General', {
+        (_('Información básica'), {
             'fields': ('title', 'title_secundary', 'release_year', 'duration_minutes', 'synopsis')
         }),
         ('Clasificación y Géneros', {
@@ -256,32 +266,34 @@ class MovieAdmin(ImportExportModelAdmin):
         ('Productoras y Distribuidoras', {
             'fields': ('producers', 'distributors')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar películas seleccionadas')
+    @admin.action(description=_('Activar películas seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} película(s) activada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d película(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna película para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna película para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar películas seleccionadas')
+    @admin.action(description=_('Desactivar películas seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} película(s) desactivada(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d película(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ninguna película para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ninguna película para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para TitleMovie
 @admin.register(TitleMovie)
@@ -297,35 +309,37 @@ class TitleMovieAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        (None, {
+        (_('Información básica'), {
             'fields': ('movie', 'title_lang', 'title')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Valores generados automáticamente', {
-            'fields': ('slug', 'initial')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar títulos seleccionados')
+    @admin.action(description=_('Activar títulos seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} título(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d título(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún título para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún título para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar títulos seleccionados')
+    @admin.action(description=_('Desactivar títulos seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} título(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d título(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún título para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún título para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MovieStaff
 @admin.register(MovieStaff)
@@ -341,32 +355,33 @@ class MovieStaffAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información', {
+        (_('Información básica'), {
             'fields': ('movie', 'person', 'role')
         }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar registros seleccionados')
+    @admin.action(description=_('Activar registros seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} registro(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún registro para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún registro para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar registros seleccionados')
+    @admin.action(description=_('Desactivar registros seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} registro(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún registro para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún registro para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MovieCast
 @admin.register(MovieCast)
@@ -382,108 +397,118 @@ class MovieCastAdmin(ImportExportModelAdmin):
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información', {
+        (_('Información básica'), {
             'fields': ('movie', 'actor', 'role', 'character_name')
         }),
-        ('Automáticos', {
-            'fields': ('slug', 'initial')
-        }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar registros seleccionados')
+    @admin.action(description=_('Activar registros seleccionados'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} reparto(s) activado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se activaron %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún reparto para activar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún registro para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar registros seleccionados')
+    @admin.action(description=_('Desactivar registros seleccionados'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
         if actualizados:
-            self.message_user(request, f"✅ {actualizados} reparto(s) desactivado(s).", messages.SUCCESS)
+            self.message_user(request, _('Se desactivaron %(count)d registro(s).') % {'count': actualizados}, messages.SUCCESS)
         else:
-            self.message_user(request, "No se seleccionó ningún reparto para desactivar.", messages.WARNING)
+            self.message_user(request, _('No se seleccionó ningún registro para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MovieImage
 @admin.register(MovieImage)
 class MovieImageAdmin(ImportExportModelAdmin):
     resource_class = MovieImageResource
 
-    list_display = ('movie', 'size_image', 'name', 'is_active', 'created_at')
+    list_display = ('movie', 'size_image', 'is_active', 'created_at')
     list_filter = ('is_active', 'size_image')
-    search_fields = ('movie__title', 'name')
-    ordering = ('movie', 'size_image', 'name')
-    autocomplete_fields = ('movie', 'size_image')
-    readonly_fields = ('name', 'slug', 'created_at', 'updated_at')
+    search_fields = ('movie__title',)
+    ordering = ('-created_at', 'movie__title')
+    readonly_fields = ('created_at', 'updated_at',)
+
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información', {
+        (_('Información básica'), {
             'fields': ('movie', 'size_image', 'image', 'image_url')
         }),
-        ('Automáticos', {
-            'fields': ('name', 'slug')
-        }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar imágenes seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} imagen(es) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} imagen(es) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)
 
 ########################################################################################################    Admin para MovieImageExtra
 @admin.register(MovieImageExtra)
 class MovieImageExtraAdmin(ImportExportModelAdmin):
     resource_class = MovieImageExtraResource
 
-    list_display = ('movie', 'name', 'is_active', 'created_at')
+    list_display = ('movie', 'is_active', 'created_at')
     list_filter = ('is_active',)
-    search_fields = ('movie__title', 'name')
-    ordering = ('movie', 'name')
-    autocomplete_fields = ('movie',)
-    readonly_fields = ('name', 'slug', 'created_at', 'updated_at')
+    search_fields = ('movie__title',)
+    ordering = ('-created_at', 'movie__title')
+    readonly_fields = ('created_at', 'updated_at',)
+
     actions = ['activar', 'desactivar']
 
     fieldsets = (
-        ('Información', {
+        (_('Información básica'), {
             'fields': ('movie', 'image')
         }),
-        ('Automáticos', {
-            'fields': ('name', 'slug')
-        }),
-        ('Estado', {
+        (_('Estado'), {
             'fields': ('is_active',)
         }),
-        ('Fechas', {
-            'fields': ('created_at', 'updated_at')
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
-    @admin.action(description='Activar imágenes seleccionadas')
+    @admin.action(description=_('Activar imágenes seleccionadas'))
     def activar(self, request, queryset):
         actualizados = queryset.update(is_active=True)
-        self.message_user(request, f"✅ {actualizados} imagen(es) activada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna imagen para activar.'), messages.WARNING)
 
-    @admin.action(description='Desactivar imágenes seleccionadas')
+    @admin.action(description=_('Desactivar imágenes seleccionadas'))
     def desactivar(self, request, queryset):
         actualizados = queryset.update(is_active=False)
-        self.message_user(request, f"✅ {actualizados} imagen(es) desactivada(s).", messages.SUCCESS if actualizados else messages.WARNING)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d imagen(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna imagen para desactivar.'), messages.WARNING)

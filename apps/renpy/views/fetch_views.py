@@ -16,7 +16,7 @@ from core.utils.mixins import PermissionRequiredMessageMixin
 class GamesLoadView(PermissionRequiredMessageMixin, FormView):
     template_name = Templates.Renpy.Game.LOAD
     form_class = LoadGamesForm
-    success_url = reverse_lazy(URLS.Renpy.Game.LST)
+    success_url = reverse_lazy(URLS.Renpy.Game.LIST)
     permission_redirect_url = URLS.Home.RENPY
     title = _('Cargar Juegos desde F95')
 

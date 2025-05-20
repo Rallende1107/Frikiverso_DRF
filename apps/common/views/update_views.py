@@ -12,7 +12,7 @@ from apps.common.models import (Country, Format, ImageSize, Language, Person, Pe
 from apps.common.forms import (CountryForm, FormatForm, ImageSizeForm, LanguageForm, PersonForm, PersonImageForm, PersonImageExtraForm, PersonNicknameForm, QualityForm, WebsiteForm,)
 
 # Project-level imports - Mixins and utilities
-from core.utils.constants import (CSSBackground, ImageCards, JSConstants, KeyMap, Templates, URLS,)
+from core.utils.constants import (CSSBackground, Templates, URLS,)
 from core.utils.mixins import PermissionRequiredMessageMixin
 from core.utils.utils import delete_previous_media
 
@@ -21,8 +21,8 @@ from core.utils.utils import delete_previous_media
 class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Country
     form_class = CountryForm
-    template_name = Templates.Common.Country.ADD
-    success_url = reverse_lazy(URLS.Common.Country.LST)
+    template_name = Templates.Common.Country.CREATE
+    success_url = reverse_lazy(URLS.Common.Country.LIST)
     title = _('Editar País')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -51,8 +51,8 @@ class CountryUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class FormatUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Format
     form_class = FormatForm
-    template_name = Templates.Common.Format.ADD
-    success_url = reverse_lazy(URLS.Common.Format.LST)
+    template_name = Templates.Common.Format.CREATE
+    success_url = reverse_lazy(URLS.Common.Format.LIST)
     title = _('Editar Formato')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -81,8 +81,8 @@ class FormatUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class ImageSizeUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = ImageSize
     form_class = ImageSizeForm
-    template_name = Templates.Common.ImageSize.ADD
-    success_url = reverse_lazy(URLS.Common.ImageSize.LST)
+    template_name = Templates.Common.ImageSize.CREATE
+    success_url = reverse_lazy(URLS.Common.ImageSize.LIST)
     title = _('Editar Tamaño de Imágenes')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -111,8 +111,8 @@ class ImageSizeUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class LanguageUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Language
     form_class = LanguageForm
-    template_name = Templates.Common.Language.ADD
-    success_url = reverse_lazy(URLS.Common.Language.LST)
+    template_name = Templates.Common.Language.CREATE
+    success_url = reverse_lazy(URLS.Common.Language.LIST)
     title = _( 'Editar Idioma')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -141,8 +141,8 @@ class LanguageUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class PersonUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Person
     form_class = PersonForm
-    template_name = Templates.Common.Person.ADD
-    success_url = reverse_lazy(URLS.Common.Person.LST)
+    template_name = Templates.Common.Person.CREATE
+    success_url = reverse_lazy(URLS.Common.Person.LIST)
     title = _('Editar Persona')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -171,8 +171,8 @@ class PersonUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class PersonImageUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = PersonImage
     form_class = PersonImageForm
-    template_name = Templates.Common.PersonImage.ADD
-    success_url = reverse_lazy(URLS.Common.PersonImage.LST)
+    template_name = Templates.Common.PersonImage.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonImage.LIST)
     title = _('Editar Imagen de persona')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -224,8 +224,8 @@ class PersonImageUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class PersonImageExtraUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = PersonImageExtra
     form_class = PersonImageExtraForm
-    template_name = Templates.Common.PersonImageExtra.ADD
-    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LST)
+    template_name = Templates.Common.PersonImageExtra.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonImageExtra.LIST)
     title = _('Editar imagen adicional de persona')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -277,8 +277,8 @@ class PersonImageExtraUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class PersonNicknameUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = PersonNickname
     form_class = PersonNicknameForm
-    template_name = Templates.Common.PersonNickname.ADD
-    success_url = reverse_lazy(URLS.Common.PersonNickname.LST)
+    template_name = Templates.Common.PersonNickname.CREATE
+    success_url = reverse_lazy(URLS.Common.PersonNickname.LIST)
     title = _('Editar PersonNicknamea')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -307,8 +307,8 @@ class PersonNicknameUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class QualityUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Quality
     form_class = QualityForm
-    template_name = Templates.Common.Quality.ADD
-    success_url = reverse_lazy(URLS.Common.Quality.LST)
+    template_name = Templates.Common.Quality.CREATE
+    success_url = reverse_lazy(URLS.Common.Quality.LIST)
     title = _('Editar Calidad')
     permission_redirect_url = URLS.Home.COMMON
 
@@ -337,8 +337,8 @@ class QualityUpdateView(PermissionRequiredMessageMixin, UpdateView):
 class WebsiteUpdateView(PermissionRequiredMessageMixin, UpdateView):
     model = Website
     form_class = WebsiteForm
-    template_name = Templates.Common.Website.ADD
-    success_url = reverse_lazy(URLS.Common.Website.LST)
+    template_name = Templates.Common.Website.CREATE
+    success_url = reverse_lazy(URLS.Common.Website.LIST)
     title = _('Editar Sitio Web')
     permission_redirect_url = URLS.Home.COMMON
 

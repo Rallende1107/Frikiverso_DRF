@@ -1,59 +1,81 @@
-from core.resources import BaseFullResource
-from .models import Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website
+from import_export import resources
+from .models import Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, PersonNickname, Quality, Website,  ContextApp, Genre, Rating, Status, Type
 # Register your models here.
 
 ########################################################################################################    Resource para Company
-class CompanyResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class CompanyResource(resources.ModelResource):
+    class Meta():
         model = Company
 
 ########################################################################################################    Resource para Country
-class CountryResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class CountryResource(resources.ModelResource):
+    class Meta():
         model = Country
 
 ########################################################################################################    Resource para Format
-class FormatResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class FormatResource(resources.ModelResource):
+    class Meta():
         model = Format
 
 ########################################################################################################    Resource para ImageSize
-class ImageSizeResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class ImageSizeResource(resources.ModelResource):
+    class Meta():
         model = ImageSize
 
 ########################################################################################################    Resource para Language
-class LanguageResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class LanguageResource(resources.ModelResource):
+    class Meta():
         model = Language
 
 ########################################################################################################    Resource para Person
-class PersonResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class PersonResource(resources.ModelResource):
+    class Meta():
         model = Person
 
 ########################################################################################################    Resource para PersonImage
-class PersonImageResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class PersonImageResource(resources.ModelResource):
+    class Meta():
         model = PersonImage
 
 ########################################################################################################    Resource para PersonImageExtra
-class PersonImageExtraResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class PersonImageExtraResource(resources.ModelResource):
+    class Meta():
         model = PersonImageExtra
 
 ########################################################################################################    Resource para PersonNickname
-class PersonNicknameResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class PersonNicknameResource(resources.ModelResource):
+    class Meta():
         model = PersonNickname
 
 ########################################################################################################    Resource para Quality
-class QualityResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class QualityResource(resources.ModelResource):
+    class Meta():
         model = Quality
 
 ########################################################################################################    Resource para Website
-class WebsiteResource(BaseFullResource):
-    class Meta(BaseFullResource.Meta):
+class WebsiteResource(resources.ModelResource):
+    class Meta():
         model = Website
+
+########################################################################################################    Resource para ContextApp
+class ContextAppResource(resources.ModelResource):
+    class Meta():
+        model = ContextApp
+
+########################################################################################################    Resource para Genre
+class GenreResource(resources.ModelResource):
+    class Meta():
+        model = Genre
+
+class RatingResource(resources.ModelResource):
+    class Meta():
+        model = Rating
+
+class StatusResource(resources.ModelResource):
+    class Meta():
+        model = Status
+
+class TypeResource(resources.ModelResource):
+    class Meta():
+        model = Type
 

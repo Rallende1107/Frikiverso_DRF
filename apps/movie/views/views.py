@@ -163,3 +163,21 @@ class HomeView(TemplateView):
             'add': _('Añadir'),
         }
         return context
+
+
+"""
+from django.views.generic import ListView
+from movie.models import Genre
+from common.models import ContextApp
+
+class GenreByContextListView(ListView):
+    model = Genre
+    template_name = 'movie/genre_list.html'
+    context_object_name = 'genres'
+
+    def get_queryset(self):
+        context_slug = self.kwargs.get('slug')  # lo tomas desde la URL
+        return Genre.objects.filter(contexts__slug=context_slug).distinct()
+
+
+"""

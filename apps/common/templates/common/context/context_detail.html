@@ -1,0 +1,17 @@
+{% extends "base_detail.html" %} {% load static %}
+{% block detail %}
+
+<h1>{{ objeto.name }}</h1>
+<p>Nombre: {{ objeto.name }}</p>
+<p>Nombre Esp: {{ objeto.name_esp }}</p>
+<p>initial: {{ objeto.initial}}</p>
+<p>initial_esp: {{ objeto.initial_esp}}</p>
+<p>slug {{ objeto.slug}}</p>
+<p>code {{ objeto.code}}</p>
+<p>numeric_code {{ objeto.numeric_code}}</p>
+<p>Activo: {{ objeto.is_active|yesno:"Sí,No" }}</p>
+<p>Creado: {{ objeto.created_at }}</p>
+<p>Actualizado: {{ objeto.updated_at }}</p>
+
+
+{% endblock detail %}

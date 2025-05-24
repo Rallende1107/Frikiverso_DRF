@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
 
 # impot Modelos
-from .models import (Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, Quality, Website)
+from .models import (ContextApp, Company, Country, Format, ImageSize, Language, Person, PersonImage, PersonImageExtra, Quality, Website)
 
 # impot Resource
 from .resources import (CompanyResource, CountryResource, FormatResource, ImageSizeResource, LanguageResource, PersonResource, PersonImageResource, PersonImageExtraResource, QualityResource, WebsiteResource)
@@ -518,3 +518,280 @@ class WebsiteAdmin(ImportExportModelAdmin):
 #         else:
 #             self.message_user(request, _('No se seleccionó ningún productora para desactivar.'), messages.WARNING)
 
+from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+from .models import ContextApp
+
+
+from django.contrib import admin, messages
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
+from .models import ContextApp
+from .resources import ContextAppResource  # si usas import-export
+
+@admin.register(ContextApp)
+class ContextAppAdmin(ImportExportModelAdmin):
+    resource_class = ContextAppResource  # coméntalo si no usas import-export
+
+    list_display = ('nombre_legible', 'slug', 'is_active', 'created_at')
+
+    list_filter = ('is_active',)
+    search_fields = ('name', 'slug')
+    ordering = ('name',)
+    readonly_fields = ('created_at', 'updated_at', 'slug')
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('name',)
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug',),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+    def nombre_legible(self, obj):
+        return obj.get_name_display()
+    nombre_legible.short_description = _('Nombre')
+
+
+    @admin.action(description=_('Activar contextos seleccionados'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d contexto(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún contexto para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar contextos seleccionados'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d contexto(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún contexto para desactivar.'), messages.WARNING)
+
+
+
+from django.contrib import admin, messages
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
+from .models import Genre
+from .resources import GenreResource  # Si usas django-import-export
+
+
+@admin.register(Genre)
+class GenreAdmin(ImportExportModelAdmin):
+    resource_class = GenreResource  # comenta esta línea si no usas import-export
+
+    list_display = ('name', 'name_esp', 'parent', 'explicit', 'is_active', 'slug', 'created_at')
+    list_filter = ('is_active', 'explicit', 'parent', 'contexts')
+    search_fields = ('name', 'name_esp', 'slug')
+    ordering = ('initial', 'name')
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
+
+    filter_horizontal = ('contexts',)
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('name', 'name_esp', 'parent', 'description', 'explicit', 'contexts')
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    @admin.action(description=_('Activar géneros seleccionados'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún género para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar géneros seleccionados'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d género(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún género para desactivar.'), messages.WARNING)
+
+
+from django.contrib import admin, messages
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
+from .models import Type
+from .resources import TypeResource  # comenta esta línea si no usas import-export
+
+@admin.register(Type)
+class TypeAdmin(ImportExportModelAdmin):
+    resource_class = TypeResource  # comenta si no usas django-import-export
+
+    list_display = ('name', 'name_esp', 'parent', 'is_active', 'slug', 'created_at')
+    list_filter = ('is_active', 'parent', 'contexts')
+    search_fields = ('name', 'name_esp', 'slug')
+    ordering = ('-created_at', 'name')
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
+
+    filter_horizontal = ('contexts',)
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('name', 'name_esp', 'parent', 'description', 'contexts')
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    @admin.action(description=_('Activar tipos seleccionados'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar tipos seleccionados'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d tipo(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún tipo para desactivar.'), messages.WARNING)
+
+from django.contrib import admin, messages
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
+from .models import Rating
+from .resources import RatingResource  # comenta si no usas import-export
+
+@admin.register(Rating)
+class RatingAdmin(ImportExportModelAdmin):
+    resource_class = RatingResource  # comenta si no usas django-import-export
+
+    list_display = ('acronym', 'name', 'name_esp', 'slug', 'is_active', 'created_at')
+    list_filter = ('is_active', 'contexts')
+    search_fields = ('acronym', 'name', 'name_esp', 'slug')
+    ordering = ('acronym', 'name')
+    readonly_fields = ('created_at', 'updated_at', 'slug')
+
+    filter_horizontal = ('contexts',)
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('acronym', 'name', 'name_esp', 'contexts')
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug',),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    @admin.action(description=_('Activar clasificaciones seleccionadas'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna clasificación para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar clasificaciones seleccionadas'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d clasificación(es).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ninguna clasificación para desactivar.'), messages.WARNING)
+
+
+from django.contrib import admin, messages
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
+from .models import Status
+from .resources import StatusResource  # comenta esta línea si no usas import-export
+
+@admin.register(Status)
+class StatusAdmin(ImportExportModelAdmin):
+    resource_class = StatusResource  # comenta si no usas django-import-export
+
+    list_display = ('name', 'name_esp', 'initial', 'slug', 'is_active', 'created_at')
+    list_filter = ('is_active', 'contexts')
+    search_fields = ('name', 'name_esp', 'slug')
+    ordering = ('name',)
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'initial')
+
+    filter_horizontal = ('contexts',)
+
+    actions = ['activar', 'desactivar']
+
+    fieldsets = (
+        (_('Información básica'), {
+            'fields': ('name', 'name_esp', 'description', 'contexts')
+        }),
+        (_('Estado'), {
+            'fields': ('is_active',)
+        }),
+        (_('Valores generados automáticamente'), {
+            'fields': ('slug', 'initial'),
+            'classes': ('collapse',),
+        }),
+        (_('Fechas'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+
+    @admin.action(description=_('Activar estados seleccionados'))
+    def activar(self, request, queryset):
+        actualizados = queryset.update(is_active=True)
+        if actualizados:
+            self.message_user(request, _('Se activaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estado para activar.'), messages.WARNING)
+
+    @admin.action(description=_('Desactivar estados seleccionados'))
+    def desactivar(self, request, queryset):
+        actualizados = queryset.update(is_active=False)
+        if actualizados:
+            self.message_user(request, _('Se desactivaron %(count)d estado(s).') % {'count': actualizados}, messages.SUCCESS)
+        else:
+            self.message_user(request, _('No se seleccionó ningún estado para desactivar.'), messages.WARNING)

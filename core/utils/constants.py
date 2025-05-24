@@ -43,6 +43,32 @@ class Templates:
         CHANGE_PASS = 'users/user/user_password_change.html'
 
     class Common:
+        class Context:
+            LIST = 'common/context/context_list.html'
+            CREATE = 'common/context/context_form.html'
+            UPDATE = 'common/context/context_form.html'
+            DETAIL = 'common/context/context_detail.html'
+        class Genre:
+            LIST = 'common/genre/genre_list.html'
+            CREATE = 'common/genre/genre_form.html'
+            UPDATE = 'common/genre/genre_form.html'
+            DETAIL = 'common/genre/genre_detail.html'
+        class Rating:
+            LIST = 'common/rating/rating_list.html'
+            CREATE = 'common/rating/rating_form.html'
+            UPDATE = 'common/rating/rating_form.html'
+            DETAIL = 'common/rating/rating_detail.html'
+        class Type:
+            LIST = 'common/type/type_list.html'
+            CREATE = 'common/type/type_form.html'
+            UPDATE = 'common/type/type_form.html'
+            DETAIL = 'common/type/type_detail.html'
+        class Status:
+            LIST = 'common/status/status_list.html'
+            CREATE = 'common/status/status_form.html'
+            UPDATE = 'common/status/status_form.html'
+            DETAIL = 'common/status/status_detail.html'
+
         class Company:
             LIST = 'common/company/company_list.html'
             CREATE = 'common/company/company_form.html'
@@ -703,6 +729,35 @@ class URLS:
         CREATE_STAFF = 'users_app:staffuser_create'
 
     class Common:
+        class Context:
+            LIST = 'common_app:context_list'
+            CREATE = 'common_app:context_create'
+            UPDATE = 'common_app:context_update'
+            DETAIL = 'common_app:context_detail'
+        class Genre:
+            LIST = 'common_app:genre_list'
+            CREATE = 'common_app:genre_create'
+            UPDATE = 'common_app:genre_update'
+            DETAIL = 'common_app:genre_detail'
+        class Rating:
+            LIST = 'common_app:rating_list'
+            CREATE = 'common_app:rating_create'
+            UPDATE = 'common_app:rating_update'
+            DETAIL = 'common_app:rating_detail'
+        class Type:
+            LIST = 'common_app:type_list'
+            CREATE = 'common_app:type_create'
+            UPDATE = 'common_app:type_update'
+            DETAIL = 'common_app:type_detail'
+        class Status:
+            LIST = 'common_app:status_list'
+            CREATE = 'common_app:status_create'
+            UPDATE = 'common_app:status_update'
+            DETAIL = 'common_app:status_detail'
+
+
+
+
         class Company:
             LIST = 'common_app:company_list'
             CREATE = 'common_app:company_create'
@@ -1439,6 +1494,12 @@ class CSSBackground:
         PERSON_NICKNAME =       'bg-common-person_nickname'
         QUALITY =               'bg-common-quality'
         WEBSITE =               'bg-common-website'
+        CONTEXT =               'bg-common-context'
+        GENRE =                 'bg-common-genre'
+        RATING =                'bg-common-rating'
+        TYPE =                  'bg-common-type'
+        STATUS =                'bg-common-status'
+
 
     class Movie:
         GENRE =             'bg-movie-genre'
@@ -1586,6 +1647,11 @@ class JSConstants:
         PERSON_NICKNAME =       'js/DataTables/config/common/person_nickname_config.js'
         QUALITY =               'js/DataTables/config/common/quality_config.js'
         WEBSITE =               'js/DataTables/config/common/website_config.js'
+        CONTEXT =               'js/DataTables/config/common/context_config.js'
+        GENRE =                 'js/DataTables/config/common/genre_config.js'
+        RATING =                'js/DataTables/config/common/rating_config.js'
+        TYPE =                  'js/DataTables/config/common/type_config.js'
+        STATUS =                'js/DataTables/config/common/status_config.js'
 
     class Movie:
         PRODUCER =          'js/DataTables/config/movie/movie_producer.js'
@@ -1730,6 +1796,13 @@ class ImageCards:
         PERSON_NICKNAME =    'img/screen/wide/bg-common-person_nickname.webp'
         QUALITY =            'img/screen/wide/bg-common-quality.webp'
         WEBSITE =            'img/screen/wide/bg-common-website.webp'
+        CONTEXT =            'img/screen/wide/bg-common-context.webp'
+        GENRE =              'img/screen/wide/bg-common-genre.webp'
+        RATING =             'img/screen/wide/bg-common-rating.webp'
+        TYPE =               'img/screen/wide/bg-common-type.webp'
+        STATUS =             'img/screen/wide/bg-common-status.webp'
+
+
 
     class Movie:
         PRODUCER =          'img/screen/wide/bg-movie-producer.webp'
@@ -1876,6 +1949,11 @@ class KeyMap:
         QUALITY =               'Calidad'
         WEBSITE =               'Sitio Web'
 
+        CONTEXT =            'Aplicación'
+        STATUS =            'Aplicación'
+        GENRE =             'Género'
+        RATING =            'Clasificación'
+        TYPE =              'Tipo'
     class Movie:
         DISTRIBUTOR =       'Distribuidora cinematográfica'
         GENRE =             'Género cinematográfico'

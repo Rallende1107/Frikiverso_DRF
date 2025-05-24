@@ -36,6 +36,12 @@
 .bg-common-quality {background-image: var(--bg-common-quality)}
 .bg-common-website {background-image: var(--bg-common-website)}
 
+.bg-common-context {background-image: var(--bg-common-context)}
+.bg-common-rating {background-image: var(--bg-common-rating)}
+.bg-common-type {background-image: var(--bg-common-type)}
+.bg-common-status {background-image: var(--bg-common-status)}
+.bg-common-genre {background-image: var(--bg-common-genre)}
+
 /** backgrounds Movie **/
 .bg-movie-genre {background-image: var(--bg-movie-genre)}
 .bg-movie-type {background-image: var(--bg-movie-type)}

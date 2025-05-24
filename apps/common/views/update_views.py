@@ -350,3 +350,160 @@ class WebsiteUpdateView(PermissionRequiredMessageMixin, UpdateView):
         context['title'] = self.title
         context['cancel_url'] = self.success_url
         return context
+
+
+
+from apps.common.models import ContextApp as Context, Genre, Type, Rating, Status
+from apps.common.forms import ContextAppForm as ContextForm, GenreForm, TypeForm, RatingForm, StatusForm
+
+
+
+
+class ContextUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Context
+    form_class = ContextForm
+    template_name = Templates.Common.Context.CREATE
+    success_url = reverse_lazy(URLS.Common.Context.LIST)
+    title = _('Editar contexto')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡El contexto "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.CONTEXT
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class GenreUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Genre
+    form_class = GenreForm
+    template_name = Templates.Common.Genre.CREATE
+    success_url = reverse_lazy(URLS.Common.Genre.LIST)
+    title = _('Editar género')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡El género "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.GENRE
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+
+
+
+class TypeUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Type
+    form_class = TypeForm
+    template_name = Templates.Common.Type.CREATE
+    success_url = reverse_lazy(URLS.Common.Type.LIST)
+    title = _('Editar tipo')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡El tipo "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.TYPE
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+class RatingUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Rating
+    form_class = RatingForm
+    template_name = Templates.Common.Rating.CREATE
+    success_url = reverse_lazy(URLS.Common.Rating.LIST)
+    title = _('Editar clasificación')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡La clasificación "%(name)s" fue editada exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.RATING
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context
+
+
+class StatusUpdateView(PermissionRequiredMessageMixin, UpdateView):
+    model = Status
+    form_class = StatusForm
+    template_name = Templates.Common.Status.CREATE
+    success_url = reverse_lazy(URLS.Common.Status.LIST)
+    title = _('Editar estado')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        name = form.instance.name
+        messages.success(self.request, _('¡El estado "%(name)s" fue editado exitosamente!') % {'name': name})
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.STATUS
+        context['title'] = self.title
+        context['cancel_url'] = self.success_url
+        return context

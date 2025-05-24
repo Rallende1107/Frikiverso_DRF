@@ -1123,3 +1123,633 @@ class WebsiteForm(forms.ModelForm):
                 raise forms.ValidationError(_('Ya existe un sitio web con la URL "%(url)s" o es muy similar.') % {'url': url})
 
         return cleaned_data
+
+
+
+from .models import ContextApp, Genre, Type, Rating, Status
+
+
+class ContextAppForm(forms.ModelForm):
+    class Meta:
+        model = ContextApp
+        fields = ['name', 'is_active']
+
+    name = forms.ChoiceField(
+        choices=ContextApp.APPS,
+        label=_('Nombre'),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select',
+                'id': 'name',
+            }
+        ),
+        error_messages={
+            'required': _('Debe seleccionar un nombre.'),
+            'invalid_choice': _('Selección no válida.'),
+        }
+    )
+
+    is_active = forms.BooleanField(
+        required=False,
+        label=_('Activo'),
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el contexto.'),
+            }
+        )
+    )
+
+    def clean_name(self):
+        # Normalizar el nombre para comparación
+        name = self.cleaned_data.get('name')
+        normalized_name = self.normalize_text(name)
+
+        # Excluir la instancia actual si es edición
+        qs = ContextApp.objects.exclude(pk=self.instance.pk if self.instance else None)
+        for ctx in qs:
+            if self.normalize_text(ctx.name) == normalized_name:
+                raise forms.ValidationError(_('Ya existe un contexto con el nombre "%(name)s" o muy similar.') % {'name': name})
+        return name
+
+    @staticmethod
+    def normalize_text(text):
+        # Normaliza texto para comparación, puedes ajustar esta función según tu necesidad
+        return text.strip().lower() if text else ''
+
+
+class GenreForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = ['parent', 'name', 'name_esp', 'description', 'explicit', 'contexts', 'is_active']
+
+    name = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=50,
+        label=_('Nombre'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del género'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name',
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el nombre del género.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
+    )
+
+    name_esp = forms.CharField(
+        required=False,
+        strip=True,
+        max_length=50,
+        label=_('Nombre Español'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del género en español'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name_esp',
+            }
+        ),
+        error_messages={
+            'max_length': _('El nombre en español excede el largo permitido.'),
+        },
+    )
+
+    parent = forms.ModelChoiceField(
+        queryset=None,
+        required=False,
+        label=_('Padre'),
+        empty_label=_('Seleccione un género padre'),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select',
+                'id': 'parent',
+            }
+        ),
+    )
+
+    description = forms.CharField(
+        required=False,
+        label=_('Descripción'),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Descripción del género'),
+                'rows': 3,
+                'id': 'description',
+            }
+        ),
+    )
+
+    explicit = forms.BooleanField(
+        required=False,
+        label=_('Explícito'),
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'explicit',
+                'title': _('Marcar si el género es explícito'),
+            }
+        ),
+    )
+
+    contexts = forms.ModelMultipleChoiceField(
+        queryset=None,
+        required=True,
+        label=_('ContextAppos'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-select',
+                'id': 'contexts',
+            }
+        ),
+    )
+
+    is_active = forms.BooleanField(
+        required=False,
+        label=_('Activo'),
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el género.'),
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['parent'].queryset = Genre.objects.filter(is_active=True).exclude(pk=self.instance.pk if self.instance else None)
+        self.fields['contexts'].queryset = ContextApp.objects.filter(is_active=True)
+
+    def clean_name(self):
+        return to_title_text(self.cleaned_data.get('name', ''))
+
+    def clean_name_esp(self):
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        name_esp = cleaned_data.get('name_esp')
+        parent = cleaned_data.get('parent')
+
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
+
+        # Validar que el género no sea su propio padre
+        if parent and self.instance and parent.pk == self.instance.pk:
+            self.add_error('parent', _('Un género no puede ser su propio padre.'))
+
+        qs = Genre.objects.exclude(pk=self.instance.pk if self.instance else None)
+
+        # Validar que no haya otro género con el mismo nombre o nombre en español o combinación
+        for genre in qs:
+            genre_name_norm = normalize_text(genre.name)
+            genre_name_esp_norm = normalize_text(genre.name_esp) if genre.name_esp else ''
+
+            # Validar nombre repetido
+            if normalized_name and genre_name_norm == normalized_name:
+                raise forms.ValidationError(
+                    _('Ya existe un género con el nombre "%(name)s" o muy similar.') % {'name': name}
+                )
+
+            # Validar nombre_esp repetido
+            if normalized_name_esp and genre_name_esp_norm == normalized_name_esp:
+                raise forms.ValidationError(
+                    _('Ya existe un género con el nombre en español "%(name_esp)s" o muy similar.') % {'name_esp': name_esp}
+                )
+
+            # Validar combinación nombre + nombre_esp repetida
+            if normalized_name and normalized_name_esp:
+                if genre_name_norm == normalized_name and genre_name_esp_norm == normalized_name_esp:
+                    raise forms.ValidationError(
+                        _('Ya existe un género con la combinación del nombre y nombre en español igual.')
+                    )
+
+        return cleaned_data
+
+
+class TypeForm(forms.ModelForm):
+    class Meta:
+        model = Type
+        fields = ['parent', 'name', 'name_esp', 'description', 'contexts', 'is_active']
+
+    name = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=50,
+        label=_('Nombre'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del tipo'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name',
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el nombre del tipo.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
+    )
+
+    name_esp = forms.CharField(
+        required=False,
+        strip=True,
+        max_length=50,
+        label=_('Nombre Español'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del tipo en español'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name_esp',
+            }
+        ),
+        error_messages={
+            'max_length': _('El nombre en español excede el largo permitido.'),
+        },
+    )
+
+    parent = forms.ModelChoiceField(
+        queryset=None,
+        required=False,
+        label=_('Padre'),
+        empty_label=_('Seleccione un tipo padre'),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select',
+                'id': 'parent',
+            }
+        ),
+    )
+
+    description = forms.CharField(
+        required=False,
+        label=_('Descripción'),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Descripción del tipo'),
+                'rows': 3,
+                'id': 'description',
+            }
+        ),
+    )
+
+    contexts = forms.ModelMultipleChoiceField(
+        queryset=None,
+        required=True,
+        label=_('ContextAppos'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-select',
+                'id': 'contexts',
+            }
+        ),
+    )
+
+    is_active = forms.BooleanField(
+        required=False,
+        label=_('Activo'),
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el tipo.'),
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['parent'].queryset = Type.objects.filter(is_active=True).exclude(pk=self.instance.pk if self.instance else None)
+        self.fields['contexts'].queryset = ContextApp.objects.filter(is_active=True)
+
+    def clean_name(self):
+        return to_title_text(self.cleaned_data.get('name', ''))
+
+    def clean_name_esp(self):
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        name_esp = cleaned_data.get('name_esp')
+        parent = cleaned_data.get('parent')
+
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
+
+        # Validar que el tipo no sea su propio padre
+        if parent and self.instance and parent.pk == self.instance.pk:
+            self.add_error('parent', _('Un tipo no puede ser su propio padre.'))
+
+        qs = Type.objects.exclude(pk=self.instance.pk if self.instance else None)
+
+        for obj in qs:
+            obj_name_norm = normalize_text(obj.name)
+            obj_name_esp_norm = normalize_text(obj.name_esp) if obj.name_esp else ''
+
+            # Validar nombre repetido
+            if normalized_name and obj_name_norm == normalized_name:
+                raise forms.ValidationError(
+                    _('Ya existe un tipo con el nombre "%(name)s" o muy similar.') % {'name': name}
+                )
+
+            # Validar nombre_esp repetido
+            if normalized_name_esp and obj_name_esp_norm == normalized_name_esp:
+                raise forms.ValidationError(
+                    _('Ya existe un tipo con el nombre en español "%(name_esp)s" o muy similar.') % {'name_esp': name_esp}
+                )
+
+            # Validar combinación nombre + nombre_esp repetida
+            if normalized_name and normalized_name_esp:
+                if obj_name_norm == normalized_name and obj_name_esp_norm == normalized_name_esp:
+                    raise forms.ValidationError(
+                        _('Ya existe un tipo con la combinación del nombre y nombre en español igual.')
+                    )
+
+        return cleaned_data
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['acronym', 'name', 'name_esp', 'contexts', 'is_active']
+
+    acronym = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=15,
+        label=_('Acrónimo'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Acrónimo'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'acronym',
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el acrónimo.'),
+            'max_length': _('El acrónimo excede el largo permitido.'),
+        },
+    )
+
+    name = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=60,
+        label=_('Nombre'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre de la clasificación'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name',
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el nombre.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
+    )
+
+    name_esp = forms.CharField(
+        required=False,
+        strip=True,
+        max_length=60,
+        label=_('Nombre Español'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre en español'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name_esp',
+            }
+        ),
+        error_messages={
+            'max_length': _('El nombre en español excede el largo permitido.'),
+        },
+    )
+
+    contexts = forms.ModelMultipleChoiceField(
+        queryset=None,
+        required=True,
+        label=_('ContextAppos'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-select',
+                'id': 'contexts',
+            }
+        ),
+    )
+
+    is_active = forms.BooleanField(
+        required=False,
+        label=_('Activo'),
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar la clasificación.'),
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['contexts'].queryset = ContextApp.objects.filter(is_active=True)
+
+    def clean_acronym(self):
+        return self.cleaned_data.get('acronym', '').strip().upper()
+
+    def clean_name(self):
+        return to_title_text(self.cleaned_data.get('name', ''))
+
+    def clean_name_esp(self):
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        acronym = cleaned_data.get('acronym')
+        name = cleaned_data.get('name')
+        name_esp = cleaned_data.get('name_esp')
+
+        normalized_acronym = normalize_text(acronym) if acronym else ''
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
+
+        qs = Rating.objects.exclude(pk=self.instance.pk if self.instance else None)
+
+        for obj in qs:
+            obj_acronym_norm = normalize_text(obj.acronym)
+            obj_name_norm = normalize_text(obj.name)
+            obj_name_esp_norm = normalize_text(obj.name_esp) if obj.name_esp else ''
+
+            if normalized_acronym and obj_acronym_norm == normalized_acronym:
+                raise forms.ValidationError(
+                    _('Ya existe una clasificación con el acrónimo "%(acronym)s" o muy similar.') % {'acronym': acronym}
+                )
+
+            if normalized_name and obj_name_norm == normalized_name:
+                raise forms.ValidationError(
+                    _('Ya existe una clasificación con el nombre "%(name)s" o muy similar.') % {'name': name}
+                )
+
+            if normalized_name_esp and obj_name_esp_norm == normalized_name_esp:
+                raise forms.ValidationError(
+                    _('Ya existe una clasificación con el nombre en español "%(name_esp)s" o muy similar.') % {'name_esp': name_esp}
+                )
+
+            if normalized_name and normalized_name_esp:
+                if obj_name_norm == normalized_name and obj_name_esp_norm == normalized_name_esp:
+                    raise forms.ValidationError(
+                        _('Ya existe una clasificación con la combinación del nombre y nombre en español igual.')
+                    )
+
+        return cleaned_data
+
+
+class StatusForm(forms.ModelForm):
+    class Meta:
+        model = Status
+        fields = ['name', 'name_esp', 'description', 'contexts', 'is_active']
+
+    name = forms.CharField(
+        required=True,
+        strip=True,
+        max_length=50,
+        label=_('Nombre'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del estado'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name',
+            }
+        ),
+        error_messages={
+            'required': _('Debe ingresar el nombre del estado.'),
+            'max_length': _('El nombre excede el largo permitido.'),
+        },
+    )
+
+    name_esp = forms.CharField(
+        required=False,
+        strip=True,
+        max_length=50,
+        label=_('Nombre Español'),
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Nombre del estado en español'),
+                'autocomplete': 'off',
+                'type': 'text',
+                'id': 'name_esp',
+            }
+        ),
+        error_messages={
+            'max_length': _('El nombre en español excede el largo permitido.'),
+        },
+    )
+
+    description = forms.CharField(
+        required=False,
+        label=_('Descripción'),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'placeholder': _('Descripción del estado'),
+                'rows': 3,
+                'id': 'description',
+            }
+        ),
+    )
+
+    contexts = forms.ModelMultipleChoiceField(
+        queryset=None,
+        required=True,
+        label=_('ContextAppos'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-select',
+                'id': 'contexts',
+            }
+        ),
+    )
+
+    is_active = forms.BooleanField(
+        required=False,
+        label=_('Activo'),
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                'class': 'form-check-input',
+                'id': 'is_active',
+                'title': _('Marcar para activar o desmarcar para desactivar el estado.'),
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['contexts'].queryset = ContextApp.objects.filter(is_active=True)
+
+    def clean_name(self):
+        return to_title_text(self.cleaned_data.get('name', ''))
+
+    def clean_name_esp(self):
+        return to_title_text(self.cleaned_data.get('name_esp', ''))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        name_esp = cleaned_data.get('name_esp')
+
+        normalized_name = normalize_text(name) if name else ''
+        normalized_name_esp = normalize_text(name_esp) if name_esp else ''
+
+        qs = Status.objects.exclude(pk=self.instance.pk if self.instance else None)
+
+        for obj in qs:
+            obj_name_norm = normalize_text(obj.name)
+            obj_name_esp_norm = normalize_text(obj.name_esp) if obj.name_esp else ''
+
+            if normalized_name and obj_name_norm == normalized_name:
+                raise forms.ValidationError(
+                    _('Ya existe un estado con el nombre "%(name)s" o muy similar.') % {'name': name}
+                )
+
+            if normalized_name_esp and obj_name_esp_norm == normalized_name_esp:
+                raise forms.ValidationError(
+                    _('Ya existe un estado con el nombre en español "%(name_esp)s" o muy similar.') % {'name_esp': name_esp}
+                )
+
+            if normalized_name and normalized_name_esp:
+                if obj_name_norm == normalized_name and obj_name_esp_norm == normalized_name_esp:
+                    raise forms.ValidationError(
+                        _('Ya existe un estado con la combinación del nombre y nombre en español igual.')
+                    )
+
+        return cleaned_data

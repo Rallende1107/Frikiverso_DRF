@@ -321,3 +321,148 @@ class WebsiteDetailView(PermissionRequiredMessageMixin, DetailView):
         context['listURL'] = reverse_lazy(URLS.Common.Website.LIST)
         context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
         return context
+
+
+
+from apps.common.models import ContextApp as Context, Genre, Type, Rating, Status
+
+
+
+class ContextDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Context
+    template_name = Templates.Common.Context.DETAIL
+    context_object_name = 'context'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La Aplicación que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Context.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Context, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.CONTEXT
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Context.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    Genre
+class GenreDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Genre
+    template_name = Templates.Common.Genre.DETAIL
+    context_object_name = 'genre'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('El género que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Genre.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Genre, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.GENRE
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Genre.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    Type
+class TypeDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Type
+    template_name = Templates.Common.Type.DETAIL
+    context_object_name = 'type'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('El tipo que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Type.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Type, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.TYPE
+        context['title'] = self.object.nickname
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Type.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    Rating
+class RatingDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Rating
+    template_name = Templates.Common.Rating.DETAIL
+    context_object_name = 'rating'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('La clasificación que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Rating.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Rating, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.RATING
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Rating.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context
+
+############################################################################################################################################    Status
+class StatusDetailView(PermissionRequiredMessageMixin, DetailView):
+    model = Status
+    template_name = Templates.Common.Status.DETAIL
+    context_object_name = 'status'
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+        except Http404:
+            messages.error(self.request, _('El estado que buscas no se encontró.'))
+            return redirect(reverse_lazy(URLS.Common.Status.LIST))
+
+        return super().get(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Status, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['class'] = CSSBackground.Common.STATUS
+        context['title'] = self.object.name
+        context['objeto'] = self.object
+        context['listURL'] = reverse_lazy(URLS.Common.Status.LIST)
+        context['homeURL'] = reverse_lazy(URLS.Home.COMMON)
+        return context

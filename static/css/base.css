@@ -225,6 +225,12 @@
         --bg-common-person_nickname:    url("../img/screen/wide/bg-common-person_nickname.webp");
         --bg-common-quality:            url("../img/screen/wide/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/wide/bg-common-website.webp");
+
+        --bg-common-context:            url("../img/screen/wide/bg-common-context.webp");
+        --bg-common-rating:             url("../img/screen/wide/bg-common-rating.webp");
+        --bg-common-type:               url("../img/screen/wide/bg-common-type.webp");
+        --bg-common-status:             url("../img/screen/wide/bg-common-status.webp");
+        --bg-common-genre:              url("../img/screen/wide/bg-common-genre.webp");
         /** BG Movie **/
         --bg-movie-producer:            url("../img/screen/wide/bg-movie-producer.webp");
         --bg-movie-distributor:         url("../img/screen/wide/bg-movie-distributor.webp");
@@ -378,6 +384,12 @@
         --bg-common-person_nickname:    url("../img/screen/landscape/bg-common-person_nickname.webp");
         --bg-common-quality:            url("../img/screen/landscape/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/landscape/bg-common-website.webp");
+
+        --bg-common-context:            url("../img/screen/landscape/bg-common-context.webp");
+        --bg-common-rating:             url("../img/screen/landscape/bg-common-rating.webp");
+        --bg-common-type:               url("../img/screen/landscape/bg-common-type.webp");
+        --bg-common-status:             url("../img/screen/landscape/bg-common-status.webp");
+        --bg-common-genre:              url("../img/screen/landscape/bg-common-genre.webp");
         /** BG Movie **/
         --bg-movie-producer:            url("../img/screen/landscape/bg-movie-producer.webp");
         --bg-movie-distributor:         url("../img/screen/landscape/bg-movie-distributor.webp");
@@ -531,6 +543,12 @@
         --bg-common-person_nickname:    url("../img/screen/portrait/bg-common-person_nickname.webp");
         --bg-common-quality:            url("../img/screen/portrait/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/portrait/bg-common-website.webp");
+
+        --bg-common-context:            url("../img/screen/portrait/bg-common-context.webp");
+        --bg-common-rating:             url("../img/screen/portrait/bg-common-rating.webp");
+        --bg-common-type:               url("../img/screen/portrait/bg-common-type.webp");
+        --bg-common-status:             url("../img/screen/portrait/bg-common-status.webp");
+        --bg-common-genre:              url("../img/screen/portrait/bg-common-genre.webp");
         /** BG Movie **/
         --bg-movie-producer:            url("../img/screen/portrait/bg-movie-producer.webp");
         --bg-movie-distributor:         url("../img/screen/portrait/bg-movie-distributor.webp");
@@ -684,6 +702,12 @@
         --bg-common-person_nickname:    url("../img/screen/tall/bg-common-person_nickname.webp");
         --bg-common-quality:            url("../img/screen/tall/bg-common-quality.webp");
         --bg-common-website:            url("../img/screen/tall/bg-common-website.webp");
+
+        --bg-common-context:            url("../img/screen/tall/bg-common-context.webp");
+        --bg-common-rating:             url("../img/screen/tall/bg-common-rating.webp");
+        --bg-common-type:               url("../img/screen/tall/bg-common-type.webp");
+        --bg-common-status:             url("../img/screen/tall/bg-common-status.webp");
+        --bg-common-genre:              url("../img/screen/tall/bg-common-genre.webp");
         /** BG Movie **/
         --bg-movie-producer:            url("../img/screen/tall/bg-movie-producer.webp");
         --bg-movie-distributor:         url("../img/screen/tall/bg-movie-distributor.webp");

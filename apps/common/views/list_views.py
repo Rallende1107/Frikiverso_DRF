@@ -371,3 +371,169 @@ class WebsiteListView(PermissionRequiredMessageMixin, ListView):
             },
         ]
         return context
+
+
+from apps.common.models import Genre, ContextApp as Context, Type, Rating, Status
+
+
+
+class ContextListView(PermissionRequiredMessageMixin, ListView):
+    model = Context
+    template_name = Templates.Common.Context.LIST
+    context_object_name = 'contexts'
+    title = _('Lista de contextos')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.CONTEXT
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.CONTEXT
+        context['key_map'] = KeyMap.Common.CONTEXT
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Context.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class GenreListView(PermissionRequiredMessageMixin, ListView):
+    model = Genre
+    template_name = Templates.Common.Genre.LIST
+    context_object_name = 'genres'
+    title = _('Lista de géneros')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.GENRE
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.GENRE
+        context['key_map'] = KeyMap.Common.GENRE
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Genre.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class TypeListView(PermissionRequiredMessageMixin, ListView):
+    model = Type
+    template_name = Templates.Common.Type.LIST
+    context_object_name = 'types'
+    title = _('Lista de tipos')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.TYPE
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.TYPE
+        context['key_map'] = KeyMap.Common.TYPE
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Type.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class RatingListView(PermissionRequiredMessageMixin, ListView):
+    model = Rating
+    template_name = Templates.Common.Rating.LIST
+    context_object_name = 'ratings'
+    title = _('Lista de Clasificaciones')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.RATING
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.RATING
+        context['key_map'] = KeyMap.Common.RATING
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Rating.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+class StatusListView(PermissionRequiredMessageMixin, ListView):
+    model = Status
+    template_name = Templates.Common.Status.LIST
+    context_object_name = 'states'
+    title = _('Lista de estados')
+    permission_redirect_url = URLS.Home.COMMON
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # for country in context[self.context_object_name]:
+        context['title'] = self.title
+        context['class'] = CSSBackground.Common.STATUS
+        context['js_action'] = JSConstants.ACTIONS
+        context['js_script'] = JSConstants.Common.STATUS
+        context['key_map'] = KeyMap.Common.STATUS
+        context['buttons'] = [
+            {
+                'url': reverse_lazy(URLS.Home.COMMON),
+                'label': _('Inicio'),
+                'icon': 'bi bi-house',
+                'show': True
+            },
+            {
+                'url': reverse_lazy(URLS.Common.Status.CREATE),
+                'label': _('Añadir'),
+                'icon': 'bi bi-plus-circle',
+                'show': self.request.user.is_superuser or self.request.user.is_staff
+            },
+        ]
+        return context
+
+
+
+
+
+

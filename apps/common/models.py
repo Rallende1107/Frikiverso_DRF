@@ -681,3 +681,343 @@ class Website(models.Model):
         """
         return self.acronym if self.acronym else self.name
 
+
+
+class ContextApp(models.Model):
+    """Model definition for ContextApp."""
+    APPS = [
+        ('movie', 'Películas'),
+        ('music', 'Música'),
+        ('otaku', 'Otaku'),
+        ('game', 'Juegos'),
+        ('serie', 'Serie'),
+    ]
+    name = models.CharField(max_length=20, unique=True, choices=APPS, verbose_name=_('Nombre'))
+    slug = models.CharField(max_length=20, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for ContextApp."""
+        verbose_name = _('Contexto')
+        verbose_name_plural = _('Contextos')
+        ordering = ['name',]
+        unique_together = (('name',),)
+
+    def __str__(self):
+        """Unicode representation of ContextApp."""
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """Save method for ContextApp."""
+        old = ContextApp.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización del nombre
+        if self.name:
+            self.name = self.name.strip().title()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.name != old.name):
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for ContextApp."""
+        return reverse('common_app:context_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    @property
+    def display_name(self):
+        if self.slug:
+            return f"{self.name} ({self.slug})"
+        return self.name
+
+
+class Genre(models.Model):
+    """Model definition for Genre."""
+    parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'is_active': True}, related_name='childrens', on_delete=models.CASCADE, verbose_name=_('Padre'))
+    name = models.CharField(max_length=50, unique=False, null=False, blank=False, verbose_name=_('Nombre'))
+    name_esp = models.CharField(max_length=50, unique=False, null=True, blank=True, verbose_name=_('Nombre Español'))
+    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
+    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    explicit = models.BooleanField(default=False, verbose_name=_('Explicito'))
+    description = models.TextField(blank=True, verbose_name=_('Descripción'))
+    contexts = models.ManyToManyField(ContextApp, related_name='genres_as_contexts', verbose_name=_('ContextAppos'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for Genre."""
+        verbose_name = _('Género')
+        verbose_name_plural = _('Géneros')
+        ordering = ['initial', 'name',]
+
+    def __str__(self):
+        """Unicode representation of Genre."""
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """Save method for Genre."""
+        # Obtener el objeto original si existe
+        old = Genre.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización del names
+        if self.name:
+            self.name = self.name.strip().title()
+        if self.name_esp:
+            self.name_esp = self.name_esp.strip().title()
+        # Inicial automática si está vacía o el nombre cambió
+        if not self.initial or (old and self.name != old.name):
+            self.initial = obtener_inicial(self.name).upper()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.name != old.name):
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for Genre."""
+        return reverse('common_app:genre_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    @property
+    def display_name(self):
+        base_name = self.name
+        if self.name_esp:
+            base_name = f"{self.name} ({self.name_esp})"
+        if self.parent:
+            return f"{base_name} Nacido de: {self.parent.name}"
+        return base_name
+
+    @property
+    def get_usage(self):
+        apps_list = [app.get_name_display() for app in self.contexts.all()]
+        return ", ".join(apps_list) if apps_list else _("No asociado a ninguna aplicación")
+
+    @property
+    def get_active(self):
+        if self.is_active:
+            return _('Sí')
+        else:
+            return _('No')
+
+    @property
+    def get_explicit(self):
+        if self.explicit:
+            return _('Sí') # Aquí falta algo
+        else:
+            return _('No') # Y aquí también
+
+    # @property
+    # def get_num_movies(self):
+    #     return self.movies_as_genre.count()
+
+    # @property
+    # def has_music(self):
+    #     return _('Sí') if self.music_as_genre.exists() else _('No') # For
+
+    # @property
+    # def has_music(self):
+    #     return _('Sí') if self.music_as_genre.exists() else _('No') # For
+
+class Type(models.Model):
+    """Model definition for Type."""
+    parent = models.ForeignKey('self', blank=True, null=True, limit_choices_to={'is_active': True}, related_name='childrens', on_delete=models.CASCADE, verbose_name=_('Padre'))
+    name = models.CharField(max_length=50, unique=False, null=False, blank=False, verbose_name=_('Nombre'))
+    name_esp = models.CharField(max_length=50, unique=False, null=True, blank=True, verbose_name=_('Nombre Español'))
+    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
+    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    description = models.TextField(blank=True, verbose_name=_('Descripción'))
+    contexts = models.ManyToManyField(ContextApp, related_name='types_as_contexts', verbose_name=_('ContextAppos'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for Type."""
+        verbose_name = _('Tipo Película')
+        verbose_name_plural = _('Tipos Películas')
+        ordering = ['-created_at', 'name',]
+
+    def __str__(self):
+        """Unicode representation of Type."""
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """Save method for Type."""
+        # Obtener el objeto original si existe
+        old = Type.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización de nombres
+        if self.name:
+            self.name = self.name.strip().title()
+        if self.name_esp:
+            self.name_esp = self.name_esp.strip().title()
+        # Inicial automático si está vacío o el nombre cambió
+        if not self.initial or (old and self.name != old.name):
+            self.initial = obtener_inicial(self.name).upper()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.name != old.name):
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for Type."""
+        return reverse('movie_app:movie_type_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    @property
+    def display_name(self):
+        base_name = self.name
+        if self.name_esp:
+            base_name = f"{self.name} ({self.name_esp})"
+        if self.parent:
+            return f"{base_name} - Nacido de: {self.parent.name}"
+        return base_name
+
+    @property
+    def get_usage(self):
+        apps_list = [app.get_name_display() for app in self.contexts.all()]
+        return ", ".join(apps_list) if apps_list else _("No asociado a ninguna aplicación")
+
+    @property
+    def get_active(self):
+        if self.is_active:
+            return _('Sí')
+        else:
+            return _('No')
+
+
+    # def get_num_movies(self):
+    #     return self.movies_as_types.count()
+
+
+class Rating(models.Model):
+    """Model definition for Rating."""
+    acronym = models.CharField(max_length=15, unique=False, null=False, blank=False, verbose_name=_('Acrónimo'))
+    name = models.CharField(max_length=60, unique=False, null=False, blank=False, verbose_name=_('Nombre'))
+    name_esp = models.CharField(max_length=60, unique=False, null=True, blank=True, verbose_name=_('Nombre Español'))
+    slug = models.SlugField(max_length=60, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    contexts = models.ManyToManyField(ContextApp, related_name='ratings_as_contexts', verbose_name=_('ContextAppos'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for Rating."""
+        verbose_name = _('Clasificación')
+        verbose_name_plural = _('Clasificaciones')
+        ordering = ['acronym', 'name',]
+
+    def __str__(self):
+        """Unicode representation of Rating."""
+        return (f'{self.acronym} - {self.name}')
+
+    def save(self, *args, **kwargs):
+        """Save method for Rating."""
+        # Obtener el objeto original si existe
+        old = Rating.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización de nombres
+        if self.acronym:
+            self.acronym = self.acronym.strip().upper()
+        if self.name:
+            self.name = self.name.strip().title()
+        if self.name_esp:
+            self.name_esp = self.name_esp.strip().title()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.acronym != old.acronym):
+            self.slug = slugify(self.acronym)
+
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for Rating."""
+        return reverse('movie_app:rating_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    # custom methods
+    @property
+    def display_name(self):
+        base_name = self.name
+        if self.name_esp:
+            base_name = f"{self.acronym} - {self.name} ({self.name_esp})"
+        return base_name
+
+    @property
+    def get_usage(self):
+        apps_list = [app.get_name_display() for app in self.contexts.all()]
+        return ", ".join(apps_list) if apps_list else _("No asociado a ninguna aplicación")
+
+    @property
+    def get_active(self):
+        if self.is_active:
+            return _('Sí')
+        else:
+            return _('No')
+
+class Status(models.Model):
+    """Model definition for Status."""
+    name = models.CharField(max_length=50, unique=False, null=False, blank=False, verbose_name=_('Nombre'))
+    name_esp = models.CharField(max_length=50, unique=False, null=True, blank=True, verbose_name=_('Nombre Español'))
+    initial = models.CharField(max_length=1, unique=False, null=False, blank=True, editable=False, verbose_name=_('Inicial'))
+    slug = models.SlugField(max_length=50, unique=True, null=False, blank=True, editable=False, verbose_name=_('Nombre Slug'))
+    description = models.TextField(blank=True, verbose_name=_('Descripción'))
+    contexts = models.ManyToManyField(ContextApp, related_name='status_as_contexts', verbose_name=_('ContextAppos'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Activo'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creado'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Actualizado'))
+
+    class Meta:
+        """Meta definition for Status."""
+        verbose_name = _('Estado')
+        verbose_name_plural = _('Estados')
+        ordering = ['name',]
+
+    def __str__(self):
+        """Unicode representation of Status."""
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """Save method for Status."""
+        # Obtener el objeto original si existe
+        old = Status.objects.filter(pk=self.pk).first() if self.pk else None
+        # Normalización de nombres
+        if self.name:
+            self.name = self.name.strip().title()
+        if self.name_esp:
+            self.name_esp = self.name_esp.strip().title()
+        # Inicial automático si está vacío o el nombre cambió
+        if not self.initial or (old and self.name != old.name):
+            self.initial = obtener_inicial(self.name).upper()
+        # Slug automático si está vacío o el nombre cambió
+        if not self.slug or (old and self.name != old.name):
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        """Return absolute url for Status."""
+        return reverse('otaku_app:status_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    # custom methods
+    def get_num_animes(self):
+        return self.animes_as_status.count()
+
+    def get_num_mangas(self):
+        return self.mangas_as_status.count()
+
+    # custom methods
+    @property
+    def display_name(self):
+        base_name = self.name
+        if self.name_esp:
+            base_name = f"{self.name} ({self.name_esp})"
+        return base_name
+
+    @property
+    def get_usage(self):
+        apps_list = [app.get_name_display() for app in self.contexts.all()]
+        return ", ".join(apps_list) if apps_list else _("No asociado a ninguna aplicación")
+
+    @property
+    def get_active(self):
+        if self.is_active:
+            return _('Sí')
+        else:
+            return _('No')
